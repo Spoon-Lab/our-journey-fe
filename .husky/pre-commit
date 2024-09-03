@@ -1,13 +1,11 @@
-#!/bin/sh
+echo ">> Husky: Pre-commit hook"
+echo ">> Running linting..."
 
-# Enable colors in Powershell (has scrolling issue?)
-export FORCE_COLOR=1
+npx.cmd lint-staged
 
-# Fix scrolling issue
-exec >/dev/console 2>&1;
+if [ $? -ne 0 ]; then
+  echo ">> Linting failed. Aborting commit."
+  exit 1
+fi
 
-# Check changed files
-bun lint-staged
-
-# Build project
-bun run build
+echo ">> Linting passed!!"

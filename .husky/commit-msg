@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+echo ">> Husky: Commitlint hook"
+echo ">> Running linting..."
+
+npx.cmd --no-install commitlint --edit "$1"
+
+echo ">> Good Commit Message"
