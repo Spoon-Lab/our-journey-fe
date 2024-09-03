@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "lint:css": "stylelint --ignore-path .gitignore '**/*.scss'",
-    "lint:css:fix": "stylelint '**/*.scss' --fix"
+    "lint:css:fix": "stylelint '**/*.scss' --fix",
+    "postinstall": "cd ../ && husky install"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.53.1",
@@ -38,6 +39,7 @@
     "eslint-plugin-stylelint": "^0.1.1",
     "eslint-plugin-typescript-sort-keys": "^3.2.0",
     "husky": "^9.1.5",
+    "lint-staged": "^15.2.10",
     "postcss-scss": "^4.0.9",
     "prettier": "^3.3.2",
     "sass": "^1.77.6",
@@ -52,5 +54,14 @@
   },
   "resolutions": {
     "eslint-plugin-react-hooks": "^4.6.2"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix --cache",
+      "prettier --write"
+    ],
+    "*.{scss}": [
+      "stylelint --fix"
+    ]
   }
 }
