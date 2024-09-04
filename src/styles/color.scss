@@ -1,0 +1,91 @@
+$primary: #87c96e;
+$secondary: #008080;
+$invalid: #909090;
+$white: #ffffff;
+$black: #252525;
+$red: #d32f2f;
+$yellow: #f9a825;
+$green: #4caf50;
+$blue: #0091ea;
+
+@mixin bg-primary {
+  background-color: $primary;
+}
+
+@mixin bg-secondary {
+  background-color: $secondary;
+}
+
+@mixin bg-invalid {
+  background-color: $invalid;
+}
+
+@mixin bg-white {
+  background-color: $white;
+}
+
+@mixin bg-black {
+  background-color: $black;
+}
+
+@mixin bg-primaryReverse {
+  background-color: $white;
+  border: 1px solid $primary;
+}
+
+@mixin bg-secondaryReverse {
+  background-color: $white;
+  border: 1px solid $secondary;
+}
+
+@mixin bg-error {
+  background-color: $red;
+}
+
+@mixin bg-warn {
+  background-color: $yellow;
+}
+
+@mixin bg-confirm {
+  background-color: $green;
+}
+
+@mixin bg-info {
+  background-color: $blue;
+}
+
+@mixin text-primary {
+  color: $primary;
+}
+
+@mixin text-secondary {
+  color: $secondary;
+}
+
+@mixin text-invalid {
+  color: $invalid;
+}
+
+@mixin text-white {
+  color: $white;
+}
+
+@mixin text-black {
+  color: $black;
+}
+
+@mixin text-error {
+  color: $red;
+}
+
+@mixin text-warn {
+  color: $yellow;
+}
+
+@mixin text-confirm {
+  color: $green;
+}
+
+@mixin text-info {
+  color: $blue;
+}
