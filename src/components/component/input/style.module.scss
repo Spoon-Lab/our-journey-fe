@@ -1,0 +1,41 @@
+.inputWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  background-color: #d9d9d9;
+
+  &_s {
+    width: 150px;
+  }
+
+  &_md {
+    width: 250px;
+  }
+
+  &_lg {
+    width: 330px;
+  }
+
+  &_full {
+    width: 100%;
+  }
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  background-color: transparent;
+
+  &:focus {
+    outline: 1px solid #00cdcd;
+  }
+}
+
+.icon {
+  margin: 0 10px;
+}
