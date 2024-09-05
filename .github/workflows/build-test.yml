@@ -2,9 +2,9 @@ name: build-test-action
 
 on:
   push:
-    branches: [ main, develop , feature, feature/* ] 
+    branches: [ main, develop , feature, feat/* ] 
   pull_request:
-    branches: [ main, develop , feature, feature/* ]
+    branches: [ main, develop , feature, feat/* ]
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
