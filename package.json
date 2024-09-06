@@ -8,9 +8,20 @@
     "start": "next start",
     "lint": "next lint",
     "lint:css": "stylelint --ignore-path .gitignore '**/*.scss'",
-    "lint:css:fix": "stylelint '**/*.scss' --fix"
+    "lint:css:fix": "stylelint '**/*.scss' --fix",
+    "lint:fix": "eslint . --fix && prettier --write . && stylelint '**/*.{css,scss}' --fix",
+    "postinstall": "cd ../ && husky install",
+    "prepare": "husky install"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsc --noEmit && lint-staged", 
+      "commit-msg": "node_modules/.bin/commitlint -E HUSKY_GIT_PARAMS"
+    }
   },
   "dependencies": {
+    "@commitlint/cli": "^19.4.1",
+    "@commitlint/config-conventional": "^19.4.1",
     "@tanstack/react-query": "^5.53.1",
     "@tanstack/react-query-devtools": "^5.53.1",
     "axios": "^1.7.5",
@@ -39,6 +50,7 @@
     "eslint-plugin-stylelint": "^0.1.1",
     "eslint-plugin-typescript-sort-keys": "^3.2.0",
     "husky": "^9.1.5",
+    "lint-staged": "^15.2.10",
     "postcss-scss": "^4.0.9",
     "prettier": "^3.3.2",
     "sass": "^1.77.6",
@@ -53,5 +65,14 @@
   },
   "resolutions": {
     "eslint-plugin-react-hooks": "^4.6.2"
+  },
+  "lint-staged": {
+    "src/**/*.(js|jsx|ts|tsx)": [
+      "eslint --fix --cache",
+      "prettier --write"
+    ],
+    "src/**/*.{scss}": [
+      "stylelint --fix"
+    ]
   }
 }
