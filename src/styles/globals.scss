@@ -1,6 +1,7 @@
 html,
 body,
 #root {
+  font-family: 'Pretendard', sans-serif;
   height: 100%;
   overflow: hidden;
 }
@@ -14,11 +15,12 @@ body,
 html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
+  text-size-adjust: 100%;
   font-size: 62.5%;
 }
 
 body {
-  margin: 0;
+  margin: 16;
 }
 
 main {
