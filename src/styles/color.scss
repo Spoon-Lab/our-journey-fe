@@ -1,0 +1,27 @@
+// grayscale
+$gray-900: #131313;
+$gray-800: #333333;
+$gray-700: #515151;
+$gray-600: #646464;
+$gray-500: #8b8b8b;
+$gray-400: #acacac;
+$gray-300: #d1d1d1;
+$gray-200: #e3e3e3;
+$gray-100: #eeeeee;
+$gray-50: #f7f7f7;
+$background-system: #1e1f23;
+
+// main
+$main: #ff7e7e;
+
+// pure
+$white: #ffffff;
+$black: #000000;
+
+@mixin bg-color($color) {
+  background-color: $gray900;
+}
+
+@mixin text-color($color) {
+  color: ($color);
+}
