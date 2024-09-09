@@ -1,161 +1,219 @@
-@mixin font-light10 {
-  font-size: 10px;
-  line-height: 12px;
+@mixin regular-caption2 {
+  font-size: 11px;
+  font-style: normal;
   font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.25px;
 }
 
-@mixin font-light12 {
+@mixin regluar-caption1 {
   font-size: 12px;
-  line-height: 16px;
+  font-style: normal;
   font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.25px;
 }
 
-@mixin font-light14 {
-  font-size: 14px;
-  line-height: 18px;
+@mixin regluar-footnote {
+  font-size: 13px;
+  font-style: normal;
   font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.25px;
 }
 
-@mixin font-light16 {
+@mixin regluar-subheadline {
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.25px;
+}
+
+@mixin regluar-callout {
   font-size: 16px;
-  line-height: 20px;
+  font-style: normal;
   font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.25px;
 }
 
-@mixin font-light18 {
-  font-size: 18px;
-  line-height: 24px;
+@mixin regluar-body {
+  font-size: 17px;
+  font-style: normal;
   font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.25px;
 }
 
-@mixin font-light20 {
+@mixin regluar-title3 {
   font-size: 20px;
-  line-height: 24px;
+  font-style: normal;
   font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.25px;
 }
 
-@mixin font-light24 {
-  font-size: 24px;
-  line-height: 28px;
+@mixin regluar-title2 {
+  font-size: 22px;
+  font-style: normal;
   font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.25px;
 }
 
-@mixin font-light32 {
-  font-size: 32px;
-  line-height: 40px;
+@mixin regluar-title1 {
+  font-size: 28px;
+  font-style: normal;
   font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.25px;
 }
 
-@mixin font-light40 {
-  font-size: 40px;
-  line-height: 48px;
+@mixin regluar-largeTitle {
+  font-size: 34px;
+  font-style: normal;
   font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.25px;
 }
 
-@mixin font-medium10 {
-  font-size: 10px;
-  line-height: 12px;
-  font-weight: 500;
+@mixin semibold-caption2 {
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 
-@mixin font-medium12 {
+@mixin semibold-caption1 {
   font-size: 12px;
-  line-height: 16px;
-  font-weight: 500;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 
-@mixin font-medium14 {
-  font-size: 14px;
-  line-height: 18px;
-  font-weight: 500;
+@mixin semibold-footnote {
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 
-@mixin font-medium16 {
+@mixin semibold-subheadline {
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+@mixin semibold-callout {
   font-size: 16px;
-  line-height: 20px;
-  font-weight: 500;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 
-@mixin font-medium18 {
-  font-size: 18px;
-  line-height: 24px;
-  font-weight: 500;
+@mixin semibold-body {
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 
-@mixin font-medium20 {
+@mixin semibold-title3 {
   font-size: 20px;
-  line-height: 24px;
-  font-weight: 500;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 
-@mixin font-medium24 {
-  font-size: 24px;
-  line-height: 28px;
-  font-weight: 500;
+@mixin semibold-title2 {
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 
-@mixin font-medium32 {
-  font-size: 32px;
-  line-height: 40px;
-  font-weight: 500;
+@mixin semibold-title1 {
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 
-@mixin font-medium40 {
-  font-size: 40px;
-  line-height: 48px;
-  font-weight: 500;
+@mixin semibold-largeTitle {
+  font-size: 34px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 
-@mixin font-bold10 {
-  font-size: 10px;
-  line-height: 12px;
+@mixin bold-caption2 {
+  font-size: 11px;
+  font-style: normal;
   font-weight: 700;
+  line-height: normal;
 }
 
-@mixin font-bold12 {
+@mixin bold-caption1 {
   font-size: 12px;
-  line-height: 16px;
+  font-style: normal;
   font-weight: 700;
+  line-height: normal;
 }
 
-@mixin font-bold14 {
-  font-size: 14px;
-  line-height: 18px;
+@mixin bold-footnote {
+  font-size: 13px;
+  font-style: normal;
   font-weight: 700;
+  line-height: normal;
 }
 
-@mixin font-bold16 {
+@mixin bold-subheadline {
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+@mixin bold-callout {
   font-size: 16px;
-  line-height: 20px;
+  font-style: normal;
   font-weight: 700;
+  line-height: normal;
 }
 
-@mixin font-bold18 {
-  font-size: 18px;
-  line-height: 24px;
+@mixin bold-body {
+  font-size: 17px;
+  font-style: normal;
   font-weight: 700;
+  line-height: normal;
 }
 
-@mixin font-bold20 {
+@mixin bold-title3 {
   font-size: 20px;
-  line-height: 24px;
+  font-style: normal;
   font-weight: 700;
+  line-height: normal;
 }
 
-@mixin font-bold24 {
-  font-size: 24px;
-  line-height: 28px;
+@mixin bold-title2 {
+  font-size: 22px;
+  font-style: normal;
   font-weight: 700;
+  line-height: normal;
 }
 
-@mixin font-bold32 {
-  font-size: 32px;
-  line-height: 40px;
+@mixin bold-title1 {
+  font-size: 28px;
+  font-style: normal;
   font-weight: 700;
+  line-height: normal;
 }
 
-@mixin font-bold40 {
-  font-size: 40px;
-  line-height: 48px;
+@mixin bold-largeTitle {
+  font-size: 34px;
+  font-style: normal;
   font-weight: 700;
+  line-height: normal;
 }
