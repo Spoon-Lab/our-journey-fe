@@ -1,20 +1,25 @@
-$primary: #87c96e;
-$secondary: #008080;
-$invalid: #909090;
+// grayscale
+$gray900: #131313;
+$gray800: #333333;
+$gray700: #515151;
+$gray600: #646464;
+$gray500: #8b8b8b;
+$gray400: #acacac;
+$gray300: #d1d1d1;
+$gray200: #e3e3e3;
+$gray100: #eeeeee;
+$gray50: #f7f7f7;
+$background_system: #1e1f23;
+
+// main
+$main: #ff7e7e;
+
+// pure
 $white: #ffffff;
-$black: #252525;
-$red: #d32f2f;
-$yellow: #f9a825;
-$green: #4caf50;
-$blue: #0091ea;
+$black: #000000;
 
 @mixin bg-color($color) {
-  background-color: $color;
-}
-
-@mixin bg-colorReverse($color) {
-  background-color: $white;
-  border: 1px solid ($color);
+  background-color: $gray900;
 }
 
 @mixin text-color($color) {
