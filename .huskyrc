@@ -1,0 +1,6 @@
+{
+  "hooks": {
+    "pre-commit": "tsc --noEmit && lint-staged",
+    "commit-msg": "node_modules/.bin/commitlint -E HUSKY_GIT_PARAMS"
+  }
+}

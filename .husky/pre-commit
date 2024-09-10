@@ -1,7 +1,7 @@
 echo ">> Husky: Pre-commit hook"
 echo ">> Running linting..."
 
-npx.cmd lint-staged
+./node_modules/.bin/lint-staged
 
 if [ $? -ne 0 ]; then
   echo ">> Linting failed. Aborting commit."

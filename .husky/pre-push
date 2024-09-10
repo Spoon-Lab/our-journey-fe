@@ -1,0 +1,32 @@
+#!/bin/sh
+
+FORBIDDEN_HTTPS_URL="https://github.com/Spoon-Lab/our-journey-fe.git" # 원격 저장소 URL (https)
+FORBIDDEN_SSH_URL="git@github.com:Spoon-Lab/our-journey-fe.git" # 원격 저장소 URL (ssh)
+FORBIDDEN_REF="refs/heads/main" # 보호할 브랜치 ref
+
+ARR_GIT_PARAMS=($(echo $HUSKY_GIT_PARAMS))
+ARR_GIT_STDIN=($(echo $HUSKY_GIT_STDIN))
+
+remote=${ARR_GIT_PARAMS[0]}
+url=${ARR_GIT_PARAMS[1]}
+
+local_ref=${ARR_GIT_STDIN[0]}
+local_sha=${ARR_GIT_STDIN[1]}
+remote_ref=${ARR_GIT_STDIN[2]}
+remote_sha=${ARR_GIT_STDIN[3]}
+
+if [ "$url" != "$FORBIDDEN_HTTPS_URL" -a "$url" != "$FORBIDDEN_SSH_URL" ]
+then
+    exit 0 # Forked Project에서는 제한하지 않음
+fi
+
+if [ "$remote_ref" == "$FORBIDDEN_REF" ]
+then
+    # feat/#(NN) 형식의 브랜치 체크
+    if echo "$local_ref" | grep -qE "refs/heads/feat/#[0-9]+$"; then
+        echo "ERROR: feat 브랜치는 main 브랜치로 직접 push 또는 merge할 수 없습니다."
+        exit 1
+    fi
+fi
+
+exit 0
