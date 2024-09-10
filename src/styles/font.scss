@@ -1,3 +1,16 @@
+@font-face {
+  font-family: 'LAB-DIGITAL';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/LAB디지털.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@mixin timestamp {
+  font-family: 'LAB-DIGITAL', sans-serif;
+  color: rgb(255, 200, 129);
+  text-shadow: rgb(255, 136, 0) 1px 0 10px;
+}
+
 @mixin regular-caption-2 {
   font-size: 11px;
   font-style: normal;
@@ -6,7 +19,7 @@
   letter-spacing: -0.25px;
 }
 
-@mixin regluar-caption-1 {
+@mixin regular-caption-1 {
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -14,7 +27,7 @@
   letter-spacing: -0.25px;
 }
 
-@mixin regluar-footnote {
+@mixin regular-footnote {
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -22,7 +35,7 @@
   letter-spacing: -0.25px;
 }
 
-@mixin regluar-subheadline {
+@mixin regular-sub-headline {
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
@@ -30,7 +43,7 @@
   letter-spacing: -0.25px;
 }
 
-@mixin regluar-callout {
+@mixin regular-callout {
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -38,7 +51,7 @@
   letter-spacing: -0.25px;
 }
 
-@mixin regluar-body {
+@mixin regular-body {
   font-size: 17px;
   font-style: normal;
   font-weight: 400;
@@ -46,7 +59,7 @@
   letter-spacing: -0.25px;
 }
 
-@mixin regluar-title-3 {
+@mixin regular-title-3 {
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -54,7 +67,7 @@
   letter-spacing: -0.25px;
 }
 
-@mixin regluar-title-2 {
+@mixin regular-title-2 {
   font-size: 22px;
   font-style: normal;
   font-weight: 400;
@@ -62,7 +75,7 @@
   letter-spacing: -0.25px;
 }
 
-@mixin regluar-title-1 {
+@mixin regular-title-1 {
   font-size: 28px;
   font-style: normal;
   font-weight: 400;
@@ -70,7 +83,7 @@
   letter-spacing: -0.25px;
 }
 
-@mixin regluar-largeTitle {
+@mixin regular-large-title {
   font-size: 34px;
   font-style: normal;
   font-weight: 400;
@@ -99,7 +112,7 @@
   line-height: normal;
 }
 
-@mixin semibold-subheadline {
+@mixin semibold-sub-headline {
   font-size: 15px;
   font-style: normal;
   font-weight: 600;
@@ -141,7 +154,7 @@
   line-height: normal;
 }
 
-@mixin semibold-largeTitle {
+@mixin semibold-large-title {
   font-size: 34px;
   font-style: normal;
   font-weight: 600;
@@ -169,7 +182,7 @@
   line-height: normal;
 }
 
-@mixin bold-subheadline {
+@mixin bold-sub-headline {
   font-size: 15px;
   font-style: normal;
   font-weight: 700;
@@ -211,7 +224,7 @@
   line-height: normal;
 }
 
-@mixin bold-largeTitle {
+@mixin bold-large-title {
   font-size: 34px;
   font-style: normal;
   font-weight: 700;
