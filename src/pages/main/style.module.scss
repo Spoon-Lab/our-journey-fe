@@ -1,0 +1,16 @@
+.mainWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+}
+
+.feedWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: sticky;
+  padding: 0 16px;
+}

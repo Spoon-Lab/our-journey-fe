@@ -1,0 +1,40 @@
+@import '/src/styles/index';
+
+// ?Concern: 버튼 색상을 prop으로 받아와서 처리할 방법이 있을지?
+
+.container {
+  display: flex;
+  justify-content: flex-start;
+
+  width: 100%;
+  gap: 12px;
+  padding: 16px 0;
+
+  box-sizing: border-box;
+}
+
+.button {
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include semibold-sub-headline;
+  color: $white;
+
+  padding: 0;
+  border: none;
+  outline: none;
+  margin: 0;
+  box-sizing: border-box;
+
+  cursor: pointer;
+}
+
+.inactive {
+  color: $gray-600;
+}
+
+.active {
+  color: $white;
+}
