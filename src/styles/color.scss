@@ -1,4 +1,4 @@
-// grayscale
+// gray scale
 $gray-900: #131313;
 $gray-800: #333333;
 $gray-700: #515151;
@@ -11,17 +11,21 @@ $gray-100: #eeeeee;
 $gray-50: #f7f7f7;
 $background-system: #1e1f23;
 
-// main
-$main: #ff7e7e;
+//blue(main)
+$blue-900: #0f7cc7;
+$blue-800: #0f7cc7;
+$blue-700: #0f8ddb;
+$blue-600: #0fa0ef;
+$blue-500: #11afff;
+$blue-400: #2cbcff;
+$blue-300: #52c8ff;
+$blue-200: #84d7ff;
+$blue-100: #b5e7ff;
+$blue-50: #e1f6ff;
+
+//pink
+$pink-300: #ff7e7e;
 
 // pure
 $white: #ffffff;
 $black: #000000;
-
-@mixin bg-color($color) {
-  background-color: $gray900;
-}
-
-@mixin text-color($color) {
-  color: ($color);
-}
