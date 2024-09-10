@@ -5,11 +5,16 @@
 .container {
   display: flex;
   justify-content: flex-start;
-
-  width: 100%;
   gap: 12px;
-  padding: 16px 0;
+  position: sticky;
 
+  background: $background-system;
+
+  padding: 16px 0;
+  width: 100%;
+
+  top: 0;
+  z-index: 50;
   box-sizing: border-box;
 }
 

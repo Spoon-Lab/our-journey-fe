@@ -6,7 +6,7 @@ import DefaultLayout from '@/components/layouts';
 import FeedGrid from './component/feed-grid';
 import SortContainer from './component/sort-container';
 import TopBanner from './component/top-banner';
-import useGetFeed from './hooks/useGetFeed';
+import useGetFeed from '../../hooks/useGetFeed';
 
 import s from './style.module.scss';
 
