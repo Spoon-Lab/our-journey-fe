@@ -1,5 +1,3 @@
-import Header from '@/components/header';
-
 import s from './style.module.scss';
 
 interface LayoutProps {
@@ -9,7 +7,6 @@ interface LayoutProps {
 export default function DefaultLayout({ children }: LayoutProps) {
   return (
     <div className={s.layoutContainer}>
-      <Header />
       <main>{children}</main>
     </div>
   );
