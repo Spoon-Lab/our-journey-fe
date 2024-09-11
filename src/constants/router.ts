@@ -5,4 +5,5 @@ export const router = {
   // auth
   signin: '/signin',
   signup: '/signup',
+  searchPassword: '/search-password',
 };

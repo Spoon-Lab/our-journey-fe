@@ -1,6 +1,10 @@
 import type { ReactNode } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+
+import { router } from '@/constants/router';
 
 import { signinSchema } from '@/utils/validate';
 
@@ -9,7 +13,7 @@ import Button from '@/components/button/button';
 import Input from '@/components/input/input';
 import AuthLayout from '@/components/layouts/auth-layout/auth-layout';
 
-import s from '../signup/style.module.scss';
+import s from './style.module.scss';
 
 interface SigninData {
   email: string;
@@ -17,6 +21,7 @@ interface SigninData {
 }
 
 export default function Signin() {
+  const nav = useRouter();
   const {
     register,
     handleSubmit,
@@ -36,7 +41,7 @@ export default function Signin() {
   };
 
   return (
-    <main className={s.signUpContainer}>
+    <main className={s.signInContainer}>
       <AuthHeader />
       <h1>
         아워저니와 함께 <br />
@@ -64,6 +69,11 @@ export default function Signin() {
 
         <Button type="submit">로그인</Button>
       </form>
+      <div className={s.searchWrapper}>
+        <Link href={router.searchPassword}>비밀번호 찾기</Link>
+        <span />
+        <Link href={router.signup}>회원가입 하기</Link>
+      </div>
     </main>
   );
 }

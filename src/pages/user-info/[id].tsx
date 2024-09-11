@@ -37,7 +37,7 @@ export default function UserInfo() {
   };
 
   return (
-    <main className={s.UserInfoContainer}>
+    <main className={s.userInfoContainer}>
       <AuthHeader text="회원정보 입력" />
       <h1>
         알찬 아워저니 생활을 위해
