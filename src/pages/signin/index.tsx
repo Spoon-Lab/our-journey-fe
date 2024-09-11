@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Link from 'next/link';
 
-import { router } from '@/constants/router';
+import { ROUTER } from '@/constants/router';
 
 import { signinSchema } from '@/utils/validate';
 
@@ -65,9 +65,9 @@ export default function Signin() {
         <Button type="submit">로그인</Button>
       </form>
       <div className={s.searchWrapper}>
-        <Link href={router.searchPassword}>비밀번호 찾기</Link>
+        <Link href={ROUTER.searchPassword}>비밀번호 찾기</Link>
         <span />
-        <Link href={router.signup}>회원가입 하기</Link>
+        <Link href={ROUTER.signup}>회원가입 하기</Link>
       </div>
     </main>
   );

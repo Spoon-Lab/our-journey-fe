@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
 
-import { router } from '@/constants/router';
+import { ROUTER } from '@/constants/router';
 
 import { newPasswordSchema } from '@/utils/validate';
 
@@ -38,7 +38,7 @@ export default function CreatePassword() {
 
   const onSubmit = async () => {
     reset();
-    await nav.push(router.signin);
+    await nav.push(ROUTER.signin);
   };
 
   return (
