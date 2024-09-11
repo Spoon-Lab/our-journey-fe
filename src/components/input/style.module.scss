@@ -1,0 +1,72 @@
+@import '/src/styles/index';
+
+@mixin display-row-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  label {
+    @include semibold-caption-2;
+    padding: 6px 0;
+  }
+}
+
+.inputBox {
+  @include display-row-center;
+  width: 100%;
+  border-bottom: 2px solid $gray-600;
+
+  input {
+    @include semibold-body;
+    flex: 1 0;
+    color: $gray-200;
+    border: none;
+    background-color: transparent;
+    padding: 7px 0;
+
+    &::placeholder {
+      color: $gray-500;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      color: $gray-700;
+    }
+  }
+
+  &:hover {
+    border-bottom: 2px solid $gray-500;
+  }
+
+  &:focus-within {
+    border-bottom: 2px solid $blue-900;
+  }
+
+  &:has(input:disabled) {
+    &:hover {
+      border-bottom: 2px solid $gray-600;
+    }
+  }
+
+  span {
+    @include display-row-center;
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.errorMessage {
+  color: $pink-300;
+  @include semibold-caption-2;
+  padding: 6px 0;
+}

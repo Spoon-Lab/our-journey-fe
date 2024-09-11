@@ -13,7 +13,12 @@
 }
 .btnBox[type='submit'] {
   background-color: $blue-500;
+  color: $white;
   @include semibold-callout;
+
+  &:hover {
+    background-color: $blue-600;
+  }
 }
 
 .btnBox[type='button'] {

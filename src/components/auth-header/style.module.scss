@@ -1,0 +1,18 @@
+@import '/src/styles/index';
+
+.headerContainer {
+  display: flex;
+  padding: 20px 0;
+  width: 100%;
+  gap: 8px;
+
+  button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  p {
+    @include regular-callout;
+  }
+}
