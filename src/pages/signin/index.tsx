@@ -2,13 +2,13 @@ import type { ReactNode } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 
 import { router } from '@/constants/router';
 
 import { signinSchema } from '@/utils/validate';
 
 import AuthHeader from '@/components/auth-header/auth-header';
+import AuthIntroText from '@/components/auth-Intro-text/auth-Intro-text';
 import Button from '@/components/button/button';
 import Input from '@/components/input/input';
 import AuthLayout from '@/components/layouts/auth-layout/auth-layout';
@@ -21,7 +21,6 @@ interface SigninData {
 }
 
 export default function Signin() {
-  const nav = useRouter();
   const {
     register,
     handleSubmit,
@@ -43,10 +42,7 @@ export default function Signin() {
   return (
     <main className={s.signInContainer}>
       <AuthHeader />
-      <h1>
-        아워저니와 함께 <br />
-        신나는 여정을 시작해볼까요?
-      </h1>
+      <AuthIntroText text={`아워저니와 함께\n신나는 여정을 시작해볼까요?`} />
       <form className={s.formWrapper} onSubmit={handleSubmit(onSubmit)}>
         <Input
           placeholder="이메일 주소를 입력해주세요"

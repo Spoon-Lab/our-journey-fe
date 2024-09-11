@@ -8,6 +8,7 @@ import { nicknameSchema } from '@/utils/validate';
 import { useFile } from '@/hooks/useFile';
 
 import AuthHeader from '@/components/auth-header/auth-header';
+import AuthIntroText from '@/components/auth-Intro-text/auth-Intro-text';
 import Button from '@/components/button/button';
 import Input from '@/components/input/input';
 import AuthLayout from '@/components/layouts/auth-layout/auth-layout';
@@ -39,11 +40,7 @@ export default function UserInfo() {
   return (
     <main className={s.userInfoContainer}>
       <AuthHeader text="회원정보 입력" />
-      <h1>
-        알찬 아워저니 생활을 위해
-        <br />
-        프로필 정보를 등록해주세요!
-      </h1>
+      <AuthIntroText text={`알찬 아워저니 생활을 위해\n프로필 정보를 등록해주세요!`} />
       <form className={s.formWrapper} onSubmit={handleSubmit(onSubmit)}>
         <div className={s.fileWrapper}>
           {filePreview ? (

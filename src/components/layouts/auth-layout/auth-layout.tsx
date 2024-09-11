@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 import s from './style.module.scss';
 
 interface LayoutProps {
@@ -7,6 +9,7 @@ interface LayoutProps {
 export default function AuthLayout({ children }: LayoutProps) {
   return (
     <div className={s.layoutContainer}>
+      <Image className={s.backgroundIcon} src="/images/yellowImg.png" width={180} height={100} alt="yellow-img" />
       <div className={s.mainContainer}>{children}</div>
     </div>
   );

@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { signupSchema } from '@/utils/validate';
 
 import AuthHeader from '@/components/auth-header/auth-header';
+import AuthIntroText from '@/components/auth-Intro-text/auth-Intro-text';
 import Button from '@/components/button/button';
 import Input from '@/components/input/input';
 import AuthLayout from '@/components/layouts/auth-layout/auth-layout';
@@ -38,10 +39,8 @@ export default function Signup() {
   return (
     <main className={s.signUpContainer}>
       <AuthHeader />
-      <h1>
-        이메일로 간편하게 가입하고 <br />
-        아워저니를 즐겨보세요
-      </h1>
+      <AuthIntroText text={`이메일로 간편하게 가입하고\n아워저니를 즐겨보세요`} />
+
       <form className={s.formWrapper} onSubmit={handleSubmit(onSubmit)}>
         <Input
           placeholder="이메일 주소를 입력해주세요"

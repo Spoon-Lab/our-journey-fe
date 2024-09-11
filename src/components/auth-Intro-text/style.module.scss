@@ -1,0 +1,17 @@
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 0;
+
+  hr {
+    width: 40px;
+    height: 4px;
+    background-color: #fbeb09;
+    border: none;
+  }
+  h1 {
+    margin: 0;
+    white-space: pre-line;
+  }
+}
