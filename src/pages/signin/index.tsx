@@ -2,45 +2,45 @@ import type { ReactNode } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { signupSchema } from '@/utils/validate';
+import { signinSchema } from '@/utils/validate';
 
 import AuthHeader from '@/components/auth-header/auth-header';
 import Button from '@/components/button/button';
 import Input from '@/components/input/input';
 import AuthLayout from '@/components/layouts/auth-layout/auth-layout';
 
-import s from './style.module.scss';
+import s from '../signup/style.module.scss';
 
-interface SignupData {
+interface SigninData {
   email: string;
   password: string;
-  passwordCheck: string;
 }
 
-export default function Signup() {
+export default function Signin() {
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<SignupData>({
-    resolver: yupResolver(signupSchema),
+  } = useForm<SigninData>({
+    resolver: yupResolver(signinSchema),
     mode: 'onBlur',
     defaultValues: {
       email: '',
       password: '',
-      passwordCheck: '',
     },
   });
+
   const onSubmit = () => {
     reset();
   };
+
   return (
     <main className={s.signUpContainer}>
       <AuthHeader />
       <h1>
-        이메일로 간편하게 가입하고 <br />
-        아워저니를 즐겨보세요
+        아워저니와 함께 <br />
+        신나는 여정을 시작해볼까요?
       </h1>
       <form className={s.formWrapper} onSubmit={handleSubmit(onSubmit)}>
         <Input
@@ -53,7 +53,7 @@ export default function Signup() {
           autoComplete="email"
         />
         <Input
-          placeholder="영문, 숫자 포함 00자 이상"
+          placeholder="비밀번호를 입력해주세요"
           type="password"
           id="password"
           {...register('password')}
@@ -61,19 +61,11 @@ export default function Signup() {
           labelText="비밀번호 입력"
           autoComplete="new-password"
         />
-        <Input
-          placeholder="비밀번호를 재입력해주세요"
-          type="password"
-          id="passwordCheck"
-          {...register('passwordCheck')}
-          errorMessage={errors.passwordCheck?.message}
-          labelText="비밀번호 재입력"
-          autoComplete="new-password"
-        />
-        <Button type="submit">회원가입</Button>
+
+        <Button type="submit">로그인</Button>
       </form>
     </main>
   );
 }
 
-Signup.getLayout = (page: ReactNode) => <AuthLayout>{page}</AuthLayout>;
+Signin.getLayout = (page: ReactNode) => <AuthLayout>{page}</AuthLayout>;

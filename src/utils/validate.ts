@@ -23,4 +23,10 @@ const signupSchema = yup.object({
     .trim(),
 });
 
-export { signupSchema };
+const signinSchema = yup.object({
+  email: yup.string().required('이메일을 입력해주세요').trim(),
+
+  password: yup.string().required('비밀번호를 입력해주세요').trim(),
+});
+
+export { signinSchema, signupSchema };

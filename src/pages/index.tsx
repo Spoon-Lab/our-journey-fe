@@ -1,5 +1,8 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { signIn } from 'next-auth/react';
+
+import { router } from '@/constants/router';
 
 import Button from '@/components/button/button';
 
@@ -8,6 +11,7 @@ import s from './style.module.scss';
 import { Google } from '@/assets/icons';
 
 export default function Home() {
+  const nav = useRouter();
   return (
     <main className={s.homeContainer}>
       <div className={s.textWrapper}>
@@ -26,11 +30,11 @@ export default function Home() {
               <p>구글로 로그인하기</p>
             </div>
           </Button>
-          <Button>이메일로 로그인하기</Button>
+          <Button onClick={() => nav.push(router.signin)}>이메일로 로그인하기</Button>
         </div>
         <div className={s.signUpBox}>
           <p>아직 회원이 아니신가요?</p>
-          <Link href="/signup">회원가입</Link>
+          <Link href={router.signup}>회원가입</Link>
         </div>
       </div>
     </main>
