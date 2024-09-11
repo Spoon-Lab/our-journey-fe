@@ -14,5 +14,6 @@
 
   p {
     @include regular-callout;
+    color: $gray-100;
   }
 }

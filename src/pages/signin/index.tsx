@@ -62,7 +62,6 @@ export default function Signin() {
           labelText="비밀번호 입력"
           autoComplete="new-password"
         />
-
         <Button type="submit">로그인</Button>
       </form>
       <div className={s.searchWrapper}>
