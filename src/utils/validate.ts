@@ -21,8 +21,9 @@ const passwordCheckSchema = yup
   .required('비밀번호를 다시 입력해주세요')
   .trim();
 
-const nicknameSchema = yup.string().required('닉네임을 입력해주세요').max(10, '최대 10자리까지 입력이 가능합니다');
-
+const nicknameSchema = yup.object({
+  nickname: yup.string().required('닉네임을 입력해주세요').max(10, '최대 10자리까지 입력이 가능합니다'),
+});
 // 각 스키마 정의
 const signupSchema = yup.object({
   email: emailSchema,
