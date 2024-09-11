@@ -19,6 +19,16 @@
   &:hover {
     background-color: $blue-600;
   }
+
+  &:disabled {
+    opacity: 0.4;
+    color: $gray-100;
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: $blue-500;
+    }
+  }
 }
 
 .btnBox[type='button'] {

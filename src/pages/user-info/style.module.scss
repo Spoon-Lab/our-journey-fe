@@ -1,0 +1,49 @@
+@import '/src/styles/index';
+
+.UserInfoContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  h1 {
+    margin: 0;
+    padding: 24px 0 10px;
+    margin-bottom: 16px;
+  }
+}
+
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  button {
+    position: absolute;
+    bottom: 32px;
+  }
+}
+
+.fileWrapper {
+  border-radius: 6px;
+  background-color: $gray-700;
+  width: 110px;
+  height: 110px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  div {
+    display: none;
+  }
+
+  svg {
+    cursor: pointer;
+  }
+
+  img {
+    width: 110px;
+    height: 110px;
+    border-radius: 6px;
+    object-fit: cover;
+  }
+}

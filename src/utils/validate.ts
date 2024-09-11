@@ -25,8 +25,11 @@ const signupSchema = yup.object({
 
 const signinSchema = yup.object({
   email: yup.string().required('이메일을 입력해주세요').trim(),
-
   password: yup.string().required('비밀번호를 입력해주세요').trim(),
 });
 
-export { signinSchema, signupSchema };
+const nicknameSchema = yup.object({
+  nickname: yup.string().required('닉네임을 입력해주세요').max(10, '최대 10자리까지 입력이 가능합니다'),
+});
+
+export { nicknameSchema, signinSchema, signupSchema };
