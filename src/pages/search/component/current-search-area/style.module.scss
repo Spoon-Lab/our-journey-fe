@@ -1,0 +1,46 @@
+@import '/src/styles/index';
+
+.currentSearchArea {
+  display: flex;
+  flex-direction: column;
+  padding: 0 16px;
+  width: 100%;
+}
+
+.categoryBox {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  width: 100%;
+}
+
+.categoryLabel {
+  @include semibold-body;
+  line-height: 20px;
+  color: $white;
+}
+
+.clearButton {
+  @include regular-footnote;
+  color: $gray-300;
+  text-decoration-line: underline;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.hashtagBox {
+  display: flex;
+  justify-content: flex-start;
+  gap: 8px;
+  width: 100%;
+}
+
+.hashtagButton {
+  @include regular-sub-headline;
+  color: $blue-200;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
