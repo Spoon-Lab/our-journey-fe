@@ -2,6 +2,7 @@ import type { MouseEvent, ReactNode } from 'react';
 import { useState } from 'react';
 
 import DefaultLayout from '@/components/layouts';
+import NavBar from '@/components/nav-bar';
 
 import FeedGrid from './component/feed-grid';
 import SortContainer from './component/sort-container';
@@ -27,8 +28,11 @@ export default function Main() {
       <TopBanner />
       <div className={s.feedWrapper}>
         <SortContainer handle={handleListToSort} sort={sort} />
-        <FeedGrid data={data} />
+        {data.pages.map((content) => (
+          <FeedGrid key={content.pageable.pageNumber} data={content.content} />
+        ))}
       </div>
+      <NavBar />
     </section>
   );
 }

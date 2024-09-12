@@ -5,6 +5,15 @@
   flex-direction: column;
 
   gap: 8px;
+
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+
+  box-sizing: border-box;
+  cursor: pointer;
 }
 
 .thumbnailBox {
@@ -18,6 +27,7 @@
 }
 
 .date {
+  @include timestamp;
   background: linear-gradient(135.19deg, #ffc300 -306.58%, #992100 1114.57%);
   -webkit-background-clip: text;
   background-clip: text;
