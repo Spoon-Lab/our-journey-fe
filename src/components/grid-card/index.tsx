@@ -1,16 +1,18 @@
+import { useRouter } from 'next/router';
+
 import type { Content } from '@/types/contents';
+import { ROUTES } from '@/constants/router';
 
 import { formatDate } from '@/libs/date';
 
 import s from './style.module.scss';
 
 export default function GridCard({ data }: { data: Content }) {
-  if (!data) {
-    return <div />;
-  }
+  const router = useRouter();
 
+  const handleMoveToPage = () => router.push(`${ROUTES.content}/${data.contentId}`);
   return (
-    <button type="button" className={s.cardWrapper}>
+    <button id={`${data.contentId}`} type="button" className={s.cardWrapper} onClick={handleMoveToPage}>
       <figure className={s.thumbnailBox}>
         <img alt={data.title} src={data.postImg} className={s.thumbnail} />
         <span className={s.date}>{formatDate(new Date(data.createdAt))}</span>
