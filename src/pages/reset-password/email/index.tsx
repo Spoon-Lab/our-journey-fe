@@ -3,9 +3,9 @@ import Link from 'next/link';
 
 import { ROUTER } from '@/constants/router';
 
-import AuthHeader from '@/components/auth-header/auth-header';
-import AuthIntroText from '@/components/auth-Intro-text/auth-Intro-text';
-import AuthLayout from '@/components/layouts/auth-layout/auth-layout';
+import AuthHeader from '@/components/auth-header';
+import AuthIntroText from '@/components/auth-Intro-text';
+import AuthLayout from '@/components/layouts/auth-layout';
 
 import s from './style.module.scss';
 

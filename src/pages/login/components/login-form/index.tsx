@@ -7,8 +7,8 @@ import { loginSchema } from '@/utils/validate';
 
 import useLogin from '@/hooks/auth/use-login';
 
-import Button from '@/components/button/button';
-import Input from '@/components/input/input';
+import Button from '@/components/button';
+import Input from '@/components/input';
 
 import s from './style.module.scss';
 

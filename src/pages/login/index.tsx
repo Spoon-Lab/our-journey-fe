@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
 
-import AuthHeader from '@/components/auth-header/auth-header';
-import AuthIntroText from '@/components/auth-Intro-text/auth-Intro-text';
-import AuthLayout from '@/components/layouts/auth-layout/auth-layout';
+import AuthHeader from '@/components/auth-header';
+import AuthIntroText from '@/components/auth-Intro-text';
+import AuthLayout from '@/components/layouts/auth-layout';
 
 import LoginForm from './components/login-form';
 import Navbar from './components/navbar';

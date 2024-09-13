@@ -5,8 +5,8 @@ import { emailCheckSchema } from '@/utils/validate';
 
 import useEmailRequest from '@/hooks/auth/use-email-request';
 
-import Button from '@/components/button/button';
-import Input from '@/components/input/input';
+import Button from '@/components/button';
+import Input from '@/components/input';
 
 import s from './style.module.scss';
 

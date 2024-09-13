@@ -6,8 +6,8 @@ import { nicknameSchema } from '@/utils/validate';
 
 import { useImage } from '@/hooks/use-image';
 
-import Button from '@/components/button/button';
-import Input from '@/components/input/input';
+import Button from '@/components/button';
+import Input from '@/components/input';
 
 import s from './style.module.scss';
 

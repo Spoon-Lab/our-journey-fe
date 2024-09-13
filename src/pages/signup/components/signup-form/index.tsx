@@ -7,8 +7,8 @@ import { signupSchema } from '@/utils/validate';
 
 import useSignup from '@/hooks/auth/use-signup';
 
-import Button from '@/components/button/button';
-import Input from '@/components/input/input';
+import Button from '@/components/button';
+import Input from '@/components/input';
 
 import s from './style.module.scss';
 

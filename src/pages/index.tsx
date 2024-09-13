@@ -4,7 +4,7 @@ import { signIn } from 'next-auth/react';
 
 import { ROUTER } from '@/constants/router';
 
-import Button from '@/components/button/button';
+import Button from '@/components/button';
 
 import s from './style.module.scss';
 
@@ -12,6 +12,7 @@ import { Google } from '@/assets/icons';
 
 export default function Home() {
   const nav = useRouter();
+
   return (
     <main className={s.homeContainer}>
       <div className={s.textWrapper}>
@@ -24,7 +25,7 @@ export default function Home() {
       </div>
       <div className={s.authWrapper}>
         <div className={s.buttonWrapper}>
-          <Button onClick={() => signIn()}>
+          <Button onClick={() => signIn('google')}>
             <div className={s.googleBox}>
               <Google />
               <p>구글로 로그인하기</p>

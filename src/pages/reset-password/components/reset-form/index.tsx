@@ -8,8 +8,8 @@ import { newPasswordSchema } from '@/utils/validate';
 
 import useResetPassword from '@/hooks/auth/use-reset-password';
 
-import Button from '@/components/button/button';
-import Input from '@/components/input/input';
+import Button from '@/components/button';
+import Input from '@/components/input';
 
 import s from './style.module.scss';
 
