@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 import { nicknameSchema } from '@/utils/validate';
 
-import { useFile } from '@/hooks/use-file';
+import { useImage } from '@/hooks/use-image';
 
 import Button from '@/components/button/button';
 import Input from '@/components/input/input';
@@ -14,7 +14,7 @@ import s from './style.module.scss';
 import { AddPhoto } from '@/assets/icons';
 
 export default function InfoForm() {
-  const { filePreview, handleChangeFile } = useFile();
+  const { filePreview, handleChangeFile } = useImage();
 
   const {
     register,

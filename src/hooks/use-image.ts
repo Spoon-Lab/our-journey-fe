@@ -1,7 +1,7 @@
 import type { ChangeEvent } from 'react';
 import { useState } from 'react';
 
-export const useFile = () => {
+export const useImage = () => {
   const [file, setFile] = useState<FormData | null>(null);
   const [filePreview, setFilePreview] = useState<string | null>(null);
 
