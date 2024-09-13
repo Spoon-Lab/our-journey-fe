@@ -10,7 +10,7 @@ export default function AuthLayout({ children }: LayoutProps) {
   return (
     <div className={s.layoutContainer}>
       <Image className={s.backgroundIcon} src="/images/yellowImg.png" width={180} height={100} alt="yellow-img" priority />
-      <div className={s.mainContainer}>{children}</div>
+      {children}
     </div>
   );
 }

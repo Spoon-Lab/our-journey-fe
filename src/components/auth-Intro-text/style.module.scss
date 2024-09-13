@@ -11,16 +11,19 @@
     height: 4px;
     background-color: #fbeb09;
     border: none;
+    word-break: keep-all;
   }
 
   h1 {
     margin: 0;
     white-space: pre-line;
+    @include semibold-title-2;
   }
 
   p {
     color: $gray-500;
     @include regular-body;
     padding: 8px 0;
+    word-break: keep-all;
   }
 }

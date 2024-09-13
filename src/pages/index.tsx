@@ -30,7 +30,7 @@ export default function Home() {
               <p>구글로 로그인하기</p>
             </div>
           </Button>
-          <Button onClick={() => nav.push(ROUTER.signin)}>이메일로 로그인하기</Button>
+          <Button onClick={() => nav.push(ROUTER.login)}>이메일로 로그인하기</Button>
         </div>
         <div className={s.signUpBox}>
           <p>아직 회원이 아니신가요?</p>

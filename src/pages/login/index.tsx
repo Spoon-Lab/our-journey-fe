@@ -4,20 +4,22 @@ import AuthHeader from '@/components/auth-header/auth-header';
 import AuthIntroText from '@/components/auth-Intro-text/auth-Intro-text';
 import AuthLayout from '@/components/layouts/auth-layout/auth-layout';
 
-import SignupForm from './components/signup-form';
+import LoginForm from './components/login-form';
+import Navbar from './components/navbar';
 
 import s from './style.module.scss';
 
-export default function Signup() {
+export default function Login() {
   return (
-    <main className={s.signUpContainer}>
-      <AuthIntroText text={`이메일로 간편하게 가입하고\n아워저니를 즐겨보세요`} />
-      <SignupForm />
+    <main className={s.loginContainer}>
+      <AuthIntroText text={`아워저니와 함께\n신나는 여정을 시작해볼까요?`} />
+      <LoginForm />
+      <Navbar />
     </main>
   );
 }
 
-Signup.getLayout = (page: ReactNode) => (
+Login.getLayout = (page: ReactNode) => (
   <AuthLayout>
     <AuthHeader />
     {page}
