@@ -1,13 +1,13 @@
 import type { MouseEvent, ReactNode } from 'react';
 import { useState } from 'react';
 
+import FeedGrid from '@/components/feed-grid';
 import DefaultLayout from '@/components/layouts';
 import NavBar from '@/components/nav-bar';
 
-import FeedGrid from './component/feed-grid';
 import SortContainer from './component/sort-container';
 import TopBanner from './component/top-banner';
-import useGetFeed from '../../hooks/useGetFeed';
+import useGetFeed from '../../hooks/use-get-feed';
 
 import s from './style.module.scss';
 
