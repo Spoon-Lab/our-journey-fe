@@ -25,7 +25,7 @@
   align-items: center;
 
   @include semibold-sub-headline;
-  color: $white;
+  color: $gray-600;
 
   padding: 0;
   border: none;
@@ -34,12 +34,8 @@
   box-sizing: border-box;
 
   cursor: pointer;
-}
 
-.inactive {
-  color: $gray-600;
-}
-
-.active {
-  color: $white;
+  &.active {
+    color: $white;
+  }
 }
