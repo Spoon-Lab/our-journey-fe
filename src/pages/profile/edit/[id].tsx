@@ -12,7 +12,7 @@ import Input from '@/components/input';
 import ProfileLayout from '@/components/layouts/profile-layout';
 import Modal from '@/components/modal';
 
-import { ProfileHeader } from '../components';
+import ProfileHeader from '../components/profile-header';
 
 import s from './style.module.scss';
 

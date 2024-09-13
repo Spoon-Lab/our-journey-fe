@@ -9,7 +9,10 @@ import useGetMyContents from '@/hooks/profile/use-get-my-contents';
 import ProfileLayout from '@/components/layouts/profile-layout';
 import MenuBar from '@/components/menu-bar';
 
-import { ContentItem, NavItem, ProfileHeader, UserSettings } from './components';
+import ContentItem from './components/content';
+import NavItem from './components/nav-item';
+import ProfileHeader from './components/profile-header';
+import UserSettings from './components/user-settings';
 
 import s from './style.module.scss';
 
