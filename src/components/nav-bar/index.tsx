@@ -32,7 +32,7 @@ export default function NavBar() {
         <span className={`${s.buttonText} ${settingPath ? s.currentPage : ''}`}>메뉴</span>
       </button>
       {mainPath && (
-        <button aria-label="글 작성" type="button" className={s.fab}>
+        <button id={ROUTES.create} aria-label="글 작성" type="button" className={s.fab} onClick={handleMoveToPage}>
           <AddIcon />
         </button>
       )}

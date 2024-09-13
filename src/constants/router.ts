@@ -4,4 +4,5 @@ export const ROUTES = {
   main: '/main',
   search: '/search',
   setting: '/setting',
+  create: '/create',
 };
