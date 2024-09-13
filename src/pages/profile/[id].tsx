@@ -1,20 +1,45 @@
-import type { ReactNode } from 'react';
+import { type ReactNode, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 import { ROUTER } from '@/constants/router';
 
-import ProfileLayout from '@/components/layouts/profile-layout/profile-layout';
+import useGetMyContents from '@/hooks/profile/use-get-my-contents';
 
-import NavItem from './components/nav-item';
-import ProfileHeader from './components/profile-header';
+import ProfileLayout from '@/components/layouts/profile-layout';
+import MenuBar from '@/components/menu-bar';
+
+import { ContentItem, NavItem, ProfileHeader, UserSettings } from './components';
 
 import s from './style.module.scss';
 
-import { ArrowDownIcon, ArticleIcon, CampaignIcon, ForwardIcon, PersonIcon } from '@/assets/icons';
+import { ArrowDownIcon, ArrowUpIcon, ArticleIcon, ForwardIcon, PersonIcon } from '@/assets/icons';
 
 export default function Profile() {
   const router = useRouter();
+  const [openContents, setOpenContents] = useState<boolean>(false);
+  const { data, isPending } = useGetMyContents({ id: 1, open: openContents });
+
+  let contents;
+
+  if (openContents && isPending) {
+    contents = <div>로딩중?</div>;
+  }
+
+  if (openContents && data) {
+    contents = (
+      <div className={s.contentsWrapper}>
+        {data.map((page) => (
+          <>
+            {page.content.map((e) => (
+              <ContentItem key={e.contentId} content={e} />
+            ))}
+          </>
+        ))}
+      </div>
+    );
+  }
+
   return (
     <div className={s.profileContainer}>
       <ProfileHeader text="프로필 수정" />
@@ -28,12 +53,23 @@ export default function Profile() {
         </div>
         <nav className={s.navWrapper}>
           <NavItem leftIcon={<PersonIcon />} text="내 정보 보기" rightIcon={<ForwardIcon />} onClick={() => router.push(`${ROUTER.profileEdit}/1`)} />
-          <NavItem leftIcon={<ArticleIcon />} text="내 작성글 모두보기" rightIcon={<ArrowDownIcon />} />
-          <NavItem leftIcon={<CampaignIcon />} text="고객센터" rightIcon={<ForwardIcon />} />
+          <NavItem
+            leftIcon={<ArticleIcon />}
+            text="내 작성글 모두보기"
+            rightIcon={!openContents ? <ArrowDownIcon /> : <ArrowUpIcon />}
+            onClick={() => setOpenContents((prev) => !prev)}
+          />
         </nav>
+        {contents}
       </main>
+      <UserSettings />
     </div>
   );
 }
 
-Profile.getLayout = (page: ReactNode) => <ProfileLayout>{page}</ProfileLayout>;
+Profile.getLayout = (page: ReactNode) => (
+  <ProfileLayout>
+    {page}
+    <MenuBar pk={1} />
+  </ProfileLayout>
+);

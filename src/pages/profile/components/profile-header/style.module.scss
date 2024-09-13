@@ -22,6 +22,8 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    word-break: keep-all;
+    text-align: center;
   }
 }
 

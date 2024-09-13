@@ -2,5 +2,8 @@
 export const ROUTER = {
   main: '/main',
 
+  base: '/',
+
+  profile: '/profile',
   profileEdit: '/profile/edit',
 };
