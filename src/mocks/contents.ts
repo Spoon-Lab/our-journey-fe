@@ -11,6 +11,7 @@ export const contents = {
         title: 'Exploring the Future of AI',
         updatedAt: '2024-09-11T09:15:00Z',
         nickname: 'User1',
+        favoriteCount: 20,
       },
       {
         contentId: 2,
@@ -22,6 +23,7 @@ export const contents = {
         title: 'Designing for Accessibility',
         updatedAt: '2024-09-10T15:00:00Z',
         nickname: 'User2',
+        favoriteCount: 19,
       },
       {
         contentId: 3,
@@ -33,6 +35,7 @@ export const contents = {
         title: 'The Rise of Web 3.0',
         updatedAt: '2024-09-09T13:10:00Z',
         nickname: 'User3',
+        favoriteCount: 18,
       },
       {
         contentId: 4,
@@ -44,6 +47,7 @@ export const contents = {
         title: 'The Impact of Climate Change',
         updatedAt: '2024-09-08T10:05:00Z',
         nickname: 'User4',
+        favoriteCount: 17,
       },
       {
         contentId: 5,
@@ -55,6 +59,7 @@ export const contents = {
         title: 'Breaking into Tech',
         updatedAt: '2024-09-07T12:30:00Z',
         nickname: 'User5',
+        favoriteCount: 16,
       },
       {
         contentId: 6,
@@ -66,6 +71,7 @@ export const contents = {
         title: 'The Evolution of Gaming',
         updatedAt: '2024-09-06T14:50:00Z',
         nickname: 'User6',
+        favoriteCount: 15,
       },
       {
         contentId: 7,
@@ -77,6 +83,7 @@ export const contents = {
         title: 'Future of Remote Work',
         updatedAt: '2024-09-05T17:40:00Z',
         nickname: 'User7',
+        favoriteCount: 14,
       },
       {
         contentId: 8,
@@ -88,6 +95,7 @@ export const contents = {
         title: 'Advances in Health Tech',
         updatedAt: '2024-09-04T19:00:00Z',
         nickname: 'User8',
+        favoriteCount: 13,
       },
       {
         contentId: 9,
@@ -99,6 +107,7 @@ export const contents = {
         title: 'AI and the Workforce',
         updatedAt: '2024-09-03T15:15:00Z',
         nickname: 'User9',
+        favoriteCount: 12,
       },
       {
         contentId: 10,
@@ -110,6 +119,7 @@ export const contents = {
         title: 'Sustainability in Tech',
         updatedAt: '2024-09-02T11:30:00Z',
         nickname: 'User10',
+        favoriteCount: 11,
       },
     ],
     first: true,
@@ -135,6 +145,7 @@ export const contents = {
         title: 'Tech in Education',
         updatedAt: '2024-09-10T10:15:00Z',
         nickname: 'User11',
+        favoriteCount: 10,
       },
       {
         contentId: 12,
@@ -146,6 +157,7 @@ export const contents = {
         title: 'Blockchain and Privacy',
         updatedAt: '2024-09-09T12:05:00Z',
         nickname: 'User12',
+        favoriteCount: 9,
       },
       {
         contentId: 13,
@@ -157,6 +169,7 @@ export const contents = {
         title: 'The Growth of Fintech',
         updatedAt: '2024-09-08T16:40:00Z',
         nickname: 'User13',
+        favoriteCount: 8,
       },
       {
         contentId: 14,
@@ -168,6 +181,7 @@ export const contents = {
         title: 'IoT and Smart Cities',
         updatedAt: '2024-09-07T14:20:00Z',
         nickname: 'User14',
+        favoriteCount: 7,
       },
       {
         contentId: 15,
@@ -179,6 +193,7 @@ export const contents = {
         title: 'Space Tech Innovations',
         updatedAt: '2024-09-06T19:45:00Z',
         nickname: 'User15',
+        favoriteCount: 6,
       },
       {
         contentId: 16,
@@ -190,6 +205,7 @@ export const contents = {
         title: 'AI in Healthcare',
         updatedAt: '2024-09-05T12:05:00Z',
         nickname: 'User16',
+        favoriteCount: 5,
       },
       {
         contentId: 17,
@@ -201,6 +217,7 @@ export const contents = {
         title: 'Cryptocurrency Trends',
         updatedAt: '2024-09-04T15:30:00Z',
         nickname: 'User17',
+        favoriteCount: 4,
       },
       {
         contentId: 18,
@@ -212,6 +229,7 @@ export const contents = {
         title: 'Renewable Energy and Tech',
         updatedAt: '2024-09-03T18:40:00Z',
         nickname: 'User18',
+        favoriteCount: 3,
       },
       {
         contentId: 19,
@@ -223,6 +241,7 @@ export const contents = {
         title: '5G Technology and Beyond',
         updatedAt: '2024-09-02T14:00:00Z',
         nickname: 'User19',
+        favoriteCount: 2,
       },
       {
         contentId: 20,
@@ -234,6 +253,7 @@ export const contents = {
         title: 'The Future of AR/VR',
         updatedAt: '2024-09-01T13:20:00Z',
         nickname: 'User20',
+        favoriteCount: 1,
       },
     ],
     first: false,
