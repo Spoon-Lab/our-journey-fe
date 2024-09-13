@@ -17,7 +17,7 @@ const passwordSchema = yup
 
 const passwordCheckSchema = yup
   .string()
-  .oneOf([yup.ref('password')], '비밀번호가 일치하지 않습니다')
+  .oneOf([yup.ref('password1')], '비밀번호가 일치하지 않습니다')
   .required('비밀번호를 다시 입력해주세요')
   .trim();
 
@@ -27,8 +27,8 @@ const nicknameSchema = yup.object({
 
 const signupSchema = yup.object({
   email: emailSchema,
-  password: passwordSchema,
-  passwordCheck: passwordCheckSchema,
+  password1: passwordSchema,
+  password2: passwordCheckSchema,
 });
 
 const loginSchema = yup.object({
@@ -41,8 +41,8 @@ const emailCheckSchema = yup.object({
 });
 
 const newPasswordSchema = yup.object({
-  password: passwordSchema,
-  passwordCheck: passwordCheckSchema,
+  password1: passwordSchema,
+  password2: passwordCheckSchema,
 });
 
 export { emailCheckSchema, loginSchema, newPasswordSchema, nicknameSchema, signupSchema };

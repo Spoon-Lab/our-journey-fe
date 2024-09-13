@@ -3,6 +3,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import { emailCheckSchema } from '@/utils/validate';
 
+import useEmailRequest from '@/hooks/auth/use-email-request';
+
 import Button from '@/components/button/button';
 import Input from '@/components/input/input';
 
@@ -22,7 +24,10 @@ export default function EmailForm() {
     },
   });
 
-  const onSubmit = () => {
+  const { mutate } = useEmailRequest();
+
+  const onSubmit = (data: { email: string }) => {
+    mutate(data);
     reset();
   };
   return (

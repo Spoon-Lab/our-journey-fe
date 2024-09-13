@@ -1,19 +1,16 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
+import type { Login } from '@/types/auth';
+
 import { loginSchema } from '@/utils/validate';
 
-import useLogin from '@/hooks/use-login';
+import useLogin from '@/hooks/auth/use-login';
 
 import Button from '@/components/button/button';
 import Input from '@/components/input/input';
 
 import s from './style.module.scss';
-
-interface LoginData {
-  email: string;
-  password: string;
-}
 
 export default function LoginForm() {
   const {
@@ -21,7 +18,7 @@ export default function LoginForm() {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<LoginData>({
+  } = useForm<Login>({
     resolver: yupResolver(loginSchema),
     mode: 'onBlur',
     defaultValues: {
@@ -32,8 +29,8 @@ export default function LoginForm() {
 
   const { mutate } = useLogin();
 
-  const onSubmit = (user: LoginData) => {
-    mutate(user);
+  const onSubmit = (data: Login) => {
+    mutate(data);
     reset();
   };
   return (

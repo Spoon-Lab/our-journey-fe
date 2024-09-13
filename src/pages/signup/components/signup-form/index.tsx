@@ -1,34 +1,37 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
+import type { Signup } from '@/types/auth';
+
 import { signupSchema } from '@/utils/validate';
+
+import useSignup from '@/hooks/auth/use-signup';
 
 import Button from '@/components/button/button';
 import Input from '@/components/input/input';
 
 import s from './style.module.scss';
 
-interface SignupData {
-  email: string;
-  password: string;
-  passwordCheck: string;
-}
 export default function SignupForm() {
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<SignupData>({
+  } = useForm<Signup>({
     resolver: yupResolver(signupSchema),
     mode: 'onBlur',
     defaultValues: {
       email: '',
-      password: '',
-      passwordCheck: '',
+      password1: '',
+      password2: '',
     },
   });
-  const onSubmit = () => {
+
+  const { mutate } = useSignup();
+
+  const onSubmit = (data: Signup) => {
+    mutate(data);
     reset();
   };
 
@@ -46,18 +49,18 @@ export default function SignupForm() {
       <Input
         placeholder="영문, 숫자 포함 00자 이상"
         type="password"
-        id="password"
-        {...register('password')}
-        errorMessage={errors.password?.message}
+        id="password1"
+        {...register('password1')}
+        errorMessage={errors.password1?.message}
         labelText="비밀번호 입력"
         autoComplete="new-password"
       />
       <Input
         placeholder="비밀번호를 재입력해주세요"
         type="password"
-        id="passwordCheck"
-        {...register('passwordCheck')}
-        errorMessage={errors.passwordCheck?.message}
+        id="password2"
+        {...register('password2')}
+        errorMessage={errors.password2?.message}
         labelText="비밀번호 재입력"
         autoComplete="new-password"
       />

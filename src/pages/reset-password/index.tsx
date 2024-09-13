@@ -1,16 +1,7 @@
 import type { ReactNode } from 'react';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useRouter } from 'next/router';
-
-import { ROUTER } from '@/constants/router';
-
-import { emailCheckSchema } from '@/utils/validate';
 
 import AuthHeader from '@/components/auth-header/auth-header';
 import AuthIntroText from '@/components/auth-Intro-text/auth-Intro-text';
-import Button from '@/components/button/button';
-import Input from '@/components/input/input';
 import AuthLayout from '@/components/layouts/auth-layout/auth-layout';
 
 import EmailForm from './components/email-form';

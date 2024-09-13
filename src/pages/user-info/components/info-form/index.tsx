@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 import { nicknameSchema } from '@/utils/validate';
 
-import { useFile } from '@/hooks/use-File';
+import { useFile } from '@/hooks/use-file';
 
 import Button from '@/components/button/button';
 import Input from '@/components/input/input';
@@ -29,7 +29,21 @@ export default function InfoForm() {
     },
   });
 
+  // const { mutate } = useUpdateProfile();
+  // const { mutate: fileMutate } = useUploadImg();
+
   const onSubmit = () => {
+    // // 체리님이 프로필 수정관련  스웨거 수정해주시면 수정해야할 것 같습니다
+    // if (file) {
+    //   fileMutate({
+    //     photo_type: 'profile',
+    //     images: [file],
+    //   });
+    //   // mutate()
+    // } else {
+    //   // mutate()
+    // }
+
     reset();
   };
   return (

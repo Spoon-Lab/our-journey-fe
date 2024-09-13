@@ -3,6 +3,7 @@ export const ROUTER = {
   main: '/main',
 
   // auth
+  base: '/',
   login: '/login',
   signup: '/signup',
   resetPassword: '/reset-password',
