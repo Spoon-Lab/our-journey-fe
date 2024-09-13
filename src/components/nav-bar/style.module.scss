@@ -20,11 +20,24 @@
   background: transparent;
   border: none;
   outline: none;
+  cursor: pointer;
+  svg > path {
+    fill: $gray-600;
+  }
+  &.currentPage {
+    svg > path {
+      fill: $blue-500;
+    }
+  }
 }
 
 .buttonText {
   @include semibold-footnote;
   color: $gray-600;
+
+  &.currentPage {
+    color: $blue-500;
+  }
 }
 
 .active {
