@@ -1,4 +1,7 @@
+import Link from 'next/link';
+
 import type { Content } from '@/types/contents';
+import { ROUTES } from '@/constants/router';
 
 import { formatDate } from '@/libs/date';
 
@@ -9,10 +12,10 @@ export default function GridCard({ data }: { data: Content }) {
     return <div />;
   }
 
-  const title = data.title.length > 18 ? `${data.title.substring(0, 15)}...` : data.title;
+  const title = data.title.length > 15 ? `${data.title.substring(0, 15)}...` : data.title;
 
   return (
-    <button type="button" className={s.cardWrapper}>
+    <Link className={s.cardWrapper} href={`${ROUTES.content}/${data.contentId}`}>
       <figure className={s.thumbnailBox}>
         <img alt={data.title} src={data.postImg} className={s.thumbnail} />
         <span className={s.date}>{formatDate(new Date(data.createdAt))}</span>
@@ -22,6 +25,6 @@ export default function GridCard({ data }: { data: Content }) {
         <img className={s.profileThumbnail} src={data.contentProfileDto.profileImgUrl} alt={`${data.contentProfileDto.name} 님의 사진`} />
         <span className={s.profileName}>{data.contentProfileDto.name}</span>
       </div>
-    </button>
+    </Link>
   );
 }

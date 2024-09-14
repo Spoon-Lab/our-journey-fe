@@ -5,4 +5,5 @@ export const ROUTES = {
   create: '/create',
   category: '/category',
   menu: '/menu',
+  content: '/content',
 };
