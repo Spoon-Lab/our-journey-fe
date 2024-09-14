@@ -3,6 +3,6 @@ export const ROUTES = {
   category: '/category',
   main: '/main',
   search: '/search',
-  setting: '/setting',
+  menu: '/menu',
   create: '/create',
 };

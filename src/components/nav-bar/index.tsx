@@ -14,7 +14,7 @@ export default function NavBar() {
   const { pathname } = router;
   const mainPath = pathname === ROUTES.main;
   const categoryPath = pathname === ROUTES.category || pathname === ROUTES.search;
-  const settingPath = pathname === ROUTES.setting;
+  const menuPath = pathname === ROUTES.menu;
 
   return (
     <div className={s.navBarContainer}>
@@ -26,9 +26,9 @@ export default function NavBar() {
         <CategoryIcon />
         <span className={`${s.buttonText} ${categoryPath ? s.currentPage : ''}`}>카테고리</span>
       </Link>
-      <Link id={ROUTES.setting} type="button" className={`${s.navBarButton} ${settingPath ? s.currentPage : ''}`} href={ROUTES.setting}>
+      <Link id={ROUTES.menu} type="button" className={`${s.navBarButton} ${menuPath ? s.currentPage : ''}`} href={ROUTES.menu}>
         <MenuIcon />
-        <span className={`${s.buttonText} ${settingPath ? s.currentPage : ''}`}>메뉴</span>
+        <span className={`${s.buttonText} ${menuPath ? s.currentPage : ''}`}>메뉴</span>
       </Link>
       {mainPath && (
         <Link id={ROUTES.create} aria-label="글 작성" type="button" className={s.fab} href={ROUTES.create}>
