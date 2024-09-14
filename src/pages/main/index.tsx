@@ -13,7 +13,7 @@ import useGetFeed from '../../hooks/use-get-feed';
 import s from './style.module.scss';
 
 export default function Main() {
-  const { data, sort, setSort, fetchNextPage, hasNextPage } = useGetFeed();
+  const { data, sort, setSort, fetchNextPage, hasNextPage } = useGetFeed({});
   const divRef = useRef<HTMLDivElement>(null);
 
   useIntersectionObserver({
