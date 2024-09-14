@@ -16,7 +16,7 @@ export default function Search() {
 
   const { data } = useGetFeed();
 
-  // * 근데 문제가 있음.. 이거 카테고리 Id로 검색하면 헤더는 어떤 값으로 띄운담..?
+  const categoryName = (categoryId && (categoryId === 'domestic' ? '국내여행' : '해외여행')) ?? undefined;
 
   if (!data) {
     return <div />;
@@ -24,7 +24,7 @@ export default function Search() {
 
   return (
     <>
-      <Header title={`${(title as string) ?? ''} 검색결과 ${data.pages[0].pageable.pageSize}건`} />
+      <Header title={`${categoryName ?? (title as string) ?? ''} 검색결과 ${data.pages[0].pageable.pageSize}건`} />
       <section className={s.searchWrapper}>
         {data.pages.map((content) => (
           <FeedGrid key={content.pageable.pageNumber} data={content.content} />

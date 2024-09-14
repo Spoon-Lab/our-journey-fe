@@ -1,7 +1,7 @@
 import type { MouseEvent } from 'react';
 import { useRouter } from 'next/router';
 
-import { useCurrentKeyword } from '@/hooks/use-get-current-keyword';
+import { useCurrentKeyword } from '@/hooks/use-current-keyword';
 
 import s from './style.module.scss';
 
