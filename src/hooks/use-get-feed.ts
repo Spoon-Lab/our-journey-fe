@@ -6,7 +6,7 @@ import { contents } from '@/mocks/contents';
 export default function useGetFeed() {
   const [sort, setSort] = useState<'recently' | 'popularly'>('recently');
 
-  const { data, fetchNextPage, status } = useInfiniteQuery({
+  const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({
     queryKey: ['test', sort],
     queryFn: ({ pageParam = 1 }: { pageParam?: number }) => {
       const fetchedData = contents[`contents${pageParam as 1 | 2}`];
@@ -22,11 +22,12 @@ export default function useGetFeed() {
     },
     getNextPageParam: (lastPage) => {
       const page = lastPage.pageable.pageNumber;
+
       if (lastPage.last) return undefined;
       return page + 1;
     },
     initialPageParam: 1,
   });
 
-  return { data, fetchNextPage, status, sort, setSort };
+  return { data, fetchNextPage, sort, setSort, hasNextPage };
 }
