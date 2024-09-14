@@ -15,7 +15,7 @@ export default function useGetFeed(props: Props) {
   const title = props?.title;
 
   const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({
-    queryKey: ['test', sort],
+    queryKey: ['test', sort, categoryId, title],
     queryFn: ({ pageParam = 1 }: { pageParam?: number }) => {
       let fetchedData = contents[`contents${pageParam as 1 | 2}`];
 
