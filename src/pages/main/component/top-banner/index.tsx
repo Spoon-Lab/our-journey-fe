@@ -2,7 +2,7 @@ import SearchBar from '@/components/search-bar';
 
 import s from './style.module.scss';
 
-import { ChevronForwardIcon } from '@/assets/icons/icons';
+import { ChevronForwardIcon } from '@/assets/icons';
 
 export default function TopBanner() {
   return (

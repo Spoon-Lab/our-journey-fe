@@ -8,7 +8,7 @@ import { useCurrentKeyword } from '@/hooks/use-current-keyword';
 
 import s from './style.module.scss';
 
-import { SearchIcon } from '@/assets/icons/icons';
+import { SearchIcon } from '@/assets/icons';
 
 interface InterfaceProps extends InputHTMLAttributes<HTMLInputElement> {
   type?: 'button' | 'input';
