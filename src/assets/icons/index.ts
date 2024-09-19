@@ -1,27 +1,12 @@
-import ArrowBack from './arrow.svg';
-import ArticleIcon from './article.svg';
-import CampaignIcon from './campaign.svg';
-import ForwardIcon from './chevron_forward.svg';
-import EditIcon from './edit.svg';
-import GroupProfileIcon from './group-profile.svg';
-import HomeIcon from './Home.svg';
-import ArrowDownIcon from './keyboard_arrow_down.svg';
-import ArrowUpIcon from './keyboard_arrow_up.svg';
-import MenuIcon from './Menu.svg';
-import PersonIcon from './person.svg';
-import SearchIcon from './Search.svg';
-
-export {
-  ArrowBack,
-  ArrowDownIcon,
-  ArrowUpIcon,
-  ArticleIcon,
-  CampaignIcon,
-  EditIcon,
-  ForwardIcon,
-  GroupProfileIcon,
-  HomeIcon,
-  MenuIcon,
-  PersonIcon,
-  SearchIcon,
-};
+export { default as ArrowBack } from './arrow.svg';
+export { default as ArticleIcon } from './article.svg';
+export { default as CampaignIcon } from './campaign.svg';
+export { default as ForwardIcon } from './chevron_forward.svg';
+export { default as EditIcon } from './edit.svg';
+export { default as GroupProfileIcon } from './group-profile.svg';
+export { default as HomeIcon } from './Home.svg';
+export { default as ArrowDownIcon } from './keyboard_arrow_down.svg';
+export { default as ArrowUpIcon } from './keyboard_arrow_up.svg';
+export { default as MenuIcon } from './Menu.svg';
+export { default as PersonIcon } from './person.svg';
+export { default as SearchIcon } from './Search.svg';
