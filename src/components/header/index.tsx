@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 import s from './style.module.scss';
 
-import { ArrowBackIcon } from '@/assets/icons/icons';
+import { ArrowBackIcon } from '@/assets/icons';
 
 interface InterfaceProp extends HTMLAttributes<HTMLDivElement> {
   title?: string;
