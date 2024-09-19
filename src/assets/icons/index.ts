@@ -1,5 +1,3 @@
-import ArrowBack from './arrow.svg';
-import Google from './Google.svg';
-import AddPhoto from './Photo.svg';
-
-export { AddPhoto, ArrowBack, Google };
+export { default as ArrowBack } from './arrow.svg';
+export { default as Google } from './Google.svg';
+export { default as AddPhoto } from './Photo.svg';
