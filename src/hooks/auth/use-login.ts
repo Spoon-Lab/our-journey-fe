@@ -9,7 +9,7 @@ import { ROUTER } from '@/constants/router';
 // import { setCookie } from '@/utils/cookie';
 
 const login = async ({ email, password }: Login): Promise<LoginResponse> => {
-  const { data } = await axios.post<LoginResponse>(`${BASE_URL}/${API_PATHS.AUTH.LOGIN.POST()}`, { email, password });
+  const { data } = await axios.post<LoginResponse>(`${BASE_URL}${API_PATHS.AUTH.LOGIN.POST()}`, { email, password });
 
   return data;
 };
