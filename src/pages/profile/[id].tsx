@@ -62,10 +62,10 @@ export default function Profile() {
             rightIcon={!openContents ? <ArrowDownIcon /> : <ArrowUpIcon />}
             onClick={() => setOpenContents((prev) => !prev)}
           />
+          {contents}
           <NavItem leftIcon={<GroupProfileIcon />} text="팔로워 수" rightIcon={<p>3명</p>} />
           <NavItem leftIcon={<GroupProfileIcon />} text="팔로잉" rightIcon={<p>100명</p>} />
         </nav>
-        {contents}
       </main>
       <UserSettings />
     </div>
