@@ -1,4 +1,4 @@
-@import '/src/styles/index';
+@import '@/styles';
 
 .navItemContainer {
   width: 100%;
@@ -14,6 +14,7 @@
     border: none;
     background-color: transparent;
     cursor: pointer;
+    color: $white;
   }
 }
 
