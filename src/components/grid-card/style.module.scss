@@ -44,6 +44,9 @@
 .cardTitle {
   @include regular-caption-1;
   color: $white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .profileBox {
