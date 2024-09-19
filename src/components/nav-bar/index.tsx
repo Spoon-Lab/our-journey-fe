@@ -1,4 +1,3 @@
-import type { MouseEvent } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -9,9 +8,8 @@ import s from './style.module.scss';
 import { AddIcon, CategoryIcon, HomeIcon, MenuIcon } from '@/assets/icons/icons';
 
 export default function NavBar() {
-  const router = useRouter();
+  const { pathname } = useRouter();
 
-  const { pathname } = router;
   const mainPath = pathname === ROUTES.main;
   const categoryPath = pathname === ROUTES.category || pathname === ROUTES.search;
   const menuPath = pathname === ROUTES.menu;
