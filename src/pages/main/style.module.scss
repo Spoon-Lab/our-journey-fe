@@ -5,6 +5,12 @@
   align-items: center;
 
   height: 100%;
+  background: url('http://localhost:3000/image-main-background.webp');
+  background-position: top right;
+  background-size: 53%;
+  background-repeat: no-repeat;
+
+  padding: 72px 16px 0;
 }
 
 .feedWrapper {
@@ -12,7 +18,7 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
-  padding: 0 16px 96px;
+  padding-bottom: 96px;
   top: 0;
 }
 
