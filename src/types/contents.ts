@@ -44,3 +44,28 @@ interface ContentPageable {
   sort: ContentSort[];
   unpaged: boolean;
 }
+
+export interface MyContents {
+  list: {
+    content: MyContent[];
+    empty: boolean;
+    first: boolean;
+    last: boolean;
+    number: number;
+    numberOfElements: number;
+    pageable: ContentPageable;
+    size: number;
+    sort: ContentSort[];
+    totalElements: number;
+    totalPages: number;
+  };
+}
+
+export interface MyContent {
+  contentId: number;
+  contentImageUrl: string;
+  createdAt: string;
+  profileId: number;
+  title: string;
+  updatedAt: string;
+}

@@ -1,5 +1,4 @@
 import { type ReactNode, useState } from 'react';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 import { ROUTES } from '@/constants/router';
