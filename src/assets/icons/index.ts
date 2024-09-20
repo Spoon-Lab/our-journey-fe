@@ -2,6 +2,7 @@ export { default as ArrowBack } from './arrow.svg';
 export { default as ArticleIcon } from './article.svg';
 export { default as CampaignIcon } from './campaign.svg';
 export { default as ForwardIcon } from './chevron_forward.svg';
+export { default as DefaultProfile } from './default-profile.svg';
 export { default as EditIcon } from './edit.svg';
 export { default as GroupProfileIcon } from './group-profile.svg';
 export { default as HomeIcon } from './Home.svg';

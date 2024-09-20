@@ -17,7 +17,7 @@ import ProfileHeader from '../components/profile-header';
 
 import s from './style.module.scss';
 
-import { EditIcon } from '@/assets/icons';
+import { DefaultProfile, EditIcon } from '@/assets/icons';
 
 export default function Edit() {
   const router = useRouter();
@@ -86,7 +86,7 @@ export default function Edit() {
             {filePreview ? (
               <Image src={filePreview} alt="img" width={76} height={76} />
             ) : (
-              <Image src="/images/default_profile.png" alt="profile img" width={76} height={76} />
+              <DefaultProfile />
             )}
             <label htmlFor="file">
               <EditIcon />

@@ -17,7 +17,7 @@ import UserSettings from './components/user-settings';
 
 import s from './style.module.scss';
 
-import { ArrowDownIcon, ArrowUpIcon, ArticleIcon, ForwardIcon, GroupProfileIcon, PersonIcon } from '@/assets/icons';
+import { ArrowDownIcon, ArrowUpIcon, ArticleIcon, DefaultProfile, ForwardIcon, GroupProfileIcon, PersonIcon } from '@/assets/icons';
 
 export default function Profile() {
   const router = useRouter();
@@ -50,7 +50,7 @@ export default function Profile() {
       <ProfileHeader text="프로필 수정" />
       <main>
         <div className={s.profileWrapper}>
-          <Image src="/images/default_profile.png" alt="profile img" width={76} height={76} />
+          <DefaultProfile />
           <div className={s.userInfoWrapper}>
             <div>{profile?.nickname}</div>
             <p>{profile?.selfIntroduction}</p>
