@@ -33,6 +33,7 @@ export default function LoginForm() {
     mutate(data);
     reset();
   };
+
   return (
     <form className={s.formWrapper} onSubmit={handleSubmit(onSubmit)}>
       <Input
