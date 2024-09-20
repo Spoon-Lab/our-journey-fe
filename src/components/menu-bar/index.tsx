@@ -5,7 +5,7 @@ import { ROUTES } from '@/constants/router';
 
 import s from './style.module.scss';
 
-import { HomeIcon, MenuIcon, SearchIcon } from '@/assets/icons';
+import { HomeIcon, MenuIcon, MenuSearchIcon } from '@/assets/icons';
 
 export default function MenuBar({ pk }: { pk: number }) {
   const router = useRouter();
@@ -19,8 +19,8 @@ export default function MenuBar({ pk }: { pk: number }) {
         <HomeIcon />
         <p>홈</p>
       </Link>
-      <Link href={ROUTES.main} className={`${s.link} ${isActive(ROUTES.main) ? s.active : ''}`}>
-        <SearchIcon />
+      <Link href={ROUTES.category} className={`${s.link} ${isActive(ROUTES.category) ? s.active : ''}`}>
+        <MenuSearchIcon />
         <p>카테고리</p>
       </Link>
       <Link href={`${ROUTES.profile}/${pk}`} className={`${s.link} ${isActive(ROUTES.profile) ? s.active : ''}`}>

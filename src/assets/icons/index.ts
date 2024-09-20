@@ -20,3 +20,4 @@ export { default as ArrowDownIcon } from './keyboard_arrow_down.svg';
 export { default as ArrowUpIcon } from './keyboard_arrow_up.svg';
 export { default as PersonIcon } from './person.svg';
 export { default as AddPhoto } from './Photo.svg';
+export { default as MenuSearchIcon } from './Search.svg';
