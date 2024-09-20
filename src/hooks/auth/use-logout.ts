@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 
 import { API_PATHS } from '@/constants/api';
-import { ROUTER } from '@/constants/router';
+import { ROUTES } from '@/constants/router';
 
 const logout = async () => {
   // axiosInstance로 변경
@@ -16,7 +16,7 @@ const useLogout = () => {
   return useMutation({
     mutationFn: logout,
     onSuccess: async () => {
-      await router.push(ROUTER.base);
+      await router.push(ROUTES.base);
     },
   });
 };

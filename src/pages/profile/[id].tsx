@@ -2,7 +2,7 @@ import { type ReactNode, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import { ROUTER } from '@/constants/router';
+import { ROUTES } from '@/constants/router';
 
 import useGetMyContents from '@/hooks/profile/use-get-my-contents';
 import useGetProfile from '@/hooks/profile/use-get-profile';
@@ -57,7 +57,7 @@ export default function Profile() {
           </div>
         </div>
         <nav className={s.navWrapper}>
-          <NavItem leftIcon={<PersonIcon />} text="내 정보 보기" rightIcon={<ForwardIcon />} onClick={() => router.push(`${ROUTER.profileEdit}/1`)} />
+          <NavItem leftIcon={<PersonIcon />} text="내 정보 보기" rightIcon={<ForwardIcon />} onClick={() => router.push(`${ROUTES.profileEdit}/1`)} />
           <NavItem
             leftIcon={<ArticleIcon />}
             text="내 작성글 모두보기"
