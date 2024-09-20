@@ -15,7 +15,7 @@ const uploadImg = async ({ photo_type, thread_id, images }: UploadImgProps) => {
     `${API_PATHS.PHOTO.IMAGE_UPLOAD.POST()}`,
     {
       photo_type,
-      thread_id,
+      ...(thread_id && { thread_id }),
       images,
     },
     {

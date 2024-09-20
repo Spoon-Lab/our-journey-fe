@@ -1,0 +1,54 @@
+@import '@/styles';
+
+@mixin text-ellipsis {
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  gap: 11px;
+
+  img {
+    width: 66px;
+    height: 66px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+}
+
+.contentWrapper {
+  height: 66px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+
+  h1 {
+    margin: 0;
+    @include semibold-footnote;
+    color: $gray-50;
+    @include text-ellipsis;
+  }
+}
+
+.contentBox {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.content {
+  @include regular-footnote;
+  color: $gray-300;
+  @include text-ellipsis;
+}
+
+.date {
+  @include regular-caption-2;
+  color: $gray-400;
+  @include text-ellipsis;
+}

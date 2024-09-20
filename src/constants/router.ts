@@ -11,4 +11,6 @@ export const ROUTES = {
   signup: '/signup',
   resetPassword: '/reset-password',
   email: '/reset-password/email',
+  profile: '/profile',
+  profileEdit: '/profile/edit',
 };

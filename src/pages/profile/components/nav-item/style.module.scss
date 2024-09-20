@@ -1,0 +1,25 @@
+@import '@/styles';
+
+.navItemContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @include regular-sub-headline;
+  color: $gray-200;
+  padding: 20px 0;
+  border-top: 2px solid $gray-800;
+
+  button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    color: $white;
+  }
+}
+
+.navInfoWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

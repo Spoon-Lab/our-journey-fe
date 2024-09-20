@@ -1,0 +1,52 @@
+@import '@/styles';
+
+@mixin flex-column-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profileContainer {
+  width: 100%;
+  height: 100%;
+  padding-bottom: 90px;
+
+  main {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+}
+.profileWrapper {
+  width: 100%;
+  @include flex-column-center;
+
+  gap: 8px;
+}
+
+.userInfoWrapper {
+  @include flex-column-center;
+  gap: 2px;
+
+  div {
+    @include semibold-title-3;
+    color: $gray-50;
+  }
+
+  p {
+    @include regular-footnote;
+    color: $gray-400;
+  }
+}
+
+.navWrapper {
+  width: 100%;
+}
+
+.contentsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-bottom: 16px;
+}
