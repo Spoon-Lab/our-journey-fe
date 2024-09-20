@@ -7,8 +7,6 @@ export const ROUTES = {
   content: '/content',
   detail: '/detail',
   newContents: '/new-contents',
-
-
   base: '/',
   login: '/login',
   signup: '/signup',

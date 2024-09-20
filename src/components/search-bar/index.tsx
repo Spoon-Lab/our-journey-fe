@@ -1,0 +1,62 @@
+import type { ChangeEvent, FormEvent, InputHTMLAttributes } from 'react';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+
+import { ROUTES } from '@/constants/router';
+
+import { useCurrentKeyword } from '@/hooks/use-current-keyword';
+
+import s from './style.module.scss';
+
+import { SearchIcon } from '@/assets/icons';
+
+interface InterfaceProps extends InputHTMLAttributes<HTMLInputElement> {
+  type?: 'button' | 'input';
+}
+
+export default function SearchBar(props: InterfaceProps) {
+  const { type = 'input', ...rest } = props;
+  const { setCurrentKeyword } = useCurrentKeyword();
+  const [keyword, setKeyword] = useState<string>('');
+  const router = useRouter();
+
+  const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setKeyword(e.currentTarget.value);
+  };
+
+  const handleSearchSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    setCurrentKeyword(keyword);
+    return router.push(`/search?title=${keyword.trim()}`);
+  };
+
+  const handleMoveToCatetory = () => router.push(`${ROUTES.category}`);
+
+  switch (type) {
+    case 'button':
+      return (
+        <div className={s.searchBarWrapper}>
+          <button type="button" className={s.searchBarButton} onClick={handleMoveToCatetory}>
+            <span>여정을 검색해보세요</span>
+            <div className={s.iconBox}>
+              <SearchIcon />
+            </div>
+          </button>
+          <div />
+        </div>
+      );
+    default:
+      return (
+        <form className={s.searchBarContainer} onSubmit={handleSearchSubmit}>
+          <label htmlFor="searchBar" className={s.searchLabel}>
+            검색창
+          </label>
+          <input className={s.searchInput} id="searchBar" placeholder="해시태그 검색하기" value={keyword} onChange={handleOnChange} />
+
+          <button type="submit" className={s.searchButton} aria-label="검색">
+            <SearchIcon />
+          </button>
+        </form>
+      );
+  }
+}
