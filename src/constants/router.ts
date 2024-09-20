@@ -1,8 +1,14 @@
 /** 여기서부터 필요한 route 추가해주세요! */
 export const ROUTER = {
   main: '/main',
+  search: '/search',
+  category: '/category',
+  menu: '/menu',
+  content: '/content',
+  detail: '/detail',
+  newContents: '/new-contents',
 
-  // auth
+
   base: '/',
   login: '/login',
   signup: '/signup',
