@@ -2,8 +2,9 @@
 export const ROUTES = {
   main: '/main',
   search: '/search',
-  create: '/create',
   category: '/category',
   menu: '/menu',
   content: '/content',
+  detail: '/detail',
+  newContents: '/new-contents',
 };
