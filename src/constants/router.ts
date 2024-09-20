@@ -7,4 +7,9 @@ export const ROUTES = {
   content: '/content',
   detail: '/detail',
   newContents: '/new-contents',
+  base: '/',
+  login: '/login',
+  signup: '/signup',
+  resetPassword: '/reset-password',
+  email: '/reset-password/email',
 };
