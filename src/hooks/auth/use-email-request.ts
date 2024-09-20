@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 
 import { API_PATHS, BASE_URL } from '@/constants/api';
-import { ROUTER } from '@/constants/router';
+import { ROUTES } from '@/constants/router';
 
 const requestEmail = async ({ email }: { email: string }) => {
   const res = await axios.post(`${BASE_URL}${API_PATHS.AUTH.PASSWORD.RESET.POST()}`, {
@@ -18,7 +18,7 @@ const useEmailRequest = () => {
   return useMutation({
     mutationFn: requestEmail,
     onSuccess: async () => {
-      await router.push(ROUTER.email);
+      await router.push(ROUTES.email);
     },
   });
 };

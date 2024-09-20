@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 
 import { API_PATHS, BASE_URL } from '@/constants/api';
-import { ROUTER } from '@/constants/router';
+import { ROUTES } from '@/constants/router';
 
 interface ResetPasswordProps {
   new_password1: string;
@@ -26,7 +26,7 @@ const useResetPassword = () => {
   return useMutation({
     mutationFn: resetPassword,
     onSuccess: async () => {
-      await router.push(ROUTER.login);
+      await router.push(ROUTES.login);
     },
   });
 };

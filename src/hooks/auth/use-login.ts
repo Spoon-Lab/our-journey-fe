@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 import type { Login, LoginResponse } from '@/types/auth';
 import { API_PATHS, BASE_URL } from '@/constants/api';
-import { ROUTER } from '@/constants/router';
+import { ROUTES } from '@/constants/router';
 
 // import { setCookie } from '@/utils/cookie';
 
@@ -24,9 +24,9 @@ const useLogin = () => {
       // setCookie('accessToken', data.access, { httpOnly: false, path: '/' });
       // setCookie('refreshToken', data.refresh, { httpOnly: false, path: '/' });
 
-      void router.push(ROUTER.main);
+      void router.push(ROUTES.main);
     },
-    onError: (error) => {
+    onError: () => {
       // TODO: 토스트메세지로 오류?
     },
   });
