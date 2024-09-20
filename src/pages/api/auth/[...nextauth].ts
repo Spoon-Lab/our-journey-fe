@@ -14,7 +14,7 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     jwt({ token }) {
-      return token
+      return token;
     },
     // session({ session, user, token }) {
     //   return session;

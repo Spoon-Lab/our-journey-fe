@@ -12,7 +12,7 @@ export default function AuthHeader({ text }: HeaderProps) {
   const router = useRouter();
   return (
     <header className={s.headerContainer}>
-      <button type="button" onClick={() => router.back()}>
+      <button aria-label="뒤로 가기" type="button" onClick={() => router.back()}>
         <ArrowBack />
       </button>
       <p>{text}</p>

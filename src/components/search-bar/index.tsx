@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 
 import { ROUTES } from '@/constants/router';
 
+import { useActiveScroll } from '@/hooks/use-active-scroll';
 import { useCurrentKeyword } from '@/hooks/use-current-keyword';
 
 import s from './style.module.scss';
@@ -17,6 +18,7 @@ interface InterfaceProps extends InputHTMLAttributes<HTMLInputElement> {
 export default function SearchBar(props: InterfaceProps) {
   const { type = 'input', ...rest } = props;
   const { setCurrentKeyword } = useCurrentKeyword();
+  const { searchbarRef, isScroll } = useActiveScroll();
   const [keyword, setKeyword] = useState<string>('');
   const router = useRouter();
 
@@ -35,7 +37,7 @@ export default function SearchBar(props: InterfaceProps) {
   switch (type) {
     case 'button':
       return (
-        <div className={s.searchBarWrapper}>
+        <div className={`${s.searchBarWrapper} ${isScroll ? s.active : ''}`} ref={searchbarRef}>
           <button type="button" className={s.searchBarButton} onClick={handleMoveToCatetory}>
             <span>여정을 검색해보세요</span>
             <div className={s.iconBox}>
