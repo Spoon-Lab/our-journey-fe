@@ -64,10 +64,10 @@ export const API_PATHS = {
     },
     PASSWORD: {
       CHANGE: {
-        POST: () => `/auth/password/change`, // 비밀번호 변경
+        POST: (uid64: string, token: string) => `/auth/password-reset-confirm/${uid64}/${token}`, // 비밀번호 변경
       },
       RESET: {
-        POST: () => `/auth/password/reset`, // 비밀번호 재설정 요청
+        POST: () => `/auth/password-reset-request`, // 비밀번호 재설정 요청
         CONFIRM: {
           POST: () => `/auth/password/reset/confirm`, // 비밀번호 재설정 확인
         },

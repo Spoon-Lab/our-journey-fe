@@ -6,4 +6,9 @@ export const ROUTES = {
   menu: '/menu',
   newContents: '/new-contents',
   detail: '/detail',
+  base: '/',
+  login: '/login',
+  signup: '/signup',
+  resetPassword: '/reset-password',
+  email: '/reset-password/email',
 };
