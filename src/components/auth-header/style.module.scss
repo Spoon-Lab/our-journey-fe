@@ -1,0 +1,19 @@
+@import '@/styles';
+
+.headerContainer {
+  display: flex;
+  padding: 20px 0;
+  width: 100%;
+  gap: 12px;
+
+  button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  p {
+    @include regular-callout;
+    color: $gray-100;
+  }
+}

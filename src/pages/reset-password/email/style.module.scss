@@ -1,0 +1,28 @@
+@import '@/styles';
+
+.emailContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  a {
+    position: absolute;
+    bottom: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    width: 100%;
+    padding: 16px 10px;
+    background-color: $blue-700;
+    color: $white;
+    @include semibold-callout;
+
+    &:hover {
+      background-color: $blue-900;
+    }
+  }
+}

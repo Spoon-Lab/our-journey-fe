@@ -1,0 +1,67 @@
+@import '@/styles';
+
+.cardWrapper {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+
+  box-sizing: border-box;
+  cursor: pointer;
+  text-decoration-line: none;
+}
+
+.thumbnailBox {
+  position: relative;
+}
+
+.thumbnail {
+  width: 100%;
+  aspect-ratio: 1 / 1.2875;
+  border-radius: 4px;
+}
+
+.date {
+  @include timestamp;
+  background: linear-gradient(135.19deg, #ffc300 -306.58%, #992100 1114.57%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  position: absolute;
+  z-index: 10;
+  @include semibold-caption-1;
+  bottom: 8px;
+  right: 8px;
+}
+
+.cardTitle {
+  @include regular-caption-1;
+  color: $white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profileBox {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+}
+
+.profileThumbnail {
+  width: 20px;
+  height: 20px;
+}
+
+.profileName {
+  @include regular-caption-1;
+  color: $white;
+}

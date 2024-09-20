@@ -1,0 +1,35 @@
+@import '@/styles';
+
+.createBoxContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+  gap: 12px;
+  background: rgba(19, 19, 19, 0.8);
+  -webkit-backdrop-filter: blur(11.45px);
+  backdrop-filter: blur(11.45px);
+  border-radius: 4px;
+  width: 100%;
+  text-decoration-line: none;
+}
+
+.createBoxDescription {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.createBoxTitle {
+  @include semibold-footnote;
+  line-height: 16px;
+  color: $white;
+}
+
+.createBoxContext {
+  @include regular-caption-1;
+  line-height: 14px;
+  color: $gray-200;
+}

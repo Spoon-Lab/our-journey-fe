@@ -1,0 +1,85 @@
+@import '@/styles';
+
+@mixin display-column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.homeContainer {
+  display: grid;
+  place-items: center;
+  position: relative;
+  color: $white;
+  background:
+    linear-gradient(rgba(19, 19, 19, 0.25), rgba(19, 19, 19, 0.25)),
+    url('/images/background.jpeg') center / cover no-repeat;
+
+  max-width: 600px;
+  width: 100%;
+  height: 100dvh;
+  margin: 0 auto;
+}
+
+.textWrapper {
+  @include display-column-center;
+  gap: 12px;
+
+  h1 {
+    font-family: 'Avenir Next', sans-serif;
+    font-size: 40px;
+    font-weight: 900;
+    line-height: 60px;
+    text-align: center;
+    margin: 0;
+  }
+
+  p {
+    @include semibold-body;
+  }
+}
+
+.authWrapper {
+  @include display-column-center;
+  position: absolute;
+  bottom: 24px;
+  width: 100%;
+  gap: 24px;
+  padding: 0 16px;
+}
+
+.buttonWrapper {
+  @include display-column-center;
+  width: 100%;
+  gap: 10px;
+}
+
+.signUpBox {
+  @include semibold-sub-headline;
+  display: flex;
+  gap: 20px;
+
+  a {
+    color: $white;
+
+    &:hover {
+      color: $gray-100;
+    }
+  }
+}
+
+.googleBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  p {
+    line-height: 1px;
+  }
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+}

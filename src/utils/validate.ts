@@ -10,30 +10,30 @@ const emailSchema = yup
 const passwordSchema = yup
   .string()
   .required('비밀번호를 입력해주세요')
-  .min(4, '최소 4자리 이상 입력해주세요')
+  .min(8, '최소 8자리 이상 입력해주세요')
   .max(12, '최대 12자리까지 입력이 가능합니다')
-  .matches(/^(?=.*?[a-zA-Z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{4,12}$/, '영어, 숫자, 특수문자를 모두 조합해서 비밀번호를 작성해야 합니다')
+  .matches(/^(?=.*?[a-zA-Z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,12}$/, '영어, 숫자, 특수문자를 모두 조합해서 비밀번호를 작성해야 합니다')
   .trim();
 
 const passwordCheckSchema = yup
   .string()
-  .oneOf([yup.ref('password')], '비밀번호가 일치하지 않습니다')
+  .oneOf([yup.ref('password1')], '비밀번호가 일치하지 않습니다')
   .required('비밀번호를 다시 입력해주세요')
   .trim();
 
 const nicknameSchema = yup.object({
   nickname: yup.string().required('닉네임을 입력해주세요').max(10, '최대 10자리까지 입력이 가능합니다'),
 });
-// 각 스키마 정의
+
 const signupSchema = yup.object({
   email: emailSchema,
-  password: passwordSchema,
-  passwordCheck: passwordCheckSchema,
+  password1: passwordSchema,
+  password2: passwordCheckSchema,
 });
 
-const signinSchema = yup.object({
+const loginSchema = yup.object({
   email: emailSchema,
-  password: yup.string().required('비밀번호를 입력해주세요').trim(), // 로그인에서는 추가 제약이 필요 없을 수 있음
+  password: yup.string().required('비밀번호를 입력해주세요').trim(),
 });
 
 const emailCheckSchema = yup.object({
@@ -41,8 +41,8 @@ const emailCheckSchema = yup.object({
 });
 
 const newPasswordSchema = yup.object({
-  password: passwordSchema,
-  passwordCheck: passwordCheckSchema,
+  password1: passwordSchema,
+  password2: passwordCheckSchema,
 });
 
-export { emailCheckSchema, newPasswordSchema, nicknameSchema, signinSchema, signupSchema };
+export { emailCheckSchema, loginSchema, newPasswordSchema, nicknameSchema, signupSchema };

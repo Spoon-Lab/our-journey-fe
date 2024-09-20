@@ -6,32 +6,9 @@ export interface Contents {
     last: boolean;
     number: number;
     numberOfElements: number;
-    pageable: {
-      offset: number;
-      pageNumber: number;
-      pageSize: number;
-      paged: boolean;
-      sort: [
-        {
-          ascending: boolean;
-          direction: string;
-          ignoreCase: boolean;
-          nullHandling: string;
-          property: string;
-        },
-      ];
-      unpaged: boolean;
-    };
+    pageable: ContentPageable;
     size: number;
-    sort: [
-      {
-        ascending: boolean;
-        direction: string;
-        ignoreCase: boolean;
-        nullHandling: string;
-        property: string;
-      },
-    ];
+    sort: ContentSort[];
     totalElements: number;
     totalPages: number;
   };
@@ -39,10 +16,31 @@ export interface Contents {
 
 export interface Content {
   contentId: number;
+  contentProfileDto: {
+    name: string;
+    profileId: number;
+    profileImgUrl: string;
+  };
   createdAt: string;
-  nickname: string;
+  favoriteCount: number;
   postImg: string;
-  profileImg: string;
   title: string;
   updatedAt: string;
+}
+
+interface ContentSort {
+  ascending: boolean;
+  direction: string;
+  ignoreCase: boolean;
+  nullHandling: string;
+  property: string;
+}
+
+interface ContentPageable {
+  offset: number;
+  pageNumber: number;
+  pageSize: number;
+  paged: boolean;
+  sort: ContentSort[];
+  unpaged: boolean;
 }
