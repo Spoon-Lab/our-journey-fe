@@ -5,7 +5,7 @@ import { ROUTES } from '@/constants/router';
 
 import s from './style.module.scss';
 
-import { AddIcon, CategoryIcon, HomeIcon, MenuIcon } from '@/assets/icons/icons';
+import { AddIcon, CategoryIcon, HomeIcon, MenuIcon } from '@/assets/icons';
 
 export default function NavBar() {
   const { pathname } = useRouter();
@@ -29,7 +29,7 @@ export default function NavBar() {
         <span className={`${s.buttonText} ${menuPath ? s.currentPage : ''}`}>메뉴</span>
       </Link>
       {mainPath && (
-        <Link id={ROUTES.create} aria-label="글 작성" type="button" className={s.fab} href={ROUTES.create}>
+        <Link id={ROUTES.newContents} aria-label="글 작성" type="button" className={s.fab} href={ROUTES.newContents}>
           <AddIcon />
         </Link>
       )}
