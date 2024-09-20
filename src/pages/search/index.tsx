@@ -1,4 +1,4 @@
-import { MouseEvent, type ReactNode, useRef } from 'react';
+import { type ReactNode, useRef } from 'react';
 import { useRouter } from 'next/router';
 
 import useGetFeed from '@/hooks/use-get-feed';

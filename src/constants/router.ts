@@ -4,7 +4,6 @@ export const ROUTES = {
   search: '/search',
   category: '/category',
   menu: '/menu',
-  content: '/content',
-  detail: '/detail',
   newContents: '/new-contents',
+  detail: '/detail',
 };
