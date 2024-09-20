@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 
 import { nicknameSchema } from '@/utils/validate';
 
+import useGetProfile from '@/hooks/profile/use-get-profile';
 import { useImage } from '@/hooks/use-image';
 
 import Input from '@/components/input';
@@ -23,6 +24,8 @@ export default function Edit() {
   const { filePreview, handleChangeFile, file } = useImage();
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   // const { mutate } = useUploadImg();
+
+  const { data: profile } = useGetProfile(1);
 
   const {
     register,
@@ -91,8 +94,8 @@ export default function Edit() {
             <Input type="file" id="file" onChange={handleChangeFile} />
           </figure>
           <div className={s.userInfoWrapper}>
-            <div>졸린 무지</div>
-            <p>2342@gmail.com</p>
+            <div>{profile?.nickname}</div>
+            <p>{profile?.selfIntroduction}</p>
           </div>
         </div>
         <Input labelText="닉네임 입력" placeholder="변경할 닉네임을 입력해주세요" {...register('nickname')} errorMessage={errors.nickname?.message} />

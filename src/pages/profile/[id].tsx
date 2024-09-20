@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { ROUTER } from '@/constants/router';
 
 import useGetMyContents from '@/hooks/profile/use-get-my-contents';
+import useGetProfile from '@/hooks/profile/use-get-profile';
 
 import ProfileLayout from '@/components/layouts/profile-layout';
 import MenuBar from '@/components/menu-bar';
@@ -22,6 +23,7 @@ export default function Profile() {
   const router = useRouter();
   const [openContents, setOpenContents] = useState<boolean>(false);
   const { data, isPending } = useGetMyContents({ id: 1, open: openContents });
+  const { data: profile } = useGetProfile(1); // 나중에 api 본인 아이디는 안들어가게 수정된다고함
 
   let contents;
 
@@ -50,8 +52,8 @@ export default function Profile() {
         <div className={s.profileWrapper}>
           <Image src="/images/default_profile.png" alt="profile img" width={76} height={76} />
           <div className={s.userInfoWrapper}>
-            <div>졸린 무지</div>
-            <p>2342@gmail.com</p>
+            <div>{profile?.nickname}</div>
+            <p>{profile?.selfIntroduction}</p>
           </div>
         </div>
         <nav className={s.navWrapper}>
@@ -63,8 +65,8 @@ export default function Profile() {
             onClick={() => setOpenContents((prev) => !prev)}
           />
           {contents}
-          <NavItem leftIcon={<GroupProfileIcon />} text="팔로워 수" rightIcon={<p>3명</p>} />
-          <NavItem leftIcon={<GroupProfileIcon />} text="팔로잉" rightIcon={<p>100명</p>} />
+          <NavItem leftIcon={<GroupProfileIcon />} text="팔로워 수" rightIcon={<p>{profile?.followerNum}명</p>} />
+          <NavItem leftIcon={<GroupProfileIcon />} text="팔로잉" rightIcon={<p>{profile?.followingNum}명</p>} />
         </nav>
       </main>
       <UserSettings />
