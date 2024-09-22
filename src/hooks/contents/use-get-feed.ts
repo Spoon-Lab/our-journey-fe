@@ -4,7 +4,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import type { Contents } from '@/types/contents';
 import { API_PATHS } from '@/constants/api';
 
-import { testInstance } from '@/libs/test';
+import { preAxiosInstance } from '@/libs/pre-axios';
 
 interface Props {
   categoryId?: string;
@@ -34,7 +34,7 @@ export default function useGetFeed(props: Props) {
         if (categoryId && !title) api = `${api}?categoryId=${categoryId}`;
         if (!categoryId && title) api = `${api}?title=${title}`;
       }
-      const list = (await testInstance.get(api)).data;
+      const list = (await preAxiosInstance.get(api)).data;
 
       return list as Promise<Contents>;
     },

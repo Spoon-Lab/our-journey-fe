@@ -1,7 +1,7 @@
 /** 백엔드 쪽에서 api 나오면 작업하시면서 추가, 수정 해주시면 되겠습니다! */
 
 // TODO : 백엔드 api 배포시 수정 필요
-export const BASE_URL = 'http://localhost:3000';
+export const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export const API_PATHS = {
   TAGS: {
@@ -17,27 +17,27 @@ export const API_PATHS = {
     GET_MY_COMMENTS: (id: number) => `/profiles/${id}/comments`, // 내가 작성한 댓글 가져오기
   },
   CONTENTS: {
-    GET_ALL: () => `/api/contents`, // 모든 컨텐츠 가져오기
-    GET_ONE: (contentId: number) => `/api/contents/${contentId}`, // ID로 하나의 컨텐츠 조회
-    DELETE: (contentId: number) => `/api/contents/${contentId}`, // ID로 컨텐츠 삭제
-    PATCH: (contentId: number) => `/api/contents/${contentId}`, // ID로 컨텐츠 수정
+    GET_ALL: () => `/contents`, // 모든 컨텐츠 가져오기
+    GET_ONE: (contentId: number) => `/contents/${contentId}`, // ID로 하나의 컨텐츠 조회
+    DELETE: (contentId: number) => `/contents/${contentId}`, // ID로 컨텐츠 삭제
+    PATCH: (contentId: number) => `/contents/${contentId}`, // ID로 컨텐츠 수정
     COMMENTS: {
       GET: (contentId: number) => `/contents/${contentId}/comments`, // 컨텐츠에 대한 모든 댓글 가져오기
       POST: (contentId: number) => `/contents/${contentId}/comments`, // 컨텐츠에 댓글 생성
       COMMENT: (contentId: number, commentId: number) => `/contents/${contentId}/comments/${commentId}`, // 댓글 수정 또는 삭제
     },
     THREADS: {
-      GET: (contentId: number) => `/api/content/${contentId}/threads`, // 컨텐츠에 대한 모든 스레드 가져오기
-      POST: (contentId: number) => `/api/content/${contentId}/threads`, // 컨텐츠에 스레드 생성
-      PATCH: (contentId: number, threadId: number) => `/api/content/${contentId}/threads/${threadId}`, // 스레드 수정
-      DELETE: (contentId: number, threadId: number) => `/api/content/${contentId}/threads/${threadId}`, // 스레드 삭제
+      GET: (contentId: number) => `/content/${contentId}/threads`, // 컨텐츠에 대한 모든 스레드 가져오기
+      POST: (contentId: number) => `/content/${contentId}/threads`, // 컨텐츠에 스레드 생성
+      PATCH: (contentId: number, threadId: number) => `/content/${contentId}/threads/${threadId}`, // 스레드 수정
+      DELETE: (contentId: number, threadId: number) => `/content/${contentId}/threads/${threadId}`, // 스레드 삭제
     },
   },
   HEALTH: {
     CHECK: () => `/health`, // 서버 상태 확인 엔드포인트
   },
   CATEGORIES: {
-    GET_ALL: () => `/api/categories`, // 모든 카테고리 가져오기
+    GET_ALL: () => `/categories`, // 모든 카테고리 가져오기
   },
   AUTH: {
     ACCOUNT_CONFIRM_EMAIL: {
