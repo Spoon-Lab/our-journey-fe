@@ -1,0 +1,45 @@
+@import '@/styles';
+
+.toastContainer {
+  position: absolute;
+  z-index: 9999;
+  border-radius: 4px;
+  background-color: $gray-800;
+  padding: 10px 20px;
+  width: 100%;
+
+  &.toastTop {
+    animation: toast-top 0.3s ease-in-out forwards;
+  }
+
+  &.toastBottom {
+    animation: toast-bottom 0.3s ease-in-out forwards;
+  }
+
+  p {
+    @include semibold-callout;
+    color: $gray-200;
+  }
+}
+
+@keyframes toast-top {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes toast-bottom {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
