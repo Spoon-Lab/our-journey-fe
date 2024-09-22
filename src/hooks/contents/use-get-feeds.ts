@@ -11,11 +11,6 @@ interface Props {
   title?: string;
 }
 
-interface InfiniteData<TData, TPageParam = unknown> {
-  pageParams: Array<TPageParam>;
-  pages: Array<TData>;
-}
-
 export default function useGetFeeds(props: Props) {
   const [sort, setSort] = useState<'recently' | 'popularly'>('recently');
 
