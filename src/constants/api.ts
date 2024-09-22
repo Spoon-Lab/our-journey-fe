@@ -27,10 +27,10 @@ export const API_PATHS = {
       COMMENT: (contentId: number, commentId: number) => `/contents/${contentId}/comments/${commentId}`, // 댓글 수정 또는 삭제
     },
     THREADS: {
-      GET: (contentId: number) => `/content/${contentId}/threads`, // 컨텐츠에 대한 모든 스레드 가져오기
-      POST: (contentId: number) => `/content/${contentId}/threads`, // 컨텐츠에 스레드 생성
-      PATCH: (contentId: number, threadId: number) => `/content/${contentId}/threads/${threadId}`, // 스레드 수정
-      DELETE: (contentId: number, threadId: number) => `/content/${contentId}/threads/${threadId}`, // 스레드 삭제
+      GET: (contentId: number) => `/contents/${contentId}/threads`, // 컨텐츠에 대한 모든 스레드 가져오기
+      POST: (contentId: number) => `/contents/${contentId}/threads`, // 컨텐츠에 스레드 생성
+      PATCH: (contentId: number, threadId: number) => `/contents/${contentId}/threads/${threadId}`, // 스레드 수정
+      DELETE: (contentId: number, threadId: number) => `/contents/${contentId}/threads/${threadId}`, // 스레드 삭제
     },
   },
   HEALTH: {

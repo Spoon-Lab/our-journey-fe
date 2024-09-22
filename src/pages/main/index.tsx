@@ -10,14 +10,14 @@ import SearchBar from '@/components/search-bar';
 import BannerCarousel from './component/banner-carousel';
 import CreateBox from './component/create-box';
 import SortContainer from './component/sort-container';
-import useGetFeeds from '../../hooks/contents/use-get-feeds';
+import useGetContents from '../../hooks/contents/use-get-contents';
 
 import s from './style.module.scss';
 
 import { Banners } from '@/mocks/banners';
 
 export default function Main() {
-  const { data, sort, setSort, fetchNextPage, hasNextPage } = useGetFeeds({ categoryId: undefined, title: undefined });
+  const { data, sort, setSort, fetchNextPage, hasNextPage } = useGetContents({ categoryId: undefined, title: undefined });
   const divRef = useRef<HTMLDivElement>(null);
 
   useIntersectionObserver({

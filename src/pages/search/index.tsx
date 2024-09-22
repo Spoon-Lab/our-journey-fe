@@ -1,7 +1,7 @@
 import { type ReactNode, useRef } from 'react';
 import { useRouter } from 'next/router';
 
-import useGetFeeds from '@/hooks/contents/use-get-feeds';
+import useGetContents from '@/hooks/contents/use-get-contents';
 import { useIntersectionObserver } from '@/hooks/contents/use-intersection-observer';
 
 import FeedGrid from '@/components/feed-grid';
@@ -15,8 +15,9 @@ export default function Search() {
   const router = useRouter();
   const { title, categoryId } = router.query;
 
-  const { data, fetchNextPage, hasNextPage } = useGetFeeds({ title: title as string | undefined, categoryId: categoryId as string | undefined });
+  const { data, fetchNextPage, hasNextPage } = useGetContents({ title: title as string | undefined, categoryId: categoryId as string | undefined });
 
+  // ? CONCERN: 임시 코드. 카테고리 늘어나면 카테고리 이름들 별도로 가져올 수 있도록 store 등으로 관리할지 체크 필요.
   const categoryName = (categoryId && (categoryId === '1' ? '국내여행' : '해외여행')) ?? undefined;
 
   const divRef = useRef<HTMLDivElement>(null);

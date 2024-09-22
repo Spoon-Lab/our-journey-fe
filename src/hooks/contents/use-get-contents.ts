@@ -11,7 +11,7 @@ interface Props {
   title?: string;
 }
 
-export default function useGetFeeds(props: Props) {
+export default function useGetContents(props: Props) {
   const [sort, setSort] = useState<'recently' | 'popularly'>('recently');
 
   const categoryId = props?.categoryId;
