@@ -47,7 +47,7 @@ export default function SignupForm() {
         autoComplete="email"
       />
       <Input
-        placeholder="영문, 숫자 포함 00자 이상"
+        placeholder="8자 이상 입력해주세요"
         type="password"
         id="password1"
         {...register('password1')}
