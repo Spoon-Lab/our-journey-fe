@@ -1,7 +1,7 @@
 import { type ReactNode, useRef } from 'react';
 import { useRouter } from 'next/router';
 
-import useGetFeed from '@/hooks/contents/use-get-feed';
+import useGetFeeds from '@/hooks/contents/use-get-feeds';
 import { useIntersectionObserver } from '@/hooks/contents/use-intersection-observer';
 
 import FeedGrid from '@/components/feed-grid';
@@ -15,7 +15,7 @@ export default function Search() {
   const router = useRouter();
   const { title, categoryId } = router.query;
 
-  const { data, fetchNextPage, hasNextPage } = useGetFeed({ title: title as string | undefined, categoryId: categoryId as string | undefined });
+  const { data, fetchNextPage, hasNextPage } = useGetFeeds({ title: title as string | undefined, categoryId: categoryId as string | undefined });
 
   const categoryName = (categoryId && (categoryId === '1' ? '국내여행' : '해외여행')) ?? undefined;
 

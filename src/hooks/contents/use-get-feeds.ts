@@ -16,7 +16,7 @@ interface InfiniteData<TData, TPageParam = unknown> {
   pages: Array<TData>;
 }
 
-export default function useGetFeed(props: Props) {
+export default function useGetFeeds(props: Props) {
   const [sort, setSort] = useState<'recently' | 'popularly'>('recently');
 
   const categoryId = props?.categoryId;
