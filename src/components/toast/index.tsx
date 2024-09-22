@@ -13,7 +13,7 @@ export default function Toast({ message, setToast, position = 'bottom' }: ToastP
   useEffect(() => {
     const timer = setTimeout(() => {
       setToast(false);
-    }, 3000);
+    }, 2000);
     return () => {
       clearTimeout(timer);
     };
