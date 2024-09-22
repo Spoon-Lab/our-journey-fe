@@ -2,19 +2,31 @@ import Link from 'next/link';
 
 import { ROUTES } from '@/constants/router';
 
+import { useCategoryList } from '@/hooks/contents/use-category-list';
+
 import s from './style.module.scss';
 
 export default function CategoryArea() {
+  const { data } = useCategoryList();
+
+  if (!data) {
+    return <div />;
+  }
+
   return (
     <div className={s.categoryListWrapper}>
       <h3 className={s.categoryLabel}>카테고리</h3>
       <div className={s.categoryBox}>
-        <Link type="button" className={`${s.categoryButton} ${s.domestic}`} href={`${ROUTES.search}?categoryId=1`}>
-          <span>국내 여행</span>
-        </Link>
-        <Link type="button" className={`${s.categoryButton} ${s.foreign}`} href={`${ROUTES.search}?categoryId=2`}>
-          <span>해외 여행</span>
-        </Link>
+        {data.categoryDtos.map((category) => (
+          <Link
+            key={category.categoryId}
+            type="button"
+            className={`${s.categoryButton} ${category.categoryId === 1 ? s.domestic : s.foreign}`}
+            href={`${ROUTES.search}?categoryId=${category.categoryId}`}
+          >
+            <span>{`${category.categoryName} 여행`}</span>
+          </Link>
+        ))}
       </div>
     </div>
   );
