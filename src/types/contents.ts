@@ -69,3 +69,11 @@ export interface MyContent {
   title: string;
   updatedAt: string;
 }
+
+export interface CategoryDtos {
+  categoryDtos: Category[];
+}
+export interface Category {
+  categoryId: number;
+  categoryName: string;
+}
