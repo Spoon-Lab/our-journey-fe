@@ -4,8 +4,8 @@ import { useRouter } from 'next/router';
 
 import { ROUTES } from '@/constants/router';
 
-import { useActiveScroll } from '@/hooks/use-active-scroll';
-import { useCurrentKeyword } from '@/hooks/use-current-keyword';
+import { useActiveScroll } from '@/hooks/contents/use-active-scroll';
+import { useCurrentKeyword } from '@/hooks/contents/use-current-keyword';
 
 import s from './style.module.scss';
 

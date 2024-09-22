@@ -1,8 +1,8 @@
 import { type ReactNode, useRef } from 'react';
 import { useRouter } from 'next/router';
 
-import useGetFeed from '@/hooks/use-get-feed';
-import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
+import useGetFeed from '@/hooks/contents/use-get-feed';
+import { useIntersectionObserver } from '@/hooks/contents/use-intersection-observer';
 
 import FeedGrid from '@/components/feed-grid';
 import Header from '@/components/header';
@@ -17,7 +17,7 @@ export default function Search() {
 
   const { data, fetchNextPage, hasNextPage } = useGetFeed({ title: title as string | undefined, categoryId: categoryId as string | undefined });
 
-  const categoryName = (categoryId && (categoryId === 'domestic' ? '국내여행' : '해외여행')) ?? undefined;
+  const categoryName = (categoryId && (categoryId === '1' ? '국내여행' : '해외여행')) ?? undefined;
 
   const divRef = useRef<HTMLDivElement>(null);
 
@@ -32,9 +32,9 @@ export default function Search() {
 
   return (
     <>
-      <Header title={`${categoryName ?? (title as string) ?? ''} 검색결과 ${data?.pages[0].totalElements}건`} />
+      <Header title={`${categoryName ?? (title as string) ?? ''} 검색결과 ${data?.pages[0].list.totalElements}건`} />
       <section className={s.searchWrapper}>
-        {data?.pages.map((content) => <FeedGrid key={content.pageable.pageNumber} data={content.content} />)}
+        {data?.pages.map((content) => <FeedGrid key={content.list.pageable.pageNumber} data={content.list.content} />)}
         <div className={s.refArea} ref={divRef} />
       </section>
       <NavBar />
