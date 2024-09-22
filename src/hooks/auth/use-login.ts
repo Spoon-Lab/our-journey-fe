@@ -19,7 +19,7 @@ const useLogin = () => {
   const [toast, setToast] = useState<boolean>(false);
   const [toastMessage, setToastMessage] = useState<string>('');
 
-  const { mutate } = useMutation({
+  const { mutate, isSuccess } = useMutation({
     mutationFn: login,
     onSuccess: (data) => {
       localStorage.setItem('accessToken', data.access);
@@ -35,7 +35,7 @@ const useLogin = () => {
     },
   });
 
-  return { mutate, toast, toastMessage, setToast };
+  return { mutate, toast, toastMessage, setToast, isSuccess };
 };
 
 export default useLogin;

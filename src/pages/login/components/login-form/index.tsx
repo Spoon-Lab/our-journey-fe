@@ -28,11 +28,11 @@ export default function LoginForm() {
     },
   });
 
-  const { mutate, toast, toastMessage, setToast } = useLogin();
+  const { mutate, toast, toastMessage, setToast, isSuccess } = useLogin();
 
   const onSubmit = (data: Login) => {
     mutate(data);
-    reset();
+    if (isSuccess) reset();
   };
 
   return (
