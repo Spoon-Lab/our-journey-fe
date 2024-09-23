@@ -5,7 +5,7 @@ import { useImageUpload } from '@/hooks/use-image-upload';
 import { useTags } from '@/hooks/use-tags';
 
 import CoWorkerList from '@/components/co-worker-list';
-import Header from '@/components/header';
+import ContentsHeader from '@/components/contents-header';
 import DropZone from '@/components/image-drop-zone';
 import ImagePreview from '@/components/image-preview';
 import PostButton from '@/components/post-button';
@@ -68,7 +68,7 @@ export default function CreatePage() {
     <div className={s.createPage}>
       {isCoWorkerSliderOpen ? (
         <>
-          <Header headerTitle="작업자 초대하기" isCoWorker={isCoWorkerSliderOpen} setCoWorker={setIsCoWorkerSliderOpen} />
+          <ContentsHeader headerTitle="작업자 초대하기" isCoWorker={isCoWorkerSliderOpen} setCoWorker={setIsCoWorkerSliderOpen} />
           <div className={s.searchBar}>
             <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder="친구 검색..." />
             <button type="button" onClick={handleSearch}>
@@ -102,7 +102,7 @@ export default function CreatePage() {
         </>
       ) : (
         <>
-          <Header headerTitle="새 글 작성하기" isCoWorker={isCoWorkerSliderOpen} setCoWorker={setIsCoWorkerSliderOpen} />
+          <ContentsHeader headerTitle="새 글 작성하기" isCoWorker={isCoWorkerSliderOpen} setCoWorker={setIsCoWorkerSliderOpen} />
           <div className={s.wrapCreate}>
             <div className={s.imageArea}>
               <DropZone getRootProps={getRootProps} getInputProps={getInputProps} isDragActive={isDragActive} hasImage={!!imagePreview}>

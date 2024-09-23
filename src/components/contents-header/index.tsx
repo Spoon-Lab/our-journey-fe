@@ -1,17 +1,15 @@
-import { pre } from 'framer-motion/client';
-
 import s from './style.module.scss';
 
 import { PrevIcon } from '@/assets/icons';
 import BtnFrame from '@/pages/test/detail/[id]/(components)/btn-frame';
 
-interface HeaderProps {
+interface ContentsHeaderProps {
   headerTitle: string;
   isCoWorker?: boolean;
   setCoWorker: (value: boolean) => void;
 }
 
-export default function Header({ headerTitle, setCoWorker, isCoWorker }: HeaderProps) {
+export default function ContentsHeader({ headerTitle, setCoWorker, isCoWorker }: ContentsHeaderProps) {
   return (
     <div className={s.header}>
       <BtnFrame
