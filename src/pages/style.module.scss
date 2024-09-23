@@ -83,3 +83,63 @@
     height: 18px;
   }
 }
+
+.notFoundWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 16px;
+
+  width: 100%;
+  max-width: 600px;
+  height: 100dvh;
+  background: url('http://localhost:3000/image-not-found-background.webp') $background-system;
+  background-position: top right;
+  background-size: 53%;
+  background-repeat: no-repeat;
+}
+
+.notFoundTextBox {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: auto;
+  text-align: center;
+}
+
+.notFoundTitle {
+  @include semibold-large-title;
+  line-height: 41px;
+  color: $white;
+  margin-top: 118px;
+}
+
+.notFoundDescription {
+  @include regular-sub-headline;
+  letter-spacing: -0.25px;
+
+  color: $white;
+  white-space: pre-wrap;
+}
+
+.moveLinkHome {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 10px;
+  gap: 10px;
+  width: 100%;
+
+  margin: auto 0 32px;
+  background: $blue-700;
+  border-radius: 8px;
+  text-decoration-line: none;
+  box-sizing: border-box;
+  & span {
+    @include semibold-callout;
+    line-height: 19px;
+    color: $white;
+  }
+}
