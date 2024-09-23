@@ -1,0 +1,35 @@
+@import '@/styles';
+
+.navWrapper {
+  display: flex;
+  gap: 12px;
+  padding: 12px 12px 28px;
+  max-width: 600px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background: $gray-900;
+  z-index: 50;
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 5px;
+  text-decoration: none;
+  color: $gray-600;
+  fill: $gray-600;
+  @include semibold-footnote;
+  cursor: pointer;
+
+  &.active {
+    color: $blue-500;
+
+    svg {
+      fill: $blue-500;
+    }
+  }
+}

@@ -1,0 +1,68 @@
+@import '@/styles';
+
+.navBarContainer {
+  display: flex;
+  gap: 12px;
+  padding: 12px 12px 28px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background: $gray-900;
+  z-index: 50;
+}
+
+.navBarButton {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  text-decoration-line: none;
+  svg > path {
+    fill: $gray-600;
+  }
+  &.currentPage {
+    svg > path {
+      fill: $blue-500;
+    }
+  }
+}
+
+.buttonText {
+  @include semibold-footnote;
+  color: $gray-600;
+
+  &.currentPage {
+    color: $blue-500;
+  }
+}
+
+.active {
+  background: $blue-500;
+}
+
+.fab {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  z-index: 60;
+
+  width: 52px;
+  height: 52px;
+
+  background: #fbd709;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
+  border: none;
+  outline: none;
+  border-radius: 50px;
+  bottom: 104px;
+  right: 16px;
+  cursor: pointer;
+}

@@ -1,0 +1,7 @@
+.feedWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 8px;
+  overflow-y: auto;
+  width: 100%;
+}

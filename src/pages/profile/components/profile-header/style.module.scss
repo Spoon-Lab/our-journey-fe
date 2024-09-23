@@ -1,0 +1,39 @@
+@import '@/styles';
+
+.headerContainer {
+  width: 100%;
+  padding: 12px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin-bottom: 16px;
+  @include regular-callout;
+
+  svg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+  }
+
+  p {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    word-break: keep-all;
+    text-align: center;
+  }
+}
+
+.emptyBox {
+  width: 24px;
+  height: 24px;
+}
+
+.arrowBtn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
