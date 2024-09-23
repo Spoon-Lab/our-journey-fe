@@ -1,0 +1,9 @@
+export { default as PrevIcon } from './arrow_back.svg';
+export { default as ForwardIcon } from './chevron_forward.svg';
+export { default as FavoriteIconFilled } from './favorite_filled.svg';
+export { default as FavoriteIconNoFill } from './favorite_no_fill.svg';
+export { default as LocationIcon } from './location.svg';
+export { default as MessageIcon } from './message-circle.svg';
+export { default as MoreVertIcon } from './more_vert.svg';
+export { default as PersonIcon } from './person.svg';
+export { default as ShareIcon } from './share.svg';
