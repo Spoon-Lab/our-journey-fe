@@ -24,7 +24,7 @@ export default function CategoryArea() {
             className={`${s.categoryButton} ${category.categoryId === 1 ? s.domestic : s.foreign}`}
             href={`${ROUTES.search}?categoryId=${category.categoryId}`}
           >
-            <span>{`${category.categoryName} 여행`}</span>
+            <span>{`${category.categoryName}`}</span>
           </Link>
         ))}
       </div>
