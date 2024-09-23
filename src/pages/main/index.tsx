@@ -1,6 +1,6 @@
 import { type MouseEvent, type ReactNode, useRef } from 'react';
 
-import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
+import { useIntersectionObserver } from '@/hooks/contents/use-intersection-observer';
 
 import FeedGrid from '@/components/feed-grid';
 import DefaultLayout from '@/components/layouts';
@@ -10,14 +10,14 @@ import SearchBar from '@/components/search-bar';
 import BannerCarousel from './component/banner-carousel';
 import CreateBox from './component/create-box';
 import SortContainer from './component/sort-container';
-import useGetFeed from '../../hooks/use-get-feed';
+import useGetContents from '../../hooks/contents/use-get-contents';
 
 import s from './style.module.scss';
 
 import { Banners } from '@/mocks/banners';
 
 export default function Main() {
-  const { data, sort, setSort, fetchNextPage, hasNextPage } = useGetFeed({});
+  const { data, sort, setSort, fetchNextPage, hasNextPage } = useGetContents({ categoryId: undefined, title: undefined });
   const divRef = useRef<HTMLDivElement>(null);
 
   useIntersectionObserver({
@@ -33,8 +33,6 @@ export default function Main() {
     setSort(e.currentTarget.id as 'recently' | 'popularly');
   };
 
-  // * 특정 스크롤까지 도달하면 검색창 배경이 어둡게 바뀌는 기능 추가 필요
-
   return (
     <>
       <section className={s.mainWrapper}>
@@ -43,7 +41,7 @@ export default function Main() {
         <BannerCarousel data={Banners} />
         <div className={s.feedWrapper}>
           <SortContainer handle={handleListToSort} sort={sort} />
-          {data?.pages.map((content) => <FeedGrid key={content.pageable.pageNumber} data={content.content} />)}
+          {data?.pages.map((content) => <FeedGrid key={`content.${content.list.number}`} data={content.list.content} />)}
           <div className={s.refArea} ref={divRef} />
         </div>
       </section>

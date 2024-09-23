@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { ROUTES } from '@/constants/router';
 
-import { useChangeCarousel } from '@/hooks/use-change-carousel';
+import { useChangeCarousel } from '@/hooks/contents/use-change-carousel';
 
 import Chip from '@/components/chip';
 
@@ -48,7 +48,9 @@ function CarouselCard(props: Carousel) {
   const { chipText, src, title, bannerId, contentId } = props;
   return (
     <Link id={bannerId} href={`${ROUTES.detail}?id=${contentId}`} className={s.carouselCard}>
-      <img alt="" src={src} className={s.carouselImg} loading="lazy" />
+      <div className={s.carouselImgBox}>
+        <img alt="" src={src} className={s.carouselImg} loading="lazy" />
+      </div>
       <div className={s.carouselDescription}>
         <h3 className={s.carouselTitle}>{title}</h3>
         <Chip key={`${chipText.join()}`} chipList={chipText} />

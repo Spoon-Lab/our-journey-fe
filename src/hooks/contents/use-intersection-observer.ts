@@ -9,9 +9,6 @@ interface IntersectionObserverParams {
   threshold?: number;
 }
 
-// useIntersectionObserver.ts
-// import { useEffect } from 'react';
-
 export const useIntersectionObserver = ({ ref, onIntersect, root = null, rootMargin = '0px', threshold = 1.0 }: IntersectionObserverParams) => {
   useEffect(() => {
     const observer = new IntersectionObserver(

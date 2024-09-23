@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react';
 
+import { useCategoryList } from '@/hooks/contents/use-category-list';
+
 import Header from '@/components/header';
 import DefaultLayout from '@/components/layouts';
 import NavBar from '@/components/nav-bar';
@@ -11,6 +13,8 @@ import CurrentSearchArea from './component/current-search-area';
 import s from './style.module.scss';
 
 export default function Search() {
+  const { data } = useCategoryList();
+
   return (
     <>
       <Header title="검색" />
