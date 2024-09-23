@@ -14,3 +14,5 @@ export const ROUTES = {
   profile: '/profile',
   profileEdit: '/profile/edit',
 };
+
+export type ROUTES = (typeof ROUTES)[keyof typeof ROUTES];

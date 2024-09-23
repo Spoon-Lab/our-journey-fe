@@ -12,7 +12,7 @@ import ThreadFrame from './(components)/thread-frame';
 
 import s from './style.module.scss';
 
-import contentsMockData from '@/mocks/contents';
+import { contentsMockData } from '@/mocks/contents';
 
 export default function DetailPage() {
   const { isScrolled, scrollPercent } = useScroll(370);

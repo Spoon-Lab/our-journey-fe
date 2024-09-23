@@ -1,7 +1,7 @@
 import s from './style.module.scss';
 
 import { PrevIcon } from '@/assets/icons';
-import BtnFrame from '@/pages/test/detail/[id]/(components)/btn-frame';
+import BtnFrame from '@/pages/detail/[id]/(components)/btn-frame';
 
 interface ContentsHeaderProps {
   headerTitle: string;

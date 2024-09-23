@@ -66,6 +66,7 @@ export const contentsMockData = {
       tag: ['일본', '여행', '1박2일', '후기'],
     },
   ],
+};
 export const contents = {
   contents1: {
     content: [
