@@ -1,0 +1,19 @@
+@import '@/styles';
+
+.postButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  background-color: $blue-700;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  width: 100%;
+  @include semibold-callout;
+
+  &:disabled {
+    // TODO make a variable for disabled color
+    background-color: #3e4b5a;
+  }
+}

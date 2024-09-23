@@ -25,6 +25,7 @@ export default function Document() {
         <Main />
         <div id="modal" />
         <NextScript />
+        <div id="modal-root" />
       </body>
     </Html>
   );

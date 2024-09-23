@@ -1,0 +1,10 @@
+@import '@/styles';
+
+.btnFrame {
+  display: flex;
+  opacity: 0.7;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}

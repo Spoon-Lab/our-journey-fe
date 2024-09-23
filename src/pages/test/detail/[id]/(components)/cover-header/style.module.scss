@@ -1,0 +1,52 @@
+@import '@/styles';
+
+.coverHeader {
+  max-width: 600px; // NOTE temporary setting
+  width: 100%;
+  height: $detail-header-height;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  transition:
+    background-color 0.3s ease,
+    position 0.3s ease;
+  position: relative;
+  z-index: 10;
+  background-color: transparent;
+
+  &.fixed {
+    position: fixed;
+    top: 0;
+    // left: 0;
+    background-color: $background-system;
+    opacity: 0.7;
+
+    & > button {
+      background-color: transparent;
+    }
+  }
+
+  button {
+    display: flex;
+    width: 32px;
+    height: 32px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .scrollIndicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+
+    .progressBar {
+      height: 100%;
+      background-color: $white;
+      width: 0;
+      transition: width 0.1s ease;
+    }
+  }
+}

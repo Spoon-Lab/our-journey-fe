@@ -1,0 +1,23 @@
+@import '@/styles';
+
+.addCoWorkerButton {
+  margin: 12.5px 0;
+  @include regular-callout;
+  color: $gray-100;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.addWorkerTitleWrap {
+  display: flex;
+  gap: 8px;
+}
+.forwardIconWrap {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+}

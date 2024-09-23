@@ -1,0 +1,17 @@
+@import '@/styles';
+
+.header {
+  display: flex;
+  position: fixed;
+  top: 0;
+  align-items: center;
+  padding: 12px 16px;
+  color: $gray-100;
+  @include regular-callout;
+  background-color: $background-system;
+  width: 100%;
+  max-width: 600px;
+}
+.prevIcon {
+  margin-right: 8px;
+}
