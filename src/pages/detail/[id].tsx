@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react';
 
+import { BASE_URL } from '@/constants/api';
+
 import useScroll from '@/hooks/use-scroll';
 
 import DefaultLayout from '@/components/layouts';
@@ -16,7 +18,6 @@ import { contentsMockData } from '@/mocks/contents';
 
 export default function DetailPage() {
   const { isScrolled, scrollPercent } = useScroll(370);
-  console.log(process.env.NEXT_PUBLIC_BASE_URL);
 
   return (
     <div className={s.wrapDetail}>

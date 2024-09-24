@@ -1,5 +1,9 @@
 /** 백엔드 쪽에서 api 나오면 작업하시면서 추가, 수정 해주시면 되겠습니다! */
 
+import type { PaginationParams } from '@/types/pagination';
+
+import { createPaginationQuery } from '@/utils/pagination';
+
 export const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export const API_PATHS = {
@@ -25,19 +29,19 @@ export const API_PATHS = {
       POST: (contentId: number) => `/contents/${contentId}/like`, // contents 좋아요
       DELETE: (contentId: number) => `/contents/${contentId}/like`, // contents 좋아요 취소
     },
-    COMMENTS: {
-      GET: (contentId: number) => `/contents/${contentId}/comments`, // contents에 대한 모든 댓글 조회
-      POST: (contentId: number) => `/contents/${contentId}/comments`, // 댓글 생성
-      POST_REPLY: (contentId: number, commentId: number) => `/contents/${contentId}/comments/${commentId}`, // 대댓글 생성
-      PATCH: (contentId: number, commentId: number) => `/contents/${contentId}/comments/${commentId}`, // 댓글 수정
-      DELETE: (contentId: number, commentId: number) => `/contents/${contentId}/comments/${commentId}`, // 댓글 삭제
-    },
-    THREADS: {
-      GET: (contentId: number) => `/contents/${contentId}/threads`, // contents에 대한 모든 thread 조회
-      POST: (contentId: number) => `/contents/${contentId}/threads`, // contents에 thread 생성
-      PATCH: (contentId: number, threadId: number) => `/contents/${contentId}/threads/${threadId}`, // thread 수정
-      DELETE: (contentId: number, threadId: number) => `/contents/${contentId}/threads/${threadId}`, // thread 삭제
-    },
+  },
+  COMMENTS: {
+    GET: (contentId: number) => `/contents/${contentId}/comments`, // contents에 대한 모든 댓글 조회
+    POST: (contentId: number) => `/contents/${contentId}/comments`, // 댓글 생성
+    POST_REPLY: (contentId: number, commentId: number) => `/contents/${contentId}/comments/${commentId}`, // 대댓글 생성
+    PATCH: (contentId: number, commentId: number) => `/contents/${contentId}/comments/${commentId}`, // 댓글 수정
+    DELETE: (contentId: number, commentId: number) => `/contents/${contentId}/comments/${commentId}`, // 댓글 삭제
+  },
+  THREADS: {
+    GET: (contentId: number, paginationParams: PaginationParams) => `/contents/${contentId}/threads?${createPaginationQuery(paginationParams)}`, // contents에 대한 모든 thread 조회
+    POST: (contentId: number) => `/contents/${contentId}/threads`, // contents에 thread 생성
+    PATCH: (contentId: number, threadId: number) => `/contents/${contentId}/threads/${threadId}`, // thread 수정
+    DELETE: (contentId: number, threadId: number) => `/contents/${contentId}/threads/${threadId}`, // thread 삭제
   },
   HEALTH: {
     CHECK: () => `/health`, // 서버 상태 확인

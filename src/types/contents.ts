@@ -77,3 +77,11 @@ export interface Category {
   categoryId: number;
   categoryName: string;
 }
+
+export interface ContentPostRequest {
+  categoryId: number;
+  imgUrl: string;
+  profileIds: number[];
+  tagIds: number[];
+  title: string;
+}
