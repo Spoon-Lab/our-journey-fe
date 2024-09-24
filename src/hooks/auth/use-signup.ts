@@ -36,6 +36,7 @@ const useSignup = () => {
       }, 1200);
     },
     onError: (error: AxiosError<ErrorMessageProps>) => {
+      // TODO: 에러처리 수정
       if (error?.response?.data?.email) {
         setToastMessage(error?.response?.data?.email);
         setToast(true);

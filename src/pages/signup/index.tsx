@@ -4,7 +4,7 @@ import AuthHeader from '@/components/auth-header';
 import AuthIntroText from '@/components/auth-Intro-text';
 import AuthLayout from '@/components/layouts/auth-layout';
 
-import SignupForm from './components/signup-form';
+import SignupForm from './(components)/signup-form';
 
 import s from './style.module.scss';
 
