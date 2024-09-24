@@ -1,7 +1,7 @@
 /** 백엔드 쪽에서 api 나오면 작업하시면서 추가, 수정 해주시면 되겠습니다! */
 
 // TODO : 백엔드 api 배포시 수정 필요
-export const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export const API_PATHS = {
   TAGS: {

@@ -13,7 +13,7 @@ export default function GridCard({ data }: { data: Content }) {
   }
 
   const postImage =
-    data.postImg != null ? data.postImg : `${process.env.NEXT_PUBLIC_API_BASE_URL}/image-grid-card-default${Math.floor(Math.random() * 2) + 1}.webp`;
+    data.postImg != null ? data.postImg : `${process.env.NEXT_PUBLIC_BASE_URL}/image-grid-card-default${Math.floor(Math.random() * 2) + 1}.webp`;
 
   return (
     <Link className={s.cardWrapper} href={`${ROUTES.detail}?id=${data.contentId}`}>
