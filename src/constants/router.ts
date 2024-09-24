@@ -4,7 +4,7 @@ export const ROUTES = {
   search: '/search',
   category: '/category',
   menu: '/menu',
-  newContents: '/new-contents',
+  create: '/create',
   detail: '/detail',
   base: '/',
   login: '/login',

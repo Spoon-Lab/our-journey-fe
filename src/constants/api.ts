@@ -1,43 +1,53 @@
 /** 백엔드 쪽에서 api 나오면 작업하시면서 추가, 수정 해주시면 되겠습니다! */
 
-// TODO : 백엔드 api 배포시 수정 필요
 export const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export const API_PATHS = {
   TAGS: {
-    GET: () => `/tags`, // 태그 가져오기
-    POST: () => `/tags`, // 태그 생성
+    GET: () => `/tags`, // 해시태그 가져오기
+    POST: () => `/tags`, // 해시태그 생성
   },
   PROFILES: {
-    CREATE: () => `/profiles`, // 프로필 생성
-    GET: (id: number) => `/profiles/${id}`, // ID로 프로필 조회
-    UPDATE: (id: number) => `/profiles/${id}`, // ID로 프로필 업데이트
-    GET_LIKES_CONTENTS: (id: number) => `/profiles/${id}/likes/contents`, // 좋아요한 컨텐츠 가져오기
-    GET_MY_CONTENTS: (id: number) => `/profiles/${id}/contents`, // 내가 작성한 컨텐츠 가져오기
-    GET_MY_COMMENTS: (id: number) => `/profiles/${id}/comments`, // 내가 작성한 댓글 가져오기
+    CREATE: () => `/profiles`, // 사용자 프로필 생성
+    GET: (id: number) => `/profiles/${id}`, // 사용자 프로필 조회
+    UPDATE: (id: number) => `/profiles/${id}`, // ID로 프로필 수정
+    GET_LIKES_CONTENTS: (id: number) => `/profiles/${id}/likes/contents`, // 특정 유저가 좋아요한 contents 가져오기
+    GET_MY_CONTENTS: (id: number) => `/profiles/${id}/contents`, // 특정 유저가 작성한 contents 가져오기
+    GET_MY_COMMENTS: (id: number) => `/profiles/${id}/comments`, // 특정 유저가 작성한 댓글 가져오기
   },
   CONTENTS: {
-    GET_ALL: () => `/contents`, // 모든 컨텐츠 가져오기
-    GET_ONE: (contentId: number) => `/contents/${contentId}`, // ID로 하나의 컨텐츠 조회
-    DELETE: (contentId: number) => `/contents/${contentId}`, // ID로 컨텐츠 삭제
-    PATCH: (contentId: number) => `/contents/${contentId}`, // ID로 컨텐츠 수정
+    GET_ALL: () => `/contents`, // 모든 contents 조회
+    GET_ONE: (contentId: number) => `/contents/${contentId}`, // 한 contents 조회
+    CREATE: () => `/contents`, // contents 생성
+    DELETE: (contentId: number) => `/contents/${contentId}`, // contents 삭제
+    PATCH: (contentId: number) => `/contents/${contentId}`, // contents 수정
+    LIKE: {
+      POST: (contentId: number) => `/contents/${contentId}/like`, // contents 좋아요
+      DELETE: (contentId: number) => `/contents/${contentId}/like`, // contents 좋아요 취소
+    },
     COMMENTS: {
-      GET: (contentId: number) => `/contents/${contentId}/comments`, // 컨텐츠에 대한 모든 댓글 가져오기
-      POST: (contentId: number) => `/contents/${contentId}/comments`, // 컨텐츠에 댓글 생성
-      COMMENT: (contentId: number, commentId: number) => `/contents/${contentId}/comments/${commentId}`, // 댓글 수정 또는 삭제
+      GET: (contentId: number) => `/contents/${contentId}/comments`, // contents에 대한 모든 댓글 조회
+      POST: (contentId: number) => `/contents/${contentId}/comments`, // 댓글 생성
+      POST_REPLY: (contentId: number, commentId: number) => `/contents/${contentId}/comments/${commentId}`, // 대댓글 생성
+      PATCH: (contentId: number, commentId: number) => `/contents/${contentId}/comments/${commentId}`, // 댓글 수정
+      DELETE: (contentId: number, commentId: number) => `/contents/${contentId}/comments/${commentId}`, // 댓글 삭제
     },
     THREADS: {
-      GET: (contentId: number) => `/contents/${contentId}/threads`, // 컨텐츠에 대한 모든 스레드 가져오기
-      POST: (contentId: number) => `/contents/${contentId}/threads`, // 컨텐츠에 스레드 생성
-      PATCH: (contentId: number, threadId: number) => `/contents/${contentId}/threads/${threadId}`, // 스레드 수정
-      DELETE: (contentId: number, threadId: number) => `/contents/${contentId}/threads/${threadId}`, // 스레드 삭제
+      GET: (contentId: number) => `/contents/${contentId}/threads`, // contents에 대한 모든 thread 조회
+      POST: (contentId: number) => `/contents/${contentId}/threads`, // contents에 thread 생성
+      PATCH: (contentId: number, threadId: number) => `/contents/${contentId}/threads/${threadId}`, // thread 수정
+      DELETE: (contentId: number, threadId: number) => `/contents/${contentId}/threads/${threadId}`, // thread 삭제
     },
   },
   HEALTH: {
-    CHECK: () => `/health`, // 서버 상태 확인 엔드포인트
+    CHECK: () => `/health`, // 서버 상태 확인
   },
   CATEGORIES: {
-    GET_ALL: () => `/categories`, // 모든 카테고리 가져오기
+    GET_ALL: () => `/categories`, // 카테고리 목록 조회
+  },
+  FOLLOW: {
+    FOLLOW: (profileId: number) => `/follow/${profileId}/follow`, // 팔로우 하기
+    UNFOLLOW: (profileId: number) => `/follow/${profileId}/unfollow`, // 언팔로우 하기
   },
   AUTH: {
     ACCOUNT_CONFIRM_EMAIL: {
