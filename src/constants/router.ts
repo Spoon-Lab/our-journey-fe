@@ -13,4 +13,5 @@ export const ROUTES = {
   email: '/reset-password/email',
   profile: '/profile',
   profileEdit: '/profile/edit',
+  google: '/login/google',
 };
