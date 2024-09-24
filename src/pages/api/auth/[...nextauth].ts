@@ -2,6 +2,8 @@ import type { NextAuthOptions } from 'next-auth';
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 
+import { ROUTES } from '@/constants/router';
+
 export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
@@ -13,14 +15,28 @@ export const authOptions: NextAuthOptions = {
     strategy: 'jwt',
   },
   callbacks: {
-    jwt({ token }) {
+    jwt({ account, token }) {
+      if (account) {
+        return {
+          ...token,
+          id_token: account.id_token,
+        };
+      }
       return token;
     },
-    // session({ session, user, token }) {
-    //   return session;
-    // },
+
+    session({ session, token }) {
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id_token: token.id_token as string,
+        },
+      };
+    },
+
     redirect({ baseUrl }) {
-      return baseUrl;
+      return `${baseUrl}/${ROUTES.google}`;
     },
   },
 };
