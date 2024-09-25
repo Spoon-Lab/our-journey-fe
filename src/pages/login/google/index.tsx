@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 
 import type { LoginResponse } from '@/types/auth';
-import { API_PATHS, BASE_URL } from '@/constants/api';
+import { API_BASE_URL, API_PATHS } from '@/constants/api';
 import { ROUTES } from '@/constants/router';
 
 import AuthLayout from '@/components/layouts/auth-layout';
@@ -19,7 +19,7 @@ export default function GoogleLogin() {
     const login = async () => {
       if (session?.user.id_token) {
         try {
-          const { data } = await axios.post<LoginResponse>(`${BASE_URL}${API_PATHS.AUTH.GOOGLE_CALLBACK.POST()}`, {
+          const { data } = await axios.post<LoginResponse>(`${API_BASE_URL}${API_PATHS.AUTH.GOOGLE_CALLBACK.POST()}`, {
             id_token: session?.user.id_token,
           });
 
