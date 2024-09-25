@@ -1,12 +1,15 @@
-import { type ReactNode, useState } from 'react';
+import { type ReactNode, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 
+import type { MyContent } from '@/types/contents';
 import { ROUTES } from '@/constants/router';
 
+import { useIntersectionObserver } from '@/hooks/contents/use-intersection-observer';
 import useGetMyContents from '@/hooks/profile/use-get-my-contents';
 import useGetMyProfile from '@/hooks/profile/use-get-my-profile';
 
 import ProfileLayout from '@/components/layouts/profile-layout';
+import LottieLoading from '@/components/lottie-loading';
 import MenuBar from '@/components/menu-bar';
 
 import ContentItem from './(components)/content';
@@ -21,25 +24,48 @@ import { ArrowDownIcon, ArrowUpIcon, ArticleIcon, DefaultProfile, ForwardIcon, G
 export default function Profile() {
   const router = useRouter();
   const [openContents, setOpenContents] = useState<boolean>(false);
-  const { data, isPending } = useGetMyContents({ id: 1, open: openContents });
-  const { data: profile } = useGetMyProfile(); 
+  const { data, isPending, fetchNextPage, hasNextPage, isError } = useGetMyContents({ open: openContents });
+  const { data: profile } = useGetMyProfile();
+  const divRef = useRef<HTMLDivElement>(null);
+
+  useIntersectionObserver({
+    ref: divRef,
+    onIntersect: (entry) => {
+      if (entry.isIntersecting && hasNextPage) {
+        void fetchNextPage();
+      }
+    },
+  });
 
   let contents;
 
+  useEffect(() => {
+    if (isError) {
+      setOpenContents((prev) => !prev);
+    }
+  }, [isError]);
+
   if (openContents && isPending) {
-    contents = <div>로딩중</div>;
+    contents = (
+      <div className={s.loadingWrapper}>
+        <LottieLoading />
+      </div>
+    );
   }
+
+  console.log(data);
 
   if (openContents && data) {
     contents = (
       <div className={s.contentsWrapper}>
         {data.map((page) => (
           <>
-            {page.content.map((e) => (
+            {page.list.content.map((e: MyContent) => (
               <ContentItem key={e.contentId} content={e} />
             ))}
           </>
         ))}
+        <div ref={divRef} />
       </div>
     );
   }
