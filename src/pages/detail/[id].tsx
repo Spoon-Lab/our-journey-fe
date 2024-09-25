@@ -1,14 +1,11 @@
-import useGetOneContent from '@/hooks/threads/use-get-one-content';
+import useGetOneContent from '@/hooks/content/use-get-one-content';
 import { useGetRouteParamNumber } from '@/hooks/use-get-route-param-number';
 import useScroll from '@/hooks/use-scroll';
 
-import DefaultLayout from '@/components/layouts';
-
 import ContentCover from './(components)/content-cover';
+import ContentHeader from './(components)/content-header';
 import ContentsFrame from './(components)/contents-frame';
-import ContentsInfo from './(components)/contents-info';
-import CoverHeader from './(components)/cover-header';
-import ParallaxImage from './(components)/parallax-image';
+import ProgressBarHeader from './(components)/progress-bar-header';
 import ThreadFrame from './(components)/thread-frame';
 
 import s from './style.module.scss';
@@ -22,8 +19,10 @@ export default function DetailPage() {
   const { data: fetchedContent, isLoading: isFetching, isSuccess: successFetchingContent, error: errContentFetching } = useGetOneContent(contentId);
 
   return (
-    <div className={s.wrapDetail}>
-      <CoverHeader isScrolled={isScrolled} scrollPercent={scrollPercent} />
+    <div className={s.detailPage}>
+      <ProgressBarHeader isScrolled={isScrolled} scrollPercent={scrollPercent}>
+        <ContentHeader contentId={contentId} />
+      </ProgressBarHeader>
       {/* TODO: Add logic for handling loading state and empty content data */}
       {successFetchingContent && fetchedContent && <ContentCover content={fetchedContent} />}
       <div className={s.wrapBody}>
@@ -53,5 +52,3 @@ export default function DetailPage() {
     </div>
   );
 }
-
-// DetailPage.getLayout = (page: ReactNode) => <DefaultLayout>{page}</DefaultLayout>;

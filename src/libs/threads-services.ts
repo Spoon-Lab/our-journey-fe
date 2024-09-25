@@ -1,14 +1,8 @@
-import type { Content } from '@/types/contents';
 import type { PaginationParams } from '@/types/pagination';
 import type { Thread, ThreadPostRequest, ThreadResponse } from '@/types/threads';
 import { API_PATHS } from '@/constants/api';
 
 import { preAxiosInstance } from './pre-axios';
-
-export const getOneContent = async <T = Content>(contentId: number): Promise<T> => {
-  const response = await preAxiosInstance.get<T>(API_PATHS.CONTENTS.GET_ONE(contentId));
-  return response.data;
-};
 
 export const getAllThreads = async <T = ThreadResponse>(contentId: number, paginationParams: PaginationParams): Promise<T> => {
   const response = await preAxiosInstance.get<T>(API_PATHS.THREADS.GET(contentId, paginationParams));

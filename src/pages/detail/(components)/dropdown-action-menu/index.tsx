@@ -10,12 +10,12 @@ interface ActionItem {
   onClick: () => void;
 }
 
-interface ContentsDropdownActionMenuProps {
+interface DropdownActionMenuProps {
   actionItems: ActionItem[];
   triggerButton: React.ReactNode;
 }
 
-export default function ContentsDropdownActionMenu({ actionItems, triggerButton }: ContentsDropdownActionMenuProps) {
+export default function DropdownActionMenu({ actionItems, triggerButton }: DropdownActionMenuProps) {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {

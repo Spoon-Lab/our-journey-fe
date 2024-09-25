@@ -18,9 +18,13 @@ export const createContent = async <T = Contents>(data: ContentPostRequest): Pro
   return response.data;
 };
 
-export const deleteContent = async <T = Contents>(contentId: number): Promise<T> => {
-  const response = await preAxiosInstance.delete<T>(API_PATHS.CONTENTS.DELETE(contentId));
-  return response.data;
+export const deleteContent = async (contentId: number): Promise<void> => {
+  const response = await preAxiosInstance.delete(API_PATHS.CONTENTS.DELETE(contentId));
+  if (response.status === 200) {
+    return;
+  }
+
+  throw new Error(`Failed to delete content(ID: ${contentId}). Status: ${response.status}`);
 };
 
 export const patchContent = async <T = Contents>(contentId: number, data: ContentPostRequest): Promise<T> => {

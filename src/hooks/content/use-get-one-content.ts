@@ -3,7 +3,7 @@ import type { AxiosError } from 'axios';
 
 import type { Content } from '@/types/threads';
 
-import { getOneContent } from '@/libs/threads-services';
+import { getOneContent } from '@/libs/content-service';
 
 export default function useGetOneContent(contentId: number) {
   const { data, isLoading, isSuccess, error } = useQuery<Content, AxiosError>({

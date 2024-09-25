@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 import { useModal } from '@/hooks/use-modal';
 
-import ContentsDropdownActionMenu from '../contents-dropdown-action-menu';
+import ContentsDropdownActionMenu from '../dropdown-action-menu';
 import ImageZoomedModal from '../image-zoomed-modal';
 import WrapTags from '../wrap-tags';
 
