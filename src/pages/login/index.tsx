@@ -4,8 +4,8 @@ import AuthHeader from '@/components/auth-header';
 import AuthIntroText from '@/components/auth-Intro-text';
 import AuthLayout from '@/components/layouts/auth-layout';
 
-import LoginForm from './components/login-form';
-import Navbar from './components/navbar';
+import LoginForm from './(components)/login-form';
+import Navbar from './(components)/navbar';
 
 import s from './style.module.scss';
 

@@ -21,15 +21,15 @@ export default function useGetContents(props: Props) {
   const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({
     queryKey: ['api/get-contents', sort, categoryId, title],
     queryFn: async ({ pageParam }: { pageParam?: number }) => {
-      let api = API_PATHS.CONTENTS.GET_ALL();
+      let api = `${API_PATHS.CONTENTS.GET_ALL()}?size=10&page=${pageParam}`;
 
       // * 페이지 위치 따른 배치도 추가 고려 필여
       if (categoryId || title) {
-        if (categoryId && title) api = `${api}?categoryId=${categoryId}&title=${title}`;
-        if (categoryId && !title) api = `${api}?categoryId=${categoryId}`;
-        if (!categoryId && title) api = `${api}?title=${title}`;
+        if (categoryId && title) api = `${api}&categoryId=${categoryId}&title=${title}`;
+        if (categoryId && !title) api = `${api}&categoryId=${categoryId}`;
+        if (!categoryId && title) api = `${api}&title=${title}`;
       }
-      const list = (await preAxiosInstance.get(api)).data;
+      const list = (await preAxiosInstance.get(`${api}`)).data;
 
       return list as Promise<Contents>;
     },

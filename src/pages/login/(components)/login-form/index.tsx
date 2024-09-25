@@ -1,54 +1,62 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { emailCheckSchema } from '@/utils/validate';
+import type { Login } from '@/types/auth';
 
-import useEmailRequest from '@/hooks/auth/use-email-request';
+import { loginSchema } from '@/utils/validate';
+
+import useLogin from '@/hooks/auth/use-login';
 
 import Button from '@/components/button';
 import Input from '@/components/input';
-import LottieLoading from '@/components/lottie-loading';
 import Toast from '@/components/toast';
 
 import s from './style.module.scss';
 
-export default function EmailForm() {
+export default function LoginForm() {
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<{ email: string }>({
-    resolver: yupResolver(emailCheckSchema),
+  } = useForm<Login>({
+    resolver: yupResolver(loginSchema),
     mode: 'onBlur',
     defaultValues: {
       email: '',
+      password: '',
     },
   });
 
-  const { mutate, toast, toastMessage, setToast, isSuccess, isPending } = useEmailRequest();
+  const { mutate, toast, toastMessage, setToast, isSuccess } = useLogin();
 
-  const onSubmit = (data: { email: string }) => {
+  const onSubmit = (data: Login) => {
     mutate(data);
     if (isSuccess) reset();
   };
-
-  if (isPending) {
-    return <LottieLoading />;
-  }
 
   return (
     <>
       <form className={s.formWrapper} onSubmit={handleSubmit(onSubmit)}>
         <Input
-          id="email"
-          labelText="이메일 입력"
           placeholder="이메일 주소를 입력해주세요"
+          id="email"
           {...register('email')}
+          type="text"
           errorMessage={errors.email?.message}
+          labelText="이메일 입력"
           autoComplete="email"
         />
-        <Button type="submit">재설정 링크 받기</Button>
+        <Input
+          placeholder="비밀번호를 입력해주세요"
+          type="password"
+          id="password"
+          {...register('password')}
+          errorMessage={errors.password?.message}
+          labelText="비밀번호 입력"
+          autoComplete="new-password"
+        />
+        <Button type="submit">로그인</Button>
       </form>
       <div className={s.toastWrapper}>{toast && <Toast message={toastMessage} setToast={setToast} position="bottom" />}</div>
     </>
