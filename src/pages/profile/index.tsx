@@ -10,7 +10,7 @@ import useGetMyProfile from '@/hooks/profile/use-get-my-profile';
 
 import ProfileLayout from '@/components/layouts/profile-layout';
 import LottieLoading from '@/components/lottie-loading';
-import MenuBar from '@/components/menu-bar';
+import NavBar from '@/components/nav-bar';
 
 import ContentItem from './(components)/content';
 import NavItem from './(components)/nav-item';
@@ -102,6 +102,6 @@ export default function Profile() {
 Profile.getLayout = (page: ReactNode) => (
   <ProfileLayout>
     {page}
-    <MenuBar pk={1} />
+    <NavBar />
   </ProfileLayout>
 );
