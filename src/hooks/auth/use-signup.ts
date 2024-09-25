@@ -5,16 +5,11 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 
 import type { Signup } from '@/types/auth';
-import { API_PATHS, BASE_URL } from '@/constants/api';
+import { API_PATHS } from '@/constants/api';
 import { ROUTES } from '@/constants/router';
 
-interface ErrorMessageProps {
-  email?: string;
-  password1?: string;
-}
-
 const signup = async ({ email, password1, password2 }: Signup) => {
-  const res = await axios.post(`${BASE_URL}${API_PATHS.AUTH.SIGNUP.POST()}`, { email, password1, password2 });
+  const res = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}${API_PATHS.AUTH.SIGNUP.POST()}`, { email, password1, password2 });
 
   return res;
 };
@@ -35,13 +30,10 @@ const useSignup = () => {
         void router.push(ROUTES.login);
       }, 1200);
     },
-    onError: (error: AxiosError<ErrorMessageProps>) => {
-      // TODO: 에러처리 수정
-      if (error?.response?.data?.email) {
-        setToastMessage(error?.response?.data?.email);
-        setToast(true);
-      } else if (error?.response?.data?.password1) {
-        setToastMessage(error?.response?.data?.password1);
+    onError: (error: AxiosError) => {
+      if (error?.response?.status === 400) {
+        const errorMessage = (error.response.data as { error: string })?.error;
+        setToastMessage(errorMessage);
         setToast(true);
       }
     },
