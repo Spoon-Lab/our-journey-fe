@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 
@@ -10,7 +11,11 @@ import { ROUTES } from '@/constants/router';
 
 import AuthLayout from '@/components/layouts/auth-layout';
 
+import lottieLoading from '../../../../public/lottie-loading.json';
+
 import s from './style.module.scss';
+
+const Lottie = dynamic(() => import('react-lottie-player'), { ssr: false });
 
 export default function GoogleLogin() {
   const { data: session } = useSession();
@@ -39,7 +44,7 @@ export default function GoogleLogin() {
 
   return (
     <div className={s.container}>
-      <p>구글 로그인 중</p>
+      <Lottie loop animationData={lottieLoading} play />
     </div>
   );
 }
