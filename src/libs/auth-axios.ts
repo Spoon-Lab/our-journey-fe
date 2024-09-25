@@ -33,7 +33,7 @@ axiosAuthInstance.interceptors.response.use(
       const refresh = localStorage.getItem('refreshToken');
 
       try {
-        const { data } = await axios.post<{ access: string }>(`${process.env.NEXT_PUBLIC_API_BASE_URL}${API_PATHS.AUTH.TOKEN.REFRESH.POST()}`, { refresh });
+        const { data } = await axiosAuthInstance.post<{ access: string }>(`${API_PATHS.AUTH.TOKEN.REFRESH.POST()}`, { refresh });
 
         if (data?.access) {
           localStorage.setItem('accessToken', data.access);
@@ -47,7 +47,6 @@ axiosAuthInstance.interceptors.response.use(
       } catch (refreshError) {
         // TODO:로그아웃 처리 ?
         localStorage.clear();
-
         window.location.href = '/login';
       }
     }
