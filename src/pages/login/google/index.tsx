@@ -9,8 +9,7 @@ import { API_PATHS, BASE_URL } from '@/constants/api';
 import { ROUTES } from '@/constants/router';
 
 import AuthLayout from '@/components/layouts/auth-layout';
-
-import s from './style.module.scss';
+import LottieLoading from '@/components/lottie-loading';
 
 export default function GoogleLogin() {
   const { data: session } = useSession();
@@ -37,11 +36,7 @@ export default function GoogleLogin() {
     void login();
   }, [session, router]);
 
-  return (
-    <div className={s.container}>
-      <p>구글 로그인 중</p>
-    </div>
-  );
+  return <LottieLoading />;
 }
 
 GoogleLogin.getLayout = (page: ReactNode) => <AuthLayout>{page}</AuthLayout>;
