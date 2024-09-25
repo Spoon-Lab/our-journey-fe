@@ -7,7 +7,7 @@ import s from './style.module.scss';
 
 import { FavoriteIconFilled, FavoriteIconNoFill, LocationIcon, MessageIcon, ShareIcon } from '@/assets/icons';
 
-interface ContentsFrameProps {
+interface ContentSectionProps {
   comments: number;
   initialLiked: boolean;
   likes: number;
@@ -16,15 +16,15 @@ interface ContentsFrameProps {
   tags: string[];
 }
 
-export default function ContentsFrame({ comments, initialLiked, likes, period, tags, postContent }: ContentsFrameProps) {
+export default function ContentSection({ comments, initialLiked, likes, period, tags, postContent }: ContentSectionProps) {
   const [isLiked, setLiked] = useState<boolean>(initialLiked);
 
   return (
-    <div className={s.contentsFrame}>
-      <div className={s.period}>
+    <section className={s.contentSection}>
+      {/* <div className={s.period}>
         <LocationIcon alt="location-icon" width={16} height={16} />
         <span>{period}</span>
-      </div>
+      </div> */}
       <p className={s.postContent}>{postContent}</p>
       <WrapTags tags={tags} />
       <div className={s.postActions}>
@@ -37,13 +37,13 @@ export default function ContentsFrame({ comments, initialLiked, likes, period, t
           >
             {isLiked ? <FavoriteIconFilled alt="favorite-icon" width={18} height={18} /> : <FavoriteIconNoFill alt="favorite-icon" width={18} height={18} />}
           </BtnFrame>
-          <BtnFrame
+          {/* <BtnFrame
             onClick={() => {
               console.log('clicked comments button!');
             }}
           >
             <MessageIcon alt="comments-icon" width={18} height={18} />
-          </BtnFrame>
+          </BtnFrame> */}
           <BtnFrame
             onClick={() => {
               console.log('clicked share button!');
@@ -54,9 +54,9 @@ export default function ContentsFrame({ comments, initialLiked, likes, period, t
         </div>
         <div className={s.wrapActionCounts}>
           <span>좋아요 {likes}</span>
-          <span>댓글 {comments}</span>
+          {/* <span>댓글 {comments}</span> */}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

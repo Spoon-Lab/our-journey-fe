@@ -1,3 +1,9 @@
+export interface ThreadReqBody {
+  tags: number[];
+  texts: string;
+  threadImg: string;
+}
+
 export interface Content {
   // commentCount: number;
   contentId: number;
