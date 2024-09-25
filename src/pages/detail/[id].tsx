@@ -1,7 +1,13 @@
-import type { ReactNode } from 'react';
+import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { useParams, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/router';
 
-import { BASE_URL } from '@/constants/api';
+import { getOneContent } from '@/libs/threads-services';
 
+import useGetOneContent from '@/hooks/threads/use-get-one-content';
+import { useGetRouteParamNumber } from '@/hooks/use-get-route-param-number';
+import { useRedirect } from '@/hooks/use-redirect';
 import useScroll from '@/hooks/use-scroll';
 
 import DefaultLayout from '@/components/layouts';
@@ -18,6 +24,9 @@ import { contentsMockData } from '@/mocks/contents';
 
 export default function DetailPage() {
   const { isScrolled, scrollPercent } = useScroll(370);
+
+  const contentId = useGetRouteParamNumber('id');
+  const { content, isLoading, error } = useGetOneContent(contentId);
 
   return (
     <div className={s.wrapDetail}>
