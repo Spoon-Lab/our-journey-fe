@@ -25,7 +25,6 @@ export default function Edit() {
   const router = useRouter();
   const { filePreview, handleChangeFile, file } = useImage();
   const [modalOpen, setModalOpen] = useState<boolean>(false);
-  // const { mutate } = useUploadImg();
 
   const { data: profile } = useGetProfile(1);
 
