@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
-import axios from 'axios';
 import { useRouter } from 'next/router';
 
 import { API_PATHS } from '@/constants/api';
 import { ROUTES } from '@/constants/router';
+
+import axiosAuthInstance from '@/libs/auth-axios';
 
 interface ResetPasswordProps {
   new_password1: string;
@@ -15,7 +16,7 @@ interface ResetPasswordProps {
 }
 
 const resetPassword = async ({ uid64, token, new_password1, new_password2 }: ResetPasswordProps) => {
-  const res = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}${API_PATHS.AUTH.PASSWORD.CHANGE.POST(uid64, token)}`, {
+  const res = await axiosAuthInstance.post(`${API_PATHS.AUTH.PASSWORD.CHANGE.POST(uid64, token)}`, {
     new_password1,
     new_password2,
   });

@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
-import axios from 'axios';
 import { useRouter } from 'next/router';
 
 import type { Login, LoginResponse } from '@/types/auth';
 import { API_PATHS } from '@/constants/api';
 import { ROUTES } from '@/constants/router';
 
+import axiosAuthInstance from '@/libs/auth-axios';
+
 const login = async ({ email, password }: Login) => {
-  const { data } = await axios.post<LoginResponse>(`${process.env.NEXT_PUBLIC_API_BASE_URL}${API_PATHS.AUTH.LOGIN.POST()}`, { email, password });
+  const { data } = await axiosAuthInstance.post<LoginResponse>(`${API_PATHS.AUTH.LOGIN.POST()}`, { email, password });
 
   return data;
 };

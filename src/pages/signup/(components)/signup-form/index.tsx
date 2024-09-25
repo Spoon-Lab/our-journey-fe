@@ -9,6 +9,7 @@ import useSignup from '@/hooks/auth/use-signup';
 
 import Button from '@/components/button';
 import Input from '@/components/input';
+import LottieLoading from '@/components/lottie-loading';
 import Toast from '@/components/toast';
 
 import s from './style.module.scss';
@@ -29,12 +30,16 @@ export default function SignupForm() {
     },
   });
 
-  const { mutate, toast, setToast, toastMessage, isSuccess } = useSignup();
+  const { mutate, toast, setToast, toastMessage, isSuccess, isPending } = useSignup();
 
   const onSubmit = (data: Signup) => {
     mutate(data);
     if (isSuccess) reset();
   };
+
+  if (isPending) {
+    return <LottieLoading />;
+  }
 
   return (
     <>

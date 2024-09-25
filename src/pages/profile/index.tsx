@@ -9,10 +9,10 @@ import useGetProfile from '@/hooks/profile/use-get-profile';
 import ProfileLayout from '@/components/layouts/profile-layout';
 import MenuBar from '@/components/menu-bar';
 
-import ContentItem from './components/content';
-import NavItem from './components/nav-item';
-import ProfileHeader from './components/profile-header';
-import UserSettings from './components/user-settings';
+import ContentItem from './(components)/content';
+import NavItem from './(components)/nav-item';
+import ProfileHeader from './(components)/profile-header';
+import UserSettings from './(components)/user-settings';
 
 import s from './style.module.scss';
 
@@ -56,7 +56,7 @@ export default function Profile() {
           </div>
         </div>
         <nav className={s.navWrapper}>
-          <NavItem leftIcon={<PersonIcon />} text="내 정보 보기" rightIcon={<ForwardIcon />} onClick={() => router.push(`${ROUTES.profileEdit}/1`)} />
+          <NavItem leftIcon={<PersonIcon />} text="내 정보 보기" rightIcon={<ForwardIcon />} onClick={() => router.push(`${ROUTES.profileEdit}`)} />
           <NavItem
             leftIcon={<ArticleIcon />}
             text="내 작성글 모두보기"
