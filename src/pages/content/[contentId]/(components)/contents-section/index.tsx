@@ -1,5 +1,9 @@
 import { useState } from 'react';
 
+import { copyUrlToClipboard } from '@/utils/copy-url-to-clipboard';
+
+import { useToast } from '@/hooks/use-toast';
+
 import BtnFrame from '../btn-frame';
 import WrapTags from '../wrap-tags';
 
@@ -18,6 +22,16 @@ interface ContentSectionProps {
 
 export default function ContentSection({ comments, initialLiked, likes, period, tags, postContent }: ContentSectionProps) {
   const [isLiked, setLiked] = useState<boolean>(initialLiked);
+  const { addToast } = useToast();
+
+  const handleShareClick = async () => {
+    const success = await copyUrlToClipboard();
+    if (success) {
+      addToast('해당 콘텐츠의 url이 클립보드에 복사되었습니다!', 'info');
+    } else {
+      addToast('해당 콘텐츠의 url을 클립보드에 복사하는데 실패했습니다.', 'error');
+    }
+  };
 
   return (
     <section className={s.contentSection}>
@@ -44,11 +58,7 @@ export default function ContentSection({ comments, initialLiked, likes, period, 
           >
             <MessageIcon alt="comments-icon" width={18} height={18} />
           </BtnFrame> */}
-          <BtnFrame
-            onClick={() => {
-              console.log('clicked share button!');
-            }}
-          >
+          <BtnFrame onClick={handleShareClick}>
             <ShareIcon alt="share-icon" width={18} height={18} />
           </BtnFrame>
         </div>

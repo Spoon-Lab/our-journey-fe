@@ -1,10 +1,11 @@
 import useGetOneContent from '@/hooks/content/use-get-one-content';
+import useGetThreads from '@/hooks/threads/use-get-threads';
 import { useGetRouteParamNumber } from '@/hooks/use-get-route-param-number';
 import useScroll from '@/hooks/use-scroll';
 
 import ContentCover from './(components)/content-cover';
 import ContentHeader from './(components)/content-header';
-import ContentsFrame from './(components)/contents-frame';
+import ContentSection from './(components)/contents-section';
 import ProgressBarHeader from './(components)/progress-bar-header';
 import ThreadFrame from './(components)/thread-frame';
 
@@ -18,6 +19,8 @@ export default function DetailPage() {
   const contentId = useGetRouteParamNumber('contentId');
   const { data: fetchedContent, isLoading: isFetching, isSuccess: successFetchingContent, error: errContentFetching } = useGetOneContent(contentId);
 
+  // const { data } = useGetThreads(contentId);
+
   return (
     <div className={s.detailPage}>
       <ProgressBarHeader isScrolled={isScrolled} scrollPercent={scrollPercent}>
@@ -26,7 +29,7 @@ export default function DetailPage() {
       {/* TODO: Add logic for handling loading state and empty content data */}
       {successFetchingContent && fetchedContent && <ContentCover content={fetchedContent} />}
       <div className={s.wrapBody}>
-        <ContentsFrame
+        <ContentSection
           initialLiked={false}
           comments={contentsMockData.contents.comments}
           likes={contentsMockData.contents.likes}
