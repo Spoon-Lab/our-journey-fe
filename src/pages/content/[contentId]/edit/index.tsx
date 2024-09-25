@@ -1,3 +1,7 @@
 export default function ContentEditPage() {
-  return <div>UpdatePage</div>;
+  return (
+    <div>
+      <div>asd</div>
+    </div>
+  );
 }
