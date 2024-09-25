@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { ROUTES } from '@/constants/router';
 
 import { useDeleteContent } from '@/hooks/content/use-delete-content';
+import { useToast } from '@/hooks/use-toast';
 
 import BtnFrame from '../btn-frame';
 import DropdownActionMenu from '../dropdown-action-menu';
@@ -16,14 +17,22 @@ interface ContentHeaderProps {
 export default function ContentHeader({ contentId }: ContentHeaderProps) {
   const router = useRouter();
   const deleteContentMutation = useDeleteContent();
+  const { addToast } = useToast();
 
   const handleEdit = () => {
     void router.push(`${ROUTES.content.edit(contentId)}`);
   };
 
   const handleDelete = () => {
-    deleteContentMutation.mutate(contentId);
-    void router.push(ROUTES.base);
+    deleteContentMutation.mutate(contentId, {
+      onSuccess: () => {
+        addToast('삭제 성공', 'success');
+      },
+      onError: () => {
+        addToast('삭제 실패', 'error');
+      },
+    });
+    void router.push(ROUTES.main);
   };
   return (
     <>
