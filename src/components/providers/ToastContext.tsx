@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react';
 
 import type { ToastData } from '@/types/toast';
 
-import Toast from '@/components/toast';
+import Toast from '@/components/progress-toast';
 
 import { ToastContext } from '@/context/toast';
 

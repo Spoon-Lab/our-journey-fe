@@ -49,7 +49,6 @@ export default function Toast({ id, message, type, duration = 1000, onClose }: T
       onClick={handleClose}
       className={s.toast}
       style={{
-        
         backgroundColor,
         color: 'white',
         cursor: 'pointer',
