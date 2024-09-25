@@ -29,7 +29,7 @@ export default function NavBar() {
         <span className={`${s.buttonText} ${menuPath ? s.currentPage : ''}`}>메뉴</span>
       </Link>
       {mainPath && (
-        <Link id={ROUTES.newContents} aria-label="글 작성" type="button" className={s.fab} href={ROUTES.newContents}>
+        <Link id={ROUTES.create} aria-label="글 작성" type="button" className={s.fab} href={ROUTES.create}>
           <AddIcon />
         </Link>
       )}
