@@ -15,7 +15,7 @@ import { contentsMockData } from '@/mocks/contents';
 export default function DetailPage() {
   const { isScrolled, scrollPercent } = useScroll(370);
 
-  const contentId = useGetRouteParamNumber('id');
+  const contentId = useGetRouteParamNumber('contentId');
   const { data: fetchedContent, isLoading: isFetching, isSuccess: successFetchingContent, error: errContentFetching } = useGetOneContent(contentId);
 
   return (
