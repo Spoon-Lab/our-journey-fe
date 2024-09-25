@@ -36,7 +36,7 @@ const uploadImg = async ({ photo_type, thread_id, images }: UploadImgProps) => {
   return data;
 };
 
-const useUploadImg = (nickname: string) => {
+const useUploadImg = ({ nickname, selfIntroduction }: { nickname: string; selfIntroduction: string }) => {
   const { mutate: updateProfileMutate } = useUpdateMyProfile();
 
   const [toast, setToast] = useState<boolean>(false);
@@ -47,8 +47,8 @@ const useUploadImg = (nickname: string) => {
     onSuccess: (data) => {
       updateProfileMutate({
         nickname,
-        imageUrl: data.image_url,
-        selfIntroduction: 'test',
+        imageUrl: data.image_url[0],
+        selfIntroduction,
       });
     },
     onError: (error: AxiosError) => {

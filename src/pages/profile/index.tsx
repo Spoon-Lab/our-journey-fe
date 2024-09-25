@@ -53,8 +53,6 @@ export default function Profile() {
     );
   }
 
-  console.log(data);
-
   if (openContents && data) {
     contents = (
       <div className={s.contentsWrapper}>

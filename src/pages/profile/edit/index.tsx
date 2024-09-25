@@ -44,7 +44,10 @@ export default function Edit() {
   });
 
   const changedNickname = watch('nickname');
-  const { mutate, toastMessage, toast, setToast } = useUploadImg(changedNickname || (profile?.nickname as string));
+  const { mutate, toastMessage, toast, setToast } = useUploadImg({
+    nickname: changedNickname || (profile?.nickname as string),
+    selfIntroduction: profile?.selfIntroduction as string,
+  });
   const { mutate: updateProfile } = useUpdateMyProfile();
 
   const onSubmit = () => {
@@ -63,7 +66,7 @@ export default function Edit() {
     }
   };
   const handleBack = () => {
-    if (file || changedNickname !== '') setModalOpen((prev) => !prev);
+    if (file || changedNickname !== profile?.nickname) setModalOpen((prev) => !prev);
     else router.back();
   };
 
