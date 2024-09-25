@@ -15,7 +15,7 @@ import ProfileLayout from '@/components/layouts/profile-layout';
 import Modal from '@/components/modal';
 import Toast from '@/components/toast';
 
-import ProfileHeader from '../components/profile-header';
+import ProfileHeader from '../(components)/profile-header';
 
 import s from './style.module.scss';
 
