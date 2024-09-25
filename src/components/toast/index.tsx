@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import s from './style.module.scss';
+
 interface ToastProps {
   duration: number;
   id: number;
@@ -45,11 +47,9 @@ export default function Toast({ id, message, type, duration = 1000, onClose }: T
   return (
     <div
       onClick={handleClose}
+      className={s.toast}
       style={{
-        position: 'relative',
-        marginBottom: '10px',
-        padding: '10px 20px',
-        borderRadius: '5px',
+        
         backgroundColor,
         color: 'white',
         cursor: 'pointer',

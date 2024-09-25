@@ -5,13 +5,17 @@ import { useImageUpload } from '@/hooks/use-image-upload';
 import { useTags } from '@/hooks/use-tags';
 
 import CoWorkerList from '@/components/co-worker-list';
-import ContentsHeader from '@/components/contents-header';
 import DropZone from '@/components/image-drop-zone';
 import ImagePreview from '@/components/image-preview';
 import PostButton from '@/components/post-button';
 import TagInput from '@/components/tag-input';
 
+import ButtonFrame from './(components)/button-frame';
+import EditHeader from './(components)/edit-header';
+
 import s from './style.module.scss';
+
+import { DecoImageIcon } from '@/assets/icons';
 
 export default function CreatePage() {
   const { imagePreview, getRootProps, getInputProps, isDragActive, resetImage } = useImageUpload();
@@ -68,7 +72,7 @@ export default function CreatePage() {
     <div className={s.createPage}>
       {isCoWorkerSliderOpen ? (
         <>
-          <ContentsHeader headerTitle="작업자 초대하기" isCoWorker={isCoWorkerSliderOpen} setCoWorker={setIsCoWorkerSliderOpen} />
+          <EditHeader headerTitle="작업자 초대하기" onClick={() => setIsCoWorkerSliderOpen(false)} />
           <div className={s.searchBar}>
             <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder="친구 검색..." />
             <button type="button" onClick={handleSearch}>
@@ -102,7 +106,7 @@ export default function CreatePage() {
         </>
       ) : (
         <>
-          <ContentsHeader headerTitle="새 글 작성하기" isCoWorker={isCoWorkerSliderOpen} setCoWorker={setIsCoWorkerSliderOpen} />
+          <EditHeader headerTitle="새 글 작성하기" onClick={() => window.history.back()} />
           <div className={s.wrapCreate}>
             <div className={s.imageArea}>
               <DropZone getRootProps={getRootProps} getInputProps={getInputProps} isDragActive={isDragActive} hasImage={!!imagePreview}>
@@ -111,12 +115,10 @@ export default function CreatePage() {
             </div>
             <div className={s.wrapInput}>
               <div className={s.wrapActions}>
-                <button type="button" className={s.uploadButton} onClick={resetImage}>
-                  이미지 교체
-                </button>
-                <button type="button" className={s.cancelButton}>
-                  꾸미기
-                </button>
+                <ButtonFrame onclick={resetImage}>
+                  <DecoImageIcon />
+                  <span>이미지 꾸미기</span>
+                </ButtonFrame>
               </div>
               <div className={s.title}>
                 <input type="text" placeholder="여행의 제목을 달아주세요!" value={title} onChange={(e) => setTitle(e.target.value)} />
@@ -127,7 +129,7 @@ export default function CreatePage() {
               <TagInput tags={tags} newTag={newTag} setNewTag={setNewTag} addTag={addTag} removeTag={removeTag} />
               <div className={s.divider} />
               <CoWorkerList coWorkers={coWorkers} removeCoWorker={removeCoWorker} onAddCoWorker={handleAddCoWorker} />
-              <div className={s.bottomBtnArea}>
+              <div className={s.postButtonWrapper}>
                 <PostButton text="발행하기" onClick={handlePost} disabled={!isPostButtonEnabled} />
               </div>
             </div>

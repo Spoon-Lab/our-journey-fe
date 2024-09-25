@@ -26,5 +26,6 @@ export { default as MessageIcon } from './message-circle.svg';
 export { default as MoreVertIcon } from './more_vert.svg';
 export { default as PersonIcon } from './person.svg';
 export { default as AddPhoto } from './Photo.svg';
+export { default as DecoImageIcon } from './registration.svg';
 export { default as MenuSearchIcon } from './Search.svg';
 export { default as ShareIcon } from './share.svg';
