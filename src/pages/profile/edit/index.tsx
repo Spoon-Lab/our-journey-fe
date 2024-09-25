@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 
 import { nicknameSchema } from '@/utils/validate';
 
-import useGetProfile from '@/hooks/profile/use-get-profile';
+import useGetMyProfile from '@/hooks/profile/use-get-my-profile';
 import { useImage } from '@/hooks/use-image';
 import useUploadImg from '@/hooks/use-upload-img';
 
@@ -26,7 +26,7 @@ export default function Edit() {
   const { filePreview, handleChangeFile, file } = useImage();
   const [modalOpen, setModalOpen] = useState<boolean>(false);
 
-  const { data: profile } = useGetProfile(1);
+  const { data: profile } = useGetMyProfile();
 
   const {
     register,

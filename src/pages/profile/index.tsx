@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { ROUTES } from '@/constants/router';
 
 import useGetMyContents from '@/hooks/profile/use-get-my-contents';
-import useGetProfile from '@/hooks/profile/use-get-profile';
+import useGetMyProfile from '@/hooks/profile/use-get-my-profile';
 
 import ProfileLayout from '@/components/layouts/profile-layout';
 import MenuBar from '@/components/menu-bar';
@@ -22,12 +22,12 @@ export default function Profile() {
   const router = useRouter();
   const [openContents, setOpenContents] = useState<boolean>(false);
   const { data, isPending } = useGetMyContents({ id: 1, open: openContents });
-  const { data: profile } = useGetProfile(1); // 나중에 api 본인 아이디는 안들어가게 수정된다고함
+  const { data: profile } = useGetMyProfile(); 
 
   let contents;
 
   if (openContents && isPending) {
-    contents = <div>로딩중?</div>;
+    contents = <div>로딩중</div>;
   }
 
   if (openContents && data) {
