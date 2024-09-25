@@ -1,11 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 
 import type { Profile } from '@/types/profile';
-import { API_PATHS, BASE_URL } from '@/constants/api';
+import { API_PATHS } from '@/constants/api';
+
+import axiosInstance from '@/libs/axios';
 
 const getProfile = async (id: number) => {
-  const { data }: { data: Profile } = await axios(`${BASE_URL}${API_PATHS.PROFILES.GET(id)}`);
+  const { data }: { data: Profile } = await axiosInstance.get(`${API_PATHS.PROFILES.GET(id)}`);
 
   return data;
 };

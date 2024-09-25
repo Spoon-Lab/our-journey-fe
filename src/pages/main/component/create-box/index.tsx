@@ -8,7 +8,7 @@ import { WriteIcon } from '@/assets/icons';
 
 export default function CreateBox() {
   return (
-    <Link href={`${ROUTES.create}`} className={s.createBoxContainer}>
+    <Link href={`${ROUTES.content.create()}`} className={s.createBoxContainer}>
       <WriteIcon />
       <div className={s.createBoxDescription}>
         <span className={s.createBoxTitle}>여행 타래를 작성해볼까요?</span>

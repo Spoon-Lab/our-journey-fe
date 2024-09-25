@@ -1,13 +1,13 @@
 import { useMutation } from '@tanstack/react-query';
-import axios from 'axios';
 import { useRouter } from 'next/router';
 
 import { API_PATHS } from '@/constants/api';
 import { ROUTES } from '@/constants/router';
 
+import axiosAuthInstance from '@/libs/auth-axios';
+
 const logout = async () => {
-  // axiosInstance로 변경
-  const res = await axios.post(`${API_PATHS.AUTH.LOGOUT.POST()}`);
+  const res = await axiosAuthInstance.post(`${API_PATHS.AUTH.LOGOUT.POST()}`);
   return res;
 };
 

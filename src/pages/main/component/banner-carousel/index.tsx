@@ -47,7 +47,7 @@ export default function BannerCarousel(props: Props) {
 function CarouselCard(props: Carousel) {
   const { chipText, src, title, bannerId, contentId } = props;
   return (
-    <Link id={bannerId} href={`${ROUTES.detail}?id=${contentId}`} className={s.carouselCard}>
+    <Link id={bannerId} href={ROUTES.content.detail(Number(contentId))} className={s.carouselCard}>
       <div className={s.carouselImgBox}>
         <img alt="" src={src} className={s.carouselImg} loading="lazy" />
       </div>

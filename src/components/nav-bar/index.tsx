@@ -24,12 +24,12 @@ export default function NavBar() {
         <CategoryIcon />
         <span className={`${s.buttonText} ${categoryPath ? s.currentPage : ''}`}>카테고리</span>
       </Link>
-      <Link id={ROUTES.menu} type="button" className={`${s.navBarButton} ${menuPath ? s.currentPage : ''}`} href={ROUTES.menu}>
+      <Link id={ROUTES.menu} type="button" className={`${s.navBarButton} ${menuPath ? s.currentPage : ''}`} href={ROUTES.profile}>
         <MenuIcon />
         <span className={`${s.buttonText} ${menuPath ? s.currentPage : ''}`}>메뉴</span>
       </Link>
       {mainPath && (
-        <Link id={ROUTES.create} aria-label="글 작성" type="button" className={s.fab} href={ROUTES.create}>
+        <Link id={ROUTES.content.create()} aria-label="글 작성" type="button" className={s.fab} href={ROUTES.content.create()}>
           <AddIcon />
         </Link>
       )}

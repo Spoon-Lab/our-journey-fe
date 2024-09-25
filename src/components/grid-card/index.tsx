@@ -16,7 +16,7 @@ export default function GridCard({ data }: { data: Content }) {
     data.postImg != null ? data.postImg : `${process.env.NEXT_PUBLIC_BASE_URL}/image-grid-card-default${Math.floor(Math.random() * 2) + 1}.webp`;
 
   return (
-    <Link className={s.cardWrapper} href={`${ROUTES.detail}?id=${data.contentId}`}>
+    <Link className={s.cardWrapper} href={ROUTES.content.detail(data.contentId)}>
       <figure className={s.thumbnailBox}>
         <img alt={data.title} src={postImage} className={s.thumbnail} loading="lazy" />
         <span className={s.date}>{formatDate(new Date(data.createdAt))}</span>

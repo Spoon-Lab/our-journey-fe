@@ -1,0 +1,14 @@
+@import '@/styles';
+
+.button {
+  display: flex;
+  gap: 4px;
+  background-color: $blue-700;
+  border-radius: 182px;
+
+  padding: 6.5px 8px;
+  min-width: 61px;
+
+  @include semibold-caption-2;
+  color: $white;
+}
