@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
+import type { AxiosError } from 'axios';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 
@@ -23,12 +25,23 @@ const resetPassword = async ({ uid64, token, new_password1, new_password2 }: Res
 
 const useResetPassword = () => {
   const router = useRouter();
-  return useMutation({
+  const [toast, setToast] = useState<boolean>(false);
+  const [toastMessage, setToastMessage] = useState<string>('');
+  const { mutate } = useMutation({
     mutationFn: resetPassword,
     onSuccess: async () => {
       await router.push(ROUTES.login);
     },
+    onError: (error: AxiosError) => {
+      if (error?.response?.status === 400) {
+        const errorMessage = (error.response.data as { error: string })?.error;
+        setToastMessage(errorMessage);
+        setToast(true);
+      }
+    },
   });
+
+  return { mutate, toast, toastMessage, setToast };
 };
 
 export default useResetPassword;

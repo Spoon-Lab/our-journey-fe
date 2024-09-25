@@ -14,6 +14,7 @@ export const ROUTES = {
   profile: '/profile',
   profileEdit: '/profile/edit',
   google: '/login/google',
+  create: '/create', // main navbar에 경로 없어서 오류나서 추가해두었습니다 나중에 수정해주세요
 };
 
 export type ROUTES = (typeof ROUTES)[keyof typeof ROUTES];
