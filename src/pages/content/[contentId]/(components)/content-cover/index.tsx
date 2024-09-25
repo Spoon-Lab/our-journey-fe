@@ -13,6 +13,10 @@ interface ContentCoverProps {
 }
 
 export default function ContentCover({ content }: ContentCoverProps) {
+  if (!content) {
+    return <div />;
+  }
+
   const { title, postImg, createdAt } = content;
   const writerInfoData: ProfileDto = {
     imgUrl: '',
