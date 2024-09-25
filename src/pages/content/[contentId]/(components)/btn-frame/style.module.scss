@@ -1,0 +1,23 @@
+@import '@/styles';
+
+.btnFrame {
+  display: flex;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+// <BtnFrame
+//         onClick={() => {
+//           window.history.back();
+//         }}
+//       >
+//         <PrevIcon alt="prev-btn" width={24} height={24} />
+//       </BtnFrame>
+//       <ContentsDropdownActionMenu
+//         triggerButton={<MoreVertIcon />}
+//         actionItems={[
+//           { name: '수정하기', onClick: () => {}, key: 'update' },
+//           { name: '삭제하기', onClick: () => {}, key: 'delete' },
+//         ]}
+//       />

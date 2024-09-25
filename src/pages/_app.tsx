@@ -4,6 +4,7 @@ import type { AppProps } from 'next/app';
 import { SessionProvider } from 'next-auth/react';
 
 import ReactQueryProvider from '@/components/providers/ReactQuery';
+import { ToastProvider } from '@/components/providers/ToastContext';
 
 import '@/styles/globals.scss';
 
@@ -19,7 +20,9 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
   const getLayout = Component.getLayout ?? ((page: ReactNode) => page);
   return (
     <ReactQueryProvider>
-      <SessionProvider session={session}>{getLayout(<Component {...pageProps} />)}</SessionProvider>
+      <ToastProvider>
+        <SessionProvider session={session}>{getLayout(<Component {...pageProps} />)}</SessionProvider>
+      </ToastProvider>
     </ReactQueryProvider>
   );
 }
