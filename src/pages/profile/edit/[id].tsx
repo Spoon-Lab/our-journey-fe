@@ -8,10 +8,12 @@ import { nicknameSchema } from '@/utils/validate';
 
 import useGetProfile from '@/hooks/profile/use-get-profile';
 import { useImage } from '@/hooks/use-image';
+import useUploadImg from '@/hooks/use-upload-img';
 
 import Input from '@/components/input';
 import ProfileLayout from '@/components/layouts/profile-layout';
 import Modal from '@/components/modal';
+import Toast from '@/components/toast';
 
 import ProfileHeader from '../components/profile-header';
 
@@ -42,15 +44,16 @@ export default function Edit() {
   });
 
   const changedNickname = watch('nickname');
+  const { mutate, toastMessage, toast, setToast } = useUploadImg();
 
   const onSubmit = () => {
     // TODO:아직 api 프로필로직 확정이 안되어있어 확정후 변경
-    // if (file) {
-    //   mutate({
-    //     photo_type: 'profile',
-    //     images: [file],
-    //   });
-    // }
+    if (file) {
+      mutate({
+        photo_type: 'profile',
+        images: [file],
+      });
+    }
     reset();
   };
 
@@ -83,11 +86,7 @@ export default function Edit() {
         />
         <div className={s.profileWrapper}>
           <figure className={s.profileImg}>
-            {filePreview ? (
-              <Image src={filePreview} alt="img" width={76} height={76} />
-            ) : (
-              <DefaultProfile />
-            )}
+            {filePreview ? <Image src={filePreview} alt="img" width={76} height={76} /> : <DefaultProfile />}
             <label htmlFor="file">
               <EditIcon />
             </label>
@@ -100,6 +99,7 @@ export default function Edit() {
         </div>
         <Input labelText="닉네임 입력" placeholder="변경할 닉네임을 입력해주세요" {...register('nickname')} errorMessage={errors.nickname?.message} />
       </form>
+      <div className={s.toastWrapper}>{toast && <Toast message={toastMessage} setToast={setToast} position="bottom" />}</div>
     </>
   );
 }
