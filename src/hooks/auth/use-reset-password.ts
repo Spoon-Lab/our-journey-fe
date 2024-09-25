@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 
-import { API_PATHS, BASE_URL } from '@/constants/api';
+import { API_PATHS } from '@/constants/api';
 import { ROUTES } from '@/constants/router';
 
 interface ResetPasswordProps {
@@ -13,7 +13,7 @@ interface ResetPasswordProps {
 }
 
 const resetPassword = async ({ uid64, token, new_password1, new_password2 }: ResetPasswordProps) => {
-  const res = await axios.post(`${BASE_URL}${API_PATHS.AUTH.PASSWORD.CHANGE.POST(uid64, token)}`, {
+  const res = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}${API_PATHS.AUTH.PASSWORD.CHANGE.POST(uid64, token)}`, {
     new_password1,
     new_password2,
   });

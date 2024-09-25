@@ -7,6 +7,8 @@ import useEmailRequest from '@/hooks/auth/use-email-request';
 
 import Button from '@/components/button';
 import Input from '@/components/input';
+import LottieLoading from '@/components/lottie-loading';
+import Toast from '@/components/toast';
 
 import s from './style.module.scss';
 
@@ -24,23 +26,31 @@ export default function EmailForm() {
     },
   });
 
-  const { mutate } = useEmailRequest();
+  const { mutate, toast, toastMessage, setToast, isSuccess, isPending } = useEmailRequest();
 
   const onSubmit = (data: { email: string }) => {
     mutate(data);
-    reset();
+    if (isSuccess) reset();
   };
+
+  if (isPending) {
+    return <LottieLoading />;
+  }
+
   return (
-    <form className={s.formWrapper} onSubmit={handleSubmit(onSubmit)}>
-      <Input
-        id="email"
-        labelText="이메일 입력"
-        placeholder="이메일 주소를 입력해주세요"
-        {...register('email')}
-        errorMessage={errors.email?.message}
-        autoComplete="email"
-      />
-      <Button type="submit">재설정 링크 받기</Button>
-    </form>
+    <>
+      <form className={s.formWrapper} onSubmit={handleSubmit(onSubmit)}>
+        <Input
+          id="email"
+          labelText="이메일 입력"
+          placeholder="이메일 주소를 입력해주세요"
+          {...register('email')}
+          errorMessage={errors.email?.message}
+          autoComplete="email"
+        />
+        <Button type="submit">재설정 링크 받기</Button>
+      </form>
+      <div className={s.toastWrapper}>{toast && <Toast message={toastMessage} setToast={setToast} position="bottom" />}</div>
+    </>
   );
 }

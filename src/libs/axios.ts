@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-import { getCookie } from '@/utils/cookie';
-
 const axiosConfig = {
   baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
   headers: {
@@ -12,8 +10,8 @@ const axiosConfig = {
 const axiosInstance = axios.create(axiosConfig);
 
 axiosInstance.interceptors.request.use(
-  async (config) => {
-    const token = await Promise.resolve(getCookie('accessToken'));
+  (config) => {
+    const token = localStorage.getItem('accessToken');
     if (token) {
       // eslint-disable-next-line no-param-reassign
       config.headers.Authorization = `Bearer ${token}`;

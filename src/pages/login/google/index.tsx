@@ -1,7 +1,6 @@
 import type { ReactNode } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
-import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 
@@ -10,12 +9,7 @@ import { API_PATHS, BASE_URL } from '@/constants/api';
 import { ROUTES } from '@/constants/router';
 
 import AuthLayout from '@/components/layouts/auth-layout';
-
-import lottieLoading from '../../../../public/lottie-loading.json';
-
-import s from './style.module.scss';
-
-const Lottie = dynamic(() => import('react-lottie-player'), { ssr: false });
+import LottieLoading from '@/components/lottie-loading';
 
 export default function GoogleLogin() {
   const { data: session } = useSession();
@@ -42,11 +36,7 @@ export default function GoogleLogin() {
     void login();
   }, [session, router]);
 
-  return (
-    <div className={s.container}>
-      <Lottie loop animationData={lottieLoading} play />
-    </div>
-  );
+  return <LottieLoading />;
 }
 
 GoogleLogin.getLayout = (page: ReactNode) => <AuthLayout>{page}</AuthLayout>;
