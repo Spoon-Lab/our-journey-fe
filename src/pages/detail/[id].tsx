@@ -1,21 +1,14 @@
-import { useEffect, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { useParams, useSearchParams } from 'next/navigation';
-import { useRouter } from 'next/router';
-
-import { getOneContent } from '@/libs/threads-services';
-
 import useGetOneContent from '@/hooks/threads/use-get-one-content';
 import { useGetRouteParamNumber } from '@/hooks/use-get-route-param-number';
-import { useRedirect } from '@/hooks/use-redirect';
 import useScroll from '@/hooks/use-scroll';
 
 import DefaultLayout from '@/components/layouts';
 
+import ContentCover from './(components)/content-cover';
 import ContentsFrame from './(components)/contents-frame';
 import ContentsInfo from './(components)/contents-info';
 import CoverHeader from './(components)/cover-header';
-import ParallaxCoverImage from './(components)/parallax-cover';
+import ParallaxImage from './(components)/parallax-image';
 import ThreadFrame from './(components)/thread-frame';
 
 import s from './style.module.scss';
@@ -26,19 +19,13 @@ export default function DetailPage() {
   const { isScrolled, scrollPercent } = useScroll(370);
 
   const contentId = useGetRouteParamNumber('id');
-  const { content, isLoading, error } = useGetOneContent(contentId);
+  const { data: fetchedContent, isLoading: isFetching, isSuccess: successFetchingContent, error: errContentFetching } = useGetOneContent(contentId);
 
   return (
     <div className={s.wrapDetail}>
-      <div className={s.wrapCover}>
-        <div className={s.coverItem}>
-          <ParallaxCoverImage src={contentsMockData.bgImage} alt="cover-image" />
-          <div className={s.wrapContents}>
-            <ContentsInfo title={contentsMockData.title} writer={contentsMockData.writer} date={contentsMockData.date} />
-          </div>
-        </div>
-      </div>
       <CoverHeader isScrolled={isScrolled} scrollPercent={scrollPercent} />
+      {/* TODO: Add logic for handling loading state and empty content data */}
+      {successFetchingContent && fetchedContent && <ContentCover content={fetchedContent} />}
       <div className={s.wrapBody}>
         <ContentsFrame
           initialLiked={false}

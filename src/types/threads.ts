@@ -1,4 +1,15 @@
-export interface ProfileThreadDto {
+export interface Content {
+  // commentCount: number;
+  contentId: number;
+  // contentProfileDto: ProfileDto;
+  createdAt: string;
+  likeCount: number;
+  postImg: string;
+  title: string;
+  updatedAt: string;
+}
+
+export interface ProfileDto {
   imgUrl: string;
   nickName: string;
   profileId: number;
@@ -6,7 +17,7 @@ export interface ProfileThreadDto {
 
 export interface Thread {
   createdAt: string;
-  profileThreadDto: ProfileThreadDto;
+  profileThreadDto: ProfileDto;
   tagNames: string[];
   texts: string;
   threadId: number;

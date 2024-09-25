@@ -1,0 +1,79 @@
+@import '@/styles';
+
+$cover-height: 440px;
+
+.contentCover {
+  max-width: $max-width;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.contentContainer {
+  position: relative;
+  height: $cover-height;
+  overflow: hidden;
+}
+.contentInfoWrapper {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.memoryDateWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+.timeStamp {
+  @include timestamp;
+  font-size: 15px;
+}
+.imageGradient {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.8) 100%);
+}
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 0 0 24px 24px;
+  overflow: hidden;
+  z-index: 1;
+}
+.background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background-color: $black;
+}
+.contentTitle {
+  color: white;
+  @include bold-title-2;
+}
+.writerInfo {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+.profileImage {
+  $size: 16px;
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: $gray-400;
+}
+.writerName {
+  color: white;
+  @include semibold-sub-headline;
+}
