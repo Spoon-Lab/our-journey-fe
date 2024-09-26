@@ -1,4 +1,4 @@
-import useGetOneContent from '@/hooks/content/use-get-one-content';
+import useGetOneContent from '@/hooks/contents/use-get-one-content';
 // import useGetThreads from '@/hooks/threads/use-get-threads';
 import { useGetRouteParamNumber } from '@/hooks/use-get-route-param-number';
 import useScroll from '@/hooks/use-scroll';

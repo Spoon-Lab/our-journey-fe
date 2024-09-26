@@ -3,12 +3,6 @@
 .wrapTags {
   margin: 4px 0 0 0;
 
-  .tag {
-    color: $blue-500;
-    @include regular-footnote;
-    margin-right: 4px;
-  }
-
   & > input {
     width: fit-content;
     height: fit-content;
@@ -19,12 +13,20 @@
     @include regular-callout;
     color: white;
     border-radius: 4px;
+    margin-left: 4px;
+
     &::placeholder {
       color: $gray-600;
       @include regular-callout;
     }
+
     &:focus {
       outline: none;
     }
+  }
+  & > .tag > button {
+    color: $blue-500;
+    @include regular-footnote;
+    margin-right: 4px;
   }
 }

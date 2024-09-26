@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { motion, useAnimation } from 'framer-motion';
 
 import s from './style.module.scss';
 
@@ -11,61 +12,44 @@ interface ToastProps {
 }
 
 export default function Toast({ id, message, type, duration = 1000, onClose }: ToastProps) {
-  const [progress, setProgress] = useState(100);
+  const controls = useAnimation();
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev > 0) return prev - 100 / (duration / 100);
-        clearInterval(interval);
-        onClose(id);
-        return 0;
-      });
-    }, 100);
+    void controls.start({
+      width: '0%',
+      transition: { duration: duration / 1000, ease: 'linear' },
+    });
 
-    return () => clearInterval(interval);
-  }, [duration, id, onClose]);
+    const timer = setTimeout(() => {
+      onClose(id);
+    }, duration);
+
+    return () => clearTimeout(timer);
+  }, [controls, duration, id, onClose]);
 
   const handleClose = () => {
     onClose(id);
   };
-  const backgroundColor = (() => {
-    switch (type) {
-      case 'success':
-        return 'green';
-      case 'error':
-        return 'red';
-      case 'info':
-        return 'blue';
-      case 'warning':
-        return 'orange';
-      default:
-        return 'gray';
-    }
-  })();
+
+  const toastVariants = {
+    initial: { opacity: 0, y: 50, scale: 0.3 },
+    animate: { opacity: 1, y: 0, scale: 1 },
+    exit: { opacity: 0, scale: 0.5, transition: { duration: 0.2 } },
+  };
 
   return (
-    <div
-      onClick={handleClose}
+    <motion.div
       className={s.toast}
-      style={{
-        backgroundColor,
-        color: 'white',
-        cursor: 'pointer',
-        width: '250px',
-      }}
+      onClick={handleClose}
+      variants={toastVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
     >
       {message}
-      <div
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          height: '4px',
-          backgroundColor: 'rgba(255, 255, 255, 0.5)',
-          width: `${progress}%`,
-        }}
-      />
-    </div>
+      <motion.div className={s.progressBar} initial={{ width: '100%' }} animate={controls} />
+    </motion.div>
   );
 }

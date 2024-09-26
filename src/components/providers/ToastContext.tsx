@@ -23,19 +23,18 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   const contextValue = useMemo(() => ({ addToast }), []);
   return (
     <ToastContext.Provider value={contextValue}>
-      {children}
-      <div
-        style={{
-          position: 'fixed',
-          top: '20px',
-          right: '20px',
-          zIndex: 1000,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-end',
-        }}
-      >
-        {toast && <Toast key={toast.id} id={toast.id} message={toast.message} type={toast.type} duration={toast.duration} onClose={removeToast} />}
+      <div style={{ position: 'relative', maxWidth: '600px', margin: '0 auto', minHeight: '100vh' }}>
+        {children}
+        <div
+          style={{
+            position: 'absolute',
+            left: '16px',
+            bottom: '70px',
+            zIndex: 1000,
+          }}
+        >
+          {toast && <Toast key={toast.id} id={toast.id} message={toast.message} type={toast.type} duration={toast.duration} onClose={removeToast} />}
+        </div>
       </div>
     </ToastContext.Provider>
   );

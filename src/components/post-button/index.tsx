@@ -10,7 +10,7 @@ export default function PostButton({ text, onClick, disabled = true }: PostButto
   return (
     <button
       className={`${s.postButton}`}
-      type="button"
+      type="submit"
       onClick={() => {
         onClick();
       }}

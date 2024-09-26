@@ -27,7 +27,7 @@ export default function TagInput({ tags, newTag, setNewTag, addTag, removeTag }:
           </button>
         </span>
       ))}
-      <input {...inputProps} />
+      <input {...inputProps} maxLength={100} />
     </div>
   );
 }

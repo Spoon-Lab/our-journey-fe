@@ -27,19 +27,14 @@ export default function CustomTextarea({ placeholder, value, onChange, invalidMs
   }, [value]);
 
   const onInput: FormEventHandler<HTMLTextAreaElement> = (e) => {
-    const textarea = textareaRef.current;
-    if (!textarea) return;
     const inputValue = (e.target as HTMLTextAreaElement).value;
-
     if (inputValue.match(/^\s+/)) {
-      textarea.value = '';
+      onChange('');
       return;
     }
-
     if (maxLength && inputValue.length > maxLength) {
       return;
     }
-
     onChange(inputValue);
     adjustTextareaHeight();
   };
