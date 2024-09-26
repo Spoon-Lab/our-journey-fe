@@ -33,10 +33,10 @@ export default function NavBar() {
         <span className={`${s.buttonText} ${categoryPath ? s.currentPage : ''}`}>카테고리</span>
       </Link>
       <Link
-        id={loginState ? ROUTES.menu : ROUTES.needLogin}
+        id={ROUTES.profile}
         type="button"
         className={`${s.navBarButton} ${menuPath ? s.currentPage : ''}`}
-        href={ROUTES.profile}
+        href={loginState ? ROUTES.profile : ROUTES.needLogin}
       >
         <MenuIcon />
         <span className={`${s.buttonText} ${menuPath ? s.currentPage : ''}`}>메뉴</span>
