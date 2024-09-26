@@ -1,6 +1,9 @@
+import type { ReactNode } from 'react';
 import Link from 'next/link';
 
 import { ROUTES } from '@/constants/router';
+
+import DefaultLayout from '@/components/layouts';
 
 import s from './style.module.scss';
 
@@ -17,3 +20,5 @@ export default function NotFound() {
     </section>
   );
 }
+
+NotFound.getLayout = (page: ReactNode) => <DefaultLayout>{page}</DefaultLayout>;

@@ -18,7 +18,7 @@ class ErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    // * MEMO: 차후 Centry 적용할 것
+    // * MEMO: 차후 centry 적용할 것
     // console.error('Uncaught Error: ', error, errorInfo);
     this.setState({ hasError: true });
   }

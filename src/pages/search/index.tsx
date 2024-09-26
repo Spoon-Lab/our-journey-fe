@@ -35,7 +35,7 @@ export default function Search() {
 
   return (
     <>
-      <Header title={`${categoryName ?? (title as string) ?? ''} 검색결과 ${data?.pages[0].list.totalElements}건`} />
+      <Header title={`${categoryName ?? (title as string) ?? ''} 검색결과 ${data?.pages[0].list.totalElements ?? '0'}건`} />
       <section className={s.searchWrapper}>
         {isBlinkPage ? (
           <div className={s.noSearchBox}>
