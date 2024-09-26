@@ -23,6 +23,13 @@
   @include flex-column-center;
 
   gap: 8px;
+
+  img {
+    width: 76px;
+    height: 76px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
 }
 
 .userInfoWrapper {

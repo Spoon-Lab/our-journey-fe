@@ -94,7 +94,13 @@ export default function Edit() {
         />
         <div className={s.profileWrapper}>
           <figure className={s.profileImg}>
-            {filePreview ? <Image src={filePreview} alt="img" width={76} height={76} /> : <DefaultProfile />}
+            {filePreview ? (
+              <Image src={filePreview} alt="img" width={76} height={76} />
+            ) : profile?.imageUrl ? (
+              <img src={profile?.imageUrl} alt="profile img" />
+            ) : (
+              <DefaultProfile />
+            )}
             <label htmlFor="file">
               <EditIcon />
             </label>

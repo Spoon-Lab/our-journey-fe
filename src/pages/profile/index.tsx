@@ -73,7 +73,7 @@ export default function Profile() {
       <ProfileHeader text="프로필 수정" />
       <main>
         <div className={s.profileWrapper}>
-          <DefaultProfile />
+          {profile?.imageUrl ? <img src={profile?.imageUrl} alt="profile img" /> : <DefaultProfile />}
           <div className={s.userInfoWrapper}>
             <div>{profile?.nickname}</div>
             <p>{profile?.selfIntroduction}</p>
