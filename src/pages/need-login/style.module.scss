@@ -1,0 +1,66 @@
+@import '@/styles';
+
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 16px;
+
+  width: 100%;
+  max-width: 600px;
+  height: 100dvh;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  padding: 12px 0;
+  white-space: pre-line;
+  margin: auto;
+
+  hr {
+    width: 40px;
+    height: 4px;
+    background-color: #fbeb09;
+    border: none;
+    word-break: keep-all;
+  }
+
+  h1 {
+    margin: 0;
+    @include semibold-title-2;
+  }
+
+  p {
+    color: $gray-500;
+    @include regular-body;
+    padding: 8px 0;
+    word-break: keep-all;
+  }
+}
+
+.moveLinkSignUp {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 10px;
+  gap: 10px;
+  width: 100%;
+
+  margin: auto 0 32px;
+  background: $blue-700;
+  border-radius: 8px;
+  text-decoration-line: none;
+  box-sizing: border-box;
+  & span {
+    @include semibold-callout;
+    line-height: 19px;
+    color: $white;
+  }
+}
