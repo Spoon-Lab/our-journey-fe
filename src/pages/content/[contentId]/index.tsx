@@ -19,7 +19,9 @@ export default function DetailPage() {
   const contentId = useGetRouteParamNumber('contentId');
   const { data: fetchedContent, isLoading: isFetching, isSuccess: successFetchingContent, error: errContentFetching } = useGetOneContent(contentId);
 
-  // const { data } = useGetThreads(contentId);
+  if (!fetchedContent) {
+    return <div />;
+  }
 
   return (
     <div className={s.detailPage}>
