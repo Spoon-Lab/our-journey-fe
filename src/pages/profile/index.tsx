@@ -56,12 +56,12 @@ export default function Profile() {
   if (openContents && data) {
     contents = (
       <div className={s.contentsWrapper}>
-        {data.map((page) => (
-          <>
+        {data.map((page, idx) => (
+          <div key={idx}>
             {page.list.content.map((e: MyContent) => (
               <ContentItem key={e.contentId} content={e} />
             ))}
-          </>
+          </div>
         ))}
         <div ref={divRef} />
       </div>
