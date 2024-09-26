@@ -12,7 +12,7 @@ export default function DropZone({ getRootProps, getInputProps, isDragActive, ch
   return (
     <div {...getRootProps()} className={s.dropzone}>
       {!hasImage && <input {...getInputProps()} />}
-      {!hasImage && (isDragActive ? <p>파일을 여기에 놓으세요...</p> : <p>파일을 드래그 앤 드롭하거나 클릭하여 선택하세요</p>)}
+      {!hasImage && (isDragActive ? <p>파일을 여기에 놓으세요...</p> : <p>이미지를 드래그 앤 드롭하거나 클릭하여 선택하세요</p>)}
       {children}
     </div>
   );

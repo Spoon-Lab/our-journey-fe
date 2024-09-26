@@ -22,9 +22,8 @@ export default function TagInput({ tags, newTag, setNewTag, addTag, removeTag }:
     <div className={s.wrapTags}>
       {tags.map((tag, index) => (
         <span key={index} className={s.tag}>
-          #{tag}
           <button type="button" onClick={() => removeTag(tag)}>
-            (x)
+            #{tag}
           </button>
         </span>
       ))}
