@@ -7,7 +7,10 @@ import { ROUTES } from '@/constants/router';
 import axiosAuthInstance from '@/libs/auth-axios';
 
 const logout = async () => {
-  const res = await axiosAuthInstance.post(`${API_PATHS.AUTH.LOGOUT.POST()}`);
+  const refresh = localStorage.getItem('refreshToken');
+  const res = await axiosAuthInstance.post(`${API_PATHS.AUTH.LOGOUT.POST()}`, {
+    refresh,
+  });
   return res;
 };
 
@@ -15,8 +18,9 @@ const useLogout = () => {
   const router = useRouter();
   return useMutation({
     mutationFn: logout,
-    onSuccess: async () => {
-      await router.push(ROUTES.base);
+    onSuccess: () => {
+      localStorage.clear();
+      void router.push(ROUTES.base);
     },
   });
 };
