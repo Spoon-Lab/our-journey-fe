@@ -1,29 +1,32 @@
 @import '@/styles';
 
 .wrapTags {
-  margin: 4px 0 16px;
-
-  .tag {
-    color: $blue-500;
-    @include regular-footnote;
-    margin-right: 4px;
-  }
+  margin: 4px 0 0 0;
 
   & > input {
     width: fit-content;
     height: fit-content;
+    min-width: 80px;
     background-color: $gray-800;
     border: none;
     padding: 6px 8px;
     @include regular-callout;
     color: white;
     border-radius: 4px;
+    margin-left: 4px;
+
     &::placeholder {
       color: $gray-600;
       @include regular-callout;
     }
+
     &:focus {
       outline: none;
     }
+  }
+  & > .tag > button {
+    color: $blue-500;
+    @include regular-footnote;
+    margin-right: 4px;
   }
 }

@@ -1,5 +1,5 @@
-import useGetOneContent from '@/hooks/content/use-get-one-content';
-import useGetThreads from '@/hooks/threads/use-get-threads';
+import useGetOneContent from '@/hooks/contents/use-get-one-content';
+// import useGetThreads from '@/hooks/threads/use-get-threads';
 import { useGetRouteParamNumber } from '@/hooks/use-get-route-param-number';
 import useScroll from '@/hooks/use-scroll';
 
@@ -18,10 +18,7 @@ export default function DetailPage() {
 
   const contentId = useGetRouteParamNumber('contentId');
   const { data: fetchedContent, isLoading: isFetching, isSuccess: successFetchingContent, error: errContentFetching } = useGetOneContent(contentId);
-
-  if (!fetchedContent) {
-    return <div />;
-  }
+  // const { data } = useGetThreads(contentId);
 
   return (
     <div className={s.detailPage}>

@@ -24,8 +24,8 @@ export const API_PATHS = {
     DELETE: (contentId: number) => `/contents/${contentId}`, // contents 삭제
     PATCH: (contentId: number) => `/contents/${contentId}`, // contents 수정
     LIKE: {
-      POST: (contentId: number) => `/contents/${contentId}/like`, // contents 좋아요
-      DELETE: (contentId: number) => `/contents/${contentId}/like`, // contents 좋아요 취소
+      ADD: (contentId: number) => `/contents/${contentId}/likes`, // contents 좋아요
+      REMOVE: (contentId: number) => `/contents/${contentId}/likes`, // contents 좋아요 취소
     },
   },
   COMMENTS: {

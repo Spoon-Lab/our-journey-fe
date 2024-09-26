@@ -13,11 +13,8 @@ interface ContentCoverProps {
 }
 
 export default function ContentCover({ content }: ContentCoverProps) {
-  if (!content) {
-    return <div />;
-  }
+  const { title = '', postImg = '', createdAt = '' } = content || {};
 
-  const { title, postImg, createdAt } = content;
   const writerInfoData: ProfileDto = {
     imgUrl: '',
     nickName: 'test user',
@@ -32,7 +29,7 @@ export default function ContentCover({ content }: ContentCoverProps) {
             <span className={s.timeStamp}>{formatTimeStamp(createdAt)} Memory</span>
           </div>
           <div className={s.contentInfo}>
-            <div className={s.contentTitle}>{title}</div>
+            <div className={s.contentTitle}>{title || 'No data'}</div>
             <div className={s.writerInfo}>
               <div className={s.profileImage}>{writerInfoData.imgUrl && <Image src={writerInfoData.imgUrl} alt="profile-image" width={40} height={40} />}</div>
               <span className={s.writerName}>{writerInfoData.nickName}</span>
@@ -41,7 +38,7 @@ export default function ContentCover({ content }: ContentCoverProps) {
         </div>
         <div className={s.imageWrapper}>
           <div className={s.imageGradient} />
-          <ParallaxImage src={postImg} alt="content-image" />
+          {postImg && <ParallaxImage src={postImg} alt="content-image" />}
         </div>
       </div>
     </div>

@@ -15,5 +15,5 @@ export const useTags = () => {
     setTags(tags.filter((tag) => tag !== tagToRemove));
   };
 
-  return { tags, newTag, setNewTag, addTag, removeTag };
+  return { tags, newTag, setNewTag, addTag, removeTag, setTags };
 };

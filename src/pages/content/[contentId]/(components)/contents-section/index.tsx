@@ -12,17 +12,27 @@ import s from './style.module.scss';
 import { FavoriteIconFilled, FavoriteIconNoFill, LocationIcon, MessageIcon, ShareIcon } from '@/assets/icons';
 
 interface ContentSectionProps {
-  comments: number;
+  comments?: number;
   initialLiked: boolean;
   likes: number;
-  period: string;
-  postContent: string;
+  period?: string;
+  postContent?: string;
   tags: string[];
 }
 
 export default function ContentSection({ comments, initialLiked, likes, period, tags, postContent }: ContentSectionProps) {
   const [isLiked, setLiked] = useState<boolean>(initialLiked);
   const { addToast } = useToast();
+
+  const handleLikeBtn = () => {
+    setLiked((prev) => !prev);
+
+    if (isLiked) {
+      addToast('좋아요가 취소되었습니다.', 'info');
+    } else {
+      addToast('좋아요가 등록되었습니다.', 'info');
+    }
+  };
 
   const handleShareClick = async () => {
     const success = await copyUrlToClipboard();
@@ -39,16 +49,11 @@ export default function ContentSection({ comments, initialLiked, likes, period, 
         <LocationIcon alt="location-icon" width={16} height={16} />
         <span>{period}</span>
       </div> */}
-      <p className={s.postContent}>{postContent}</p>
-      <WrapTags tags={tags} />
+      {/* <p className={s.postContent}>{postContent}</p> */}
+      {/* <WrapTags tags={tags} /> */}
       <div className={s.postActions}>
         <div className={s.wrapActions}>
-          <BtnFrame
-            onClick={() => {
-              setLiked((prev) => !prev);
-              console.log('clicked favorite button!');
-            }}
-          >
+          <BtnFrame onClick={handleLikeBtn}>
             {isLiked ? <FavoriteIconFilled alt="favorite-icon" width={18} height={18} /> : <FavoriteIconNoFill alt="favorite-icon" width={18} height={18} />}
           </BtnFrame>
           {/* <BtnFrame

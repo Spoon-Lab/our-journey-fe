@@ -1,14 +1,14 @@
 @import '@/styles';
 
 .addCoWorkerButton {
-  margin: 12.5px 0;
+  padding: 10px 16px;
   @include regular-callout;
   color: $gray-100;
   width: 100%;
-
   display: flex;
   justify-content: space-between;
   cursor: pointer;
+  align-items: center;
 }
 .addWorkerTitleWrap {
   display: flex;

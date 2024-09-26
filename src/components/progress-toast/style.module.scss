@@ -1,17 +1,32 @@
 @import '@/styles';
 
 .toast {
-  position: relative;
-  margin: 0 auto 70px;
-  padding: 10px 12px;
-  border-radius: 4px;
   cursor: pointer;
-  max-width: 330px;
+  width: 100%;
+  max-width: 560px;
+  position: relative;
+  overflow: hidden;
+  padding: 12px 16px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  margin: 0 auto;
 
-  &.error {
-    background-color: #ff4d4f;
-  }
-  &.info {
-    background-color: $gray-800;
-  }
+  background-color: $gray-800;
+  @include semibold-callout;
+  color: $gray-200;
+
+  // TODO: add more styles
+  // &.error {
+  //   background-color: #ff4d4f;
+  // }
+  // &.info {
+
+  // }
+}
+.progressBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.3);
 }

@@ -1,0 +1,10 @@
+@import '@/styles';
+
+.searchCoworkerPage {
+  position: absolute;
+  top: 0;
+  background-color: $background-system;
+  width: 100%;
+  max-width: $max-width;
+  height: 100%;
+}
