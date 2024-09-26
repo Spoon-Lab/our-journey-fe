@@ -6,7 +6,8 @@ import { useRouter } from 'next/router';
 
 import { nicknameSchema } from '@/utils/validate';
 
-import useGetProfile from '@/hooks/profile/use-get-profile';
+import useGetMyProfile from '@/hooks/profile/use-get-my-profile';
+import { useUpdateMyProfile } from '@/hooks/profile/use-update-my-profile';
 import { useImage } from '@/hooks/use-image';
 import useUploadImg from '@/hooks/use-upload-img';
 
@@ -26,7 +27,7 @@ export default function Edit() {
   const { filePreview, handleChangeFile, file } = useImage();
   const [modalOpen, setModalOpen] = useState<boolean>(false);
 
-  const { data: profile } = useGetProfile(1);
+  const { data: profile } = useGetMyProfile();
 
   const {
     register,
@@ -38,26 +39,34 @@ export default function Edit() {
     resolver: yupResolver(nicknameSchema),
     mode: 'onBlur',
     defaultValues: {
-      nickname: '',
+      nickname: profile?.nickname || '',
     },
   });
 
   const changedNickname = watch('nickname');
-  const { mutate, toastMessage, toast, setToast } = useUploadImg();
+  const { mutate, toastMessage, toast, setToast } = useUploadImg({
+    nickname: changedNickname || (profile?.nickname as string),
+    selfIntroduction: profile?.selfIntroduction as string,
+  });
+  const { mutate: updateProfile } = useUpdateMyProfile();
 
   const onSubmit = () => {
-    // TODO:아직 api 프로필로직 확정이 안되어있어 확정후 변경
     if (file) {
       mutate({
         photo_type: 'profile',
         images: [file],
       });
+    } else if (changedNickname) {
+      updateProfile({
+        nickname: changedNickname,
+        imageUrl: profile?.imageUrl as string,
+        selfIntroduction: profile?.selfIntroduction as string,
+      });
+      reset();
     }
-    reset();
   };
-
   const handleBack = () => {
-    if (file || changedNickname !== '') setModalOpen((prev) => !prev);
+    if (file || changedNickname !== profile?.nickname) setModalOpen((prev) => !prev);
     else router.back();
   };
 
@@ -85,7 +94,13 @@ export default function Edit() {
         />
         <div className={s.profileWrapper}>
           <figure className={s.profileImg}>
-            {filePreview ? <Image src={filePreview} alt="img" width={76} height={76} /> : <DefaultProfile />}
+            {filePreview ? (
+              <Image src={filePreview} alt="img" width={76} height={76} />
+            ) : profile?.imageUrl ? (
+              <img src={profile?.imageUrl} alt="profile img" />
+            ) : (
+              <DefaultProfile />
+            )}
             <label htmlFor="file">
               <EditIcon />
             </label>

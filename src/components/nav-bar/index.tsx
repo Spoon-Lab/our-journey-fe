@@ -12,7 +12,7 @@ export default function NavBar() {
 
   const mainPath = pathname === ROUTES.main;
   const categoryPath = pathname === ROUTES.category || pathname === ROUTES.search;
-  const menuPath = pathname === ROUTES.menu;
+  const menuPath = pathname === ROUTES.profile;
 
   return (
     <div className={s.navBarContainer}>
