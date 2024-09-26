@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import { API_PATHS } from '@/constants/api';
 
+import type { CustomAxiosRequestConfig } from './auth-axios';
 import axiosAuthInstance from './auth-axios';
 
 const axiosConfig = {
@@ -26,31 +27,35 @@ axiosInstance.interceptors.request.use(
   (error) => Promise.reject(error),
 );
 
-axiosInstance.interceptors.response.use(
+axiosAuthInstance.interceptors.response.use(
   (response) => response,
   async (error: AxiosError) => {
-    const originalConfig = error.config;
+    const originalConfig = error.config as CustomAxiosRequestConfig;
+    // eslint-disable-next-line no-underscore-dangle
+    if (error.response && error.response.status === 401 && originalConfig && !originalConfig._retry) {
+      // eslint-disable-next-line no-underscore-dangle
+      originalConfig._retry = true;
 
-    if (error.response && error.response.status === 401 && originalConfig) {
       const refresh = localStorage.getItem('refreshToken');
 
-      try {
-        const { data } = await axiosAuthInstance.post<{ access: string }>(`${API_PATHS.AUTH.TOKEN.REFRESH.POST()}`, { refresh });
+      if (refresh) {
+        try {
+          const { data } = await axiosAuthInstance.post<{ access: string }>(`${API_PATHS.AUTH.TOKEN.REFRESH.POST()}`, { refresh });
 
-        if (data?.access) {
-          localStorage.setItem('accessToken', data.access);
+          if (data?.access) {
+            localStorage.setItem('accessToken', data.access);
 
-          if (originalConfig.headers) {
-            originalConfig.headers.set('Authorization', `Bearer ${data.access}`);
+            if (originalConfig.headers) {
+              originalConfig.headers.Authorization = `Bearer ${data.access}`;
+            }
+
+            return axiosAuthInstance(originalConfig);
           }
-
-          return axiosInstance(originalConfig);
+        } catch (refreshError) {
+          // TODO:로그아웃 처리?
+          localStorage.clear();
+          window.location.href = '/login';
         }
-      } catch (refreshError) {
-        // TODO:로그아웃 처리 ? - 캐시데이터도 삭제 해야할수도
-        console.log(refreshError);
-        localStorage.clear();
-        window.location.href = '/login';
       }
     }
 
