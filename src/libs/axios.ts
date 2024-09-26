@@ -3,6 +3,8 @@ import axios from 'axios';
 
 import { API_PATHS } from '@/constants/api';
 
+import axiosAuthInstance from './auth-axios';
+
 const axiosConfig = {
   baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
   headers: {
@@ -33,7 +35,7 @@ axiosInstance.interceptors.response.use(
       const refresh = localStorage.getItem('refreshToken');
 
       try {
-        const { data } = await axios.post<{ access: string }>(`${process.env.NEXT_PUBLIC_API_BASE_URL}${API_PATHS.AUTH.TOKEN.REFRESH.POST()}`, { refresh });
+        const { data } = await axiosAuthInstance.post<{ access: string }>(`${API_PATHS.AUTH.TOKEN.REFRESH.POST()}`, { refresh });
 
         if (data?.access) {
           localStorage.setItem('accessToken', data.access);
@@ -45,7 +47,8 @@ axiosInstance.interceptors.response.use(
           return axiosInstance(originalConfig);
         }
       } catch (refreshError) {
-        // TODO:로그아웃 처리 ?
+        // TODO:로그아웃 처리 ? - 캐시데이터도 삭제 해야할수도
+        console.log(refreshError);
         localStorage.clear();
         window.location.href = '/login';
       }

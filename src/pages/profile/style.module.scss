@@ -23,6 +23,13 @@
   @include flex-column-center;
 
   gap: 8px;
+
+  img {
+    width: 76px;
+    height: 76px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
 }
 
 .userInfoWrapper {
@@ -49,4 +56,12 @@
   flex-direction: column;
   gap: 16px;
   padding-bottom: 16px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.loadingWrapper {
+  svg {
+    width: 60px !important;
+  }
 }
