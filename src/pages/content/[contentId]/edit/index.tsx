@@ -11,7 +11,7 @@ export default function ContentEditPage() {
   const { data: fetchedContent } = useGetOneContent(contentId);
 
   if (!fetchedContent) {
-    void router.push('/404');
+    if (typeof window !== 'undefined') void router.push('/404');
     return null;
   }
 
