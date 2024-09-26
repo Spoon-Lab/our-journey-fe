@@ -5,7 +5,7 @@ export default function Document() {
     <Html lang="ko">
       <Head>
         <title>our-journey ::: 나와 우리, 함께 떠나는 여행</title>
-        <meta property="og:title" content="our-journey" />
+        <meta name="og:title" property="og:title" content="our-journey" />
         <meta property="og:description" content="나와 우리, 함께 떠나는 여행" />
         <meta property="og:image" content={`${process.env.NEXT_PUBLIC_BASE_URL}/image-opengraph.webp`} />
         <meta property="og:image:width" content="1200" />
