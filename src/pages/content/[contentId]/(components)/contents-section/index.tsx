@@ -17,7 +17,7 @@ interface ContentSectionProps {
   likes: number;
   period?: string;
   postContent?: string;
-  tags: string[];
+  tags?: string[];
 }
 
 export default function ContentSection({ comments, initialLiked, likes, period, tags, postContent }: ContentSectionProps) {

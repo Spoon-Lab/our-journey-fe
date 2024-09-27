@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
+import type { ContentPostRequest } from '@/types/contents';
+
 import useCreateContent from '@/hooks/contents/use-create-content';
-import useGetOneContent from '@/hooks/contents/use-get-one-content';
-import { useGetRouteParamNumber } from '@/hooks/use-get-route-param-number';
 import { useImageUpload } from '@/hooks/use-image-upload';
 import { useTags } from '@/hooks/use-tags';
 import { useToast } from '@/hooks/use-toast';
@@ -14,42 +14,20 @@ import ImagePreview from '@/components/content-edit-page-frame/(components)/imag
 import TagInput from '@/components/content-edit-page-frame/(components)/tag-input';
 import PostButton from '@/components/post-button';
 
-import s from './style.module.scss';
+import s from '../../../../../components/content-edit-page-frame/style.module.scss';
 
-export default function ContentEditPage() {
-  const contentId = useGetRouteParamNumber('contentId');
-  const { data: fetchedContent } = useGetOneContent(contentId);
-
+export default function CreatePage() {
   const { mutate: createContent } = useCreateContent();
 
   const { imagePreview, getRootProps, getInputProps, isDragActive } = useImageUpload();
-  const { tags, newTag, setNewTag, addTag, removeTag } = useTags();
+  const { tags, newTag, setNewTag, addTag, removeTag, setTags } = useTags();
   const [title, setTitle] = useState('');
   const [isPostButtonEnabled, setIsPostButtonEnabled] = useState(false);
 
   const { addToast } = useToast();
 
   const handleSubmit = () => {
-    createContent(
-      {
-        title,
-        categoryId: 0,
-        imgUrl: imagePreview || '',
-        profileIds: [14],
-        tagIds: [],
-      },
-      {
-        onSuccess: (data) => {
-          addToast('발행이 성공되었습니다!', 'success');
-          setTimeout(() => {
-            window.location.href = `/content/${data.id}`;
-          }, 3000);
-        },
-        onError: () => {
-          addToast('발행을 실패하였습니다.', 'error');
-        },
-      },
-    );
+    createContent({ title, categoryId: 0, imgUrl: imagePreview || '', profileIds: [14], tagIds: [] });
   };
 
   useEffect(() => {
@@ -65,7 +43,7 @@ export default function ContentEditPage() {
   return (
     <div className={s.editContainer}>
       <EditHeader
-        titleText="수정하기"
+        titleText={title}
         onClick={() => {
           window.history.back();
         }}

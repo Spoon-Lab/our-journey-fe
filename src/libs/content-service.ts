@@ -1,6 +1,7 @@
 import type { ContentPostRequest, Contents } from '@/types/contents';
 import { API_PATHS } from '@/constants/api';
 
+import axiosInstance from './axios';
 import { preAxiosInstance } from './pre-axios';
 
 export const getAllContents = async <T = Contents>(): Promise<T> => {
@@ -9,12 +10,15 @@ export const getAllContents = async <T = Contents>(): Promise<T> => {
 };
 
 export const getOneContent = async <T = Contents>(contentId: number): Promise<T> => {
-  const response = await preAxiosInstance.get<T>(API_PATHS.CONTENTS.GET_ONE(contentId));
+  const response = await axiosInstance.get<T>(API_PATHS.CONTENTS.GET_ONE(contentId));
   return response.data;
 };
 
-export const createContent = async <T = Contents>(data: ContentPostRequest): Promise<T> => {
-  const response = await preAxiosInstance.post<T>(API_PATHS.CONTENTS.CREATE(), data);
+interface CreateContentResponse {
+  id: number;
+}
+export const createContent = async <T = CreateContentResponse>(data: ContentPostRequest): Promise<T> => {
+  const response = await axiosInstance.post<T>(API_PATHS.CONTENTS.CREATE(), data);
   return response.data;
 };
 

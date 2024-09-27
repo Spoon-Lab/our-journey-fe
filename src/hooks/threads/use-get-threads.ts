@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 
-import type { Thread } from '@/types/threads';
+import type { ThreadResponse } from '@/types/threads';
 
 import { getAllThreads } from '@/libs/threads-services';
 
@@ -12,7 +12,7 @@ const pageable = {
 };
 
 export default function useGetThreads(contentId: number) {
-  const { data, isLoading, isSuccess, error } = useQuery<Thread, AxiosError>({
+  const { data, isLoading, isSuccess, error } = useQuery<ThreadResponse, AxiosError>({
     queryKey: ['thread'],
     queryFn: () => getAllThreads(contentId, pageable),
     enabled: contentId !== -1,

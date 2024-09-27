@@ -1,3 +1,5 @@
+import { default as PlusIcon } from './add.svg';
+
 export { default as ArrowBack } from './arrow.svg';
 export { default as PrevIcon } from './arrow_back.svg';
 export { default as ArticleIcon } from './article.svg';

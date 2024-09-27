@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import type { AxiosError } from 'axios';
 import axios from 'axios';
 

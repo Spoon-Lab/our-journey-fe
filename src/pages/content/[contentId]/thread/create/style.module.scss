@@ -28,17 +28,6 @@
   grid-template-rows: min-content auto min-content;
   padding: 16px;
 }
-.titleInputBox {
-  margin-bottom: 9px;
-
-  & textarea {
-    @include semibold-callout;
-    color: $white;
-    &::placeholder {
-      color: $gray-500;
-    }
-  }
-}
 .textAreaBox {
   padding: 16px 0;
   & textarea {

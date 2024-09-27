@@ -5,7 +5,7 @@ export interface ThreadReqBody {
 }
 
 export interface Content {
-  // commentCount: number;
+  commentCount: number;
   contentId: number;
   // contentProfileDto: ProfileDto;
   createdAt: string;

@@ -1,8 +1,9 @@
 import useGetOneContent from '@/hooks/contents/use-get-one-content';
-// import useGetThreads from '@/hooks/threads/use-get-threads';
+import useGetThreads from '@/hooks/threads/use-get-threads';
 import { useGetRouteParamNumber } from '@/hooks/use-get-route-param-number';
 import useScroll from '@/hooks/use-scroll';
 
+import AddThreadBtn from './(components)/add-thread-btn';
 import ContentCover from './(components)/content-cover';
 import ContentHeader from './(components)/content-header';
 import ContentSection from './(components)/contents-section';
@@ -11,14 +12,12 @@ import ThreadFrame from './(components)/thread-frame';
 
 import s from './style.module.scss';
 
-import { contentsMockData } from '@/mocks/contents';
-
 export default function DetailPage() {
   const { isScrolled, scrollPercent } = useScroll(370);
 
   const contentId = useGetRouteParamNumber('contentId');
   const { data: fetchedContent, isLoading: isFetching, isSuccess: successFetchingContent, error: errContentFetching } = useGetOneContent(contentId);
-  // const { data } = useGetThreads(contentId);
+  const { data: fetchedThreadList, isLoading: isThreadFetching, isSuccess: successFetchingThread, error: errThreadFetching } = useGetThreads(contentId);
 
   return (
     <div className={s.detailPage}>
@@ -30,25 +29,28 @@ export default function DetailPage() {
       <div className={s.wrapBody}>
         <ContentSection
           initialLiked={false}
-          comments={contentsMockData.contents.comments}
-          likes={contentsMockData.contents.likes}
-          period={contentsMockData.contents.period}
-          tags={contentsMockData.contents.tag}
-          postContent={contentsMockData.contents.text}
+          comments={fetchedContent?.commentCount || 0}
+          likes={fetchedContent?.likeCount || 0}
+          period={fetchedContent?.updatedAt || ''}
+          // tags={fetchedContent?. || []}
+          postContent={fetchedContent?.title || ''}
         />
         <div className={s.divider} />
         <div className={s.wrapThreads}>
-          {contentsMockData.threads.map((thread, idx) => (
-            <ThreadFrame
-              key={idx}
-              threadContent={thread.text}
-              writerName={thread.writer}
-              date={thread.date}
-              tags={thread.tag}
-              image={thread.image}
-              isWriter={contentsMockData.isWriter}
-            />
-          ))}
+          {successFetchingThread &&
+            fetchedThreadList &&
+            fetchedThreadList.list.content.map((thread, idx) => (
+              <ThreadFrame
+                key={idx}
+                threadContent={thread.texts}
+                writerName={thread.profileThreadDto.nickName}
+                date={thread.createdAt}
+                tags={thread.tagNames}
+                image={thread.threadImg}
+                isWriter
+              />
+            ))}
+          <AddThreadBtn contentId={contentId} />
         </div>
       </div>
     </div>
