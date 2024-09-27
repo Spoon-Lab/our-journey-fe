@@ -9,7 +9,6 @@ import useLogin from '@/hooks/auth/use-login';
 
 import Button from '@/components/button';
 import Input from '@/components/input';
-import Toast from '@/components/toast';
 
 import s from './style.module.scss';
 
@@ -28,7 +27,7 @@ export default function LoginForm() {
     },
   });
 
-  const { mutate, toast, toastMessage, setToast, isSuccess } = useLogin();
+  const { mutate, isSuccess } = useLogin();
 
   const onSubmit = (data: Login) => {
     mutate(data);
@@ -36,29 +35,26 @@ export default function LoginForm() {
   };
 
   return (
-    <>
-      <form className={s.formWrapper} onSubmit={handleSubmit(onSubmit)}>
-        <Input
-          placeholder="이메일 주소를 입력해주세요"
-          id="email"
-          {...register('email')}
-          type="text"
-          errorMessage={errors.email?.message}
-          labelText="이메일 입력"
-          autoComplete="email"
-        />
-        <Input
-          placeholder="비밀번호를 입력해주세요"
-          type="password"
-          id="password"
-          {...register('password')}
-          errorMessage={errors.password?.message}
-          labelText="비밀번호 입력"
-          autoComplete="new-password"
-        />
-        <Button type="submit">로그인</Button>
-      </form>
-      <div className={s.toastWrapper}>{toast && <Toast message={toastMessage} setToast={setToast} position="bottom" />}</div>
-    </>
+    <form className={s.formWrapper} onSubmit={handleSubmit(onSubmit)}>
+      <Input
+        placeholder="이메일 주소를 입력해주세요"
+        id="email"
+        {...register('email')}
+        type="text"
+        errorMessage={errors.email?.message}
+        labelText="이메일 입력"
+        autoComplete="email"
+      />
+      <Input
+        placeholder="비밀번호를 입력해주세요"
+        type="password"
+        id="password"
+        {...register('password')}
+        errorMessage={errors.password?.message}
+        labelText="비밀번호 입력"
+        autoComplete="new-password"
+      />
+      <Button type="submit">로그인</Button>
+    </form>
   );
 }

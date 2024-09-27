@@ -1,4 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
+import type { AxiosError } from 'axios';
 import { useRouter } from 'next/router';
 
 import { API_PATHS } from '@/constants/api';
@@ -21,6 +22,9 @@ const useLogout = () => {
     onSuccess: () => {
       localStorage.clear();
       void router.push(ROUTES.base);
+    },
+    onError: (error: AxiosError) => {
+      console.error('Logout Error:', error);
     },
   });
 };

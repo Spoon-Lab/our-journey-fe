@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 import { useRouter } from 'next/router';
@@ -9,6 +8,8 @@ import { ROUTES } from '@/constants/router';
 
 import axiosAuthInstance from '@/libs/auth-axios';
 
+import { useToast } from '../use-toast';
+
 const login = async ({ email, password }: Login) => {
   const { data } = await axiosAuthInstance.post<LoginResponse>(`${API_PATHS.AUTH.LOGIN.POST()}`, { email, password });
 
@@ -17,8 +18,7 @@ const login = async ({ email, password }: Login) => {
 
 const useLogin = () => {
   const router = useRouter();
-  const [toast, setToast] = useState<boolean>(false);
-  const [toastMessage, setToastMessage] = useState<string>('');
+  const { addToast } = useToast();
 
   const { mutate, isSuccess } = useMutation({
     mutationFn: login,
@@ -31,13 +31,12 @@ const useLogin = () => {
     onError: (error: AxiosError) => {
       if (error?.response?.status === 400) {
         const errorMessage = (error.response.data as { error: string[] })?.error[0];
-        setToastMessage(errorMessage);
-        setToast(true);
+        addToast(errorMessage, 'error', 1500);
       }
     },
   });
 
-  return { mutate, toast, toastMessage, setToast, isSuccess };
+  return { mutate, isSuccess };
 };
 
 export default useLogin;
