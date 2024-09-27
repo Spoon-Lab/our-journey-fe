@@ -11,12 +11,17 @@
   width: 100%;
   display: flex;
   gap: 11px;
+  cursor: pointer;
 
   img {
     width: 66px;
     height: 66px;
     object-fit: cover;
     border-radius: 4px;
+  }
+
+  &:hover {
+    opacity: 0.8;
   }
 }
 

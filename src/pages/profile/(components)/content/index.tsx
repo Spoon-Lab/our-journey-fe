@@ -1,12 +1,20 @@
+import { useRouter } from 'next/router';
+
 import type { MyContent } from '@/types/contents';
+import { ROUTES } from '@/constants/router';
 
 import s from './style.module.scss';
 
 export default function ContentItem({ content }: { content: MyContent }) {
-  // TODO: 임시데이터 이미지가 string 이라 오류가 떠서 잠시 주석처리 -> 이후 수정
+  const router = useRouter();
+
+  const handleClick = () => {
+    void router.push(ROUTES.content.detail(content.contentId));
+  };
+
   return (
-    <div className={s.container}>
-      {/* <Image src={content?.contentImageUrl} alt="content img" width={66} height={66} /> */}
+    <div className={s.container} onClick={handleClick}>
+      <img src={content?.contentImageUrl} alt="content img" />
       <div className={s.contentWrapper}>
         <h1>{content?.title}</h1>
         <div className={s.contentBox}>
