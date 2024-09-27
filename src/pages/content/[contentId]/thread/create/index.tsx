@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 
-import useCreateContent from '@/hooks/contents/use-create-content';
 import { useCreateThreads } from '@/hooks/threads/use-create-thread';
 import { useGetRouteParamNumber } from '@/hooks/use-get-route-param-number';
 import { useImageUpload } from '@/hooks/use-image-upload';

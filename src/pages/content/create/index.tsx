@@ -27,21 +27,17 @@ export default function ContentCreatePage() {
   const handleSubmit = () => {
     createContent(
       {
-        title,
-        categoryId: 0,
-        imgUrl: imagePreview || '',
-        profileIds: [14],
-        tagIds: [],
+        body: { title, categoryId: 0, imgUrl: imagePreview || '', profileIds: [14], tagIds: [] },
       },
       {
         onSuccess: (data) => {
           addToast('발행이 성공되었습니다!', 'success');
           setTimeout(() => {
-            window.location.href = `/content/${data.id}`;
+            window.location.href = `/content/${data.contentId}`;
           }, 3000);
         },
         onError: () => {
-          addToast('발행을 실패하였습니다.', 'error');
+          addToast('새 글 발행이 실패하였습니다.', 'error');
         },
       },
     );

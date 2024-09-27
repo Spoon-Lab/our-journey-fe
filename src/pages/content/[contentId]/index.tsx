@@ -44,10 +44,12 @@ export default function DetailPage() {
                 key={idx}
                 threadContent={thread.texts}
                 writerName={thread.profileThreadDto.nickName}
-                date={thread.createdAt}
                 tags={thread.tagNames}
                 image={thread.threadImg}
                 isWriter
+                threadId={thread.threadId}
+                contentId={contentId}
+                date={thread.createdAt}
               />
             ))}
           <AddThreadBtn contentId={contentId} />

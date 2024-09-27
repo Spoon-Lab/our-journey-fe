@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import { checkValidImgUrl } from '@/utils/check-valid-image-url';
+
 import useCreateContent from '@/hooks/contents/use-create-content';
 import useGetOneContent from '@/hooks/contents/use-get-one-content';
 import { useGetRouteParamNumber } from '@/hooks/use-get-route-param-number';
@@ -22,9 +24,9 @@ export default function ContentEditPage() {
 
   const { mutate: createContent } = useCreateContent();
 
-  const { imagePreview, getRootProps, getInputProps, isDragActive } = useImageUpload();
+  const { imagePreview, getRootProps, getInputProps, isDragActive, setImagePreview } = useImageUpload();
   const { tags, newTag, setNewTag, addTag, removeTag } = useTags();
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState<string>('');
   const [isPostButtonEnabled, setIsPostButtonEnabled] = useState(false);
 
   const { addToast } = useToast();
@@ -32,17 +34,19 @@ export default function ContentEditPage() {
   const handleSubmit = () => {
     createContent(
       {
-        title,
-        categoryId: 0,
-        imgUrl: imagePreview || '',
-        profileIds: [14],
-        tagIds: [],
+        body: {
+          title,
+          categoryId: 0,
+          imgUrl: imagePreview || '',
+          profileIds: [14],
+          tagIds: [],
+        },
       },
       {
         onSuccess: (data) => {
           addToast('발행이 성공되었습니다!', 'success');
           setTimeout(() => {
-            window.location.href = `/content/${data.id}`;
+            window.location.href = `/content/${data.contentId}`;
           }, 3000);
         },
         onError: () => {
@@ -51,6 +55,13 @@ export default function ContentEditPage() {
       },
     );
   };
+
+  useEffect(() => {
+    if (fetchedContent) {
+      if (checkValidImgUrl(fetchedContent.postImg)) setImagePreview(fetchedContent.postImg || '');
+      setTitle(fetchedContent.title || '');
+    }
+  }, [fetchedContent]);
 
   useEffect(() => {
     const isEnabled = title.trim() !== '';
