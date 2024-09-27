@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 import { useRouter } from 'next/router';
 
@@ -17,10 +17,13 @@ const logout = async () => {
 
 const useLogout = () => {
   const router = useRouter();
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: logout,
     onSuccess: () => {
       localStorage.clear();
+      queryClient.clear();
       void router.push(ROUTES.base);
     },
     onError: (error: AxiosError) => {
