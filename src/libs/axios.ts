@@ -27,7 +27,7 @@ axiosInstance.interceptors.request.use(
   (error) => Promise.reject(error),
 );
 
-axiosAuthInstance.interceptors.response.use(
+axiosInstance.interceptors.response.use(
   (response) => response,
   async (error: AxiosError) => {
     const originalConfig = error.config as CustomAxiosRequestConfig;
@@ -49,7 +49,7 @@ axiosAuthInstance.interceptors.response.use(
               originalConfig.headers.Authorization = `Bearer ${data.access}`;
             }
 
-            return axiosAuthInstance(originalConfig);
+            return axiosInstance(originalConfig);
           }
         } catch (refreshError) {
           // TODO:로그아웃 처리?
