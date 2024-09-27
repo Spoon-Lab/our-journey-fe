@@ -1,11 +1,16 @@
 .formWrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  margin-top: 32px;
+  display: grid;
+  grid-template-rows: 1fr min-content;
 
   button {
-    position: absolute;
-    bottom: 32px;
+    margin-bottom: 32px;
   }
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 30px;
 }
