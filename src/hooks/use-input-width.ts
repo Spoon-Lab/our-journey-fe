@@ -26,7 +26,10 @@ export function useDynamicInput({ initialValue, placeholder, onChange, onEnter }
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      onEnter(e.currentTarget.value); // 현재 입력 값을 전달
+      onEnter(e.currentTarget.value);
+      if (inputRef.current) {
+        setInputWidth(inputRef.current, placeholder);
+      }
     }
   };
 

@@ -47,6 +47,7 @@ export default function Toast({ id, message, type, duration = 1000, onClose }: T
       exit="exit"
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
+      data-type={type}
     >
       {message}
       <motion.div className={s.progressBar} initial={{ width: '100%' }} animate={controls} />

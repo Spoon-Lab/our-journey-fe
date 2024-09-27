@@ -6,7 +6,7 @@ export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export const API_PATHS = {
   TAGS: {
-    GET: () => `/tags`, // 해시태그 가져오기
+    GET: (name: string[], paginationParams: PaginationParams) => `/tags?name=${name.join(',')}&${createPaginationQuery(paginationParams)}`, // 해시태그 가져오기
     POST: () => `/tags`, // 해시태그 생성
   },
   PROFILES: {
@@ -36,7 +36,7 @@ export const API_PATHS = {
     DELETE: (contentId: number, commentId: number) => `/contents/${contentId}/comments/${commentId}`, // 댓글 삭제
   },
   THREADS: {
-    GET: (contentId: number, paginationParams: PaginationParams) => `/contents/${contentId}/threads?${createPaginationQuery(paginationParams)}`, // contents에 대한 모든 thread 조회
+    GET: (contentId: number, paginationParams: PaginationParams) => `/contents/${contentId}/threads?size=10&page=0`, // contents에 대한 모든 thread 조회
     POST: (contentId: number) => `/contents/${contentId}/threads`, // contents에 thread 생성
     PATCH: (contentId: number, threadId: number) => `/contents/${contentId}/threads/${threadId}`, // thread 수정
     DELETE: (contentId: number, threadId: number) => `/contents/${contentId}/threads/${threadId}`, // thread 삭제

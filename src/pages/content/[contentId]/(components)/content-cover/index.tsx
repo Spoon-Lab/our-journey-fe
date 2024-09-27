@@ -2,6 +2,7 @@ import Image from 'next/image';
 
 import type { Content, ProfileDto } from '@/types/threads';
 
+import { checkValidImgUrl } from '@/utils/check-valid-image-url';
 import { formatTimeStamp } from '@/utils/format-date-timestamp';
 
 import ParallaxImage from '../parallax-image';
@@ -14,7 +15,6 @@ interface ContentCoverProps {
 
 export default function ContentCover({ content }: ContentCoverProps) {
   const { title = '', postImg = '', createdAt = '' } = content || {};
-
   const writerInfoData: ProfileDto = {
     imgUrl: '',
     nickName: 'test user',
@@ -31,14 +31,24 @@ export default function ContentCover({ content }: ContentCoverProps) {
           <div className={s.contentInfo}>
             <div className={s.contentTitle}>{title || 'No data'}</div>
             <div className={s.writerInfo}>
-              <div className={s.profileImage}>{writerInfoData.imgUrl && <Image src={writerInfoData.imgUrl} alt="profile-image" width={40} height={40} />}</div>
+              <div className={s.profileImage}>
+                {checkValidImgUrl(writerInfoData.imgUrl) ? (
+                  <Image src={writerInfoData.imgUrl} alt="profile-image" width={40} height={40} />
+                ) : (
+                  <span className={s.invalidImage}>현재 유효하지 않은 이미지입니다.</span>
+                )}
+              </div>
               <span className={s.writerName}>{writerInfoData.nickName}</span>
             </div>
           </div>
         </div>
         <div className={s.imageWrapper}>
           <div className={s.imageGradient} />
-          {postImg && <ParallaxImage src={postImg} alt="content-image" />}
+          {checkValidImgUrl(postImg) ? (
+            <ParallaxImage src={postImg} alt="content-image" />
+          ) : (
+            <span className={s.invalidImage}>현재 유효하지 않은 이미지입니다.</span>
+          )}
         </div>
       </div>
     </div>

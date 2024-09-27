@@ -22,5 +22,6 @@ export const useImageUpload = () => {
     getInputProps,
     isDragActive,
     resetImage,
+    setImagePreview,
   };
 };
