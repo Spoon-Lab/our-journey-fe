@@ -1,9 +1,10 @@
 import { type ReactNode, useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 import type { MyContent } from '@/types/contents';
 import { ROUTES } from '@/constants/router';
+
+import { checkValidImgUrl } from '@/utils/check-valid-image-url';
 
 import { useIntersectionObserver } from '@/hooks/contents/use-intersection-observer';
 import useGetMyContents from '@/hooks/profile/use-get-my-contents';
@@ -74,7 +75,7 @@ export default function Profile() {
       <ProfileHeader text="프로필 수정" />
       <main>
         <div className={s.profileWrapper}>
-          {profile?.imageUrl ? <img src={profile?.imageUrl} alt="profile img" /> : <DefaultProfile />}
+          {profile?.imageUrl && checkValidImgUrl(profile?.imageUrl) ? <img src={profile?.imageUrl} alt="profile img" /> : <DefaultProfile />}
           <div className={s.userInfoWrapper}>
             <div>{profile?.nickname}</div>
             <p>{profile?.selfIntroduction}</p>

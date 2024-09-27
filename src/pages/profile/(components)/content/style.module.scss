@@ -57,3 +57,10 @@
   color: $gray-400;
   @include text-ellipsis;
 }
+
+.defaultImg {
+  background-color: $gray-800;
+  width: 66px;
+  height: 66px;
+  border-radius: 4px;
+}
