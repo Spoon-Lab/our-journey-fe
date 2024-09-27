@@ -45,24 +45,26 @@ export default function ResetForm() {
   };
   return (
     <form className={s.formWrapper} onSubmit={handleSubmit(onSubmit)}>
-      <Input
-        type="password"
-        labelText="새 비밀번호 입력"
-        placeholder="새 비밀번호를 입력해주세요"
-        {...register('password1')}
-        autoComplete="password"
-        id="password1"
-        errorMessage={errors.password1?.message}
-      />
-      <Input
-        type="password"
-        labelText="새 비밀번호 재입력"
-        placeholder="새 비밀번호를 재입력해주세요"
-        {...register('password2')}
-        autoComplete="password"
-        id="password2"
-        errorMessage={errors.password2?.message}
-      />
+      <div className={s.inputWrapper}>
+        <Input
+          type="password"
+          labelText="새 비밀번호 입력"
+          placeholder="새 비밀번호를 입력해주세요"
+          {...register('password1')}
+          autoComplete="password"
+          id="password1"
+          errorMessage={errors.password1?.message}
+        />
+        <Input
+          type="password"
+          labelText="새 비밀번호 재입력"
+          placeholder="새 비밀번호를 재입력해주세요"
+          {...register('password2')}
+          autoComplete="password"
+          id="password2"
+          errorMessage={errors.password2?.message}
+        />
+      </div>
       <Button type="submit">비밀번호 재설정</Button>
     </form>
   );

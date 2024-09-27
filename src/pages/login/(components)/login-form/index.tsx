@@ -10,6 +10,8 @@ import useLogin from '@/hooks/auth/use-login';
 import Button from '@/components/button';
 import Input from '@/components/input';
 
+import Navbar from '../navbar';
+
 import s from './style.module.scss';
 
 export default function LoginForm() {
@@ -36,24 +38,27 @@ export default function LoginForm() {
 
   return (
     <form className={s.formWrapper} onSubmit={handleSubmit(onSubmit)}>
-      <Input
-        placeholder="이메일 주소를 입력해주세요"
-        id="email"
-        {...register('email')}
-        type="text"
-        errorMessage={errors.email?.message}
-        labelText="이메일 입력"
-        autoComplete="email"
-      />
-      <Input
-        placeholder="비밀번호를 입력해주세요"
-        type="password"
-        id="password"
-        {...register('password')}
-        errorMessage={errors.password?.message}
-        labelText="비밀번호 입력"
-        autoComplete="new-password"
-      />
+      <div className={s.authWrapper}>
+        <Input
+          placeholder="이메일 주소를 입력해주세요"
+          id="email"
+          {...register('email')}
+          type="text"
+          errorMessage={errors.email?.message}
+          labelText="이메일 입력"
+          autoComplete="email"
+        />
+        <Input
+          placeholder="비밀번호를 입력해주세요"
+          type="password"
+          id="password"
+          {...register('password')}
+          errorMessage={errors.password?.message}
+          labelText="비밀번호 입력"
+          autoComplete="new-password"
+        />
+        <Navbar />
+      </div>
       <Button type="submit">로그인</Button>
     </form>
   );
