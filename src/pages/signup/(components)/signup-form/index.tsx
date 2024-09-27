@@ -10,7 +10,6 @@ import useSignup from '@/hooks/auth/use-signup';
 import Button from '@/components/button';
 import Input from '@/components/input';
 import LottieLoading from '@/components/lottie-loading';
-import Toast from '@/components/toast';
 
 import s from './style.module.scss';
 
@@ -30,7 +29,7 @@ export default function SignupForm() {
     },
   });
 
-  const { mutate, toast, setToast, toastMessage, isSuccess, isPending } = useSignup();
+  const { mutate, isSuccess, isPending } = useSignup();
 
   const onSubmit = (data: Signup) => {
     mutate(data);
@@ -42,8 +41,8 @@ export default function SignupForm() {
   }
 
   return (
-    <>
-      <form className={s.formWrapper} onSubmit={handleSubmit(onSubmit)}>
+    <form className={s.formWrapper} onSubmit={handleSubmit(onSubmit)}>
+      <div className={s.inputWrapper}>
         <Input
           placeholder="이메일 주소를 입력해주세요"
           id="email"
@@ -71,9 +70,8 @@ export default function SignupForm() {
           labelText="비밀번호 재입력"
           autoComplete="new-password"
         />
-        <Button type="submit">회원가입</Button>
-      </form>
-      <div className={s.toastWrapper}>{toast && <Toast message={toastMessage} setToast={setToast} position="bottom" />}</div>
-    </>
+      </div>
+      <Button type="submit">회원가입</Button>
+    </form>
   );
 }

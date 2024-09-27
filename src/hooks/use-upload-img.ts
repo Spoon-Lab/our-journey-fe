@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 
@@ -7,6 +6,7 @@ import { API_PATHS } from '@/constants/api';
 import axiosAuthInstance from '@/libs/auth-axios';
 
 import { useUpdateMyProfile } from './profile/use-update-my-profile';
+import { useToast } from './use-toast';
 
 interface UploadImgProps {
   images: File[];
@@ -39,8 +39,7 @@ const uploadImg = async ({ photo_type, thread_id, images }: UploadImgProps) => {
 const useUploadImg = ({ nickname, selfIntroduction }: { nickname: string; selfIntroduction: string }) => {
   const { mutate: updateProfileMutate } = useUpdateMyProfile();
 
-  const [toast, setToast] = useState<boolean>(false);
-  const [toastMessage, setToastMessage] = useState<string>('');
+  const { addToast } = useToast();
 
   const { mutate, isSuccess } = useMutation({
     mutationFn: uploadImg,
@@ -54,13 +53,12 @@ const useUploadImg = ({ nickname, selfIntroduction }: { nickname: string; selfIn
     onError: (error: AxiosError) => {
       if (error?.response?.status === 400) {
         const errorMessage = (error.response.data as { detail: string })?.detail;
-        setToastMessage(errorMessage);
-        setToast(true);
+        addToast(errorMessage, 'error', 1500);
       }
     },
   });
 
-  return { mutate, toast, toastMessage, isSuccess, setToast };
+  return { mutate, isSuccess };
 };
 
 export default useUploadImg;

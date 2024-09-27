@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
+
+import { useQueryClient } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 import axios from 'axios';
 
@@ -28,7 +30,7 @@ axiosInstance.interceptors.request.use(
   (error) => Promise.reject(error),
 );
 
-axiosAuthInstance.interceptors.response.use(
+axiosInstance.interceptors.response.use(
   (response) => response,
   async (error: AxiosError) => {
     const originalConfig = error.config as CustomAxiosRequestConfig;
@@ -50,11 +52,14 @@ axiosAuthInstance.interceptors.response.use(
               originalConfig.headers.Authorization = `Bearer ${data.access}`;
             }
 
-            return axiosAuthInstance(originalConfig);
+            return axiosInstance(originalConfig);
           }
         } catch (refreshError) {
+          const queryClient = useQueryClient();
+
           // TODO:로그아웃 처리?
           localStorage.clear();
+          queryClient.clear();
           window.location.href = '/login';
         }
       }

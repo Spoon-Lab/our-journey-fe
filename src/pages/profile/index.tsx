@@ -1,4 +1,5 @@
 import { type ReactNode, useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 import type { MyContent } from '@/types/contents';
@@ -19,7 +20,7 @@ import UserSettings from './(components)/user-settings';
 
 import s from './style.module.scss';
 
-import { ArrowDownIcon, ArrowUpIcon, ArticleIcon, DefaultProfile, ForwardIcon, GroupProfileIcon, PersonIcon } from '@/assets/icons';
+import { ArrowDownIcon, ArrowUpIcon, ArticleIcon, DefaultProfile, ForwardIcon, PersonIcon } from '@/assets/icons';
 
 export default function Profile() {
   const router = useRouter();
