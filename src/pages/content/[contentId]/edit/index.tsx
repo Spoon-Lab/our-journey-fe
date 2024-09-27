@@ -58,7 +58,7 @@ export default function ContentEditPage() {
 
   useEffect(() => {
     if (fetchedContent) {
-      if (checkValidImgUrl(fetchedContent.postImg)) setImagePreview(fetchedContent.postImg || '');
+      if (fetchedContent.postImg) setImagePreview(fetchedContent.postImg || '');
       setTitle(fetchedContent.title || '');
     }
   }, [fetchedContent]);
