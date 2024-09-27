@@ -44,7 +44,7 @@ export default function Edit() {
   });
 
   const changedNickname = watch('nickname');
-  const { mutate, toastMessage, toast, setToast } = useUploadImg({
+  const { mutate } = useUploadImg({
     nickname: changedNickname || (profile?.nickname as string),
     selfIntroduction: profile?.selfIntroduction as string,
   });
@@ -113,7 +113,6 @@ export default function Edit() {
         </div>
         <Input labelText="닉네임 입력" placeholder="변경할 닉네임을 입력해주세요" {...register('nickname')} errorMessage={errors.nickname?.message} />
       </form>
-      <div className={s.toastWrapper}>{toast && <Toast message={toastMessage} setToast={setToast} position="bottom" />}</div>
     </>
   );
 }
