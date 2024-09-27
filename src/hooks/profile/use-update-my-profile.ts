@@ -7,6 +7,8 @@ import { ROUTES } from '@/constants/router';
 
 import axiosInstance from '@/libs/axios';
 
+import { useToast } from '../use-toast';
+
 interface Profile {
   imageUrl: string;
   nickname: string;
@@ -21,10 +23,12 @@ const updateProfile = async ({ nickname, imageUrl, selfIntroduction }: Profile):
 export const useUpdateMyProfile = () => {
   const queryClient = useQueryClient();
   const router = useRouter();
+  const { addToast } = useToast();
 
   return useMutation({
     mutationFn: updateProfile,
     onSuccess: () => {
+      addToast('내정보 수정이 완료되었습니다', 'info', 1500);
       void queryClient.invalidateQueries({ queryKey: ['profile'] });
       void router.push(ROUTES.profile);
     },

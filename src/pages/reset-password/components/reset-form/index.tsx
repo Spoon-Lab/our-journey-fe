@@ -10,7 +10,6 @@ import useResetPassword from '@/hooks/auth/use-reset-password';
 
 import Button from '@/components/button';
 import Input from '@/components/input';
-import Toast from '@/components/toast';
 
 import s from './style.module.scss';
 
@@ -29,7 +28,7 @@ export default function ResetForm() {
     },
   });
 
-  const { mutate, toast, toastMessage, setToast } = useResetPassword();
+  const { mutate } = useResetPassword();
   const router = useRouter();
   const { id } = router.query;
 
@@ -45,8 +44,8 @@ export default function ResetForm() {
     }
   };
   return (
-    <>
-      <form className={s.formWrapper} onSubmit={handleSubmit(onSubmit)}>
+    <form className={s.formWrapper} onSubmit={handleSubmit(onSubmit)}>
+      <div className={s.inputWrapper}>
         <Input
           type="password"
           labelText="새 비밀번호 입력"
@@ -65,9 +64,8 @@ export default function ResetForm() {
           id="password2"
           errorMessage={errors.password2?.message}
         />
-        <Button type="submit">비밀번호 재설정</Button>
-      </form>
-      <div className={s.toastWrapper}>{toast && <Toast message={toastMessage} setToast={setToast} position="bottom" />}</div>
-    </>
+      </div>
+      <Button type="submit">비밀번호 재설정</Button>
+    </form>
   );
 }

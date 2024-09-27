@@ -13,7 +13,7 @@ function UserSettings() {
       <button type="button" onClick={() => logout()}>
         로그아웃
       </button>
-      <button type="button">회원탈퇴</button>
+      {/* <button type="button">회원탈퇴</button> */}
     </div>
   );
 }

@@ -10,7 +10,7 @@ export default function AuthIntroText({ text, subText }: AuthIntroTextProps) {
     <div className={s.textContainer}>
       <hr />
       <h1>{text}</h1>
-      <p>{subText}</p>
+      {subText && <p>{subText}</p>}
     </div>
   );
 }
