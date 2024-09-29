@@ -23,7 +23,8 @@ export default function SearchBar(props: InterfaceProps) {
   const router = useRouter();
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setKeyword(e.currentTarget.value.trim());
+    const { value } = e.currentTarget;
+    setKeyword(value.replace(/\s+/g, '_').trim());
   };
 
   const handleSearchSubmit = (e: FormEvent) => {
