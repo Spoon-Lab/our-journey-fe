@@ -2,6 +2,7 @@ import type { ChangeEvent, FormEvent, InputHTMLAttributes } from 'react';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
+import { emojiRegex } from '@/constants/regex';
 import { ROUTES } from '@/constants/router';
 
 import { useActiveScroll } from '@/hooks/contents/use-active-scroll';
@@ -16,7 +17,7 @@ interface InterfaceProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export default function SearchBar(props: InterfaceProps) {
-  const { type = 'input', ...rest } = props;
+  const { type = 'input' } = props;
   const { setCurrentKeyword } = useCurrentKeyword();
   const { searchbarRef, isScroll } = useActiveScroll();
   const [keyword, setKeyword] = useState<string>('');
@@ -24,7 +25,7 @@ export default function SearchBar(props: InterfaceProps) {
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
-    setKeyword(value.replace(/\s+/g, '_').trim());
+    setKeyword(value.replace(emojiRegex, '').replace(/\s+/g, '_').trim());
   };
 
   const handleSearchSubmit = (e: FormEvent) => {
