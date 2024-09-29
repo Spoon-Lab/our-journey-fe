@@ -1,14 +1,11 @@
-@import '/src/styles/index';
+@import '@/styles';
 
 .layoutContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 600px;
-  width: 100%;
-  min-height: 100dvh;
-  height: 100%;
-  margin: 0 auto;
+
+  @include layout;
   padding: 16px 16px 0;
 
   background-color: $background-system;

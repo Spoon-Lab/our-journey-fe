@@ -1,17 +1,8 @@
 .formWrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  margin-top: 32px;
+  display: grid;
+  grid-template-rows: 1fr min-content;
 
   button {
-    position: absolute;
-    bottom: 32px;
+    margin: 10px 0 32px 0;
   }
-}
-
-.toastWrapper {
-  width: 100%;
-  position: absolute;
-  bottom: 140px;
 }
