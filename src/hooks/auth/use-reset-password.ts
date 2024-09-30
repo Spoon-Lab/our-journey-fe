@@ -31,8 +31,9 @@ const useResetPassword = () => {
 
   const { mutate } = useMutation({
     mutationFn: resetPassword,
-    onSuccess: async () => {
-      await router.push(ROUTES.login);
+    onSuccess: () => {
+      addToast('비밀번호가 변경되었습니다.', 'info', 2000);
+      void router.push(ROUTES.login);
     },
     onError: (error: AxiosError) => {
       if (error?.response?.status === 400) {
