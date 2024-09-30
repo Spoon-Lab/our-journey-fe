@@ -9,7 +9,7 @@ function UserSettings() {
 
   return (
     <div className={s.settingContainer}>
-      <button type="button">고객센터</button>
+      {/* <button type="button">고객센터</button> */}
       <button type="button" onClick={() => logout()}>
         로그아웃
       </button>
