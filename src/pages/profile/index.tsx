@@ -58,13 +58,22 @@ export default function Profile() {
   if (openContents && data) {
     contents = (
       <div className={s.contentsWrapper}>
-        {data.map((page, idx) => (
-          <div key={idx}>
-            {page.list.content.map((e: MyContent) => (
-              <ContentItem key={e.contentId} content={e} />
-            ))}
-          </div>
-        ))}
+        {data.map((page, idx) =>
+          page.list.content.length === 0 ? (
+            <div key={idx} className={s.noContentWrapper}>
+              <p>작성한 글이 없습니다</p>
+              <button type="button" onClick={() => router.push(ROUTES.content.create())}>
+                글쓰러 가기
+              </button>
+            </div>
+          ) : (
+            <div key={idx}>
+              {page.list.content.map((e: MyContent) => (
+                <ContentItem key={e.contentId} content={e} />
+              ))}
+            </div>
+          ),
+        )}
         <div ref={divRef} />
       </div>
     );

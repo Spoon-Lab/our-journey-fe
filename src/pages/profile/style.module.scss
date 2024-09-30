@@ -65,3 +65,24 @@
     width: 60px !important;
   }
 }
+
+.noContentWrapper {
+  display: grid;
+  place-items: center;
+  gap: 15px;
+
+  p {
+    @include regular-caption-1;
+  }
+
+  button {
+    background-color: $blue-800;
+    color: white;
+    padding: 8px 10px;
+    border-radius: 6px;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
