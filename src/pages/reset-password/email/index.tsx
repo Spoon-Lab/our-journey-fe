@@ -13,7 +13,7 @@ export default function Email() {
   return (
     <main className={s.emailContainer}>
       <AuthIntroText text={'비밀번호 재설정 링크를 \n보냈습니다'} subText="이메일의 링크를 클릭해 계속 진행해 주세요." />
-      <Link href={ROUTES.login}>로그인하러가기</Link>
+      <Link href={ROUTES.login}>로그인하러 가기</Link>
     </main>
   );
 }
