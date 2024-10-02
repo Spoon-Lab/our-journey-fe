@@ -5,14 +5,18 @@ import type { Tag } from '@/types/tags';
 
 import useSearchTag from '@/hooks/tags/use-search-tag';
 import { useSuggestions } from '@/hooks/tags/use-suggestions';
-import { useTagManagement } from '@/hooks/tags/use-tag-management';
 import { useDynamicInput } from '@/hooks/use-input-width';
 
 import s from './style.module.scss';
 
-export default function TagInput() {
+interface TagInputProps {
+  addTag: (tagName: string) => void;
+  removeTag: (tagName: string) => void;
+  tags: Array<Tag>;
+}
+
+export default function TagInput({ addTag, removeTag, tags }: TagInputProps) {
   const [newTag, setNewTag] = useState<string>('');
-  const { tags, addTag, removeTag } = useTagManagement();
   const [searchQuery, setSearchQuery] = useState<string>('');
   const { data: suggestedTags, isLoading, isSuccess } = useSearchTag(searchQuery);
 
@@ -41,8 +45,8 @@ export default function TagInput() {
     }
   }, [newTag, adjustWidth]);
 
-  const handleSuggestionClick = (tagName: string, tagId: number) => {
-    void addTag(tagName, tagId);
+  const handleSuggestionClick = (tagName: string) => {
+    void addTag(tagName);
     setNewTag('');
     resetSuggestions();
     if (typeof adjustWidth === 'function') {
@@ -57,7 +61,7 @@ export default function TagInput() {
       e.preventDefault();
       const selectedTag = suggestedTags?.list.content[selectedIndex];
       if (selectedTag) {
-        void addTag(selectedTag.tagName, selectedTag.tagId);
+        void addTag(selectedTag.tagName);
         setNewTag('');
         resetSuggestions();
         if (typeof adjustWidth === 'function') {
@@ -87,12 +91,7 @@ export default function TagInput() {
             {!isLoading &&
               isSuccess &&
               suggestedTags?.list.content.map((tag: Tag, index: number) => (
-                <button
-                  type="button"
-                  key={index}
-                  onClick={() => handleSuggestionClick(tag.tagName, tag.tagId)}
-                  className={index === selectedIndex ? s.selected : ''}
-                >
+                <button type="button" key={index} onClick={() => handleSuggestionClick(tag.tagName)} className={index === selectedIndex ? s.selected : ''}>
                   {tag.tagName}
                 </button>
               ))}

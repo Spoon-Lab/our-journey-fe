@@ -4,7 +4,6 @@ import useCreateContent from '@/hooks/contents/use-create-content';
 import { useUploadImagesToServer } from '@/hooks/photo/use-upload-images';
 import { useTagManagement } from '@/hooks/tags/use-tag-management';
 import { useImagesUploadToLocal } from '@/hooks/use-image-upload';
-import { useTags } from '@/hooks/use-tags';
 import { useToast } from '@/hooks/use-toast';
 
 import CustomTextarea from '@/components/content-edit-page-frame/(components)/custom-textarea';
@@ -31,7 +30,6 @@ const ContentCreatePage = memo(() => {
     if (!title) {
       addToast('제목을 입력해주세요.', 'error');
     }
-
     createContent(
       {
         body: { title, categoryId: 1, imgUrl: '', profileIds: [], tagIds: tags.map((tag) => tag.tagId) },
@@ -145,7 +143,7 @@ const ContentCreatePage = memo(() => {
         <div className={s.titleInputBox}>
           <CustomTextarea placeholder="여행의 제목을 달아주세요!" value={title} onChange={(e: string) => setTitle(e)} />
         </div>
-        <TagInput />
+        <TagInput tags={tags} addTag={addTag} removeTag={removeTag} />
       </div>
       <div className={s.divider} />
       <div className={s.buttonSection}>
