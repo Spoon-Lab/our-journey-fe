@@ -1,5 +1,5 @@
 export interface ThreadReqBody {
-  tags: number[];
+  tagIds: number[];
   texts: string;
   threadImg: string;
 }

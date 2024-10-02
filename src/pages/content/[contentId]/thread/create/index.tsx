@@ -30,7 +30,7 @@ export default function ContentCreatePage() {
       {
         reqBody: {
           texts: content,
-          tags: [],
+          tagIds: [],
           threadImg: imagePreview || '',
         },
         contentId,

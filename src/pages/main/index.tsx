@@ -1,4 +1,5 @@
 import { type MouseEvent, type ReactNode, useRef } from 'react';
+import React from 'react';
 
 import { useIntersectionObserver } from '@/hooks/contents/use-intersection-observer';
 

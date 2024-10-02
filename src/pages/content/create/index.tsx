@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 
 import useCreateContent from '@/hooks/contents/use-create-content';
-import { useImageUpload } from '@/hooks/use-image-upload';
+import { useUploadImagesToServer } from '@/hooks/photo/use-upload-images';
+import { useTagManagement } from '@/hooks/tags/use-tag-management';
+import { useImagesUploadToLocal } from '@/hooks/use-image-upload';
 import { useTags } from '@/hooks/use-tags';
 import { useToast } from '@/hooks/use-toast';
 
@@ -14,20 +16,25 @@ import PostButton from '@/components/post-button';
 
 import s from './style.module.scss';
 
-export default function ContentCreatePage() {
+const ContentCreatePage = memo(() => {
   const { mutate: createContent } = useCreateContent();
+  const { mutate: uploadImages } = useUploadImagesToServer();
 
-  const { imagePreview, getRootProps, getInputProps, isDragActive } = useImageUpload();
-  const { tags, newTag, setNewTag, addTag, removeTag } = useTags();
+  const { uploadImageFile, fileFormat, getRootProps, getInputProps, isDragActive, resetImage, setUploadImageFile, errorMessage } = useImagesUploadToLocal();
+  const { tags, addTag, removeTag } = useTagManagement();
   const [title, setTitle] = useState('');
   const [isPostButtonEnabled, setIsPostButtonEnabled] = useState(false);
 
   const { addToast } = useToast();
 
   const handleSubmit = () => {
+    if (!title) {
+      addToast('제목을 입력해주세요.', 'error');
+    }
+
     createContent(
       {
-        body: { title, categoryId: 0, imgUrl: imagePreview || '', profileIds: [14], tagIds: [] },
+        body: { title, categoryId: 1, imgUrl: '', profileIds: [], tagIds: tags.map((tag) => tag.tagId) },
       },
       {
         onSuccess: (data) => {
@@ -41,6 +48,74 @@ export default function ContentCreatePage() {
         },
       },
     );
+
+    // if (uploadImageFile) {
+    //   console.log('uploadImageFile', uploadImageFile);
+    //   uploadImages(
+    //     { imageType: 'content', images: [uploadImageFile] },
+    //     {
+    //       onSuccess: (data) => {
+    //         const uploadedImageUrl = data;
+    //         console.log('>> uploadedImageUrl', uploadedImageUrl);
+    //       },
+    //       onError: () => {
+    //         addToast('이미지 업로드에 실패하였습니다.', 'error');
+    //       },
+    //     },
+    //   );
+    // }
+
+    // if (imagePreview) {
+    //   uploadImages(
+    //     { imageType: 'content', images: [fileFormat] },
+    //     {
+    //       onSuccess: (data) => {
+    //         const uploadedImageUrl = data.image_url[0];
+    //         createContent(
+    //           {
+    //             body: {
+    //               title,
+    //               categoryId: 1,
+    //               imgUrl: uploadedImageUrl,
+    //               profileIds: [],
+    //               tagIds: tags.map((tag) => tag.id),
+    //             },
+    //           },
+    //           {
+    //             onSuccess: (data) => {
+    //               addToast('발행이 성공되었습니다!', 'success');
+    //               setTimeout(() => {
+    //                 window.location.href = `/content/${data.contentId}`; // Redirect to the new content page
+    //               }, 3000);
+    //             },
+    //             onError: () => {
+    //               addToast('새 글 발행이 실패하였습니다.', 'error');
+    //             },
+    //           },
+    //         );
+    //       },
+    //       onError: () => {
+    //         addToast('이미지 업로드에 실패하였습니다.', 'error');
+    //       },
+    //     },
+    //   );
+    // }
+    // createContent(
+    //   {
+    //     body: { title, categoryId: 1, imgUrl: imagePreview || '', profileIds: [], tagIds: [] },
+    //   },
+    //   {
+    //     onSuccess: (data) => {
+    //       addToast('발행이 성공되었습니다!', 'success');
+    //       setTimeout(() => {
+    //         window.location.href = `/content/${data.contentId}`;
+    //       }, 3000);
+    //     },
+    //     onError: () => {
+    //       addToast('새 글 발행이 실패하였습니다.', 'error');
+    //     },
+    //   },
+    // );
   };
 
   useEffect(() => {
@@ -62,15 +137,15 @@ export default function ContentCreatePage() {
         }}
       />
       <div className={s.imageSection}>
-        <DropZone getRootProps={getRootProps} getInputProps={getInputProps} isDragActive={isDragActive} hasImage={!!imagePreview}>
-          {imagePreview && <ImagePreview src={imagePreview} />}
+        <DropZone getRootProps={getRootProps} getInputProps={getInputProps} isDragActive={isDragActive} hasImage={!!uploadImageFile}>
+          {uploadImageFile && <ImagePreview imageFile={uploadImageFile} />}
         </DropZone>
       </div>
       <div className={s.contentSection}>
         <div className={s.titleInputBox}>
           <CustomTextarea placeholder="여행의 제목을 달아주세요!" value={title} onChange={(e: string) => setTitle(e)} />
         </div>
-        <TagInput tags={tags} newTag={newTag} setNewTag={setNewTag} addTag={addTag} removeTag={removeTag} />
+        <TagInput />
       </div>
       <div className={s.divider} />
       <div className={s.buttonSection}>
@@ -78,4 +153,6 @@ export default function ContentCreatePage() {
       </div>
     </div>
   );
-}
+});
+ContentCreatePage.displayName = 'ContentCreatePage';
+export default ContentCreatePage;

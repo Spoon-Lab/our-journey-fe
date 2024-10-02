@@ -1,13 +1,21 @@
 @import '@/styles';
 
-.wrapTags {
+.tagInput {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: row;
   height: fit-content;
-  gap: 4px 2px;
   align-items: center;
+  gap: 4px 2px;
   margin: 4px 0 0 0;
 
+  & > .tag > button {
+    color: $blue-500;
+    @include regular-footnote;
+    margin-right: 4px;
+  }
+}
+.wrapTagInput {
   & > input {
     width: fit-content;
     height: fit-content;
@@ -28,9 +36,27 @@
       outline: none;
     }
   }
-  & > .tag > button {
-    color: $blue-500;
-    @include regular-footnote;
-    margin-right: 4px;
+  .suggestions {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: $gray-800;
+    margin-top: 8px;
+
+    border-radius: 4px;
+    overflow: hidden;
+
+    & > button {
+      @include regular-footnote;
+      color: $gray-300;
+      padding: 8px;
+      min-width: 100px;
+      text-align: start;
+
+      &:hover,
+      &.selected {
+        background-color: $gray-700;
+      }
+    }
   }
 }

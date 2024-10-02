@@ -1,27 +1,47 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 
-export const useImageUpload = () => {
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
+export const useImagesUploadToLocal = () => {
+  const [uploadImageFile, setUploadImageFile] = useState<File | null>(null);
+  const [fileFormat, setFileFormat] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    const file = acceptedFiles[0];
-    const preview = URL.createObjectURL(file);
-    setImagePreview(preview);
-  }, []);
+  const acceptedFormats = useMemo(() => ['image/png', 'image/jpeg', 'image/jpg', 'image/webp', 'image/gif'], []);
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      const file = acceptedFiles[0];
+      if (acceptedFormats.includes(file.type)) {
+        const format = file.type.split('/')[1];
+        setUploadImageFile(file);
+        setFileFormat(format);
+        setErrorMessage(null);
+      } else {
+        setUploadImageFile(null);
+        setFileFormat(null);
+        setErrorMessage('Unsupported file format. Please upload PNG, JPG, JPEG, WEBP, or GIF.');
+      }
+    },
+    [acceptedFormats],
+  );
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: acceptedFormats.reduce((acc, format) => ({ ...acc, [format]: [] }), {}),
+  });
 
   const resetImage = () => {
-    setImagePreview(null);
+    setUploadImageFile(null);
   };
 
   return {
-    imagePreview,
+    uploadImageFile,
+    fileFormat,
     getRootProps,
     getInputProps,
     isDragActive,
     resetImage,
-    setImagePreview,
+    setUploadImageFile,
+    errorMessage,
   };
 };
