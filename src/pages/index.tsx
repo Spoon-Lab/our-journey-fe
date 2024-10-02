@@ -21,7 +21,7 @@ export default function Home() {
           <br />
           JOURNEY
         </h1>
-        <p>그들의 여행 살짝 맛보기</p>
+        <p>함께 돌아보는 우리의 여행</p>
       </div>
       <div className={s.authWrapper}>
         <div className={s.buttonWrapper}>
