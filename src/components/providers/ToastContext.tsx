@@ -27,7 +27,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
         {children}
         <div
           style={{
-            position: 'absolute',
+            position: 'fixed',
             left: '16px',
             bottom: '70px',
             zIndex: 1000,

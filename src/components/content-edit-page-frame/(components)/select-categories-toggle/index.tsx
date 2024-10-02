@@ -4,7 +4,7 @@ import s from './style.module.scss';
 
 interface SelectCategoriesToggleProps {
   selectedCategory: number;
-  toggleCategory: () => void;
+  toggleCategory?: () => void;
 }
 
 export default function SelectCategoriesToggle({ selectedCategory = 1, toggleCategory }: SelectCategoriesToggleProps) {

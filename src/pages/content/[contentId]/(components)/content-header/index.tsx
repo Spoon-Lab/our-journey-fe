@@ -28,13 +28,13 @@ export default function ContentHeader({ contentId, isWriter }: ContentHeaderProp
   const handleDelete = () => {
     deleteContentMutation.mutate(contentId, {
       onSuccess: () => {
-        addToast('삭제 성공', 'success');
+        void router.push(ROUTES.main);
+        addToast('성공적으로 콘텐츠를 삭제하였습니다!', 'success');
       },
       onError: () => {
-        addToast('삭제 실패', 'error');
+        addToast('콘텐츠 삭제를 실패하였습니다.', 'error');
       },
     });
-    void router.push(ROUTES.main);
   };
   return (
     <>

@@ -2,7 +2,7 @@ import { useCallback, useMemo, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 
 export const useImagesUploadToLocal = () => {
-  const [uploadImageFile, setUploadImageFile] = useState<File | null>(null);
+  const [uploadImageFile, setUploadImageFile] = useState<File | string | null>(null);
   const [fileFormat, setFileFormat] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 

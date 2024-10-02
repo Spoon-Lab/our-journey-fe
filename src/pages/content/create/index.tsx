@@ -37,7 +37,7 @@ const ContentCreatePage = memo(() => {
       return;
     }
 
-    if (uploadImageFile) {
+    if (uploadImageFile && typeof uploadImageFile !== 'string') {
       uploadImages(
         { imageType: 'content', images: [uploadImageFile] },
         {
