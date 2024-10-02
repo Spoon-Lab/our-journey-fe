@@ -1,3 +1,4 @@
+import React from 'react';
 import { useRouter } from 'next/router';
 
 import { ROUTES } from '@/constants/router';
@@ -12,9 +13,10 @@ import { MoreVertIcon, PrevIcon } from '@/assets/icons';
 
 interface ContentHeaderProps {
   contentId: number;
+  isWriter: boolean;
 }
 
-export default function ContentHeader({ contentId }: ContentHeaderProps) {
+export default function ContentHeader({ contentId, isWriter }: ContentHeaderProps) {
   const router = useRouter();
   const deleteContentMutation = useDeleteContent();
   const { addToast } = useToast();
@@ -43,13 +45,15 @@ export default function ContentHeader({ contentId }: ContentHeaderProps) {
       >
         <PrevIcon alt="prev-btn" width={24} height={24} />
       </BtnFrame>
-      <DropdownActionMenu
-        triggerButton={<MoreVertIcon />}
-        actionItems={[
-          { name: '수정하기', onClick: handleEdit, key: 'update' },
-          { name: '삭제하기', onClick: handleDelete, key: 'delete' },
-        ]}
-      />
+      {isWriter && (
+        <DropdownActionMenu
+          triggerButton={<MoreVertIcon />}
+          actionItems={[
+            { name: '수정하기', onClick: handleEdit, key: 'update' },
+            { name: '삭제하기', onClick: handleDelete, key: 'delete' },
+          ]}
+        />
+      )}
     </>
   );
 }

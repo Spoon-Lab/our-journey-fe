@@ -22,12 +22,13 @@ export default function DetailPage() {
   return (
     <div className={s.detailPage}>
       <ProgressBarHeader isScrolled={isScrolled} scrollPercent={scrollPercent}>
-        <ContentHeader contentId={contentId} />
+        <ContentHeader contentId={contentId} isWriter={fetchedContent?.isEditable ?? false} />
       </ProgressBarHeader>
       {/* TODO: Add logic for handling loading state and empty content data */}
       {successFetchingContent && fetchedContent && <ContentCover content={fetchedContent} />}
       <div className={s.wrapBody}>
         <ContentSection
+          contentId={contentId}
           initialLiked={false}
           comments={fetchedContent?.commentCount || 0}
           likes={fetchedContent?.likeCount || 0}

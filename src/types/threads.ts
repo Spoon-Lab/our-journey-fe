@@ -9,6 +9,8 @@ export interface Content {
   contentId: number;
   // contentProfileDto: ProfileDto;
   createdAt: string;
+  isEditable: boolean;
+  isRemovable: boolean;
   likeCount: number;
   postImg: string;
   title: string;
