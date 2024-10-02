@@ -1,13 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 
-import { useQueryClient } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 import axios from 'axios';
 
 import { API_PATHS } from '@/constants/api';
 
-import type { CustomAxiosRequestConfig } from './auth-axios';
-import axiosAuthInstance from './auth-axios';
+import { axiosRefreshInstance, type CustomAxiosRequestConfig } from './auth-axios';
 
 const axiosConfig = {
   baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
@@ -43,7 +41,7 @@ axiosInstance.interceptors.response.use(
 
       if (refresh) {
         try {
-          const { data } = await axiosAuthInstance.post<{ access: string }>(`${API_PATHS.AUTH.TOKEN.REFRESH.POST()}`, { refresh });
+          const { data } = await axiosRefreshInstance.post<{ access: string }>(`${API_PATHS.AUTH.TOKEN.REFRESH.POST()}`, { refresh });
 
           if (data?.access) {
             localStorage.setItem('accessToken', data.access);
@@ -55,11 +53,7 @@ axiosInstance.interceptors.response.use(
             return axiosInstance(originalConfig);
           }
         } catch (refreshError) {
-          const queryClient = useQueryClient();
-
-          // TODO:로그아웃 처리?
           localStorage.clear();
-          queryClient.clear();
           window.location.href = '/login';
         }
       }

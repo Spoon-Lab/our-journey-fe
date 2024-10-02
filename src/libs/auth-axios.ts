@@ -1,4 +1,3 @@
-import { useQueryClient } from '@tanstack/react-query';
 import type { AxiosError, AxiosRequestConfig } from 'axios';
 import axios from 'axios';
 
@@ -16,6 +15,13 @@ const axiosConfig = {
 };
 
 const axiosAuthInstance = axios.create(axiosConfig);
+
+export const axiosRefreshInstance = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_AUTH_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
 
 axiosAuthInstance.interceptors.request.use(
   (config) => {
@@ -42,7 +48,7 @@ axiosAuthInstance.interceptors.response.use(
 
       if (refresh) {
         try {
-          const { data } = await axiosAuthInstance.post<{ access: string }>(`${API_PATHS.AUTH.TOKEN.REFRESH.POST()}`, { refresh });
+          const { data } = await axiosRefreshInstance.post<{ access: string }>(`${API_PATHS.AUTH.TOKEN.REFRESH.POST()}`, { refresh });
 
           if (data?.access) {
             localStorage.setItem('accessToken', data.access);
@@ -54,11 +60,7 @@ axiosAuthInstance.interceptors.response.use(
             return axiosAuthInstance(originalConfig);
           }
         } catch (refreshError) {
-          const queryClient = useQueryClient();
-
-          // TODO:로그아웃 처리?
           localStorage.clear();
-          queryClient.clear();
           window.location.href = '/login';
         }
       }
