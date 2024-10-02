@@ -17,9 +17,9 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'images.pexels.com',
+        hostname: process.env.NEXT_PUBLIC_IMAGE_HOST_URL,
         port: '',
-        pathname: '/**',
+        pathname: '/media/content/**',
       },
     ],
   },

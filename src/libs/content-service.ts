@@ -1,4 +1,4 @@
-import type { ContentPostRequest, Contents } from '@/types/contents';
+import type { ContentPostRequest, Contents, CreateContentResponse } from '@/types/contents';
 import { API_PATHS } from '@/constants/api';
 
 import axiosInstance from './axios';
@@ -13,9 +13,6 @@ export const getOneContent = async <T = Contents>(contentId: number): Promise<T>
   return response.data;
 };
 
-interface CreateContentResponse {
-  id: number;
-}
 export const createContent = async <T = CreateContentResponse>(data: ContentPostRequest): Promise<T> => {
   const response = await axiosInstance.post<T>(API_PATHS.CONTENTS.CREATE(), data);
   return response.data;

@@ -22,8 +22,8 @@ export const uploadImages = async <T = ImageUploadResponse>({ imageType, images 
   const formData = new FormData();
   formData.append('photo_type', imageType);
   images.forEach((image) => {
-    formData.append('images', image);
+    formData.append(`images`, image);
   });
-  const response = await axiosAuthInstance.post<T>(API_PATHS.PHOTO.IMAGE_UPLOAD.POST(), { photo_type: imageType, images });
+  const response = await axiosAuthInstance.post<T>(API_PATHS.PHOTO.IMAGE_UPLOAD.POST(), formData, headerConfig);
   return response.data;
 };

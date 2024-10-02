@@ -85,3 +85,6 @@ export interface ContentPostRequest {
   tagIds: number[];
   title: string;
 }
+export interface CreateContentResponse {
+  id: number;
+}
