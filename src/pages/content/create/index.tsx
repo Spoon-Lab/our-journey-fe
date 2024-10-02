@@ -32,7 +32,7 @@ const ContentCreatePage = memo(() => {
     }
     createContent(
       {
-        body: { title, categoryId: 1, imgUrl: '', profileIds: [], tagIds: tags.map((tag) => tag.tagId) },
+        body: { title, categoryId: 1, imgUrl: '', attendeeIds: [], tagIds: tags.map((tag) => tag.tagId) },
       },
       {
         onSuccess: (data) => {
