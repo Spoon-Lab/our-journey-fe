@@ -7,7 +7,12 @@ const emailSchema = yup
   .matches(/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/, '이메일 형식에 맞게 다시 입력해주세요')
   .trim();
 
-const passwordSchema = yup.string().required('비밀번호를 입력해주세요').min(8, '최소 8자리 이상 입력해주세요').trim();
+const passwordSchema = yup
+  .string()
+  .required('비밀번호를 입력해주세요')
+  .min(8, '최소 8자리 이상 입력해주세요')
+  .matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/, '비밀번호는 문자와 숫자를 포함해야합니다.')
+  .trim();
 
 const passwordCheckSchema = yup
   .string()
