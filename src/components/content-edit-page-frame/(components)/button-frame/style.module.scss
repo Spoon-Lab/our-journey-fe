@@ -12,4 +12,9 @@
 
   @include semibold-caption-2;
   color: $white;
+
+  &:disabled {
+    background-color: #3e4b5a;
+    color: $gray-200;
+  }
 }

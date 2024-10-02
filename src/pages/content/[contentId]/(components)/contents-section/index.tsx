@@ -1,8 +1,15 @@
 import { useState } from 'react';
+import router from 'next/router';
 
+import { checkLoggedIn } from '@/utils/check-logged-in';
 import { copyUrlToClipboard } from '@/utils/copy-url-to-clipboard';
 
+import { useAddLike } from '@/hooks/contents/use-add-like';
+import { useRemoveLike } from '@/hooks/contents/use-remove-like';
+import { useModal } from '@/hooks/use-modal';
 import { useToast } from '@/hooks/use-toast';
+
+import Modal from '@/components/modal';
 
 import BtnFrame from '../btn-frame';
 import WrapTags from '../wrap-tags';
@@ -13,6 +20,7 @@ import { FavoriteIconFilled, FavoriteIconNoFill, LocationIcon, MessageIcon, Shar
 
 interface ContentSectionProps {
   comments?: number;
+  contentId: number;
   initialLiked: boolean;
   likes: number;
   period?: string;
@@ -20,17 +28,38 @@ interface ContentSectionProps {
   tags?: string[];
 }
 
-export default function ContentSection({ comments, initialLiked, likes, period, tags, postContent }: ContentSectionProps) {
+export default function ContentSection({ contentId, comments, initialLiked, likes, period, tags, postContent }: ContentSectionProps) {
+  const { mutate: addLike } = useAddLike();
+  const { mutate: removeLike } = useRemoveLike();
   const [isLiked, setLiked] = useState<boolean>(initialLiked);
   const { addToast } = useToast();
+  const { isOpen, openModal, closeModal } = useModal();
 
   const handleLikeBtn = () => {
-    setLiked((prev) => !prev);
-
+    if (!checkLoggedIn()) {
+      openModal();
+      return;
+    }
     if (isLiked) {
-      addToast('좋아요가 취소되었습니다.', 'info');
+      removeLike(contentId, {
+        onSuccess: () => {
+          setLiked(false);
+          addToast('좋아요가 취소되었습니다.', 'info');
+        },
+        onError: () => {
+          addToast('좋아요 취소에 실패했습니다.', 'error');
+        },
+      });
     } else {
-      addToast('좋아요가 등록되었습니다.', 'info');
+      addLike(contentId, {
+        onSuccess: () => {
+          setLiked(true);
+          addToast('좋아요가 등록되었습니다.', 'success');
+        },
+        onError: () => {
+          addToast('좋아요 등록에 실패했습니다.', 'error');
+        },
+      });
     }
   };
 
@@ -45,6 +74,16 @@ export default function ContentSection({ comments, initialLiked, likes, period, 
 
   return (
     <section className={s.contentSection}>
+      {isOpen && (
+        <Modal
+          text="로그인이 필요한 기능입니다."
+          subText="로그인하시겠습니까?"
+          leftBtnText="뒤로 가기"
+          rightBtnText="로그인하기"
+          leftBtnClick={closeModal}
+          rightBtnClick={() => router.push('/login')}
+        />
+      )}
       {/* <div className={s.period}>
         <LocationIcon alt="location-icon" width={16} height={16} />
         <span>{period}</span>

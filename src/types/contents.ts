@@ -79,9 +79,12 @@ export interface Category {
 }
 
 export interface ContentPostRequest {
+  attendeeIds: number[];
   categoryId: number;
   imgUrl: string;
-  profileIds: number[];
   tagIds: number[];
   title: string;
+}
+export interface CreateContentResponse {
+  id: number;
 }

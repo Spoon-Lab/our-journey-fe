@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 import { setInputWidth } from '@/utils/set-input-width';
 
@@ -6,30 +6,31 @@ interface UseDynamicInputProps {
   initialValue: string;
   onChange: (value: string) => void;
   onEnter: (value: string) => void;
-  placeholder: string; // 매개변수를 받도록 수정
+  placeholder: string;
 }
+
 export function useDynamicInput({ initialValue, placeholder, onChange, onEnter }: UseDynamicInputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
+  const adjustWidth = useCallback(() => {
     if (inputRef.current) {
-      setInputWidth(inputRef.current, placeholder);
+      setInputWidth(inputRef.current, inputRef.current.value || placeholder);
     }
   }, [placeholder]);
 
+  useEffect(() => {
+    adjustWidth();
+  }, [adjustWidth, initialValue]);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(e.target.value);
-    if (inputRef.current) {
-      setInputWidth(inputRef.current, e.target.value || placeholder);
-    }
+    adjustWidth();
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       onEnter(e.currentTarget.value);
-      if (inputRef.current) {
-        setInputWidth(inputRef.current, placeholder);
-      }
+      adjustWidth();
     }
   };
 
@@ -43,5 +44,6 @@ export function useDynamicInput({ initialValue, placeholder, onChange, onEnter }
       onChange: handleInputChange,
       onKeyPress: handleKeyPress,
     },
+    adjustWidth,
   };
 }

@@ -1,5 +1,7 @@
-import type { ContentPostRequest, Contents } from '@/types/contents';
+import type { ContentPostRequest, Contents, CreateContentResponse } from '@/types/contents';
 import { API_PATHS } from '@/constants/api';
+
+import type { EditContentReqBody } from '@/hooks/contents/use-edit-content';
 
 import axiosInstance from './axios';
 
@@ -13,9 +15,6 @@ export const getOneContent = async <T = Contents>(contentId: number): Promise<T>
   return response.data;
 };
 
-interface CreateContentResponse {
-  id: number;
-}
 export const createContent = async <T = CreateContentResponse>(data: ContentPostRequest): Promise<T> => {
   const response = await axiosInstance.post<T>(API_PATHS.CONTENTS.CREATE(), data);
   return response.data;
@@ -30,7 +29,7 @@ export const deleteContent = async (contentId: number): Promise<void> => {
   throw new Error(`Failed to delete content(ID: ${contentId}). Status: ${response.status}`);
 };
 
-export const editContent = async <T = Contents>(contentId: number, data: ContentPostRequest): Promise<T> => {
+export const editContent = async <T = Contents>(contentId: number, data: EditContentReqBody): Promise<T> => {
   const response = await axiosInstance.patch<T>(API_PATHS.CONTENTS.PATCH(contentId), data);
   return response.data;
 };

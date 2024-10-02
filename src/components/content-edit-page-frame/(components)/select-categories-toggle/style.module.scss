@@ -1,0 +1,37 @@
+@import '@/styles';
+
+.selectCategoriesToggle {
+  position: relative;
+  background-color: #3e4b5a;
+  border-radius: 182px;
+  display: flex;
+  gap: 8px;
+  cursor: pointer;
+  flex-direction: row;
+  padding: 3px 8px;
+  width: 140px;
+  height: calc(25px + 6px);
+}
+
+.slider {
+  position: absolute;
+  width: 45%;
+  height: calc(100% - 6px);
+  margin: 0 3px;
+  background-color: $blue-700;
+  border-radius: 20px;
+  z-index: 0;
+}
+
+.category {
+  @include semibold-caption-2;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  color: $white;
+}
+
+// .category.active {
+// }

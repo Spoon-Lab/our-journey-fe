@@ -1,14 +1,21 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 
-import type { Thread, ThreadReqBody } from '@/types/threads';
-
 import { createThread } from '@/libs/threads-services';
+
+export interface CreateThreadReqBody {
+  tagIds: number[];
+  texts: string;
+  threadImg: string;
+}
+export interface CreateThreadResponse {
+  threadId: number;
+}
 
 export const useCreateThreads = () => {
   const queryClient = useQueryClient();
 
-  return useMutation<Thread, AxiosError, { contentId: number; reqBody: ThreadReqBody }>({
+  return useMutation<CreateThreadResponse, AxiosError, { contentId: number; reqBody: CreateThreadReqBody }>({
     mutationFn: ({ contentId, reqBody }) => createThread(contentId, reqBody),
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: ['threads'] });

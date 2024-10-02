@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { removeLike } from '@/libs/likes-service';
 
-export const useDeleteContent = () => {
+export const useRemoveLike = () => {
   const queryClient = useQueryClient();
 
   return useMutation({

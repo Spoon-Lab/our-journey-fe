@@ -1,12 +1,10 @@
 import type { PaginationParams } from '@/types/pagination';
 
-import { createPaginationQuery } from '@/utils/pagination';
-
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export const API_PATHS = {
   TAGS: {
-    GET: (name: string[], paginationParams: PaginationParams) => `/tags?name=${name.join(',')}&${createPaginationQuery(paginationParams)}`, // 해시태그 가져오기
+    GET: (name: string) => `/tags?name=${name}`, // 해시태그 가져오기
     POST: () => `/tags`, // 해시태그 생성
   },
   PROFILES: {
@@ -113,7 +111,6 @@ export const API_PATHS = {
   PHOTO: {
     IMAGE_UPLOAD: {
       POST: () => `/photo/image-upload`, // 이미지 업로드
-      PUT: () => `/photo/image-upload`, // 이미지 업데이트
     },
   },
 };

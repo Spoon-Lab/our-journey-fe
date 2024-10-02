@@ -1,3 +1,4 @@
+import React from 'react';
 import { useRouter } from 'next/router';
 
 import { ROUTES } from '@/constants/router';
@@ -12,9 +13,10 @@ import { MoreVertIcon, PrevIcon } from '@/assets/icons';
 
 interface ContentHeaderProps {
   contentId: number;
+  isWriter: boolean;
 }
 
-export default function ContentHeader({ contentId }: ContentHeaderProps) {
+export default function ContentHeader({ contentId, isWriter }: ContentHeaderProps) {
   const router = useRouter();
   const deleteContentMutation = useDeleteContent();
   const { addToast } = useToast();
@@ -26,13 +28,13 @@ export default function ContentHeader({ contentId }: ContentHeaderProps) {
   const handleDelete = () => {
     deleteContentMutation.mutate(contentId, {
       onSuccess: () => {
-        addToast('삭제 성공', 'success');
+        void router.push(ROUTES.main);
+        addToast('성공적으로 콘텐츠를 삭제하였습니다!', 'success');
       },
       onError: () => {
-        addToast('삭제 실패', 'error');
+        addToast('콘텐츠 삭제를 실패하였습니다.', 'error');
       },
     });
-    void router.push(ROUTES.main);
   };
   return (
     <>
@@ -43,13 +45,15 @@ export default function ContentHeader({ contentId }: ContentHeaderProps) {
       >
         <PrevIcon alt="prev-btn" width={24} height={24} />
       </BtnFrame>
-      <DropdownActionMenu
-        triggerButton={<MoreVertIcon />}
-        actionItems={[
-          { name: '수정하기', onClick: handleEdit, key: 'update' },
-          { name: '삭제하기', onClick: handleDelete, key: 'delete' },
-        ]}
-      />
+      {isWriter && (
+        <DropdownActionMenu
+          triggerButton={<MoreVertIcon />}
+          actionItems={[
+            { name: '수정하기', onClick: handleEdit, key: 'update' },
+            { name: '삭제하기', onClick: handleDelete, key: 'delete' },
+          ]}
+        />
+      )}
     </>
   );
 }

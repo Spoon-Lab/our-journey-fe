@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { signIn } from 'next-auth/react';
@@ -12,6 +13,14 @@ import { Google } from '@/assets/icons';
 
 export default function Home() {
   const nav = useRouter();
+
+  // NOTE: (33) 첫 로그인 시 localStorage에 만료된 accessToken이 있을 경우, 무한 refresh loop에 빠지는 문제가 있습니다.
+  // 때문에 우선 accessToken이 있을 경우 main 페이지로 이동하도록 코드를 추가하였습니다.
+  useEffect(() => {
+    if (localStorage.getItem('accessToken')) {
+      void nav.push(ROUTES.main);
+    }
+  }, [nav]);
 
   return (
     <main className={s.homeContainer}>
