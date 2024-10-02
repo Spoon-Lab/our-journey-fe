@@ -7,6 +7,7 @@ import { API_PATHS } from '@/constants/api';
 import axiosInstance from '@/libs/axios';
 
 export const searchTag = async <T = SearchTagResponse>(tag: string): Promise<T> => {
+
   const response = await axiosInstance.get<T>(API_PATHS.TAGS.GET(tag));
   return response.data;
 };

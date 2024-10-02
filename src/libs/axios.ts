@@ -41,9 +41,11 @@ axiosInstance.interceptors.response.use(
 
       if (refresh) {
         try {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-call
           const { data } = await axiosBasicAuthInstance.post<{ access: string }>(`${API_PATHS.AUTH.TOKEN.REFRESH.POST()}`, { refresh });
 
           if (data?.access) {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
             localStorage.setItem('accessToken', data.access);
 
             if (originalConfig.headers) {

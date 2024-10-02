@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import type { Thread, ThreadReqBody } from '@/types/threads';
+import type { Thread } from '@/types/threads';
 
 import { editContent } from '@/libs/content-service';
 import { patchThread } from '@/libs/threads-services';

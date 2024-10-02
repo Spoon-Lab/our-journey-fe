@@ -4,7 +4,7 @@ import useCreateContent from '@/hooks/contents/use-create-content';
 import { useSelectCategories } from '@/hooks/contents/use-select-categories';
 import { useUploadImagesToServer } from '@/hooks/photo/use-upload-images';
 import { useTagManagement } from '@/hooks/tags/use-tag-management';
-import { useImagesUploadToLocal } from '@/hooks/use-image-upload';
+import { useImagesUploadToLocal } from '@/hooks/use-image-upload-local';
 import { useToast } from '@/hooks/use-toast';
 
 import ButtonFrame from '@/components/content-edit-page-frame/(components)/button-frame';
@@ -115,7 +115,6 @@ const ContentCreatePage = memo(() => {
             이미지 초기화
           </ButtonFrame>
         </div>
-
         <div className={s.titleInputBox}>
           <CustomTextarea placeholder="여행의 제목을 달아주세요!" value={title} onChange={(e: string) => setTitle(e)} />
         </div>

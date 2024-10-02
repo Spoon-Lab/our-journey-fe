@@ -4,10 +4,12 @@ import { useCallback, useState } from 'react';
 import type { Tag } from '@/types/tags';
 
 import useCreateTag from './use-create-tag';
+import { useToast } from '../use-toast';
 
 export function useTagManagement() {
   const [tags, setTags] = useState<Array<Tag>>([]);
   const createTagMutation = useCreateTag();
+  const { addToast } = useToast();
 
   const addTag = useCallback(
     async (tagName: string) => {
@@ -19,16 +21,15 @@ export function useTagManagement() {
         setTags((prevTags) => [...prevTags, { tagId: result.tagId, tagName }]);
         console.log('Tag added:', { id: result.tagId, name: tagName });
       } catch (error) {
-        console.error('Failed to create tag:', error);
+        addToast('태그 추가에 실패하였습니다.', 'error');
       }
     },
-    [tags, createTagMutation],
+    [tags, createTagMutation, addToast],
   );
 
   const removeTag = useCallback((tagName: string) => {
     setTags((prevTags) => {
       const newTags = prevTags.filter((tag) => tag.tagName !== tagName);
-      console.log('Tags after removal:', newTags);
       return newTags;
     });
   }, []);

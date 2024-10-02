@@ -2,6 +2,8 @@ import type { PaginationParams } from '@/types/pagination';
 import type { Thread, ThreadPostRequest, ThreadResponse } from '@/types/threads';
 import { API_PATHS } from '@/constants/api';
 
+import type { CreateThreadReqBody } from '@/hooks/threads/use-create-thread';
+
 import axiosInstance from './axios';
 
 export const getAllThreads = async <T = ThreadResponse>(contentId: number, paginationParams: PaginationParams): Promise<T> => {
@@ -9,7 +11,7 @@ export const getAllThreads = async <T = ThreadResponse>(contentId: number, pagin
   return response.data;
 };
 
-export const createThread = async <T = Thread>(contentId: number, data: ThreadPostRequest): Promise<T> => {
+export const createThread = async <T = Thread>(contentId: number, data: CreateThreadReqBody): Promise<T> => {
   const response = await axiosInstance.post<T>(API_PATHS.THREADS.POST(contentId), data);
   return response.data;
 };

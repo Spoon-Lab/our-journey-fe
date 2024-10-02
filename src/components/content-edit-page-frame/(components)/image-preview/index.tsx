@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import Image from 'next/image';
 
 import s from './style.module.scss';
@@ -7,21 +7,19 @@ interface ImagePreviewProps {
   imageFile: File | string;
 }
 
-export default function ImagePreview({ imageFile }: ImagePreviewProps) {
-  console.log(imageFile);
-  console.log(typeof imageFile);
+const ImagePreview = memo(
+  ({ imageFile }: ImagePreviewProps) => {
+    const imageUrl = typeof imageFile === 'string' ? imageFile : URL.createObjectURL(imageFile);
 
-  if (typeof imageFile === 'string') {
     return (
       <div className={s.imagePreview}>
-        <Image src={imageFile} alt="이미지 미리보기" layout="fill" objectFit="cover" />
+        <Image src={imageUrl} alt="이미지 미리보기" layout="fill" objectFit="cover" />
       </div>
     );
-  }
-  const previewUrl = URL.createObjectURL(imageFile);
-  return (
-    <div className={s.imagePreview}>
-      <Image src={previewUrl} alt="이미지 미리보기" layout="fill" objectFit="cover" />
-    </div>
-  );
-}
+  },
+  (prevProps, nextProps) => prevProps.imageFile === nextProps.imageFile,
+);
+
+ImagePreview.displayName = 'ImagePreview';
+
+export default ImagePreview;

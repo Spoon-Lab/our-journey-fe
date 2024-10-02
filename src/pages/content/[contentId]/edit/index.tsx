@@ -1,13 +1,10 @@
 import { useEffect, useState } from 'react';
 
-import { checkValidImgUrl } from '@/utils/check-valid-image-url';
-
-import useCreateContent from '@/hooks/contents/use-create-content';
 import { useEditContent } from '@/hooks/contents/use-edit-content';
 import useGetOneContent from '@/hooks/contents/use-get-one-content';
 import { useUploadImagesToServer } from '@/hooks/photo/use-upload-images';
 import { useGetRouteParamNumber } from '@/hooks/use-get-route-param-number';
-import { useImagesUploadToLocal } from '@/hooks/use-image-upload';
+import { useImagesUploadToLocal } from '@/hooks/use-image-upload-local';
 import { useTags } from '@/hooks/use-tags';
 import { useToast } from '@/hooks/use-toast';
 

@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 
+import { useUploadImagesToServer } from '@/hooks/photo/use-upload-images';
+import { useTagManagement } from '@/hooks/tags/use-tag-management';
 import { useCreateThreads } from '@/hooks/threads/use-create-thread';
 import { useGetRouteParamNumber } from '@/hooks/use-get-route-param-number';
-import { useImageUpload } from '@/hooks/use-image-upload';
-import { useTags } from '@/hooks/use-tags';
+import { useImagesUploadToLocal } from '@/hooks/use-image-upload-local';
 import { useToast } from '@/hooks/use-toast';
 
+import ButtonFrame from '@/components/content-edit-page-frame/(components)/button-frame';
 import CustomTextarea from '@/components/content-edit-page-frame/(components)/custom-textarea';
 import EditHeader from '@/components/content-edit-page-frame/(components)/edit-header';
 import DropZone from '@/components/content-edit-page-frame/(components)/image-drop-zone';
@@ -17,36 +19,76 @@ import s from './style.module.scss';
 
 export default function ContentCreatePage() {
   const { mutate: createThread } = useCreateThreads();
+  const { mutate: uploadImages } = useUploadImagesToServer();
   const contentId = useGetRouteParamNumber('contentId');
-  const { imagePreview, getRootProps, getInputProps, isDragActive } = useImageUpload();
-  const { tags, newTag, setNewTag, addTag, removeTag } = useTags();
+  const { uploadImageFile, getRootProps, getInputProps, isDragActive, resetImage } = useImagesUploadToLocal();
+  const { tags, addTag, removeTag } = useTagManagement();
   const [content, setContent] = useState('');
   const [isPostButtonEnabled, setIsPostButtonEnabled] = useState(false);
 
   const { addToast } = useToast();
 
   const handleSubmit = () => {
-    createThread(
-      {
-        reqBody: {
-          texts: content,
-          tagIds: [],
-          threadImg: imagePreview || '',
+    if (!content) {
+      addToast('세부 내용을 입력해주세요.', 'error');
+      return;
+    }
+    if (uploadImageFile && typeof uploadImageFile !== 'string') {
+      uploadImages(
+        { imageType: 'content', images: [uploadImageFile] },
+        {
+          onSuccess: (uploadImageData) => {
+            const uploadedImageUrl: string[] = uploadImageData.image_url;
+            createThread(
+              {
+                contentId,
+                reqBody: {
+                  texts: content,
+                  tagIds: tags.map((tag) => tag.tagId),
+                  threadImg: uploadedImageUrl[0],
+                },
+              },
+              {
+                onSuccess: () => {
+                  addToast('발행이 성공되었습니다!', 'success');
+                  setTimeout(() => {
+                    window.location.href = `/content/${contentId}`;
+                  }, 3000);
+                },
+                onError: () => {
+                  addToast('새 글 발행이 실패하였습니다.', 'error');
+                },
+              },
+            );
+          },
+          onError: (error) => {
+            addToast(`이미지 업로드에 실패하였습니다. ${error.message}`, 'error');
+          },
         },
-        contentId,
-      },
-      {
-        onSuccess: () => {
-          addToast('발행이 성공되었습니다!', 'success');
-          setTimeout(() => {
-            window.location.href = `/content/${contentId}`;
-          }, 3000);
+      );
+    } else {
+      createThread(
+        {
+          contentId,
+          reqBody: {
+            texts: content,
+            tagIds: tags.map((tag) => tag.tagId),
+            threadImg: '',
+          },
         },
-        onError: () => {
-          addToast('발행을 실패하였습니다.', 'error');
+        {
+          onSuccess: () => {
+            addToast('발행이 성공되었습니다!', 'success');
+            setTimeout(() => {
+              window.location.href = `/content/${contentId}`;
+            }, 3000);
+          },
+          onError: () => {
+            addToast('발행을 실패하였습니다.', 'error');
+          },
         },
-      },
-    );
+      );
+    }
   };
 
   useEffect(() => {
@@ -68,15 +110,20 @@ export default function ContentCreatePage() {
         }}
       />
       <div className={s.imageSection}>
-        <DropZone getRootProps={getRootProps} getInputProps={getInputProps} isDragActive={isDragActive} hasImage={!!imagePreview}>
-          {imagePreview && <ImagePreview src={imagePreview} />}
+        <DropZone getRootProps={getRootProps} getInputProps={getInputProps} isDragActive={isDragActive} hasImage={!!uploadImageFile}>
+          {uploadImageFile && <ImagePreview imageFile={uploadImageFile} />}
         </DropZone>
       </div>
       <div className={s.contentSection}>
+        <div className={s.wrapActions}>
+          <ButtonFrame onclick={resetImage} disabled={!uploadImageFile}>
+            이미지 초기화
+          </ButtonFrame>
+        </div>
         <div className={s.textAreaBox}>
           <CustomTextarea placeholder="여행 내용을 입력해주세요!" value={content} onChange={(e: string) => setContent(e)} />
         </div>
-        <TagInput tags={tags} newTag={newTag} setNewTag={setNewTag} addTag={addTag} removeTag={removeTag} />
+        <TagInput tags={tags} addTag={addTag} removeTag={removeTag} />
       </div>
       <div className={s.divider} />
       <div className={s.buttonSection}>
