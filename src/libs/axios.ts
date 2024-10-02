@@ -55,12 +55,10 @@ axiosInstance.interceptors.response.use(
             return axiosInstance(originalConfig);
           }
         } catch (refreshError) {
-          const queryClient = useQueryClient();
-
           // TODO:로그아웃 처리?
           localStorage.clear();
-          queryClient.clear();
           window.location.href = '/login';
+          return Promise.reject(refreshError);
         }
       }
     }
