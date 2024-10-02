@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { API_PATHS } from '@/constants/api';
 import { ROUTES } from '@/constants/router';
 
-import axiosAuthInstance from '@/libs/auth-axios';
+import { axiosBasicAuthInstance } from '@/libs/auth-axios';
 
 import { useToast } from '../use-toast';
 
@@ -17,7 +17,7 @@ interface ResetPasswordProps {
 }
 
 const resetPassword = async ({ uid64, token, new_password1, new_password2 }: ResetPasswordProps) => {
-  const res = await axiosAuthInstance.post(`${API_PATHS.AUTH.PASSWORD.CHANGE.POST(uid64, token)}`, {
+  const res = await axiosBasicAuthInstance.post(`${API_PATHS.AUTH.PASSWORD.CHANGE.POST(uid64, token)}`, {
     new_password1,
     new_password2,
   });

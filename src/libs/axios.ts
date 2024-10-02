@@ -5,7 +5,7 @@ import axios from 'axios';
 
 import { API_PATHS } from '@/constants/api';
 
-import { axiosRefreshInstance, type CustomAxiosRequestConfig } from './auth-axios';
+import { axiosBasicAuthInstance, type CustomAxiosRequestConfig } from './auth-axios';
 
 const axiosConfig = {
   baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
@@ -41,7 +41,7 @@ axiosInstance.interceptors.response.use(
 
       if (refresh) {
         try {
-          const { data } = await axiosRefreshInstance.post<{ access: string }>(`${API_PATHS.AUTH.TOKEN.REFRESH.POST()}`, { refresh });
+          const { data } = await axiosBasicAuthInstance.post<{ access: string }>(`${API_PATHS.AUTH.TOKEN.REFRESH.POST()}`, { refresh });
 
           if (data?.access) {
             localStorage.setItem('accessToken', data.access);

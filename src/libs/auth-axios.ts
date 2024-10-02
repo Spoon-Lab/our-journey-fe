@@ -16,7 +16,8 @@ const axiosConfig = {
 
 const axiosAuthInstance = axios.create(axiosConfig);
 
-export const axiosRefreshInstance = axios.create({
+// token이 헤더에 들어가지 않는 인스턴스 입니다
+export const axiosBasicAuthInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_AUTH_URL,
   headers: {
     'Content-Type': 'application/json',
@@ -48,7 +49,7 @@ axiosAuthInstance.interceptors.response.use(
 
       if (refresh) {
         try {
-          const { data } = await axiosRefreshInstance.post<{ access: string }>(`${API_PATHS.AUTH.TOKEN.REFRESH.POST()}`, { refresh });
+          const { data } = await axiosBasicAuthInstance.post<{ access: string }>(`${API_PATHS.AUTH.TOKEN.REFRESH.POST()}`, { refresh });
 
           if (data?.access) {
             localStorage.setItem('accessToken', data.access);

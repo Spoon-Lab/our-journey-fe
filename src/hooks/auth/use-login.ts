@@ -6,12 +6,12 @@ import type { Login, LoginResponse } from '@/types/auth';
 import { API_PATHS } from '@/constants/api';
 import { ROUTES } from '@/constants/router';
 
-import axiosAuthInstance from '@/libs/auth-axios';
+import { axiosBasicAuthInstance } from '@/libs/auth-axios';
 
 import { useToast } from '../use-toast';
 
 const login = async ({ email, password }: Login) => {
-  const { data } = await axiosAuthInstance.post<LoginResponse>(`${API_PATHS.AUTH.LOGIN.POST()}`, { email, password });
+  const { data } = await axiosBasicAuthInstance.post<LoginResponse>(`${API_PATHS.AUTH.LOGIN.POST()}`, { email, password });
 
   return data;
 };

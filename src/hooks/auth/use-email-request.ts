@@ -5,12 +5,12 @@ import { useRouter } from 'next/router';
 import { API_PATHS } from '@/constants/api';
 import { ROUTES } from '@/constants/router';
 
-import axiosAuthInstance from '@/libs/auth-axios';
+import { axiosBasicAuthInstance } from '@/libs/auth-axios';
 
 import { useToast } from '../use-toast';
 
 const requestEmail = async ({ email }: { email: string }) => {
-  const res = await axiosAuthInstance.post(`${API_PATHS.AUTH.PASSWORD.RESET.POST()}`, {
+  const res = await axiosBasicAuthInstance.post(`${API_PATHS.AUTH.PASSWORD.RESET.POST()}`, {
     email,
   });
 
