@@ -10,7 +10,7 @@ import { useDynamicInput } from '@/hooks/use-input-width';
 import s from './style.module.scss';
 
 interface TagInputProps {
-  addTag: (tagName: string) => void;
+  addTag: (tagName: string, tagId?: number) => void;
   removeTag: (tagName: string) => void;
   tags: Array<Tag>;
 }
@@ -45,8 +45,8 @@ export default function TagInput({ addTag, removeTag, tags }: TagInputProps) {
     }
   }, [newTag, adjustWidth]);
 
-  const handleSuggestionClick = (tagName: string) => {
-    void addTag(tagName);
+  const handleSuggestionClick = (tagName: string, tagId: number) => {
+    void addTag(tagName, tagId);
     setNewTag('');
     resetSuggestions();
     if (typeof adjustWidth === 'function') {
@@ -61,7 +61,7 @@ export default function TagInput({ addTag, removeTag, tags }: TagInputProps) {
       e.preventDefault();
       const selectedTag = suggestedTags?.list.content[selectedIndex];
       if (selectedTag) {
-        void addTag(selectedTag.tagName);
+        void addTag(selectedTag.tagName, selectedTag.tagId);
         setNewTag('');
         resetSuggestions();
         if (typeof adjustWidth === 'function') {
@@ -91,7 +91,12 @@ export default function TagInput({ addTag, removeTag, tags }: TagInputProps) {
             {!isLoading &&
               isSuccess &&
               suggestedTags?.list.content.map((tag: Tag, index: number) => (
-                <button type="button" key={index} onClick={() => handleSuggestionClick(tag.tagName)} className={index === selectedIndex ? s.selected : ''}>
+                <button
+                  type="button"
+                  key={index}
+                  onClick={() => handleSuggestionClick(tag.tagName, tag.tagId)}
+                  className={index === selectedIndex ? s.selected : ''}
+                >
                   {tag.tagName}
                 </button>
               ))}

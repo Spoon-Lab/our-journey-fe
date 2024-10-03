@@ -2,32 +2,32 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'images.pixels.com',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: process.env.NEXT_PUBLIC_IMAGE_HOST_URL,
-        port: '',
-        pathname: '/media/content/**',
-      },
-      {
-        protocol: 'https',
-        hostname: process.env.NEXT_PUBLIC_IMAGE_HOST_URL,
-        port: '',
-        pathname: '/media/profile/**',
-      },
-    ],
+    // remotePatterns: [
+    //   {
+    //     protocol: 'https',
+    //     hostname: 'images.unsplash.com',
+    //     port: '',
+    //     pathname: '/**',
+    //   },
+    //   {
+    //     protocol: 'https',
+    //     hostname: 'images.pixels.com',
+    //     port: '',
+    //     pathname: '/**',
+    //   },
+    //   {
+    //     protocol: 'https',
+    //     hostname: process.env.NEXT_PUBLIC_IMAGE_HOST_URL,
+    //     port: '',
+    //     pathname: '/media/content/**',
+    //   },
+    //   {
+    //     protocol: 'https',
+    //     hostname: process.env.NEXT_PUBLIC_IMAGE_HOST_URL,
+    //     port: '',
+    //     pathname: '/media/profile/**',
+    //   },
+    // ],
   },
   webpack(config) {
     const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.('.svg'));

@@ -2,7 +2,7 @@ import { useCallback, useMemo, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 
 export const useImagesUploadToLocal = () => {
-  const [uploadImageFile, setUploadImageFile] = useState<File | string | null>(null);
+  const [uploadImageFile, setUploadImageFile] = useState<File | string>('');
   const [fileFormat, setFileFormat] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -17,7 +17,7 @@ export const useImagesUploadToLocal = () => {
         setFileFormat(format);
         setErrorMessage(null);
       } else {
-        setUploadImageFile(null);
+        setUploadImageFile('');
         setFileFormat(null);
         setErrorMessage('Unsupported file format. Please upload PNG, JPG, JPEG, WEBP, or GIF.');
       }
@@ -31,7 +31,7 @@ export const useImagesUploadToLocal = () => {
   });
 
   const resetImage = () => {
-    setUploadImageFile(null);
+    setUploadImageFile('');
   };
 
   return {

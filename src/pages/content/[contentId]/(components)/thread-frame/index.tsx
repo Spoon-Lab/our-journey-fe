@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import type { Tag } from '@/types/threads';
 import { ROUTES } from '@/constants/router';
 
 import { checkValidImgUrl } from '@/utils/check-valid-image-url';
@@ -13,7 +12,7 @@ import { useToast } from '@/hooks/use-toast';
 
 import ContentsDropdownActionMenu from '../dropdown-action-menu';
 import ImageZoomedModal from '../image-zoomed-modal';
-import WrapTags from '../wrap-tags';
+import WrapTag from '../wrap-tag';
 
 import s from './style.module.scss';
 
@@ -25,7 +24,7 @@ interface ThreadFrameProps {
   image?: string;
   isWriter?: boolean;
   profileId: number;
-  tags: Tag[];
+  tags: string[];
   threadContent: string;
   threadId: number;
   writerIcon?: string;
@@ -102,7 +101,7 @@ export default function ThreadFrame({
         )}
       </div>
 
-      {image && checkValidImgUrl(image) && (
+      {image && (
         <div className={s.threadImage} onClick={() => openModal()}>
           <Image src={image} alt="thread-image" layout="fill" objectFit="cover" />
         </div>
@@ -115,8 +114,7 @@ export default function ThreadFrame({
         </div>
         {threadContent}
       </div>
-      <WrapTags tags={tags} />
-
+      <div className={s.wrapTags}>{tags && tags.map((tag, idx) => tag && <WrapTag key={idx} tag={tag} />)}</div>
       {isModalOpen && image && <ImageZoomedModal imageSrc={image} onClose={closeModal} />}
     </div>
   );

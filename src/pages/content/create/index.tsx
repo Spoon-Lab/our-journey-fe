@@ -99,7 +99,7 @@ const ContentCreatePage = memo(() => {
   }, [title]);
 
   return (
-    <div className={s.editContainer}>
+    <div className={s.createContainer}>
       <EditHeader
         titleText="새 글 작성하기"
         onClick={() => {

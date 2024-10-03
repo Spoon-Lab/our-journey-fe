@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { usePortal } from '@/hooks/use-portal';
 
@@ -17,11 +17,22 @@ export default function Modal({ children, onClose }: ModalProps) {
     setIsVisible(true);
   }, []);
 
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      if (e.target === e.currentTarget) {
+        onClose();
+      }
+    },
+    [onClose],
+  );
+
   return portal(
     isVisible && (
       <>
+        <div className={s.modalContent} onClick={handleClick}>
+          {children}
+        </div>
         <div className={s.dimmer} onClick={onClose} />
-        <div className={s.modalContent}>{children}</div>
       </>
     ),
   );

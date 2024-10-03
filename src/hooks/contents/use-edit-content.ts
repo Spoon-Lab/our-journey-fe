@@ -3,11 +3,10 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import type { Thread } from '@/types/threads';
 
 import { editContent } from '@/libs/content-service';
-import { patchThread } from '@/libs/threads-services';
 
 export interface EditContentReqBody {
   imgUrl: string;
-  // tags: number[];
+  tags: number[];
   title: string;
 }
 
