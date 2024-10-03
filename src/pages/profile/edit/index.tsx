@@ -1,4 +1,4 @@
-import { type ReactNode, useState } from 'react';
+import { type ReactNode, useEffect, useState } from 'react';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -39,10 +39,19 @@ export default function Edit() {
     resolver: yupResolver(userInfoSchema),
     mode: 'onBlur',
     defaultValues: {
-      nickname: profile?.nickname || '',
-      selfIntroduction: profile?.selfIntroduction || '',
+      nickname: profile?.nickname,
+      selfIntroduction: profile?.selfIntroduction,
     },
   });
+
+  useEffect(() => {
+    if (profile) {
+      reset({
+        nickname: profile.nickname,
+        selfIntroduction: profile.selfIntroduction,
+      });
+    }
+  }, [profile, reset]);
 
   const changedNickname = watch('nickname');
   const changedIntroduction = watch('selfIntroduction');
