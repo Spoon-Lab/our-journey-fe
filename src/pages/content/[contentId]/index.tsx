@@ -13,7 +13,7 @@ import ThreadFrame from './(components)/thread-frame';
 import s from './style.module.scss';
 
 export default function DetailPage() {
-  const { isScrolled, scrollPercent } = useScroll(370);
+  const { isScrolled, scrollPercent } = useScroll(30);
 
   const contentId = useGetRouteParamNumber('contentId');
   const { data: fetchedContent, isLoading: isFetching, isSuccess: successFetchingContent, error: errContentFetching } = useGetOneContent(contentId);
@@ -22,20 +22,18 @@ export default function DetailPage() {
   return (
     <div className={s.detailPage}>
       <ProgressBarHeader isScrolled={isScrolled} scrollPercent={scrollPercent}>
-        {/* TODO: 작성자 여부에 따른 권한 설정 */}
-        <ContentHeader contentId={contentId} isWriter />
-        {/* <ContentHeader contentId={contentId} isWriter={fetchedContent?.isEditable ?? false} /> */}
+        <ContentHeader contentId={contentId} isWriter={fetchedContent?.isEditable ?? false} />
       </ProgressBarHeader>
       {/* TODO: Add logic for handling loading state and empty content data */}
-      {successFetchingContent && fetchedContent && <ContentCover content={fetchedContent} />}
+      {successFetchingContent && fetchedContent && <ContentCover content={fetchedContent} user={fetchedContent.contentProfileDto} />}
       <div className={s.wrapBody}>
         <ContentSection
           contentId={contentId}
-          initialLiked={false}
+          initialLiked={fetchedContent?.isLiked || false}
           comments={fetchedContent?.commentCount || 0}
           likes={fetchedContent?.likeCount || 0}
           period={fetchedContent?.updatedAt || ''}
-          // tags={fetchedContent?. || []}
+          tags={Array.isArray(fetchedContent?.tags) ? fetchedContent.tags : []}
           postContent={fetchedContent?.title || ''}
         />
         <div className={s.divider} />
@@ -47,9 +45,10 @@ export default function DetailPage() {
                 key={idx}
                 threadContent={thread.texts}
                 writerName={thread.profileThreadDto.nickName}
+                writerIcon={thread.profileThreadDto.imgUrl}
                 tags={thread.tagNames}
                 image={thread.threadImg}
-                isWriter
+                isWriter={thread.isEditable}
                 threadId={thread.threadId}
                 contentId={contentId}
                 date={thread.createdAt}

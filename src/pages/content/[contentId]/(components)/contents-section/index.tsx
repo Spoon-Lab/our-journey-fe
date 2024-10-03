@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import router from 'next/router';
 
+import type { Tag } from '@/types/threads';
+
 import { checkLoggedIn } from '@/utils/check-logged-in';
 import { copyUrlToClipboard } from '@/utils/copy-url-to-clipboard';
 
@@ -25,7 +27,7 @@ interface ContentSectionProps {
   likes: number;
   period?: string;
   postContent?: string;
-  tags?: string[];
+  tags: Tag[];
 }
 
 export default function ContentSection({ contentId, comments, initialLiked, likes, period, tags, postContent }: ContentSectionProps) {
@@ -89,26 +91,26 @@ export default function ContentSection({ contentId, comments, initialLiked, like
         <span>{period}</span>
       </div> */}
       {/* <p className={s.postContent}>{postContent}</p> */}
-      {/* <WrapTags tags={tags} /> */}
+      <WrapTags tags={tags} />
       <div className={s.postActions}>
         <div className={s.wrapActions}>
           <BtnFrame onClick={handleLikeBtn}>
             {isLiked ? <FavoriteIconFilled alt="favorite-icon" width={18} height={18} /> : <FavoriteIconNoFill alt="favorite-icon" width={18} height={18} />}
           </BtnFrame>
-          {/* <BtnFrame
+          <BtnFrame
             onClick={() => {
               console.log('clicked comments button!');
             }}
           >
             <MessageIcon alt="comments-icon" width={18} height={18} />
-          </BtnFrame> */}
+          </BtnFrame>
           <BtnFrame onClick={handleShareClick}>
             <ShareIcon alt="share-icon" width={18} height={18} />
           </BtnFrame>
         </div>
         <div className={s.wrapActionCounts}>
           <span>좋아요 {likes}</span>
-          {/* <span>댓글 {comments}</span> */}
+          <span>댓글 {comments}</span>
         </div>
       </div>
     </section>

@@ -21,6 +21,12 @@ const nextConfig = {
         port: '',
         pathname: '/media/content/**',
       },
+      {
+        protocol: 'https',
+        hostname: process.env.NEXT_PUBLIC_IMAGE_HOST_URL,
+        port: '',
+        pathname: '/media/profile/**',
+      },
     ],
   },
   webpack(config) {

@@ -1,4 +1,5 @@
 import { memo, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 import useCreateContent from '@/hooks/contents/use-create-content';
 import { useSelectCategories } from '@/hooks/contents/use-select-categories';
@@ -19,6 +20,8 @@ import PostButton from '@/components/post-button';
 import s from './style.module.scss';
 
 const ContentCreatePage = memo(() => {
+  const router = useRouter();
+
   const { mutate: createContent } = useCreateContent();
   const { mutate: uploadImages } = useUploadImagesToServer();
 
@@ -100,7 +103,7 @@ const ContentCreatePage = memo(() => {
       <EditHeader
         titleText="새 글 작성하기"
         onClick={() => {
-          window.history.back();
+          void router.push('/main');
         }}
       />
       <div className={s.imageSection}>
