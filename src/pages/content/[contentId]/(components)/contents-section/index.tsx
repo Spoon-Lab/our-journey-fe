@@ -15,7 +15,7 @@ import { useToast } from '@/hooks/use-toast';
 import Modal from '@/components/modal';
 
 import BtnFrame from '../btn-frame';
-import WrapTags from '../wrap-tags';
+import WrapTag from '../wrap-tag';
 
 import s from './style.module.scss';
 
@@ -89,7 +89,11 @@ export default function ContentSection({ contentId, comments, initialLiked, like
           rightBtnClick={() => router.push('/login')}
         />
       )}
-      <WrapTags tags={tags} />
+      <div className={s.wrapTags}>
+        {tags.map((tag, idx) => (
+          <WrapTag key={idx} tag={tag.tagName} />
+        ))}
+      </div>
       <div className={s.postActions}>
         <div className={s.wrapActions}>
           <BtnFrame onClick={handleLikeBtn}>

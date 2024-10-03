@@ -35,7 +35,7 @@ export interface Thread {
   isEditable: boolean;
   isRemovable: boolean;
   profileThreadDto: ThreadWriterDto;
-  tagNames: Tag[];
+  tagNames: string[];
   texts: string;
   threadId: number;
   threadImg: string;

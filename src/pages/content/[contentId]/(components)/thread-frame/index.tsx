@@ -1,8 +1,6 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import type { Tag } from '@/types/threads';
-
 import { checkValidImgUrl } from '@/utils/check-valid-image-url';
 import { defaultFormatTimeStamp } from '@/utils/format-date-timestamp';
 
@@ -12,7 +10,7 @@ import { useToast } from '@/hooks/use-toast';
 
 import ContentsDropdownActionMenu from '../dropdown-action-menu';
 import ImageZoomedModal from '../image-zoomed-modal';
-import WrapTags from '../wrap-tags';
+import WrapTag from '../wrap-tag';
 
 import s from './style.module.scss';
 
@@ -23,7 +21,7 @@ interface ThreadFrameProps {
   date: string;
   image?: string;
   isWriter?: boolean;
-  tags: Tag[];
+  tags: string[];
   threadContent: string;
   threadId: number;
   writerIcon?: string;
@@ -102,8 +100,7 @@ export default function ThreadFrame({ isWriter = true, threadContent, writerName
         </div>
         {threadContent}
       </div>
-      <WrapTags tags={tags} />
-
+      <div className={s.wrapTags}>{tags.map((tag, idx) => tag && <WrapTag key={idx} tag={tag} />)}</div>
       {isModalOpen && image && <ImageZoomedModal imageSrc={image} onClose={closeModal} />}
     </div>
   );
