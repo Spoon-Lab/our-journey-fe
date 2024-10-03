@@ -1,7 +1,7 @@
 @import '@/styles';
 
 @mixin text-ellipsis {
-  width: 200px;
+  width: 230px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -29,7 +29,7 @@
   height: 66px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   gap: 6px;
 
   h1 {
@@ -38,12 +38,6 @@
     color: $gray-50;
     @include text-ellipsis;
   }
-}
-
-.contentBox {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
 }
 
 .content {
