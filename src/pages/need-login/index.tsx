@@ -8,7 +8,7 @@ import AuthLayout from '@/components/layouts/auth-layout';
 
 import s from './style.module.scss';
 
-export default function Login() {
+export default function NeedLogin() {
   return (
     <main className={s.loginContainer}>
       <div className={s.textContainer}>
@@ -29,7 +29,7 @@ export default function Login() {
   );
 }
 
-Login.getLayout = (page: ReactNode) => (
+NeedLogin.getLayout = (page: ReactNode) => (
   <AuthLayout>
     <AuthHeader />
     {page}
