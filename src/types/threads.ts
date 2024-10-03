@@ -4,10 +4,11 @@ export interface Content {
   contentProfileDto: ContentWriterDto;
   createdAt: string;
   isEditable: boolean;
+  isLiked: boolean;
   isRemovable: boolean;
   likeCount: number;
   postImg: string;
-  tags: Tag;
+  tags: Tag[];
   title: string;
   updatedAt: string;
 }
@@ -34,7 +35,7 @@ export interface Thread {
   isEditable: boolean;
   isRemovable: boolean;
   profileThreadDto: ThreadWriterDto;
-  tagNames: string[];
+  tagNames: Tag[];
   texts: string;
   threadId: number;
   threadImg: string;

@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
+import type { Tag } from '@/types/threads';
+
 import { checkValidImgUrl } from '@/utils/check-valid-image-url';
 import { defaultFormatTimeStamp } from '@/utils/format-date-timestamp';
 
@@ -21,7 +23,7 @@ interface ThreadFrameProps {
   date: string;
   image?: string;
   isWriter?: boolean;
-  tags: string[];
+  tags: Tag[];
   threadContent: string;
   threadId: number;
   writerIcon?: string;

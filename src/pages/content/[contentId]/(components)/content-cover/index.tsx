@@ -2,7 +2,6 @@ import Image from 'next/image';
 
 import type { Content, ContentWriterDto } from '@/types/threads';
 
-import { checkValidImgUrl } from '@/utils/check-valid-image-url';
 import { formatTimeStamp } from '@/utils/format-date-timestamp';
 
 import ParallaxImage from '../parallax-image';

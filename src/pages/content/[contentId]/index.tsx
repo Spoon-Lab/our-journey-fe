@@ -29,7 +29,7 @@ export default function DetailPage() {
       <div className={s.wrapBody}>
         <ContentSection
           contentId={contentId}
-          initialLiked={false}
+          initialLiked={fetchedContent?.isLiked || false}
           comments={fetchedContent?.commentCount || 0}
           likes={fetchedContent?.likeCount || 0}
           period={fetchedContent?.updatedAt || ''}
@@ -45,6 +45,7 @@ export default function DetailPage() {
                 key={idx}
                 threadContent={thread.texts}
                 writerName={thread.profileThreadDto.nickName}
+                writerIcon={thread.profileThreadDto.imgUrl}
                 tags={thread.tagNames}
                 image={thread.threadImg}
                 isWriter={thread.isEditable}
