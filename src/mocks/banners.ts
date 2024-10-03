@@ -17,7 +17,7 @@ export const Banners = [
     bannerId: '58',
     chipText: ['태국', '워케이션', '코워킹스페이스'],
     contentId: '58',
-    src: 'http://localhost:3000/_next/image?url=https%3A%2F%2Fspoon-ourjourney.s3.ap-northeast-2.amazonaws.com%2Fmedia%2Fcontent%2F20230607_203632.jpg&w=2048&q=75',
+    src: 'https://our-journey-fe.vercel.app/_next/image?url=https%3A%2F%2Fspoon-ourjourney.s3.ap-northeast-2.amazonaws.com%2Fmedia%2Fcontent%2F20230607_203632.jpg&w=2048&q=75',
     title: '방콕에서의 워케이션을 꿈꾸는\n히치하이커를 위한 안내서',
   },
 ];
