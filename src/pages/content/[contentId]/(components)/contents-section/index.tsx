@@ -90,9 +90,7 @@ export default function ContentSection({ contentId, comments, initialLiked, like
         />
       )}
       <div className={s.wrapTags}>
-        {tags.map((tag, idx) => (
-          <WrapTag key={idx} tag={tag.tagName} />
-        ))}
+        <div className={s.wrapTags}>{tags && tags.map((tag, idx) => <WrapTag key={idx} tag={tag.tagName} />)}</div>
       </div>
       <div className={s.postActions}>
         <div className={s.wrapActions}>

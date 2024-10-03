@@ -114,7 +114,7 @@ export default function ThreadFrame({
         </div>
         {threadContent}
       </div>
-      <div className={s.wrapTags}>{tags.map((tag, idx) => tag && <WrapTag key={idx} tag={tag} />)}</div>
+      <div className={s.wrapTags}>{tags && tags.map((tag, idx) => tag && <WrapTag key={idx} tag={tag} />)}</div>
       {isModalOpen && image && <ImageZoomedModal imageSrc={image} onClose={closeModal} />}
     </div>
   );
