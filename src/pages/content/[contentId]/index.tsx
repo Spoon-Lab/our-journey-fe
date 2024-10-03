@@ -52,7 +52,7 @@ export default function DetailPage() {
                 date={thread.createdAt}
               />
             ))}
-          <AddThreadBtn contentId={contentId} />
+          {fetchedContent?.isEditable && <AddThreadBtn contentId={contentId} />}
         </div>
       </div>
     </div>
