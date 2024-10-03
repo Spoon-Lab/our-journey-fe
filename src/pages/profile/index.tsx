@@ -23,7 +23,7 @@ import s from './style.module.scss';
 
 import { ArrowDownIcon, ArrowUpIcon, ArticleIcon, DefaultProfile, ForwardIcon, PersonIcon } from '@/assets/icons';
 
-export default function Profile() {
+export default function MyProfile() {
   const router = useRouter();
   const [openContents, setOpenContents] = useState<boolean>(false);
   const { data, isPending, fetchNextPage, hasNextPage, isError } = useGetMyContents({ open: openContents });
@@ -108,7 +108,7 @@ export default function Profile() {
   );
 }
 
-Profile.getLayout = (page: ReactNode) => (
+MyProfile.getLayout = (page: ReactNode) => (
   <ProfileLayout>
     {page}
     <NavBar />
