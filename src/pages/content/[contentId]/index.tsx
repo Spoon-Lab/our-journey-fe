@@ -22,12 +22,10 @@ export default function DetailPage() {
   return (
     <div className={s.detailPage}>
       <ProgressBarHeader isScrolled={isScrolled} scrollPercent={scrollPercent}>
-        {/* TODO: 작성자 여부에 따른 권한 설정 */}
-        {/* <ContentHeader contentId={contentId} isWriter /> */}
         <ContentHeader contentId={contentId} isWriter={fetchedContent?.isEditable ?? false} />
       </ProgressBarHeader>
       {/* TODO: Add logic for handling loading state and empty content data */}
-      {successFetchingContent && fetchedContent && <ContentCover content={fetchedContent} />}
+      {successFetchingContent && fetchedContent && <ContentCover content={fetchedContent} user={fetchedContent.contentProfileDto} />}
       <div className={s.wrapBody}>
         <ContentSection
           contentId={contentId}

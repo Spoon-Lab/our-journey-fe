@@ -1,7 +1,7 @@
 export interface Content {
   commentCount: number;
   contentId: number;
-  // contentProfileDto: ProfileDto;
+  contentProfileDto: ProfileDto;
   createdAt: string;
   isEditable: boolean;
   isRemovable: boolean;
@@ -12,9 +12,9 @@ export interface Content {
 }
 
 export interface ProfileDto {
-  imgUrl: string;
-  nickName: string;
+  name: string;
   profileId: number;
+  profileImgUrl: string;
 }
 
 export interface Thread {
