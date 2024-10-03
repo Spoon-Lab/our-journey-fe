@@ -3,6 +3,7 @@ import Image from 'next/image';
 import type { Content, ContentWriterDto } from '@/types/threads';
 
 import { formatTimeStamp } from '@/utils/format-date-timestamp';
+import { randomDefaultImage } from '@/utils/random-default-image';
 
 import ParallaxImage from '../parallax-image';
 
@@ -40,7 +41,7 @@ export default function ContentCover({ content, user }: ContentCoverProps) {
         </div>
         <div className={s.imageWrapper}>
           <div className={s.imageGradient} />
-          {postImg ? <ParallaxImage src={postImg} alt="content-image" /> : <span className={s.invalidImage}>현재 유효하지 않은 이미지입니다.</span>}
+          {postImg ? <ParallaxImage src={postImg} alt="content-image" /> : <ParallaxImage src={randomDefaultImage(2)} alt="content-image" />}
         </div>
       </div>
     </div>

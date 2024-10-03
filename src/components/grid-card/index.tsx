@@ -5,6 +5,7 @@ import type { Content } from '@/types/contents';
 import { ROUTES } from '@/constants/router';
 
 import { formatDate } from '@/libs/date';
+import { randomDefaultImage } from '@/utils/random-default-image';
 
 import s from './style.module.scss';
 
@@ -13,7 +14,7 @@ export default function GridCard({ data }: { data: Content }) {
     return <div />;
   }
 
-  const postImage = data.postImg ? data.postImg : `/image-grid-card-default${Math.floor(Math.random() * 2) + 1}.webp`;
+  const postImage = data.postImg ? data.postImg : randomDefaultImage(2);
 
   return (
     <Link className={s.cardWrapper} href={ROUTES.content.detail(data.contentId)}>
