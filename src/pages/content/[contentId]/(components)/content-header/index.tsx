@@ -40,7 +40,7 @@ export default function ContentHeader({ contentId, isWriter }: ContentHeaderProp
     <>
       <BtnFrame
         onClick={() => {
-          window.history.back();
+          void router.push('/main');
         }}
       >
         <PrevIcon alt="prev-btn" width={24} height={24} />

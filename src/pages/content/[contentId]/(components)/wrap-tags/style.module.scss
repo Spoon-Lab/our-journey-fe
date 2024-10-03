@@ -4,10 +4,8 @@
   display: flex;
   gap: 3px;
 
-  @include regular-footnote;
-  color: $blue-500;
-
-  & > span {
-    cursor: pointer;
+  & > a {
+    @include regular-footnote;
+    color: $blue-500;
   }
 }

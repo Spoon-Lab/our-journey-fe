@@ -33,7 +33,7 @@ export default function DetailPage() {
           comments={fetchedContent?.commentCount || 0}
           likes={fetchedContent?.likeCount || 0}
           period={fetchedContent?.updatedAt || ''}
-          // tags={fetchedContent?. || []}
+          tags={Array.isArray(fetchedContent?.tags) ? fetchedContent.tags : []}
           postContent={fetchedContent?.title || ''}
         />
         <div className={s.divider} />

@@ -7,8 +7,14 @@ export interface Content {
   isRemovable: boolean;
   likeCount: number;
   postImg: string;
+  tags: Tag;
   title: string;
   updatedAt: string;
+}
+
+export interface Tag {
+  tagId: number;
+  tagName: string;
 }
 
 export interface ContentWriterDto {

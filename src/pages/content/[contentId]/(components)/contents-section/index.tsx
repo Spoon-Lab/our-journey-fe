@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import router from 'next/router';
 
+import type { Tag } from '@/types/threads';
+
 import { checkLoggedIn } from '@/utils/check-logged-in';
 import { copyUrlToClipboard } from '@/utils/copy-url-to-clipboard';
 
@@ -25,7 +27,7 @@ interface ContentSectionProps {
   likes: number;
   period?: string;
   postContent?: string;
-  tags?: string[];
+  tags: Tag[];
 }
 
 export default function ContentSection({ contentId, comments, initialLiked, likes, period, tags, postContent }: ContentSectionProps) {
@@ -89,7 +91,7 @@ export default function ContentSection({ contentId, comments, initialLiked, like
         <span>{period}</span>
       </div> */}
       {/* <p className={s.postContent}>{postContent}</p> */}
-      {/* <WrapTags tags={tags} /> */}
+      <WrapTags tags={tags} />
       <div className={s.postActions}>
         <div className={s.wrapActions}>
           <BtnFrame onClick={handleLikeBtn}>
