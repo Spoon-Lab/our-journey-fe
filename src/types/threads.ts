@@ -1,7 +1,7 @@
 export interface Content {
   commentCount: number;
   contentId: number;
-  contentProfileDto: ProfileDto;
+  contentProfileDto: ContentWriterDto;
   createdAt: string;
   isEditable: boolean;
   isRemovable: boolean;
@@ -11,15 +11,23 @@ export interface Content {
   updatedAt: string;
 }
 
-export interface ProfileDto {
+export interface ContentWriterDto {
   name: string;
   profileId: number;
   profileImgUrl: string;
 }
 
+export interface ThreadWriterDto {
+  imgUrl: string;
+  nickName: string;
+  profileId: number;
+}
+
 export interface Thread {
   createdAt: string;
-  profileThreadDto: ProfileDto;
+  isEditable: boolean;
+  isRemovable: boolean;
+  profileThreadDto: ThreadWriterDto;
   tagNames: string[];
   texts: string;
   threadId: number;

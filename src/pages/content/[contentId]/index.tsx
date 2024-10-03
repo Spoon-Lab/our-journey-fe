@@ -47,7 +47,7 @@ export default function DetailPage() {
                 writerName={thread.profileThreadDto.nickName}
                 tags={thread.tagNames}
                 image={thread.threadImg}
-                isWriter
+                isWriter={thread.isEditable}
                 threadId={thread.threadId}
                 contentId={contentId}
                 date={thread.createdAt}
