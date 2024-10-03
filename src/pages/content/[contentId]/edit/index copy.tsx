@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { image } from 'framer-motion/client';
 
 import { TOAST_MESSAGE } from '@/constants/toast-message';
 
@@ -36,33 +35,17 @@ export default function ContentEditPage() {
 
   const { addToast } = useToast();
 
-  useEffect(() => {
-    if (fetchedContent) {
-      setTitle(fetchedContent.title);
-      setTags(fetchedContent.tags);
-      setUploadImageFile(fetchedContent.postImg);
-    }
-  }, [fetchedContent]);
-
-  useEffect(() => {
-    const isEnabled = title.trim() !== '';
-    setIsPostButtonEnabled((prev) => {
-      if (prev !== isEnabled) {
-        return isEnabled;
-      }
-      return prev;
-    });
-  }, [title]);
-
   const handleSubmit = () => {
     if (!title) {
       addToast(TOAST_MESSAGE.CONTENT.ERR.NO_TITLE, 'error');
       return;
     }
-
     if (uploadImageFile && typeof uploadImageFile !== 'string') {
       uploadImages(
-        { imageType: 'content', images: [uploadImageFile] },
+        {
+          imageType: 'content',
+          images: [uploadImageFile],
+        },
         {
           onSuccess: (uploadImageData) => {
             const uploadedImageUrl: string[] = uploadImageData.image_url;
@@ -77,16 +60,19 @@ export default function ContentEditPage() {
               },
               {
                 onSuccess: () => {
-                  setTimeout(() => {
-                    window.location.href = `/content/${contentId}`;
-                  }, 3000);
                   addToast(TOAST_MESSAGE.CONTENT.EDIT, 'success');
+                  // setTimeout(() => {
+                  //   window.location.href = `/content/${contentId}`;
+                  // }, 3000);
                 },
                 onError: () => {
                   addToast(TOAST_MESSAGE.CONTENT.ERR.EDIT, 'error');
                 },
               },
             );
+          },
+          onError: () => {
+            addToast(TOAST_MESSAGE.IMAGE_UPLOAD.ERR.ADD, 'error');
           },
         },
       );
@@ -102,10 +88,10 @@ export default function ContentEditPage() {
         },
         {
           onSuccess: () => {
-            setTimeout(() => {
-              window.location.href = `/content/${contentId}`;
-            }, 3000);
             addToast(TOAST_MESSAGE.CONTENT.EDIT, 'success');
+            // setTimeout(() => {
+            //   window.location.href = `/content/${contentId}`;
+            // }, 3000);
           },
           onError: () => {
             addToast(TOAST_MESSAGE.CONTENT.ERR.EDIT, 'error');
@@ -114,6 +100,26 @@ export default function ContentEditPage() {
       );
     }
   };
+
+  useEffect(() => {
+    if (fetchedContent) {
+      setUploadImageFile(fetchedContent.postImg);
+      setTitle(fetchedContent.title);
+      setTags(fetchedContent.tags);
+    }
+  }, [fetchedContent]);
+
+  useEffect(() => {
+    const isEnabled = title.trim() !== '';
+    setIsPostButtonEnabled((prev) => {
+      if (prev !== isEnabled) {
+        return isEnabled;
+      }
+      return prev;
+    });
+  }, [title]);
+
+  console.log(tags);
 
   return (
     <div className={s.editContainer}>

@@ -62,5 +62,5 @@ export function useTagManagement() {
     });
   }, []);
 
-  return { tags, addTag, removeTag };
+  return { tags, setTags, addTag, removeTag };
 }
