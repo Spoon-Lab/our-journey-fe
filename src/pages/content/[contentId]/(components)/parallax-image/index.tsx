@@ -1,6 +1,6 @@
-import { useParallax } from '@/hooks/use-parallax';
+import Image from 'next/image';
 
-import ImageWithFallback from '../image-with-feedback';
+import { useParallax } from '@/hooks/use-parallax';
 
 interface ParallaxImageProps {
   alt?: string;
@@ -9,5 +9,5 @@ interface ParallaxImageProps {
 
 export default function ParallaxImage({ src, alt = 'parallax-image' }: ParallaxImageProps) {
   const parallaxRef = useParallax();
-  return <ImageWithFallback src={src} alt={alt} layout="fill" objectFit="cover" ref={parallaxRef} fallbackText="현재 이미지에 문제가 있습니다" />;
+  return <Image src={src} alt={alt} layout="fill" objectFit="cover" ref={parallaxRef} />;
 }

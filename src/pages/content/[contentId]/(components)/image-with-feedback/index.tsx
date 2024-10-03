@@ -24,12 +24,13 @@ const ImageWithFallback = forwardRef<HTMLDivElement, ImageWithFallbackProps>(({ 
           {...props}
           src={src}
           alt={alt}
-          onLoadingComplete={(result) => {
-            if (result.naturalWidth === 0) {
-              handleError();
-            }
-          }}
+          // onLoadingComplete={(result) => {
+          //   if (result.naturalWidth === 0) {
+          //     handleError();
+          //   }
+          // }}
           onError={handleError}
+          priority
         />
       )}
     </div>

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import type { Content, ProfileDto } from '@/types/threads';
+import type { Content, ContentWriterDto } from '@/types/threads';
 
 import { checkValidImgUrl } from '@/utils/check-valid-image-url';
 import { formatTimeStamp } from '@/utils/format-date-timestamp';
@@ -11,12 +11,12 @@ import s from './style.module.scss';
 
 interface ContentCoverProps {
   content: Content;
-  user: ProfileDto;
+  user: ContentWriterDto;
 }
 
 export default function ContentCover({ content, user }: ContentCoverProps) {
   const { title, postImg, createdAt } = content || {};
-  const { profileImgUrl, name, profileId } = user || {};
+  const { profileImgUrl, name } = user || {};
 
   return (
     <div className={s.contentCover}>
@@ -41,11 +41,7 @@ export default function ContentCover({ content, user }: ContentCoverProps) {
         </div>
         <div className={s.imageWrapper}>
           <div className={s.imageGradient} />
-          {checkValidImgUrl(postImg) ? (
-            <ParallaxImage src={postImg} alt="content-image" />
-          ) : (
-            <span className={s.invalidImage}>현재 유효하지 않은 이미지입니다.</span>
-          )}
+          {postImg ? <ParallaxImage src={postImg} alt="content-image" /> : <span className={s.invalidImage}>현재 유효하지 않은 이미지입니다.</span>}
         </div>
       </div>
     </div>
