@@ -30,3 +30,4 @@ export { default as AddPhoto } from './Photo.svg';
 export { default as DecoImageIcon } from './registration.svg';
 export { default as MenuSearchIcon } from './Search.svg';
 export { default as ShareIcon } from './share.svg';
+export { default as CloseIcon } from './x.svg';

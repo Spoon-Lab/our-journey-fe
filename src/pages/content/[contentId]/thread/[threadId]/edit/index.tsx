@@ -71,7 +71,6 @@ export default function ThreadEditPage() {
                   texts: title,
                   threadImg: uploadedImageUrl[0],
                   tags: tags.map((tag) => tag.tagId),
-                  // tagIds: tags.map((tag) => tag.tagId),
                 },
               },
               {
