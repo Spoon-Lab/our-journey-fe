@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 import type { Content } from '@/types/contents';
@@ -12,15 +13,14 @@ export default function GridCard({ data }: { data: Content }) {
     return <div />;
   }
 
-  const postImage =
-    data.postImg != null ? data.postImg : `${process.env.NEXT_PUBLIC_BASE_URL}/image-grid-card-default${Math.floor(Math.random() * 2) + 1}.webp`;
+  const postImage = data.postImg ? data.postImg : `/image-grid-card-default${Math.floor(Math.random() * 2) + 1}.webp`;
 
   return (
     <Link className={s.cardWrapper} href={ROUTES.content.detail(data.contentId)}>
       <figure className={s.thumbnailBox}>
         <div className={s.thumbnailWrap}>
           <div className={s.imageGradient} />
-          <img alt={data.title} src={postImage} className={s.thumbnail} loading="lazy" />
+          <motion.img alt={data.title} src={postImage} className={s.thumbnail} loading="lazy" whileHover={{ scale: 1.1 }} transition={{ duration: 0.3 }} />
           <span className={s.date}>{formatDate(new Date(data.createdAt))}</span>
         </div>
       </figure>
