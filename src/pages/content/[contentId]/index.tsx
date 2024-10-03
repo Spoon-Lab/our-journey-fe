@@ -32,9 +32,7 @@ export default function DetailPage() {
           initialLiked={fetchedContent?.isLiked || false}
           comments={fetchedContent?.commentCount || 0}
           likes={fetchedContent?.likeCount || 0}
-          period={fetchedContent?.updatedAt || ''}
           tags={Array.isArray(fetchedContent?.tags) ? fetchedContent.tags : []}
-          postContent={fetchedContent?.title || ''}
         />
         <div className={s.divider} />
         <div className={s.wrapThreads}>

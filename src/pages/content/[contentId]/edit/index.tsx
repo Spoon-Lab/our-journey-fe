@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import { TOAST_MESSAGE } from '@/constants/toast-message';
+
 import { useEditContent } from '@/hooks/contents/use-edit-content';
 import useGetOneContent from '@/hooks/contents/use-get-one-content';
 import { useUploadImagesToServer } from '@/hooks/photo/use-upload-images';
@@ -35,7 +37,7 @@ export default function ContentEditPage() {
 
   const handleSubmit = () => {
     if (!title) {
-      addToast('내용을 입력해주세요.', 'error');
+      addToast(TOAST_MESSAGE.CONTENT.ERR.NO_TITLE, 'error');
       return;
     }
     if (uploadImageFile && typeof uploadImageFile !== 'string') {
@@ -58,19 +60,19 @@ export default function ContentEditPage() {
               },
               {
                 onSuccess: () => {
-                  addToast('발행이 성공되었습니다!', 'success');
+                  addToast(TOAST_MESSAGE.CONTENT.EDIT, 'success');
                   setTimeout(() => {
                     window.location.href = `/content/${contentId}`;
                   }, 3000);
                 },
                 onError: () => {
-                  addToast('발행을 실패하였습니다.', 'error');
+                  addToast(TOAST_MESSAGE.CONTENT.ERR.EDIT, 'error');
                 },
               },
             );
           },
           onError: () => {
-            addToast('이미지 업로드에 실패하였습니다.', 'error');
+            addToast(TOAST_MESSAGE.IMAGE_UPLOAD.ERR.ADD, 'error');
           },
         },
       );
@@ -86,13 +88,13 @@ export default function ContentEditPage() {
         },
         {
           onSuccess: () => {
-            addToast('발행이 성공되었습니다!', 'success');
+            addToast(TOAST_MESSAGE.CONTENT.EDIT, 'success');
             setTimeout(() => {
               window.location.href = `/content/${contentId}`;
             }, 3000);
           },
           onError: () => {
-            addToast('발행을 실패하였습니다.', 'error');
+            addToast(TOAST_MESSAGE.CONTENT.ERR.EDIT, 'error');
           },
         },
       );
