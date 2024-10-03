@@ -23,10 +23,7 @@ export default function ContentItem({ content }: { content: MyContent }) {
       )}
       <div className={s.contentWrapper}>
         <h1>{content?.title}</h1>
-        <div className={s.contentBox}>
-          <p className={s.content}>작성글 내용</p>
-          <p className={s.date}>{content?.createdAt.split(' ')[0]}</p>
-        </div>
+        <p className={s.date}>{content?.createdAt.split(' ')[0]}</p>
       </div>
     </div>
   );

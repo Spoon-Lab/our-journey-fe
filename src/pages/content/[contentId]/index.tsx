@@ -50,6 +50,7 @@ export default function DetailPage() {
                 threadId={thread.threadId}
                 contentId={contentId}
                 date={thread.createdAt}
+                profileId={thread.profileThreadDto.profileId}
               />
             ))}
           {fetchedContent?.isEditable && <AddThreadBtn contentId={contentId} />}

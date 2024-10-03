@@ -12,7 +12,7 @@ import { useToast } from '../use-toast';
 interface Profile {
   imageUrl: string;
   nickname: string;
-  selfIntroduction: string;
+  selfIntroduction: string | null;
 }
 
 const updateProfile = async ({ nickname, imageUrl, selfIntroduction }: Profile): Promise<Profile> => {

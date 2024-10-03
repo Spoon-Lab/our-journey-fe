@@ -28,7 +28,18 @@ interface ThreadFrameProps {
   writerName: string;
 }
 
-export default function ThreadFrame({ isWriter = true, threadContent, writerName, writerIcon, tags, image, threadId, contentId, date }: ThreadFrameProps) {
+export default function ThreadFrame({
+  isWriter = true,
+  threadContent,
+  writerName,
+  writerIcon,
+  tags,
+  image,
+  threadId,
+  contentId,
+  date,
+  profileId,
+}: ThreadFrameProps) {
   const router = useRouter();
 
   const { isOpen: isModalOpen, openModal, closeModal } = useModal();
@@ -60,10 +71,10 @@ export default function ThreadFrame({ isWriter = true, threadContent, writerName
   return (
     <div className={s.threadFrame}>
       <div className={s.threadHeader}>
-        <div className={s.writerInfo}>
+        <button className={s.writerInfo} type="button" onClick={() => router.push(ROUTES.otherProfile(profileId))} aria-label="프로필 보기">
           <div className={s.writerIcon}>{writerIcon && <Image src={writerIcon} alt="writer-icon" width={40} height={40} />}</div>
           <div className={s.writerName}>{writerName}</div>
-        </div>
+        </button>
         {isWriter && (
           <ContentsDropdownActionMenu
             actionItems={[
