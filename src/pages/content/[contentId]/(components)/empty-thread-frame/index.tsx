@@ -14,7 +14,7 @@ export default function EmptyThreadFrame() {
 
       <div className={s.threadImage} />
       <div className={s.threadContent}>여행기를 작성해보세요!</div>
-      <WrapTags tags={['tag']} />
+      <WrapTags tags={[{ tagId: 1, tagName: 'tag' }]} />
     </div>
   );
 }
