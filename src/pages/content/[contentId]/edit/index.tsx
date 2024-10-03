@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { image } from 'framer-motion/client';
 
 import { TOAST_MESSAGE } from '@/constants/toast-message';
 
@@ -16,7 +15,6 @@ import CustomTextarea from '@/components/content-edit-page-frame/(components)/cu
 import EditHeader from '@/components/content-edit-page-frame/(components)/edit-header';
 import DropZone from '@/components/content-edit-page-frame/(components)/image-drop-zone';
 import ImagePreview from '@/components/content-edit-page-frame/(components)/image-preview';
-import SelectCategoriesToggle from '@/components/content-edit-page-frame/(components)/select-categories-toggle';
 import TagInput from '@/components/content-edit-page-frame/(components)/tag-input';
 import PostButton from '@/components/post-button';
 

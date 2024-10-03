@@ -1,5 +1,5 @@
 import type { PaginationParams } from '@/types/pagination';
-import type { Thread, ThreadPostRequest, ThreadResponse } from '@/types/threads';
+import type { Thread, ThreadPatchRequest, ThreadResponse } from '@/types/threads';
 import { API_PATHS } from '@/constants/api';
 
 import type { CreateThreadReqBody } from '@/hooks/threads/use-create-thread';
@@ -16,7 +16,7 @@ export const createThread = async <T = Thread>(contentId: number, data: CreateTh
   return response.data;
 };
 
-export const patchThread = async <T = Thread>(contentId: number, threadId: number, data: ThreadPostRequest): Promise<T> => {
+export const patchThread = async <T = Thread>(contentId: number, threadId: number, data: ThreadPatchRequest): Promise<T> => {
   const response = await axiosInstance.patch<T>(API_PATHS.THREADS.PATCH(contentId, threadId), data);
   return response.data;
 };

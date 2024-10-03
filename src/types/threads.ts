@@ -75,7 +75,12 @@ export interface ThreadResponse {
 }
 
 export interface ThreadPostRequest {
-  tagNames?: string[];
+  tagNames: string[];
   texts: string;
+  threadImg: string;
+}
+export interface ThreadPatchRequest {
+  tags?: number[];
+  texts?: string;
   threadImg?: string;
 }
