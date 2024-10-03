@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
+import { ROUTES } from '@/constants/router';
+
 import { checkValidImgUrl } from '@/utils/check-valid-image-url';
 import { defaultFormatTimeStamp } from '@/utils/format-date-timestamp';
 
@@ -21,6 +23,7 @@ interface ThreadFrameProps {
   date: string;
   image?: string;
   isWriter?: boolean;
+  profileId: number;
   tags: string[];
   threadContent: string;
   threadId: number;
@@ -98,7 +101,7 @@ export default function ThreadFrame({
         )}
       </div>
 
-      {image && checkValidImgUrl(image) && (
+      {image && (
         <div className={s.threadImage} onClick={() => openModal()}>
           <Image src={image} alt="thread-image" layout="fill" objectFit="cover" />
         </div>
