@@ -23,7 +23,7 @@ const useSignup = () => {
   const { mutate, isSuccess, isPending } = useMutation({
     mutationFn: signup,
     onSuccess: () => {
-      addToast('확인 이메일을 발송했습니다.\n메일이 도착하지 않았다면 스팸함을 확인해주세요.', 'info', 4000);
+      addToast('확인 이메일을 발송했습니다\n메일이 도착하지 않았다면 스팸함을 확인해주세요', 'info', 4000);
       void router.push(ROUTES.login);
     },
     onError: (error: AxiosError) => {
