@@ -55,6 +55,9 @@
   aspect-ratio: 1 / 0.789634146;
   position: relative;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .carouselImgBox::before {
@@ -69,11 +72,12 @@
 }
 
 .carouselImg {
-  width: 100%;
+  width: 145%;
   border-radius: 4px;
-  aspect-ratio: 1 / 0.789634146;
   position: relative;
   z-index: 1;
+  object-fit: cover; /* 이미지가 가로든 세로든 상관없이 박스에 딱 맞게 */
+  object-position: center; /* 이미지가 중앙에 위치하도록 */
 }
 
 .carouselTitle {
