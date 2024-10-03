@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import { nicknameSchema } from '@/utils/validate';
+import { userInfoSchema } from '@/utils/validate';
 
 import useGetMyProfile from '@/hooks/profile/use-get-my-profile';
 import { useUpdateMyProfile } from '@/hooks/profile/use-update-my-profile';
@@ -15,7 +15,6 @@ import useUploadImg from '@/hooks/use-upload-img';
 import Input from '@/components/input';
 import ProfileLayout from '@/components/layouts/profile-layout';
 import Modal from '@/components/modal';
-import Toast from '@/components/toast';
 
 import ProfileHeader from '../(components)/profile-header';
 
@@ -36,18 +35,21 @@ export default function Edit() {
     formState: { errors },
     reset,
     watch,
-  } = useForm<{ nickname: string }>({
-    resolver: yupResolver(nicknameSchema),
+  } = useForm<{ nickname: string; selfIntroduction?: string | null }>({
+    resolver: yupResolver(userInfoSchema),
     mode: 'onBlur',
     defaultValues: {
       nickname: profile?.nickname || '',
+      selfIntroduction: profile?.selfIntroduction || '',
     },
   });
 
   const changedNickname = watch('nickname');
+  const changedIntroduction = watch('selfIntroduction');
+
   const { mutate } = useUploadImg({
     nickname: changedNickname || (profile?.nickname as string),
-    selfIntroduction: profile?.selfIntroduction as string,
+    selfIntroduction: changedIntroduction === '' ? null : changedIntroduction || profile?.selfIntroduction || null,
   });
   const { mutate: updateProfile } = useUpdateMyProfile();
 
@@ -57,17 +59,17 @@ export default function Edit() {
         photo_type: 'profile',
         images: [file],
       });
-    } else if (changedNickname) {
+    } else if (changedNickname || changedIntroduction) {
       updateProfile({
-        nickname: changedNickname,
+        nickname: changedNickname || (profile?.nickname as string),
         imageUrl: profile?.imageUrl as string,
-        selfIntroduction: profile?.selfIntroduction as string,
+        selfIntroduction: changedIntroduction === '' ? null : changedIntroduction || profile?.selfIntroduction || null,
       });
       reset();
     }
   };
   const handleBack = () => {
-    if (file || changedNickname !== profile?.nickname) setModalOpen((prev) => !prev);
+    if (file || changedNickname !== profile?.nickname || changedIntroduction !== profile?.selfIntroduction) setModalOpen((prev) => !prev);
     else router.back();
   };
 
@@ -113,6 +115,12 @@ export default function Edit() {
           </div>
         </div>
         <Input labelText="닉네임 입력" placeholder="변경할 닉네임을 입력해주세요" {...register('nickname')} errorMessage={errors.nickname?.message} />
+        <Input
+          labelText="한 줄 소개 입력"
+          placeholder="한 줄 소개를 입력해주세요"
+          {...register('selfIntroduction')}
+          errorMessage={errors.selfIntroduction?.message}
+        />
       </form>
     </>
   );

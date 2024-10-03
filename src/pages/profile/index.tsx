@@ -87,7 +87,7 @@ export default function Profile() {
           {profile?.imageUrl && checkValidImgUrl(profile?.imageUrl) ? <img src={profile?.imageUrl} alt="profile img" /> : <DefaultProfile />}
           <div className={s.userInfoWrapper}>
             <div>{profile?.nickname}</div>
-            <p>{profile?.selfIntroduction}</p>
+            <p>{profile?.selfIntroduction ?? '한 줄 소개가 없습니다'}</p>
           </div>
         </div>
         <nav className={s.navWrapper}>

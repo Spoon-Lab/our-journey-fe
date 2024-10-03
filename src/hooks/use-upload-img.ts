@@ -36,7 +36,7 @@ const uploadImg = async ({ photo_type, thread_id, images }: UploadImgProps) => {
   return data;
 };
 
-const useUploadImg = ({ nickname, selfIntroduction }: { nickname: string; selfIntroduction: string }) => {
+const useUploadImg = ({ nickname, selfIntroduction }: { nickname: string; selfIntroduction: string | null }) => {
   const { mutate: updateProfileMutate } = useUpdateMyProfile();
 
   const { addToast } = useToast();
