@@ -1,4 +1,5 @@
 export interface Profile {
+  editable: boolean;
   followerNum: number;
   followingNum: number;
   imageUrl: string;

@@ -22,6 +22,8 @@ export const ROUTES = {
   },
   google: '/login/google',
   needLogin: '/need-login',
+
+  otherProfile: (id: number) => `/profile/${id}`,
 };
 
 export type ROUTES = (typeof ROUTES)[keyof typeof ROUTES];
