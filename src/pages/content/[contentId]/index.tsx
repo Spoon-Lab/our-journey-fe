@@ -13,7 +13,7 @@ import ThreadFrame from './(components)/thread-frame';
 import s from './style.module.scss';
 
 export default function DetailPage() {
-  const { isScrolled, scrollPercent } = useScroll(370);
+  const { isScrolled, scrollPercent } = useScroll(30);
 
   const contentId = useGetRouteParamNumber('contentId');
   const { data: fetchedContent, isLoading: isFetching, isSuccess: successFetchingContent, error: errContentFetching } = useGetOneContent(contentId);
