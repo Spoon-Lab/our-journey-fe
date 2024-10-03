@@ -18,8 +18,11 @@ export default function GridCard({ data }: { data: Content }) {
   return (
     <Link className={s.cardWrapper} href={ROUTES.content.detail(data.contentId)}>
       <figure className={s.thumbnailBox}>
-        <img alt={data.title} src={postImage} className={s.thumbnail} loading="lazy" />
-        <span className={s.date}>{formatDate(new Date(data.createdAt))}</span>
+        <div className={s.thumbnailWrap}>
+          <div className={s.imageGradient} />
+          <img alt={data.title} src={postImage} className={s.thumbnail} loading="lazy" />
+          <span className={s.date}>{formatDate(new Date(data.createdAt))}</span>
+        </div>
       </figure>
       <h3 className={s.cardTitle}>{data.title}</h3>
       <div className={s.profileBox}>
