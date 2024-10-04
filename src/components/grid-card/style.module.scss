@@ -74,6 +74,11 @@
   justify-content: flex-start;
   align-items: center;
   gap: 8px;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 .profileThumbnail {

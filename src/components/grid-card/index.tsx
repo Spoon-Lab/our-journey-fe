@@ -15,6 +15,7 @@ export default function GridCard({ data }: { data: Content }) {
   }
 
   const postImage = data.postImg ? data.postImg : randomDefaultImage(2);
+  const profileImage = data.contentProfileDto.profileImgUrl
 
   return (
     <Link className={s.cardWrapper} href={ROUTES.content.detail(data.contentId)}>
@@ -27,7 +28,10 @@ export default function GridCard({ data }: { data: Content }) {
       </figure>
       <h3 className={s.cardTitle}>{data.title}</h3>
       <div className={s.profileBox}>
-        <img className={s.profileThumbnail} src={data.contentProfileDto.profileImgUrl} alt={`${data.contentProfileDto.name} 님의 사진`} loading="lazy" />
+        {data.contentProfileDto.profileImgUrl ?
+          <img className={s.profileThumbnail} src={data.contentProfileDto.profileImgUrl} alt={`${data.contentProfileDto.name} 님의 사진`} loading="lazy" /> : 
+          <DefaultProfile />
+        }
         <span className={s.profileName}>{data.contentProfileDto.name}</span>
       </div>
     </Link>
