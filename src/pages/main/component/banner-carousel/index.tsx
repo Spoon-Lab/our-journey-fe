@@ -51,7 +51,12 @@ function CarouselCard(props: Carousel) {
   return Number(bannerId) === 1 ? (
     <Link id={bannerId} href="https://forms.gle/NALZbgS7MTdJkHpP8" className={s.carouselCard}>
       <div className={s.carouselSurveyImgBox}>
-        <img alt="Our Journey 고객 설문 조사" src="http://localhost:3000/image-survey-banner.webp" className={`${s.carouselImg} ${s.survey}`} loading="lazy" />
+        <img
+          alt="Our Journey 고객 설문 조사"
+          src={`${process.env.NEXT_PUBLIC_BASE_URL}/image-survey-banner.webp`}
+          className={`${s.carouselImg} ${s.survey}`}
+          loading="lazy"
+        />
       </div>
     </Link>
   ) : (
