@@ -9,13 +9,14 @@ import { randomDefaultImage } from '@/utils/random-default-image';
 
 import s from './style.module.scss';
 
+import { DefaultProfileSmallIcon } from '@/assets/icons';
+
 export default function GridCard({ data }: { data: Content }) {
   if (!data) {
     return <div />;
   }
 
   const postImage = data.postImg ? data.postImg : randomDefaultImage(2);
-  const profileImage = data.contentProfileDto.profileImgUrl
 
   return (
     <Link className={s.cardWrapper} href={ROUTES.content.detail(data.contentId)}>
@@ -28,10 +29,11 @@ export default function GridCard({ data }: { data: Content }) {
       </figure>
       <h3 className={s.cardTitle}>{data.title}</h3>
       <div className={s.profileBox}>
-        {data.contentProfileDto.profileImgUrl ?
-          <img className={s.profileThumbnail} src={data.contentProfileDto.profileImgUrl} alt={`${data.contentProfileDto.name} 님의 사진`} loading="lazy" /> : 
-          <DefaultProfile />
-        }
+        {data.contentProfileDto.profileImgUrl ? (
+          <img className={s.profileThumbnail} src={data.contentProfileDto.profileImgUrl} alt={`${data.contentProfileDto.name} 님의 사진`} loading="lazy" />
+        ) : (
+          <DefaultProfileSmallIcon />
+        )}
         <span className={s.profileName}>{data.contentProfileDto.name}</span>
       </div>
     </Link>
