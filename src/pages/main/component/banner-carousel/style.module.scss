@@ -49,7 +49,8 @@
   z-index: 10;
 }
 
-.carouselImgBox {
+.carouselImgBox,
+.carouselSurveyImgBox {
   width: 100%;
   border-radius: 4px;
   aspect-ratio: 1 / 0.789634146;
@@ -71,6 +72,17 @@
   z-index: 2;
 }
 
+.carouselSurveyImgBox::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(19, 19, 19, 0) 0%, #131313 200.34%);
+  z-index: 2;
+}
+
 .carouselImg {
   width: 145%;
   border-radius: 4px;
@@ -78,6 +90,10 @@
   z-index: 1;
   object-fit: cover; /* 이미지가 가로든 세로든 상관없이 박스에 딱 맞게 */
   object-position: center; /* 이미지가 중앙에 위치하도록 */
+
+  &.survey {
+    width: 100%;
+  }
 }
 
 .carouselTitle {

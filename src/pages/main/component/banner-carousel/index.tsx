@@ -28,6 +28,8 @@ export default function BannerCarousel(props: Props) {
     return <div />;
   }
 
+  console.log(currentId);
+
   return (
     <div className={s.carouselWrapper}>
       <div className={s.carouselContainer} ref={carouselContainerRef}>
@@ -46,7 +48,18 @@ export default function BannerCarousel(props: Props) {
 
 function CarouselCard(props: Carousel) {
   const { chipText, src, title, bannerId, contentId } = props;
-  return (
+  return Number(bannerId) === 1 ? (
+    <Link id={bannerId} href="https://forms.gle/NALZbgS7MTdJkHpP8" className={s.carouselCard}>
+      <div className={s.carouselSurveyImgBox}>
+        <img
+          alt="Our Journey 고객 설문 조사"
+          src={`${process.env.NEXT_PUBLIC_BASE_URL}/image-survey-banner.webp`}
+          className={`${s.carouselImg} ${s.survey}`}
+          loading="lazy"
+        />
+      </div>
+    </Link>
+  ) : (
     <Link id={bannerId} href={ROUTES.content.detail(Number(contentId))} className={s.carouselCard}>
       <div className={s.carouselImgBox}>
         <img alt="" src={src} className={s.carouselImg} loading="lazy" />
