@@ -54,8 +54,13 @@ export default function TagInput({ addTag, removeTag, tags }: TagInputProps) {
     }
   };
 
+  const sanitizeInput = (input: string) => input.replace(/[^\p{L}\p{N}_]/gu, '');
+
   const handleInputKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (handleKeyDown(e)) {
+    if (e.key === ' ') {
+      e.preventDefault();
+      setNewTag((prev) => `${prev}_`);
+    } else if (handleKeyDown(e)) {
       e.preventDefault();
     } else if (e.key === 'Enter' && selectedIndex >= 0) {
       e.preventDefault();
@@ -85,7 +90,21 @@ export default function TagInput({ addTag, removeTag, tags }: TagInputProps) {
         </span>
       ))}
       <div className={s.wrapTagInput}>
-        <input {...inputProps} maxLength={40} onKeyDown={handleInputKeyDown} onBlur={handleInputBlur} onFocus={() => setShowSuggestions(true)} />
+        <input
+          {...inputProps}
+          maxLength={40}
+          onKeyDown={handleInputKeyDown}
+          onBlur={handleInputBlur}
+          onFocus={() => setShowSuggestions(true)}
+          value={newTag}
+          onChange={(e) => {
+            const sanitizedValue = sanitizeInput(e.target.value);
+            setNewTag(sanitizedValue);
+            setSearchQuery(sanitizedValue);
+            setShowSuggestions(true);
+          }}
+        />
+
         {showSuggestions && (
           <div className={s.suggestions}>
             {!isLoading &&
