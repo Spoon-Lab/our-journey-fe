@@ -35,7 +35,7 @@ export default function ContentCreatePage() {
     }
     if (uploadImageFile && typeof uploadImageFile !== 'string') {
       uploadImages(
-        { imageType: 'content', images: [uploadImageFile] },
+        { imageType: 'thread', images: [uploadImageFile] },
         {
           onSuccess: (uploadImageData) => {
             const uploadedImageUrl: string[] = uploadImageData.image_url;

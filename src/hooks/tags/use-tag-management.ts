@@ -12,13 +12,14 @@ export function useTagManagement() {
 
   const addTag = useCallback(
     async (tagName: string, tagId?: number) => {
+      const trimmedTagName = tagName.replace(/^_+|_+$/g, '');
       // 입력값 검증
-      if (!tagName.trim() || tagName.length > 40) {
+      if (!trimmedTagName || trimmedTagName.length > 40) {
         addToast('유효하지 않은 태그 이름입니다.', 'error');
         return;
       }
 
-      const existingTag = tags.find((tag) => tag.tagName === tagName);
+      const existingTag = tags.find((tag) => tag.tagName === trimmedTagName);
       if (existingTag) {
         addToast('이미 존재하는 태그입니다.', 'warning');
         return;
@@ -27,12 +28,9 @@ export function useTagManagement() {
       if (!tagId) {
         // 새로운 태그인 경우 서버에 요청
         try {
-          const result = await createTagMutation.mutateAsync({ body: { tagName } });
-          setTags((prevTags) => [...prevTags, { tagId: result.tagId, tagName }]);
-          console.log('New tag added:', { id: result.tagId, name: tagName });
+          const result = await createTagMutation.mutateAsync({ body: { tagName: trimmedTagName } });
+          setTags((prevTags) => [...prevTags, { tagId: result.tagId, tagName: trimmedTagName }]);
         } catch (error) {
-          console.error('Error adding new tag:', error);
-
           if (error instanceof Error) {
             // 에러 타입에 따른 처리
             if (error.message.includes('Network Error')) {
@@ -48,8 +46,7 @@ export function useTagManagement() {
         }
       } else {
         // 제안된 태그를 선택한 경우 바로 리스트에 추가
-        setTags((prevTags) => [...prevTags, { tagId, tagName }]);
-        console.log('Suggested tag added:', { name: tagName });
+        setTags((prevTags) => [...prevTags, { tagId, tagName: trimmedTagName }]);
       }
     },
     [tags, createTagMutation, addToast],
