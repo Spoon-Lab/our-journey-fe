@@ -14,6 +14,7 @@ export { default as AddIcon } from './icon-add.svg';
 export { default as ArrowBackIcon } from './icon-arrow-back.svg';
 export { default as CategoryIcon } from './icon-category.svg';
 export { default as ChevronForwardIcon } from './icon-chevron-forward.svg';
+export { default as DefaultProfileSmallIcon } from './icon-default-profile-small.svg';
 export { default as FlightIcon } from './icon-flight.svg';
 export { default as HomeIcon } from './icon-home.svg';
 export { default as LuggageIcon } from './icon-luggage.svg';
