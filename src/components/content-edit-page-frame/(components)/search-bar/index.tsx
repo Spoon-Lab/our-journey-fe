@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useQuery } from '@tanstack/react-query';
+
+import { setSentryLogging } from '@/utils/error-logging';
 
 import s from './style.module.scss';
 
@@ -8,7 +10,7 @@ export default function SearchBar() {
   const { register, watch } = useForm();
   const [query, setQuery] = useState('');
 
-  const { data: userList, isLoading, error } = useQuery({ queryKey: ['users', query], queryFn: () => {} });
+  const { data: userList, isLoading, isError, error } = useQuery({ queryKey: ['users', query], queryFn: () => {} });
 
   //   const searchValue = watch('searchInput');
 
@@ -16,6 +18,12 @@ export default function SearchBar() {
     const { value } = e.target;
     setQuery(value);
   };
+
+  useEffect(() => {
+    if (isError) {
+      setSentryLogging(error);
+    }
+  }, [isError, error]);
 
   return (
     <div className={s.searchBar}>

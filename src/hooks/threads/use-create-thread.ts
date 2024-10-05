@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 
 import { createThread } from '@/libs/threads-services';
+import { setSentryLogging } from '@/utils/error-logging';
 
 export interface CreateThreadReqBody {
   tagIds: number[];
@@ -21,7 +22,8 @@ export const useCreateThreads = () => {
       void queryClient.invalidateQueries({ queryKey: ['threads'] });
     },
     onError: (error: AxiosError) => {
-      console.error('Error creating thread:', error);
+      setSentryLogging(error);
+      // console.error('Error creating thread:', error);
     },
   });
 };

@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import type { ImageUploadRequest } from '@/libs/image-upload-service';
 import { uploadImages } from '@/libs/image-upload-service';
+import { setSentryLogging } from '@/utils/error-logging';
 
 export const useUploadImagesToServer = () => {
   const queryClient = useQueryClient();
@@ -12,7 +13,8 @@ export const useUploadImagesToServer = () => {
       void queryClient.invalidateQueries({ queryKey: ['upload-images'] });
     },
     onError: (error) => {
-      console.error('uploadImages error', error);
+      setSentryLogging(error);
+      // console.error('uploadImages error', error);
     },
   });
 };

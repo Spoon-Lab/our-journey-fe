@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import type { Thread } from '@/types/threads';
 
 import { editContent } from '@/libs/content-service';
+import { setSentryLogging } from '@/utils/error-logging';
 
 export interface EditContentReqBody {
   imgUrl: string;
@@ -19,7 +20,8 @@ export const useEditContent = () => {
       void queryClient.invalidateQueries({ queryKey: ['threads'] });
     },
     onError: (error) => {
-      console.error('Error updating thread:', error);
+      setSentryLogging(error);
+      // console.error('Error updating thread:', error);
     },
   });
 };

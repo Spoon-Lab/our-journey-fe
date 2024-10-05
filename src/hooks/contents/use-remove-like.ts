@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { removeLike } from '@/libs/likes-service';
+import { setSentryLogging } from '@/utils/error-logging';
 
 export const useRemoveLike = () => {
   const queryClient = useQueryClient();
@@ -11,7 +12,8 @@ export const useRemoveLike = () => {
       void queryClient.invalidateQueries({ queryKey: ['remove-like'] });
     },
     onError: (error: Error) => {
-      console.error('Error Remove Like : ', error);
+      setSentryLogging(error);
+      // console.error('Error Remove Like : ', error);
     },
   });
 };

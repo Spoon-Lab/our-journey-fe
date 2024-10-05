@@ -5,6 +5,7 @@ import type { MyContent } from '@/types/contents';
 import { ROUTES } from '@/constants/router';
 
 import { checkValidImgUrl } from '@/utils/check-valid-image-url';
+import { setSentryLogging } from '@/utils/error-logging';
 
 import { useIntersectionObserver } from '@/hooks/contents/use-intersection-observer';
 import useGetMyContents from '@/hooks/profile/use-get-my-contents';
@@ -26,8 +27,8 @@ import { ArrowDownIcon, ArrowUpIcon, ArticleIcon, DefaultProfile, ForwardIcon, P
 export default function MyProfile() {
   const router = useRouter();
   const [openContents, setOpenContents] = useState<boolean>(false);
-  const { data, isPending, fetchNextPage, hasNextPage, isError } = useGetMyContents({ open: openContents });
-  const { data: profile } = useGetMyProfile();
+  const { data, isPending, fetchNextPage, hasNextPage, isError, error } = useGetMyContents({ open: openContents });
+  const { data: profile, isError: isGetProfileError, error: getProfileError } = useGetMyProfile();
   const divRef = useRef<HTMLDivElement>(null);
 
   useIntersectionObserver({
@@ -43,9 +44,14 @@ export default function MyProfile() {
 
   useEffect(() => {
     if (isError) {
+      setSentryLogging(error);
       setOpenContents((prev) => !prev);
     }
-  }, [isError]);
+
+    if (isGetProfileError) {
+      setSentryLogging(getProfileError);
+    }
+  }, [isError, isGetProfileError, error, getProfileError]);
 
   if (openContents && isPending) {
     contents = (
