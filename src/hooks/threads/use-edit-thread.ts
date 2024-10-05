@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import type { Thread, ThreadPatchRequest } from '@/types/threads';
 
 import { patchThread } from '@/libs/threads-services';
+import { setSentryLogging } from '@/utils/error-logging';
 
 export const useEditThread = () => {
   const queryClient = useQueryClient();
@@ -13,7 +14,8 @@ export const useEditThread = () => {
       void queryClient.invalidateQueries({ queryKey: ['threads'] });
     },
     onError: (error) => {
-      console.error('Error updating thread:', error);
+      setSentryLogging(error);
+      // console.error('Error updating thread:', error);
     },
   });
 };

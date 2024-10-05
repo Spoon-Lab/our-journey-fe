@@ -7,6 +7,7 @@ import { API_PATHS } from '@/constants/api';
 import { ROUTES } from '@/constants/router';
 
 import { axiosBasicAuthInstance } from '@/libs/auth-axios';
+import { setSentryLogging } from '@/utils/error-logging';
 
 import { useToast } from '../use-toast';
 
@@ -31,6 +32,7 @@ const useSignup = () => {
         const errorMessage = (error.response.data as { error: string })?.error;
         addToast(errorMessage, 'error', 1500);
       }
+      setSentryLogging(error);
     },
   });
 

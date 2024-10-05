@@ -4,6 +4,7 @@ import type { AxiosError } from 'axios';
 import { API_PATHS } from '@/constants/api';
 
 import axiosAuthInstance from '@/libs/auth-axios';
+import { setSentryLogging } from '@/utils/error-logging';
 
 import { useUpdateMyProfile } from './profile/use-update-my-profile';
 import { useToast } from './use-toast';
@@ -55,6 +56,7 @@ const useUploadImg = ({ nickname, selfIntroduction }: { nickname: string; selfIn
         const errorMessage = (error.response.data as { detail: string })?.detail;
         addToast(errorMessage, 'error', 1500);
       }
+      setSentryLogging(error);
     },
   });
 

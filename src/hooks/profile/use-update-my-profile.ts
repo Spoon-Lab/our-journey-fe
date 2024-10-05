@@ -6,6 +6,7 @@ import { API_PATHS } from '@/constants/api';
 import { ROUTES } from '@/constants/router';
 
 import axiosInstance from '@/libs/axios';
+import { setSentryLogging } from '@/utils/error-logging';
 
 import { useToast } from '../use-toast';
 
@@ -33,7 +34,8 @@ export const useUpdateMyProfile = () => {
       void router.push(ROUTES.profile);
     },
     onError: (error: AxiosError) => {
-      console.error('Error updating profile:', error);
+      setSentryLogging(error);
+      // console.error('Error updating profile:', error);
     },
   });
 };

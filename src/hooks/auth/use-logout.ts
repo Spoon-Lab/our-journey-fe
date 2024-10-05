@@ -6,6 +6,7 @@ import { API_PATHS } from '@/constants/api';
 import { ROUTES } from '@/constants/router';
 
 import axiosAuthInstance from '@/libs/auth-axios';
+import { setSentryLogging } from '@/utils/error-logging';
 
 const logout = async () => {
   const refresh = localStorage.getItem('refreshToken');
@@ -27,7 +28,8 @@ const useLogout = () => {
       void router.push(ROUTES.base);
     },
     onError: (error: AxiosError) => {
-      console.error('Logout Error:', error);
+      setSentryLogging(error);
+      // console.error('Logout Error:', error);
     },
   });
 };

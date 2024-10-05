@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { API_PATHS } from '@/constants/api';
 
 import axiosInstance from '@/libs/axios';
+import { setSentryLogging } from '@/utils/error-logging';
 
 interface CreateTagReq {
   tagName: string;
@@ -24,6 +25,8 @@ export default function useCreateTag() {
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: ['create-tag'] });
     },
-    onError: (error: Error) => {},
+    onError: (error: Error) => {
+      setSentryLogging(error);
+    },
   });
 }

@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import type { Thread } from '@/types/threads';
 
 import { deleteThread } from '@/libs/threads-services';
+import { setSentryLogging } from '@/utils/error-logging';
 
 export const useDeleteThread = () => {
   const queryClient = useQueryClient();
@@ -13,7 +14,8 @@ export const useDeleteThread = () => {
       void queryClient.invalidateQueries({ queryKey: ['threads'] });
     },
     onError: (error) => {
-      console.error('Error deleting thread:', error);
+      setSentryLogging(error);
+      // console.error('Error deleting thread:', error);
     },
   });
 };
