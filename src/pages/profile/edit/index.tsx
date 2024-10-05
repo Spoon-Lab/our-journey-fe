@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
+import { setSentryLogging } from '@/utils/error-logging';
 import { userInfoSchema } from '@/utils/validate';
 
 import useGetMyProfile from '@/hooks/profile/use-get-my-profile';
@@ -27,7 +28,7 @@ export default function Edit() {
   const { filePreview, handleChangeFile, file } = useImage();
   const [modalOpen, setModalOpen] = useState<boolean>(false);
 
-  const { data: profile } = useGetMyProfile();
+  const { data: profile, isError, error } = useGetMyProfile();
 
   const {
     register,
@@ -81,6 +82,12 @@ export default function Edit() {
     if (file || changedNickname !== profile?.nickname || changedIntroduction !== profile?.selfIntroduction) setModalOpen((prev) => !prev);
     else router.back();
   };
+
+  useEffect(() => {
+    if (isError) {
+      setSentryLogging(error);
+    }
+  }, [isError, error]);
 
   return (
     <>

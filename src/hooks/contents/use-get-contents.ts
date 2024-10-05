@@ -5,6 +5,7 @@ import type { Contents } from '@/types/contents';
 import { API_PATHS } from '@/constants/api';
 
 import { preAxiosInstance } from '@/libs/pre-axios';
+import { setSentryLogging } from '@/utils/error-logging';
 
 interface Props {
   categoryId?: string;
@@ -18,7 +19,7 @@ export default function useGetContents(props: Props) {
   const title = props?.title;
   // { pageParam = 1 }: { pageParam?: number }
 
-  const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({
+  const { data, fetchNextPage, hasNextPage, isError, error } = useInfiniteQuery({
     queryKey: ['api/get-contents', sort, categoryId, title],
     queryFn: async ({ pageParam }: { pageParam?: number }) => {
       let api = `${API_PATHS.CONTENTS.GET_ALL()}?size=10&page=${pageParam}`;
@@ -40,6 +41,10 @@ export default function useGetContents(props: Props) {
     },
     initialPageParam: 0,
   });
+
+  if (isError) {
+    setSentryLogging(error);
+  }
 
   return { data, fetchNextPage, sort, setSort, hasNextPage };
 }
