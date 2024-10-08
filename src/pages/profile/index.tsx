@@ -18,6 +18,7 @@ import NavBar from '@/components/nav-bar';
 import ContentItem from './(components)/content';
 import NavItem from './(components)/nav-item';
 import ProfileHeader from './(components)/profile-header';
+import Skeleton from './(components)/skeleton';
 import UserSettings from './(components)/user-settings';
 
 import s from './style.module.scss';
@@ -28,7 +29,7 @@ export default function MyProfile() {
   const router = useRouter();
   const [openContents, setOpenContents] = useState<boolean>(false);
   const { data, isPending, fetchNextPage, hasNextPage, isError, error } = useGetMyContents({ open: openContents });
-  const { data: profile, isError: isGetProfileError, error: getProfileError } = useGetMyProfile();
+  const { data: profile, isError: isGetProfileError, error: getProfileError, isPending: profilePending } = useGetMyProfile();
   const divRef = useRef<HTMLDivElement>(null);
 
   useIntersectionObserver({
@@ -85,24 +86,45 @@ export default function MyProfile() {
     );
   }
 
+  let profileContent;
+
+  if (profilePending) {
+    profileContent = (
+      <div className={s.profileWrapper}>
+        <Skeleton />
+      </div>
+    );
+  } else {
+    profileContent = (
+      <div className={s.profileWrapper}>
+        {profile?.imageUrl && checkValidImgUrl(profile?.imageUrl) ? <img src={profile?.imageUrl} alt="profile img" /> : <DefaultProfile />}
+        <div className={s.userInfoWrapper}>
+          <div>{profile?.nickname}</div>
+          <p>{profile?.selfIntroduction ?? '한 줄 소개가 없습니다'}</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={s.profileContainer}>
       <ProfileHeader text="프로필 수정" />
       <main>
-        <div className={s.profileWrapper}>
-          {profile?.imageUrl && checkValidImgUrl(profile?.imageUrl) ? <img src={profile?.imageUrl} alt="profile img" /> : <DefaultProfile />}
-          <div className={s.userInfoWrapper}>
-            <div>{profile?.nickname}</div>
-            <p>{profile?.selfIntroduction ?? '한 줄 소개가 없습니다'}</p>
-          </div>
-        </div>
+        {profileContent}
         <nav className={s.navWrapper}>
-          <NavItem leftIcon={<PersonIcon />} text="내 정보 보기" rightIcon={<ForwardIcon />} onClick={() => router.push(`${ROUTES.profileEdit}`)} />
+          <NavItem
+            leftIcon={<PersonIcon />}
+            text="내 정보 보기"
+            rightIcon={<ForwardIcon />}
+            onClick={() => router.push(`${ROUTES.profileEdit}`)}
+            disabled={profilePending}
+          />
           <NavItem
             leftIcon={<ArticleIcon />}
             text="내 작성글 모두보기"
             rightIcon={!openContents ? <ArrowDownIcon /> : <ArrowUpIcon />}
             onClick={() => setOpenContents((prev) => !prev)}
+            disabled={profilePending}
           />
           {contents}
           {/* <NavItem leftIcon={<GroupProfileIcon />} text="팔로워 수" rightIcon={<p>{profile?.followerNum}명</p>} />
