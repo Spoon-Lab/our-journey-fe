@@ -18,7 +18,7 @@ export default function NeedLogin() {
         <p>{`이미 서비스에 가입하셨다면,\n로그인 화면으로 돌아가 로그인을 진행해주세요!`}</p>
       </div>
       <div className={s.moveLinkBox}>
-        <Link href={ROUTES.login} className={s.moveLink}>
+        <Link href={ROUTES.base} className={s.moveLink}>
           <span>로그인</span>
         </Link>
         <Link href={ROUTES.signup} className={s.moveLink}>
