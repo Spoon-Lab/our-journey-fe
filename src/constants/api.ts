@@ -9,7 +9,8 @@ export const API_PATHS = {
   },
   PROFILES: {
     CREATE: () => `/profiles`, // 사용자 프로필 생성
-    GET: (id: number) => `/profiles/${id}`, // 사용자 프로필 조회
+    GET_MY: () => `/profiles`, // 사용자 프로필 조회
+    GET: (id: number) => `/profiles/${id}`, // 특정 유저 프로필 조회
     UPDATE: () => `/profiles`,
     GET_LIKES_CONTENTS: () => `/profiles/likes/contents`, // 특정 유저가 좋아요한 contents 가져오기
     GET_MY_CONTENTS: () => `/profiles/contents`, // 특정 유저가 작성한 contents 가져오기
