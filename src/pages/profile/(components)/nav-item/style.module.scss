@@ -15,6 +15,13 @@
     background-color: transparent;
     cursor: pointer;
     color: $white;
+
+    &:disabled {
+      cursor: not-allowed;
+      svg {
+        stroke: $gray-700;
+      }
+    }
   }
 }
 

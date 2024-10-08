@@ -1,20 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 
 import type { Profile } from '@/types/profile';
-import { API_PATHS } from '@/constants/api';
 
-import axiosInstance from '@/libs/axios';
-
-const getProfile = async () => {
-  const { data }: { data: Profile } = await axiosInstance.get(`${API_PATHS.PROFILES.CREATE()}`);
-
-  return data;
-};
+import { getMyProfile } from '@/libs/auth-service';
 
 const useGetMyProfile = () =>
-  useQuery({
+  useQuery<Profile>({
     queryKey: ['profile'],
-    queryFn: getProfile,
+    queryFn: getMyProfile,
   });
 
 export default useGetMyProfile;

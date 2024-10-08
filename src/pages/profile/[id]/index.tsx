@@ -13,6 +13,7 @@ import NavBar from '@/components/nav-bar';
 
 import NavItem from '../(components)/nav-item';
 import ProfileHeader from '../(components)/profile-header';
+import Skeleton from '../(components)/skeleton';
 
 import s from '../style.module.scss';
 
@@ -21,7 +22,7 @@ import { DefaultProfile, GroupProfileIcon } from '@/assets/icons';
 export default function Profile() {
   const router = useRouter();
   const { id } = router.query;
-  const { data: profile } = useGetOtherProfile(Number(id));
+  const { data: profile, isPending } = useGetOtherProfile(Number(id));
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -42,17 +43,31 @@ export default function Profile() {
     );
   }
 
+  let profileContent;
+
+  if (isPending) {
+    profileContent = (
+      <div className={s.profileWrapper}>
+        <Skeleton />
+      </div>
+    );
+  } else {
+    profileContent = (
+      <div className={s.profileWrapper}>
+        {profile?.imageUrl && checkValidImgUrl(profile?.imageUrl) ? <img src={profile?.imageUrl} alt="profile img" /> : <DefaultProfile />}
+        <div className={s.userInfoWrapper}>
+          <div>{profile?.nickname}</div>
+          <p>{profile?.selfIntroduction ?? '한 줄 소개가 없습니다'}</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={s.profileContainer}>
       <ProfileHeader text="프로필" iconClick={() => router.back()} />
       <main>
-        <div className={s.profileWrapper}>
-          {profile?.imageUrl && checkValidImgUrl(profile?.imageUrl) ? <img src={profile?.imageUrl} alt="profile img" /> : <DefaultProfile />}
-          <div className={s.userInfoWrapper}>
-            <div>{profile?.nickname}</div>
-            <p>{profile?.selfIntroduction ?? '한 줄 소개가 없습니다'}</p>
-          </div>
-        </div>
+        {profileContent}
         <nav className={s.navWrapper}>
           <NavItem leftIcon={<GroupProfileIcon />} text="팔로워 수" rightIcon={<p>{profile?.followerNum} 명</p>} />
           <NavItem leftIcon={<GroupProfileIcon />} text="팔로잉" rightIcon={<p>{profile?.followingNum} 명</p>} />
