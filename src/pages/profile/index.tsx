@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect, useRef, useState } from 'react';
+import React, { type ReactNode, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import type { MyContent, MyLikeContent } from '@/types/contents';
@@ -80,7 +80,7 @@ export default function MyProfile() {
 
   if (openContents && data) {
     contents = (
-      <>
+      <div className={s.contentsWrapper}>
         {data.map((page, idx) =>
           page.list.content.length === 0 ? (
             <div key={idx} className={s.noContentWrapper}>
@@ -90,15 +90,15 @@ export default function MyProfile() {
               </button>
             </div>
           ) : (
-            <div key={idx} className={s.contentsWrapper}>
+            <React.Fragment key={idx}>
               {page.list.content.map((e: MyContent) => (
                 <ContentItem key={e.contentId} content={e} />
               ))}
-            </div>
+            </React.Fragment>
           ),
         )}
         <div ref={divRef} />
-      </>
+      </div>
     );
   }
 
@@ -136,22 +136,22 @@ export default function MyProfile() {
 
   if (openLikes && likesData) {
     likeContents = (
-      <>
+      <div className={s.contentsWrapper}>
         {likesData.map((page, idx) =>
           page.list.content.length === 0 ? (
             <div key={idx} className={s.noContentWrapper}>
               <p>좋아요한 글이 없습니다</p>
             </div>
           ) : (
-            <div className={s.contentsWrapper} key={idx}>
+            <React.Fragment key={idx}>
               {page.list.content.map((e: MyLikeContent) => (
                 <ContentItem key={e.contentId} content={e} />
               ))}
-            </div>
+            </React.Fragment>
           ),
         )}
         <div ref={likeRef} />
-      </>
+      </div>
     );
   }
 
