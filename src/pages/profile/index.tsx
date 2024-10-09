@@ -1,7 +1,7 @@
 import { type ReactNode, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 
-import type { MyContent } from '@/types/contents';
+import type { MyContent, MyLikeContent } from '@/types/contents';
 import { ROUTES } from '@/constants/router';
 
 import { checkValidImgUrl } from '@/utils/check-valid-image-url';
@@ -9,6 +9,7 @@ import { setSentryLogging } from '@/utils/error-logging';
 
 import { useIntersectionObserver } from '@/hooks/contents/use-intersection-observer';
 import useGetMyContents from '@/hooks/profile/use-get-my-contents';
+import useGetMyLikes from '@/hooks/profile/use-get-my-likes';
 import useGetMyProfile from '@/hooks/profile/use-get-my-profile';
 
 import ProfileLayout from '@/components/layouts/profile-layout';
@@ -28,9 +29,15 @@ import { ArrowDownIcon, ArrowUpIcon, ArticleIcon, DefaultProfile, ForwardIcon, P
 export default function MyProfile() {
   const router = useRouter();
   const [openContents, setOpenContents] = useState<boolean>(false);
+  const [openLikes, setOpenLikes] = useState<boolean>(false);
+
   const { data, isPending, fetchNextPage, hasNextPage, isError, error } = useGetMyContents({ open: openContents });
   const { data: profile, isError: isGetProfileError, error: getProfileError, isPending: profilePending } = useGetMyProfile();
   const divRef = useRef<HTMLDivElement>(null);
+  const likeRef = useRef<HTMLDivElement>(null);
+  const { data: likesData, isPending: likePending, fetchNextPage: likeFetchNextPage, hasNextPage: likeHasNextPage } = useGetMyLikes(openLikes);
+
+  console.log(likesData);
 
   useIntersectionObserver({
     ref: divRef,
@@ -41,7 +48,14 @@ export default function MyProfile() {
     },
   });
 
-  let contents;
+  useIntersectionObserver({
+    ref: likeRef,
+    onIntersect: (entry) => {
+      if (entry.isIntersecting && likeHasNextPage) {
+        void likeFetchNextPage();
+      }
+    },
+  });
 
   useEffect(() => {
     if (isError) {
@@ -54,6 +68,8 @@ export default function MyProfile() {
     }
   }, [isError, isGetProfileError, error, getProfileError]);
 
+  let contents;
+
   if (openContents && isPending) {
     contents = (
       <div className={s.loadingWrapper}>
@@ -64,7 +80,7 @@ export default function MyProfile() {
 
   if (openContents && data) {
     contents = (
-      <div className={s.contentsWrapper}>
+      <>
         {data.map((page, idx) =>
           page.list.content.length === 0 ? (
             <div key={idx} className={s.noContentWrapper}>
@@ -74,7 +90,7 @@ export default function MyProfile() {
               </button>
             </div>
           ) : (
-            <div key={idx}>
+            <div key={idx} className={s.contentsWrapper}>
               {page.list.content.map((e: MyContent) => (
                 <ContentItem key={e.contentId} content={e} />
               ))}
@@ -82,10 +98,11 @@ export default function MyProfile() {
           ),
         )}
         <div ref={divRef} />
-      </div>
+      </>
     );
   }
 
+  // 프로필
   let profileContent;
 
   if (profilePending) {
@@ -106,6 +123,38 @@ export default function MyProfile() {
     );
   }
 
+  // 좋아요한 글
+  let likeContents;
+
+  if (openLikes && likePending) {
+    likeContents = (
+      <div className={s.loadingWrapper}>
+        <LottieLoading />
+      </div>
+    );
+  }
+
+  if (openLikes && likesData) {
+    likeContents = (
+      <>
+        {likesData.map((page, idx) =>
+          page.list.content.length === 0 ? (
+            <div key={idx} className={s.noContentWrapper}>
+              <p>좋아요한 글이 없습니다</p>
+            </div>
+          ) : (
+            <div className={s.contentsWrapper} key={idx}>
+              {page.list.content.map((e: MyLikeContent) => (
+                <ContentItem key={e.contentId} content={e} />
+              ))}
+            </div>
+          ),
+        )}
+        <div ref={likeRef} />
+      </>
+    );
+  }
+
   return (
     <div className={s.profileContainer}>
       <ProfileHeader text="프로필 수정" />
@@ -121,7 +170,7 @@ export default function MyProfile() {
           />
           <NavItem
             leftIcon={<ArticleIcon />}
-            text="내 작성글 모두보기"
+            text="내 작성 글 모두 보기"
             rightIcon={!openContents ? <ArrowDownIcon /> : <ArrowUpIcon />}
             onClick={() => setOpenContents((prev) => !prev)}
             disabled={profilePending}
@@ -129,6 +178,14 @@ export default function MyProfile() {
           {contents}
           {/* <NavItem leftIcon={<GroupProfileIcon />} text="팔로워 수" rightIcon={<p>{profile?.followerNum}명</p>} />
           <NavItem leftIcon={<GroupProfileIcon />} text="팔로잉" rightIcon={<p>{profile?.followingNum}명</p>} /> */}
+          <NavItem
+            leftIcon={<ArticleIcon />}
+            text="좋아요한 글 모두 보기"
+            rightIcon={!openLikes ? <ArrowDownIcon /> : <ArrowUpIcon />}
+            onClick={() => setOpenLikes((prev) => !prev)}
+            disabled={profilePending}
+          />
+          {likeContents}
         </nav>
       </main>
       <UserSettings />
