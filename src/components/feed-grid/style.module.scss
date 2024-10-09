@@ -1,7 +1,9 @@
 .feedWrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(calc(50% - 4px), 1fr));
+  // grid-template-columns: repeat(auto-fit, minmax(calc(50% - 4px), 1fr));
+  grid-template-columns: calc(50% - 4px) calc(50% - 4px);
   gap: 14px 8px;
   overflow-y: auto;
   width: 100%;
+  margin-bottom: 14px;
 }
