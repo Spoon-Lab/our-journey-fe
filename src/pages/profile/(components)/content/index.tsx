@@ -17,7 +17,7 @@ export default function ContentItem({ content }: { content: MyContent | MyLikeCo
 
   return (
     <div className={s.container} onClick={handleClick}>
-      {imageUrl && checkValidImgUrl(imageUrl) ? <img src={imageUrl} alt="content img" /> : <div className={s.defaultImg} />}
+      {imageUrl && checkValidImgUrl(imageUrl) ? <img src={imageUrl} alt="content img" loading="lazy" /> : <div className={s.defaultImg} />}
       <div className={s.contentWrapper}>
         <h1>{content?.title}</h1>
         <p className={s.date}>{content?.createdAt.split(' ')[0]}</p>

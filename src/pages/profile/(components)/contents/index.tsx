@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import type { InfiniteQueryObserverResult } from '@tanstack/react-query';
+import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 
 import type { MyContents, MyLikeContents } from '@/types/contents';
@@ -36,11 +37,11 @@ export default function Contents({ data, isPending, hasNextPage, fetchNextPage, 
 
   if (isPending && !data) {
     return (
-      <div className={s.skeletonWrapper}>
+      <motion.div className={s.skeletonWrapper} initial={{ y: -10, opacity: 0 }} animate={{ y: 0, opacity: 1 }}>
         {new Array(2).fill('').map((_, idx) => (
           <ContentSkeleton key={idx} />
         ))}
-      </div>
+      </motion.div>
     );
   }
 
@@ -61,7 +62,7 @@ export default function Contents({ data, isPending, hasNextPage, fetchNextPage, 
 
   if (data) {
     return (
-      <div className={s.contentsWrapper}>
+      <motion.div className={s.contentsWrapper} initial={{ y: -10, opacity: 0 }} animate={{ y: 0, opacity: 1 }}>
         {data.map((page, idx) =>
           page.list.content.length === 0 ? (
             <div key={idx} className={s.noContentWrapper}>
@@ -83,7 +84,7 @@ export default function Contents({ data, isPending, hasNextPage, fetchNextPage, 
           </div>
         )}
         <div ref={divRef} />
-      </div>
+      </motion.div>
     );
   }
 }
