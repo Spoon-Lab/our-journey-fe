@@ -7,9 +7,8 @@ import { ROUTES } from '@/constants/router';
 
 import { useIntersectionObserver } from '@/hooks/contents/use-intersection-observer';
 
-import LottieLoading from '@/components/lottie-loading';
-
 import ContentItem from '../content';
+import ContentSkeleton from '../content-skeleton';
 
 import s from './style.module.scss';
 
@@ -17,11 +16,12 @@ interface ContentsProps {
   data?: MyContents[] | MyLikeContents[];
   fetchNextPage: () => Promise<InfiniteQueryObserverResult<MyLikeContents[] | MyContents[]>>;
   hasNextPage: boolean;
+  isFetchingNextPage: boolean;
   isPending: boolean;
   type: 'like' | 'content';
 }
 
-export default function Contents({ data, isPending, hasNextPage, fetchNextPage, type }: ContentsProps) {
+export default function Contents({ data, isPending, hasNextPage, fetchNextPage, type, isFetchingNextPage }: ContentsProps) {
   const divRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
@@ -34,10 +34,12 @@ export default function Contents({ data, isPending, hasNextPage, fetchNextPage, 
     },
   });
 
-  if (isPending) {
+  if (isPending && !data) {
     return (
-      <div className={s.loadingWrapper}>
-        <LottieLoading />
+      <div className={s.skeletonWrapper}>
+        {new Array(2).fill('').map((_, idx) => (
+          <ContentSkeleton key={idx} />
+        ))}
       </div>
     );
   }
@@ -45,7 +47,6 @@ export default function Contents({ data, isPending, hasNextPage, fetchNextPage, 
   let noContents;
 
   if (type === 'like') {
-    // TODO: 데이터에 따라 분리해야함
     noContents = <p>좋아요한 글이 없습니다</p>;
   } else {
     noContents = (
@@ -73,6 +74,13 @@ export default function Contents({ data, isPending, hasNextPage, fetchNextPage, 
               ))}
             </React.Fragment>
           ),
+        )}
+        {hasNextPage && isFetchingNextPage && (
+          <div className={s.skeletonWrapper}>
+            {new Array(2).fill('').map((_, idx) => (
+              <ContentSkeleton key={idx} />
+            ))}
+          </div>
         )}
         <div ref={divRef} />
       </div>

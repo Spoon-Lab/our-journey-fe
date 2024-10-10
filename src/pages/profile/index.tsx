@@ -27,10 +27,16 @@ export default function MyProfile() {
   const [openContents, setOpenContents] = useState<boolean>(false);
   const [openLikes, setOpenLikes] = useState<boolean>(false);
 
-  const { data, isPending, fetchNextPage, hasNextPage, isError, error } = useGetMyContents(openContents);
+  const { data, isPending, fetchNextPage, hasNextPage, isError, error, isFetchingNextPage } = useGetMyContents(openContents);
   const { data: profile, isError: isGetProfileError, error: getProfileError, isPending: profilePending } = useGetMyProfile();
 
-  const { data: likesData, isPending: likePending, fetchNextPage: likeFetchNextPage, hasNextPage: likeHasNextPage } = useGetMyLikes(openLikes);
+  const {
+    data: likesData,
+    isPending: likePending,
+    fetchNextPage: likeFetchNextPage,
+    hasNextPage: likeHasNextPage,
+    isFetchingNextPage: likeFetchingNextPage,
+  } = useGetMyLikes(openLikes);
 
   useEffect(() => {
     if (isError) {
@@ -63,7 +69,16 @@ export default function MyProfile() {
             onClick={() => setOpenContents((prev) => !prev)}
             disabled={profilePending}
           />
-          {openContents && <Contents data={data} isPending={isPending} hasNextPage={hasNextPage} fetchNextPage={fetchNextPage} type="content" />}
+          {openContents && (
+            <Contents
+              data={data}
+              isPending={isPending}
+              hasNextPage={hasNextPage}
+              fetchNextPage={fetchNextPage}
+              type="content"
+              isFetchingNextPage={isFetchingNextPage}
+            />
+          )}
           <NavItem
             leftIcon={<ArticleIcon />}
             text="좋아요한 글 모두 보기"
@@ -71,7 +86,16 @@ export default function MyProfile() {
             onClick={() => setOpenLikes((prev) => !prev)}
             disabled={profilePending}
           />
-          {openLikes && <Contents data={likesData} isPending={likePending} hasNextPage={likeHasNextPage} fetchNextPage={likeFetchNextPage} type="like" />}
+          {openLikes && (
+            <Contents
+              data={likesData}
+              isPending={likePending}
+              hasNextPage={likeHasNextPage}
+              fetchNextPage={likeFetchNextPage}
+              type="like"
+              isFetchingNextPage={likeFetchingNextPage}
+            />
+          )}
           {/* <NavItem leftIcon={<GroupProfileIcon />} text="팔로워 수" rightIcon={<p>{profile?.followerNum}명</p>} />
           <NavItem leftIcon={<GroupProfileIcon />} text="팔로잉" rightIcon={<p>{profile?.followingNum}명</p>} /> */}
         </nav>
