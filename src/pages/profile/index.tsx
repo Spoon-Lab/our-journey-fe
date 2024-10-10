@@ -1,21 +1,18 @@
-import React, { type ReactNode, useEffect, useRef, useState } from 'react';
+import React, { type ReactNode, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
-import type { MyContent, MyLikeContent } from '@/types/contents';
 import { ROUTES } from '@/constants/router';
 
 import { setSentryLogging } from '@/utils/error-logging';
 
-import { useIntersectionObserver } from '@/hooks/contents/use-intersection-observer';
 import useGetMyContents from '@/hooks/profile/use-get-my-contents';
 import useGetMyLikes from '@/hooks/profile/use-get-my-likes';
 import useGetMyProfile from '@/hooks/profile/use-get-my-profile';
 
 import ProfileLayout from '@/components/layouts/profile-layout';
-import LottieLoading from '@/components/lottie-loading';
 import NavBar from '@/components/nav-bar';
 
-import ContentItem from './(components)/content';
+import Contents from './(components)/contents';
 import NavItem from './(components)/nav-item';
 import ProfileHeader from './(components)/profile-header';
 import UserInfo from './(components)/user-info';
@@ -30,31 +27,10 @@ export default function MyProfile() {
   const [openContents, setOpenContents] = useState<boolean>(false);
   const [openLikes, setOpenLikes] = useState<boolean>(false);
 
-  const { data, isPending, fetchNextPage, hasNextPage, isError, error } = useGetMyContents({ open: openContents });
+  const { data, isPending, fetchNextPage, hasNextPage, isError, error } = useGetMyContents(openContents);
   const { data: profile, isError: isGetProfileError, error: getProfileError, isPending: profilePending } = useGetMyProfile();
-  const divRef = useRef<HTMLDivElement>(null);
-  const likeRef = useRef<HTMLDivElement>(null);
+
   const { data: likesData, isPending: likePending, fetchNextPage: likeFetchNextPage, hasNextPage: likeHasNextPage } = useGetMyLikes(openLikes);
-
-  console.log(likesData);
-
-  useIntersectionObserver({
-    ref: divRef,
-    onIntersect: (entry) => {
-      if (entry.isIntersecting && hasNextPage) {
-        void fetchNextPage();
-      }
-    },
-  });
-
-  useIntersectionObserver({
-    ref: likeRef,
-    onIntersect: (entry) => {
-      if (entry.isIntersecting && likeHasNextPage) {
-        void likeFetchNextPage();
-      }
-    },
-  });
 
   useEffect(() => {
     if (isError) {
@@ -66,72 +42,6 @@ export default function MyProfile() {
       setSentryLogging(getProfileError);
     }
   }, [isError, isGetProfileError, error, getProfileError]);
-
-  let contents;
-
-  if (openContents && isPending) {
-    contents = (
-      <div className={s.loadingWrapper}>
-        <LottieLoading />
-      </div>
-    );
-  }
-
-  if (openContents && data) {
-    contents = (
-      <div className={s.contentsWrapper}>
-        {data.map((page, idx) =>
-          page.list.content.length === 0 ? (
-            <div key={idx} className={s.noContentWrapper}>
-              <p>작성한 글이 없습니다</p>
-              <button type="button" onClick={() => router.push(ROUTES.content.create())}>
-                글쓰러 가기
-              </button>
-            </div>
-          ) : (
-            <React.Fragment key={idx}>
-              {page.list.content.map((e: MyContent) => (
-                <ContentItem key={e.contentId} content={e} />
-              ))}
-            </React.Fragment>
-          ),
-        )}
-        <div ref={divRef} />
-      </div>
-    );
-  }
-
-  // 좋아요한 글
-  let likeContents;
-
-  if (openLikes && likePending) {
-    likeContents = (
-      <div className={s.loadingWrapper}>
-        <LottieLoading />
-      </div>
-    );
-  }
-
-  if (openLikes && likesData) {
-    likeContents = (
-      <div className={s.contentsWrapper}>
-        {likesData.map((page, idx) =>
-          page.list.content.length === 0 ? (
-            <div key={idx} className={s.noContentWrapper}>
-              <p>좋아요한 글이 없습니다</p>
-            </div>
-          ) : (
-            <React.Fragment key={idx}>
-              {page.list.content.map((e: MyLikeContent) => (
-                <ContentItem key={e.contentId} content={e} />
-              ))}
-            </React.Fragment>
-          ),
-        )}
-        <div ref={likeRef} />
-      </div>
-    );
-  }
 
   return (
     <div className={s.profileContainer}>
@@ -153,9 +63,7 @@ export default function MyProfile() {
             onClick={() => setOpenContents((prev) => !prev)}
             disabled={profilePending}
           />
-          {contents}
-          {/* <NavItem leftIcon={<GroupProfileIcon />} text="팔로워 수" rightIcon={<p>{profile?.followerNum}명</p>} />
-          <NavItem leftIcon={<GroupProfileIcon />} text="팔로잉" rightIcon={<p>{profile?.followingNum}명</p>} /> */}
+          {openContents && <Contents data={data} isPending={isPending} hasNextPage={hasNextPage} fetchNextPage={fetchNextPage} type="content" />}
           <NavItem
             leftIcon={<ArticleIcon />}
             text="좋아요한 글 모두 보기"
@@ -163,7 +71,9 @@ export default function MyProfile() {
             onClick={() => setOpenLikes((prev) => !prev)}
             disabled={profilePending}
           />
-          {likeContents}
+          {openLikes && <Contents data={likesData} isPending={likePending} hasNextPage={likeHasNextPage} fetchNextPage={likeFetchNextPage} type="like" />}
+          {/* <NavItem leftIcon={<GroupProfileIcon />} text="팔로워 수" rightIcon={<p>{profile?.followerNum}명</p>} />
+          <NavItem leftIcon={<GroupProfileIcon />} text="팔로잉" rightIcon={<p>{profile?.followingNum}명</p>} /> */}
         </nav>
       </main>
       <UserSettings />
