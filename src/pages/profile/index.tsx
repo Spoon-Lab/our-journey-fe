@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import type { MyContent, MyLikeContent } from '@/types/contents';
 import { ROUTES } from '@/constants/router';
 
-import { checkValidImgUrl } from '@/utils/check-valid-image-url';
 import { setSentryLogging } from '@/utils/error-logging';
 
 import { useIntersectionObserver } from '@/hooks/contents/use-intersection-observer';
@@ -19,12 +18,12 @@ import NavBar from '@/components/nav-bar';
 import ContentItem from './(components)/content';
 import NavItem from './(components)/nav-item';
 import ProfileHeader from './(components)/profile-header';
-import Skeleton from './(components)/skeleton';
+import UserInfo from './(components)/user-info';
 import UserSettings from './(components)/user-settings';
 
 import s from './style.module.scss';
 
-import { ArrowDownIcon, ArrowUpIcon, ArticleIcon, DefaultProfile, ForwardIcon, PersonIcon } from '@/assets/icons';
+import { ArrowDownIcon, ArrowUpIcon, ArticleIcon, ForwardIcon, PersonIcon } from '@/assets/icons';
 
 export default function MyProfile() {
   const router = useRouter();
@@ -102,27 +101,6 @@ export default function MyProfile() {
     );
   }
 
-  // 프로필
-  let profileContent;
-
-  if (profilePending) {
-    profileContent = (
-      <div className={s.profileWrapper}>
-        <Skeleton />
-      </div>
-    );
-  } else {
-    profileContent = (
-      <div className={s.profileWrapper}>
-        {profile?.imageUrl && checkValidImgUrl(profile?.imageUrl) ? <img src={profile?.imageUrl} alt="profile img" /> : <DefaultProfile />}
-        <div className={s.userInfoWrapper}>
-          <div>{profile?.nickname}</div>
-          <p>{profile?.selfIntroduction ?? '한 줄 소개가 없습니다'}</p>
-        </div>
-      </div>
-    );
-  }
-
   // 좋아요한 글
   let likeContents;
 
@@ -159,7 +137,7 @@ export default function MyProfile() {
     <div className={s.profileContainer}>
       <ProfileHeader text="프로필 수정" />
       <main>
-        {profileContent}
+        <UserInfo profile={profile} isPending={profilePending} />
         <nav className={s.navWrapper}>
           <NavItem
             leftIcon={<PersonIcon />}
