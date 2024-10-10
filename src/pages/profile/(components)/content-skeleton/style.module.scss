@@ -1,0 +1,51 @@
+@import '@/styles';
+
+@mixin skeletonUl {
+  background: linear-gradient(110deg, $gray-700 8%, #5c5c5c 18%, $gray-700 33%);
+  background-size: 200% 300%;
+
+  animation: 1.4s skeletonGradientWave linear infinite;
+
+  @keyframes skeletonGradientWave {
+    to {
+      background-position-x: -200%;
+    }
+  }
+}
+
+.container {
+  display: flex;
+  gap: 11px;
+  width: 100%;
+}
+
+.image {
+  width: 66px;
+  height: 66px;
+  border-radius: 4px;
+
+  @include skeletonUl;
+}
+
+.contentWrapper {
+  height: 66px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 6px;
+
+  div {
+    @include skeletonUl;
+    border-radius: 2px;
+  }
+}
+
+.title {
+  width: 200px;
+  height: 15.5px;
+}
+
+.date {
+  width: 100px;
+  height: 13.5px;
+}

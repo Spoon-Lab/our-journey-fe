@@ -6,6 +6,8 @@
   align-items: center;
 
   @include layout;
+  min-height: 100vh;
+  height: 100%;
   padding: 16px 16px 0;
 
   background-color: $background-system;

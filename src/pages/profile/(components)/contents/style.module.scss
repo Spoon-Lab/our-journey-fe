@@ -1,0 +1,45 @@
+@import '@/styles';
+
+.loadingWrapper {
+  height: 50px;
+  svg {
+    width: 60px !important;
+  }
+}
+
+.contentsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.noContentWrapper {
+  display: grid;
+  place-items: center;
+  gap: 15px;
+
+  p {
+    @include regular-caption-1;
+  }
+
+  button {
+    background-color: $blue-800;
+    color: white;
+    padding: 8px 10px;
+    border-radius: 6px;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.skeletonWrapper {
+  display: flex;
+  flex-direction: column;
+
+  gap: 16px;
+  margin-bottom: 16px;
+}
