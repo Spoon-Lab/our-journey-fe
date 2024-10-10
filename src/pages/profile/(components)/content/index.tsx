@@ -9,6 +9,7 @@ import s from './style.module.scss';
 
 export default function ContentItem({ content }: { content: MyContent | MyLikeContent }) {
   const router = useRouter();
+
   const imageUrl = content && ('contentImageUrl' in content ? content.contentImageUrl : content?.postImageUrl);
 
   const handleClick = () => {
