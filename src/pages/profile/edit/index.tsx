@@ -15,6 +15,7 @@ import useUploadImg from '@/hooks/use-upload-img';
 
 import Input from '@/components/input';
 import ProfileLayout from '@/components/layouts/profile-layout';
+import LottieLoading from '@/components/lottie-loading';
 import Modal from '@/components/modal';
 
 import ProfileHeader from '../(components)/profile-header';
@@ -61,7 +62,7 @@ export default function Edit() {
     nickname: changedNickname || (profile?.nickname as string),
     selfIntroduction: changedIntroduction === '' ? null : changedIntroduction || profile?.selfIntroduction || null,
   });
-  const { mutate: updateProfile } = useUpdateMyProfile();
+  const { mutate: updateProfile, isPending } = useUpdateMyProfile();
 
   const onSubmit = () => {
     if (file) {
@@ -88,6 +89,10 @@ export default function Edit() {
       setSentryLogging(error);
     }
   }, [isError, error]);
+
+  if (isPending) {
+    return <LottieLoading />;
+  }
 
   return (
     <>
