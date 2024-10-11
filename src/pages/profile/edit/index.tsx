@@ -91,7 +91,11 @@ export default function Edit() {
   }, [isError, error]);
 
   if (isPending) {
-    return <LottieLoading />;
+    return (
+      <div className={s.loadingBox}>
+        <LottieLoading />
+      </div>
+    );
   }
 
   return (

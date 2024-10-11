@@ -1,9 +1,10 @@
 .container {
   display: flex;
-  width: 100%;
   justify-content: center;
   align-items: center;
-  height: auto;
-  margin-top: 20%;
-  // place-items: center;
+  height: 100%;
+  width: 100%;
+
+  // height: auto;
+  // margin-top: 20%;
 }
