@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 
 import type { MyContent, MyLikeContent } from '@/types/contents';
@@ -17,12 +18,12 @@ export default function ContentItem({ content }: { content: MyContent | MyLikeCo
   };
 
   return (
-    <div className={s.container} onClick={handleClick}>
+    <motion.div className={s.container} onClick={handleClick} whileHover={{ opacity: 0.8 }}>
       {imageUrl && checkValidImgUrl(imageUrl) ? <img src={imageUrl} alt="content img" loading="lazy" /> : <div className={s.defaultImg} />}
       <div className={s.contentWrapper}>
         <h1>{content?.title}</h1>
         <p className={s.date}>{content?.createdAt.split(' ')[0]}</p>
       </div>
-    </div>
+    </motion.div>
   );
 }

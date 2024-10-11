@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect, useState } from 'react';
+import { type ReactNode, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import { ROUTES } from '@/constants/router';
@@ -6,7 +6,6 @@ import { ROUTES } from '@/constants/router';
 import useGetOtherProfile from '@/hooks/profile/use-get-other-profile';
 
 import ProfileLayout from '@/components/layouts/profile-layout';
-import LottieLoading from '@/components/lottie-loading';
 import NavBar from '@/components/nav-bar';
 
 import NavItem from '../(components)/nav-item';
@@ -22,24 +21,12 @@ export default function Profile() {
   const { id } = router.query;
   const { data: profile, isPending } = useGetOtherProfile(Number(id));
 
-  const [isLoading, setIsLoading] = useState(true);
-
   // 내 프로필일 경우
   useEffect(() => {
     if (profile?.editable) {
       void router.push(ROUTES.profile);
-    } else {
-      setIsLoading(false);
     }
   }, [profile, router]);
-
-  if (isLoading) {
-    return (
-      <div className={s.profileContainer}>
-        <LottieLoading />
-      </div>
-    );
-  }
 
   return (
     <div className={s.profileContainer}>
