@@ -23,6 +23,7 @@ export const ROUTES = {
   needLogin: '/need-login',
 
   otherProfile: (id: number) => `/profile/${id}`,
+  signupConfirm: '/signup/confirm',
 };
 
 export type ROUTES = (typeof ROUTES)[keyof typeof ROUTES];
