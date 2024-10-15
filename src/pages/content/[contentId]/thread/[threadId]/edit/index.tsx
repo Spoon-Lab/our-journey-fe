@@ -23,7 +23,7 @@ export default function ThreadEditPage() {
   const contentId = useGetRouteParamNumber('contentId');
   const threadId = useGetRouteParamNumber('threadId');
 
-  const { data: fetchedThreadList } = useGetThread(contentId, threadId);
+  const { data: threadData } = useGetThread(contentId, threadId);
   const { mutate: editThread } = useEditThread();
   const { mutate: uploadImages } = useUploadImagesToServer();
 
@@ -37,13 +37,12 @@ export default function ThreadEditPage() {
   const { addToast } = useToast();
 
   useEffect(() => {
-    if (fetchedThreadList) {
-      const findThread = fetchedThreadList.list.content.find((thread) => thread.threadId === threadId);
-      setTitle(findThread?.texts || '');
-      setTagNames(findThread?.tagNames || []);
-      setUploadImageFile(findThread?.threadImg || '');
+    if (threadData) {
+      setTitle(threadData.texts || '');
+      threadData.tagsDto.map((tag) => setTagNames((prev) => [...prev, tag.tagName]));
+      setUploadImageFile(threadData.threadImg || '');
     }
-  }, [fetchedThreadList, setUploadImageFile, threadId]);
+  }, [threadData, setUploadImageFile, threadId]);
 
   useEffect(() => {
     if (isVerificationComplete) {

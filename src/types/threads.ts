@@ -90,3 +90,14 @@ export interface PageParam {
   size: number;
   sort: string[];
 }
+
+export interface ThreadItemProps {
+  contentId: number;
+  editabled: boolean;
+  profileThreadDto: ThreadWriterDto;
+  removeable: boolean;
+  tagsDto: Tag[];
+  texts: string;
+  threadId: number;
+  threadImg: string;
+}
