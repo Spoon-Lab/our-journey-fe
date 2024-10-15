@@ -10,16 +10,18 @@ export const useImagesUploadToLocal = () => {
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
-      const file = acceptedFiles[0];
-      if (acceptedFormats.includes(file.type)) {
-        const format = file.type.split('/')[1];
-        setUploadImageFile(file);
-        setFileFormat(format);
-        setErrorMessage(null);
-      } else {
-        setUploadImageFile('');
-        setFileFormat(null);
-        setErrorMessage('Unsupported file format. Please upload PNG, JPG, JPEG, WEBP, or GIF.');
+      if (acceptedFiles.length > 0) {
+        const file = acceptedFiles[0];
+        if (acceptedFormats.includes(file.type)) {
+          const format = file.type.split('/')[1];
+          setUploadImageFile(file);
+          setFileFormat(format);
+          setErrorMessage(null);
+        } else {
+          setUploadImageFile('');
+          setFileFormat(null);
+          setErrorMessage('지원되지 않는 파일 형식입니다. PNG, JPG, JPEG, WEBP 또는 GIF 파일을 업로드해 주세요.');
+        }
       }
     },
     [acceptedFormats],
@@ -28,6 +30,8 @@ export const useImagesUploadToLocal = () => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: acceptedFormats.reduce((acc, format) => ({ ...acc, [format]: [] }), {}),
+    multiple: false, // 여기에 multiple: false 옵션 추가
+    maxFiles: 1, // 최대 파일 수를 1로 제한
   });
 
   const resetImage = () => {

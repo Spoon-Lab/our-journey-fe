@@ -11,6 +11,8 @@ import ParallaxImage from '../parallax-image';
 
 import s from './style.module.scss';
 
+import { DefaultProfileSmallIcon } from '@/assets/icons';
+
 interface ContentCoverProps {
   content: Content;
   user: ContentWriterDto;
@@ -35,7 +37,7 @@ export default function ContentCover({ content, user }: ContentCoverProps) {
                 {profileImgUrl ? (
                   <Image src={profileImgUrl} alt="profile-image" width={40} height={40} />
                 ) : (
-                  <span className={s.invalidImage}>현재 유효하지 않은 이미지입니다.</span>
+                  <DefaultProfileSmallIcon alt="profile-image" width={15} height={15} />
                 )}
               </div>
               <span className={s.writerName}>{name}</span>

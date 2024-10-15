@@ -28,10 +28,6 @@ export default function CustomTextarea({ placeholder, value, onChange, invalidMs
 
   const onInput: FormEventHandler<HTMLTextAreaElement> = (e) => {
     const inputValue = (e.target as HTMLTextAreaElement).value;
-    if (inputValue.match(/^\s+/)) {
-      onChange('');
-      return;
-    }
     if (maxLength && inputValue.length > maxLength) {
       return;
     }

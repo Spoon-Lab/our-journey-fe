@@ -130,7 +130,7 @@ export default function Edit() {
               <DefaultProfile />
             )}
             <label htmlFor="file">
-              <EditIcon />
+              <EditIcon width={20} height={20} />
             </label>
             <Input type="file" id="file" onChange={handleChangeFile} />
           </figure>

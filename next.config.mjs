@@ -6,18 +6,6 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'images.unsplash.com',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'images.pixels.com',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
         hostname: process.env.NEXT_PUBLIC_IMAGE_HOST_URL,
         port: '',
         pathname: '/media/content/**',
@@ -49,7 +37,7 @@ const nextConfig = {
         test: /\.svg$/i,
         issuer: fileLoaderRule.issuer,
         resourceQuery: { not: [...fileLoaderRule.resourceQuery.not, /url/] },
-        use: ['@svgr/webpack'],
+        use: [{ loader: '@svgr/webpack', options: { icon: true } }],
       },
     );
 

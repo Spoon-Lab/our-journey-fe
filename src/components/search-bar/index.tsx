@@ -43,7 +43,7 @@ export default function SearchBar(props: InterfaceProps) {
           <button type="button" className={s.searchBarButton} onClick={handleMoveToCatetory}>
             <span>여정을 검색해보세요</span>
             <div className={s.iconBox}>
-              <SearchIcon />
+              <SearchIcon width={20} height={20} />
             </div>
           </button>
           <div />
@@ -58,7 +58,7 @@ export default function SearchBar(props: InterfaceProps) {
           <input className={s.searchInput} id="searchBar" placeholder="해시태그 검색하기" value={keyword} onChange={handleOnChange} />
 
           <button type="submit" className={s.searchButton} aria-label="검색">
-            <SearchIcon />
+            <SearchIcon width={20} height={20} />
           </button>
         </form>
       );

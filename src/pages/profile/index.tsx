@@ -56,16 +56,16 @@ export default function MyProfile() {
         <UserInfo profile={profile} isPending={profilePending} />
         <nav className={s.navWrapper}>
           <NavItem
-            leftIcon={<PersonIcon />}
+            leftIcon={<PersonIcon width={16} height={16} />}
             text="내 정보 보기"
-            rightIcon={<ForwardIcon />}
+            rightIcon={<ForwardIcon width={20} height={20} />}
             onClick={() => router.push(`${ROUTES.profileEdit}`)}
             disabled={profilePending}
           />
           <NavItem
-            leftIcon={<ArticleIcon />}
+            leftIcon={<ArticleIcon width={20} height={20} />}
             text="내 작성 글 모두 보기"
-            rightIcon={!openContents ? <ArrowDownIcon /> : <ArrowUpIcon />}
+            rightIcon={!openContents ? <ArrowDownIcon width={20} height={20} /> : <ArrowUpIcon width={20} height={20} />}
             onClick={() => setOpenContents((prev) => !prev)}
             disabled={profilePending}
           />
