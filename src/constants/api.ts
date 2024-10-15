@@ -39,6 +39,7 @@ export const API_PATHS = {
     POST: (contentId: number) => `/contents/${contentId}/threads`, // contents에 thread 생성
     PATCH: (contentId: number, threadId: number) => `/contents/${contentId}/threads/${threadId}`, // thread 수정
     DELETE: (contentId: number, threadId: number) => `/contents/${contentId}/threads/${threadId}`, // thread 삭제
+    GET_ONE: (contentId: number, threadId: number) => `/contents/${contentId}/threads/${threadId}`, // thread 하나 조회
   },
   HEALTH: {
     CHECK: () => `/health`, // 서버 상태 확인
