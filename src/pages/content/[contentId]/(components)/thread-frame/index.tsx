@@ -1,14 +1,16 @@
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 import { ROUTES } from '@/constants/router';
 
-import { checkValidImgUrl } from '@/utils/check-valid-image-url';
 import { defaultFormatTimeStamp } from '@/utils/format-date-timestamp';
 
 import { useModal } from '@/hooks/contents/ui/use-modal';
 import { useDeleteThread } from '@/hooks/threads/use-delete-thread';
 import { useToast } from '@/hooks/use-toast';
+
+import Skeleton from '@/components/skeleton';
 
 import ContentsDropdownActionMenu from '../dropdown-action-menu';
 import ImageZoomedModal from '../image-zoomed-modal';
@@ -22,6 +24,7 @@ interface ThreadFrameProps {
   contentId: number;
   date: string;
   image?: string;
+  isLoading?: boolean;
   isWriter?: boolean;
   profileId: number;
   tags: string[];
@@ -42,13 +45,23 @@ export default function ThreadFrame({
   contentId,
   date,
   profileId,
+  isLoading = false,
 }: ThreadFrameProps) {
   const router = useRouter();
-
   const { isOpen: isModalOpen, openModal, closeModal } = useModal();
   const { addToast } = useToast();
-
   const { mutate: deleteThread } = useDeleteThread();
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  useEffect(() => {
+    if (image) {
+      const img = new window.Image();
+      img.onload = () => setImageLoaded(true);
+      img.src = image;
+    } else {
+      setImageLoaded(true);
+    }
+  }, [image]);
 
   const handleEdit = () => {
     void router.push(`/content/${contentId}/thread/${threadId}/edit`);
@@ -71,6 +84,26 @@ export default function ThreadFrame({
     );
   };
 
+  if (isLoading) {
+    return (
+      <div className={s.threadFrame}>
+        <div className={s.threadHeader}>
+          <Skeleton width="150px" height="20px" />
+          <Skeleton width="20px" height="20px" />
+        </div>
+        <Skeleton width="100%" height="200px" />
+        <div className={s.threadContent}>
+          <Skeleton width="100px" height="16px" />
+          <Skeleton width="100%" height="60px" />
+        </div>
+        <div className={s.wrapTags}>
+          <Skeleton width="60px" height="24px" />
+          <Skeleton width="60px" height="24px" />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={s.threadFrame}>
       <div className={s.threadHeader}>
@@ -81,20 +114,8 @@ export default function ThreadFrame({
         {isWriter && (
           <ContentsDropdownActionMenu
             actionItems={[
-              {
-                key: 'edit',
-                name: '수정하기',
-                onClick: () => {
-                  handleEdit();
-                },
-              },
-              {
-                key: 'delete',
-                name: '삭제하기',
-                onClick: () => {
-                  handleDelete();
-                },
-              },
+              { key: 'edit', name: '수정하기', onClick: handleEdit },
+              { key: 'delete', name: '삭제하기', onClick: handleDelete },
             ]}
             triggerButton={<MoreVertIcon width={20} height={20} />}
           />
@@ -102,8 +123,9 @@ export default function ThreadFrame({
       </div>
 
       {image && (
-        <div className={s.threadImage} onClick={() => openModal()}>
-          <Image src={image} alt="thread-image" layout="fill" objectFit="cover" />
+        <div className={s.threadImage} onClick={openModal}>
+          {!imageLoaded && <Skeleton width="100%" height="100%" />}
+          {imageLoaded && <Image src={image} alt="thread-image" layout="fill" objectFit="cover" />}
         </div>
       )}
 

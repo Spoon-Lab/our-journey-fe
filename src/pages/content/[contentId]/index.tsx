@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useRef } from 'react';
 
 import useGetOneContent from '@/hooks/contents/api/use-get-one-content';
 import { useGetRouteParamNumber } from '@/hooks/contents/core/use-get-route-param-number';
@@ -19,15 +19,14 @@ export default function DetailPage() {
   const { isScrolled, scrollPercent } = useScroll(30);
 
   const contentId = useGetRouteParamNumber('contentId');
-  const { data: fetchedContent, isLoading: isLoadingContent, isSuccess: successFetchingContent, error: errContentFetching } = useGetOneContent(contentId);
+  const { data: contentData, isLoading: isLoadingContent, isFetching: isContentFetching } = useGetOneContent(contentId);
   const {
     data: threads,
-    isLoading: isThreadFetching,
+    isLoading: isThreadLoading,
     isSuccess: successFetchingThread,
     error: errThreadFetching,
     fetchNextPage,
     hasNextPage,
-    isFetchingNextPage,
   } = useGetThreads(contentId);
 
   const divRef = useRef<HTMLDivElement>(null);
@@ -40,21 +39,20 @@ export default function DetailPage() {
       }
     },
   });
-
   return (
     <div className={s.detailPage}>
       <ProgressBarHeader isScrolled={isScrolled} scrollPercent={scrollPercent}>
-        <ContentHeader contentId={contentId} isWriter={fetchedContent?.isEditable ?? false} />
+        <ContentHeader contentId={contentId} isWriter={contentData?.isEditable ?? false} />
       </ProgressBarHeader>
       {/* TODO: Add logic for handling loading state and empty content data */}
-      {successFetchingContent && fetchedContent && <ContentCover content={fetchedContent} user={fetchedContent.contentProfileDto} />}
+      <ContentCover content={contentData} user={contentData?.contentProfileDto} isLoading={isLoadingContent || isContentFetching} />
       <div className={s.wrapBody}>
         <ContentSection
           contentId={contentId}
-          initialLiked={fetchedContent?.isLiked || false}
-          comments={fetchedContent?.commentCount || 0}
-          likes={fetchedContent?.likeCount || 0}
-          tags={Array.isArray(fetchedContent?.tags) ? fetchedContent.tags : []}
+          initialLiked={contentData?.isLiked || false}
+          comments={contentData?.commentCount || 0}
+          likes={contentData?.likeCount || 0}
+          tags={Array.isArray(contentData?.tags) ? contentData.tags : []}
         />
         <div className={s.divider} />
         <div className={s.wrapThreads}>
@@ -79,7 +77,7 @@ export default function DetailPage() {
               </React.Fragment>
             ))}
           <div className={s.refArea} ref={divRef} />
-          {fetchedContent?.isEditable && <AddThreadBtn contentId={contentId} />}
+          {contentData?.isEditable && <AddThreadBtn contentId={contentId} />}
         </div>
       </div>
     </div>

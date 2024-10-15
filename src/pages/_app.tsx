@@ -3,7 +3,7 @@ import type { NextPage } from 'next';
 import type { AppProps } from 'next/app';
 import { SessionProvider } from 'next-auth/react';
 
-import ReactQueryProvider from '@/components/providers/react-query-provider';
+import ReactQueryProvider from '@/components/providers/ReactQuery';
 import { ToastProvider } from '@/components/providers/toast-provider';
 
 import '@/styles/globals.scss';

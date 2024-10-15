@@ -30,7 +30,7 @@ export default function useGetContents(props: Props) {
         if (categoryId && !title) api = `${api}&categoryId=${categoryId}`;
         if (!categoryId && title) api = `${api}&title=${title}`;
       }
-      // MEMO: preAxiosInstance 변경 필요
+      // MEMO: axiosInstance 변경 필요
       const list = (await preAxiosInstance.get(`${api}`)).data;
 
       return list as Promise<Contents>;

@@ -11,7 +11,7 @@ export const useDeleteThread = () => {
   return useMutation<Thread, Error, { contentId: number; threadId: number }>({
     mutationFn: ({ contentId, threadId }) => deleteThread(contentId, threadId),
     onSuccess: () => {
-      void queryClient.invalidateQueries({ queryKey: ['threads'] });
+      void queryClient.invalidateQueries({ queryKey: ['threads-delete'] });
     },
     onError: (error) => {
       setSentryLogging(error);
