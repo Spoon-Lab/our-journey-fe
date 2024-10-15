@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 import { ROUTES } from '@/constants/router';
 
-import { useDeleteContent } from '@/hooks/contents/use-delete-content';
+import { useDeleteContent } from '@/hooks/contents/api/use-delete-content';
 import { useToast } from '@/hooks/use-toast';
 
 import BtnFrame from '../btn-frame';

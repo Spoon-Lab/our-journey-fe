@@ -18,8 +18,8 @@ export const useCreateThreads = () => {
 
   return useMutation<CreateThreadResponse, AxiosError, { contentId: number; reqBody: CreateThreadReqBody }>({
     mutationFn: ({ contentId, reqBody }) => createThread(contentId, reqBody),
-    onSuccess: () => {
-      void queryClient.invalidateQueries({ queryKey: ['threads'] });
+    onSuccess: (_data, { contentId }) => {
+      void queryClient.invalidateQueries({ queryKey: [`new-threads-#${contentId}`] });
     },
     onError: (error: AxiosError) => {
       setSentryLogging(error);

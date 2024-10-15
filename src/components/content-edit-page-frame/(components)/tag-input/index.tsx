@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 
 import type { Tag } from '@/types/tags';
 
+import { useDynamicInput } from '@/hooks/contents/ui/use-input-width';
 import useSearchTag from '@/hooks/tags/use-search-tag';
 import { useSuggestions } from '@/hooks/tags/use-suggestions';
-import { useDynamicInput } from '@/hooks/use-input-width';
 
 import s from './style.module.scss';
 

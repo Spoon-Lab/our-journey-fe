@@ -1,0 +1,28 @@
+@keyframes softPulse {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes softGradientMove {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, rgba(#f0f0f0, 0.1) 0%, rgba(#f0f0f0, 0.2) 20%, rgba(#f0f0f0, 0.3) 40%, rgba(#f0f0f0, 0.2) 60%, rgba(#f0f0f0, 0.1) 80%);
+  background-size: 200% 100%;
+  animation:
+    softPulse 1s ease-in-out infinite,
+    softGradientMove 1s linear infinite;
+}

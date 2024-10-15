@@ -35,10 +35,11 @@ export const API_PATHS = {
     DELETE: (contentId: number, commentId: number) => `/contents/${contentId}/comments/${commentId}`, // 댓글 삭제
   },
   THREADS: {
-    GET: (contentId: number, paginationParams: PaginationParams) => `/contents/${contentId}/threads?size=10&page=0`, // contents에 대한 모든 thread 조회
+    GET: (contentId: number, page: number, size: number = 10) => `/contents/${contentId}/threads?size=${size}&page=${page}`, // contents에 대한 모든 thread 조회
     POST: (contentId: number) => `/contents/${contentId}/threads`, // contents에 thread 생성
     PATCH: (contentId: number, threadId: number) => `/contents/${contentId}/threads/${threadId}`, // thread 수정
     DELETE: (contentId: number, threadId: number) => `/contents/${contentId}/threads/${threadId}`, // thread 삭제
+    GET_ONE: (contentId: number, threadId: number) => `/contents/${contentId}/threads/${threadId}`, // thread 하나 조회
   },
   HEALTH: {
     CHECK: () => `/health`, // 서버 상태 확인

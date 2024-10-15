@@ -1,16 +1,16 @@
 import type { ReactNode } from 'react';
 import { useMemo, useState } from 'react';
 
-import type { ToastData } from '@/types/toast';
-
-import Toast from '@/components/progress-toast';
+import type { ToastData, ToastMessage } from '@/types/toast';
 
 import { ToastContext } from '@/context/toast';
+
+import Toast from '@/components/progress-toast';
 
 export function ToastProvider({ children }: { children: ReactNode }) {
   const [toast, setToast] = useState<ToastData | null>(null);
 
-  const addToast = (message: string, type: 'success' | 'error' | 'info' | 'warning', duration: number = 5000) => {
+  const addToast = (message: string, type: ToastMessage, duration: number = 5000) => {
     const newToast = { id: Date.now(), message, type, duration };
     setToast(newToast);
   };

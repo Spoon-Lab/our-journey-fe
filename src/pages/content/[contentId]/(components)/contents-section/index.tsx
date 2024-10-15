@@ -7,9 +7,9 @@ import { TOAST_MESSAGE } from '@/constants/toast-message';
 import { checkLoggedIn } from '@/utils/check-logged-in';
 import { copyUrlToClipboard } from '@/utils/copy-url-to-clipboard';
 
-import { useAddLike } from '@/hooks/contents/use-add-like';
-import { useRemoveLike } from '@/hooks/contents/use-remove-like';
-import { useModal } from '@/hooks/use-modal';
+import { useAddLike } from '@/hooks/contents/api/use-add-like';
+import { useRemoveLike } from '@/hooks/contents/api/use-remove-like';
+import { useModal } from '@/hooks/contents/ui/use-modal';
 import { useToast } from '@/hooks/use-toast';
 
 import Modal from '@/components/modal';
@@ -19,17 +19,16 @@ import WrapTag from '../wrap-tag';
 
 import s from './style.module.scss';
 
-import { FavoriteIconFilled, FavoriteIconNoFill, MessageIcon, ShareIcon } from '@/assets/icons';
+import { FavoriteIconFilled, FavoriteIconNoFill, ShareIcon } from '@/assets/icons';
 
 interface ContentSectionProps {
-  comments?: number;
   contentId: number;
   initialLiked: boolean;
   likes: number;
   tags: Tag[];
 }
 
-export default function ContentSection({ contentId, comments, initialLiked, likes, tags }: ContentSectionProps) {
+export default function ContentSection({ contentId, initialLiked, likes, tags }: ContentSectionProps) {
   const router = useRouter();
   const [isLiked, setLiked] = useState<boolean>(false);
 

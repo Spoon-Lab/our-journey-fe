@@ -21,7 +21,6 @@ export const ROUTES = {
   },
   google: '/login/google',
   needLogin: '/need-login',
-
   otherProfile: (id: number) => `/profile/${id}`,
   signupConfirm: '/signup/confirm',
 };

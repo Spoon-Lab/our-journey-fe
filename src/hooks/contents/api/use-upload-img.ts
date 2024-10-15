@@ -6,8 +6,8 @@ import { API_PATHS } from '@/constants/api';
 import axiosAuthInstance from '@/libs/auth-axios';
 import { setSentryLogging } from '@/utils/error-logging';
 
-import { useUpdateMyProfile } from './profile/use-update-my-profile';
-import { useToast } from './use-toast';
+import { useUpdateMyProfile } from '../../profile/use-update-my-profile';
+import { useToast } from '../../use-toast';
 
 interface UploadImgProps {
   images: File[];

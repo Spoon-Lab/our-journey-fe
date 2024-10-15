@@ -1,8 +1,10 @@
 export const TOAST_MESSAGE = {
   IMAGE_UPLOAD: {
-    ADD: '이미지가 성공적으로 업로드되었습니다.',
+    ADD: {
+      SUCCESS: '이미지가 성공적으로 업로드되었습니다.',
+      FAIL: '이미지 업로드를 실패하였습니다.',
+    },
     ERR: {
-      ADD: '이미지 업로드에 실패하였습니다.',
       ISNT_IMAGE: '.png, .jpg, .jpeg, .webp 형식의 파일만 업로드 가능합니다.',
     },
   },
@@ -11,13 +13,19 @@ export const TOAST_MESSAGE = {
     ERR: '태그 추가를 실패하였습니다.',
   },
   CONTENT: {
-    ADD: '발행이 완료되었습니다.',
-    DELETE: 'Content가 성공적으로 삭제되었습니다.',
-    EDIT: '수정이 완료되었습니다.',
+    ADD: {
+      SUCCESS: 'Content 발행이 완료되었습니다.',
+      FAIL: 'Content 추가를 실패하였습니다.',
+    },
+    DELETE: {
+      SUCCESS: 'Content 삭제가 완료되었습니다.',
+      FAIL: 'Content 삭제를 실패하였습니다.',
+    },
+    EDIT: {
+      SUCCESS: 'Content 수정이 완료되었습니다.',
+      FAIL: 'Content 수정을 실패하였습니다.',
+    },
     ERR: {
-      ADD: 'Content 발행을 실패하였습니다.',
-      DELETE: 'Content 삭제를 실패하였습니다.',
-      EDIT: 'Content 수정을 실패하였습니다.',
       NO_TITLE: '제목을 입력해주세요.',
     },
   },

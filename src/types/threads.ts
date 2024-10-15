@@ -84,3 +84,9 @@ export interface ThreadPatchRequest {
   texts?: string;
   threadImg?: string;
 }
+
+export interface PageParam {
+  page: number;
+  size: number;
+  sort: string[];
+}

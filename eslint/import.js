@@ -29,14 +29,13 @@ module.exports = {
           ['^(assert|buffer|child_process|crypto|dns|events|fs|http|https|net|os|path|querystring|stream|tls|url|util|zlib)(/|$)'],
           // Packages: react related packages come first, then other packages.
           ['^react', '^@?\\w'],
-          // Aliased imports: Project path aliases.
           ['^@/types', '^@/constants'],
-          ['^@/libs', '^@/utils'],
-          ['^@/stores', '^@/hooks'],
+          ['^@/context', '^@/libs', '^@/utils'],
+          ['^@/hooks', '^@/stores'],
           ['^@/components'],
-          // Relative imports: Imports from the same folder first, then parent folders.
+          ['^\\./component', '^\\./components'],
           ['^\\./', '^\\.\\./'],
-          // Static asset imports: SVG files, JSON files.
+          ['^@/mocks'],
           ['^.+\\.svg$', '^.+\\.json$'],
           // Style imports: SCSS and CSS files.
           ['^.+\\.scss$', '^.+\\.css$'],

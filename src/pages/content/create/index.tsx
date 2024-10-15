@@ -1,11 +1,14 @@
 import { memo, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
-import useCreateContent from '@/hooks/contents/use-create-content';
+import { ROUTES } from '@/constants/router';
+import { TOAST_MESSAGE } from '@/constants/toast-message';
+
+import useCreateContent from '@/hooks/contents/api/use-create-content';
+import { useImagesUploadToLocal } from '@/hooks/contents/core/use-image-upload-local';
 import { useSelectCategories } from '@/hooks/contents/use-select-categories';
 import { useUploadImagesToServer } from '@/hooks/photo/use-upload-images';
 import { useTagManagement } from '@/hooks/tags/use-tag-management';
-import { useImagesUploadToLocal } from '@/hooks/use-image-upload-local';
 import { useToast } from '@/hooks/use-toast';
 
 import ButtonFrame from '@/components/content-edit-page-frame/(components)/button-frame';
@@ -36,7 +39,7 @@ const ContentCreatePage = memo(() => {
 
   const handleSubmit = () => {
     if (!title) {
-      addToast('제목을 입력해주세요.', 'error');
+      addToast(TOAST_MESSAGE.CONTENT.ERR.NO_TITLE, 'error');
       return;
     }
 
@@ -52,19 +55,16 @@ const ContentCreatePage = memo(() => {
               },
               {
                 onSuccess: (createContentData) => {
-                  addToast('발행이 성공되었습니다!', 'success');
-                  setTimeout(() => {
-                    window.location.href = `/content/${createContentData.id}`;
-                  }, 3000);
+                  window.location.href = ROUTES.thread.create(createContentData.id);
                 },
                 onError: () => {
-                  addToast('새 글 발행이 실패하였습니다.', 'error');
+                  addToast(TOAST_MESSAGE.CONTENT.ADD.FAIL, 'error');
                 },
               },
             );
           },
           onError: (error) => {
-            addToast(`이미지 업로드에 실패하였습니다. ${error.message}`, 'error');
+            addToast(`${TOAST_MESSAGE.IMAGE_UPLOAD.ADD.FAIL} ${error.message}`, 'error');
           },
         },
       );
@@ -75,13 +75,10 @@ const ContentCreatePage = memo(() => {
         },
         {
           onSuccess: (data) => {
-            addToast('발행이 성공되었습니다!', 'success');
-            setTimeout(() => {
-              window.location.href = `/content/${data.id}`;
-            }, 3000);
+            window.location.href = ROUTES.thread.create(data.id);
           },
           onError: () => {
-            addToast('새 글 발행을 실패하였습니다.', 'error');
+            addToast(TOAST_MESSAGE.CONTENT.ADD.FAIL, 'error');
           },
         },
       );
@@ -103,7 +100,7 @@ const ContentCreatePage = memo(() => {
       <EditHeader
         titleText="새 글 작성하기"
         onClick={() => {
-          void router.push('/main');
+          void router.push(ROUTES.main);
         }}
       />
       <div className={s.imageSection}>
