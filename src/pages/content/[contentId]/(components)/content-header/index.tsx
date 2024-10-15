@@ -47,7 +47,7 @@ export default function ContentHeader({ contentId, isWriter }: ContentHeaderProp
       </BtnFrame>
       {isWriter && (
         <DropdownActionMenu
-          triggerButton={<MoreVertIcon />}
+          triggerButton={<MoreVertIcon width={24} height={24} />}
           actionItems={[
             { name: '수정하기', onClick: handleEdit, key: 'update' },
             { name: '삭제하기', onClick: handleDelete, key: 'delete' },

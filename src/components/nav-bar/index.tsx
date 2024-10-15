@@ -25,11 +25,11 @@ export default function NavBar() {
   return (
     <div className={s.navBarContainer}>
       <Link id={ROUTES.main} type="button" className={`${s.navBarButton} ${mainPath ? s.currentPage : ''}`} href={ROUTES.main}>
-        <HomeIcon />
+        <HomeIcon width={33} height={32} />
         <span className={`${s.buttonText} ${mainPath ? s.currentPage : ''}`}>홈</span>
       </Link>
       <Link id={ROUTES.category} type="button" className={`${s.navBarButton} ${categoryPath ? s.currentPage : ''}`} href={ROUTES.category}>
-        <CategoryIcon />
+        <CategoryIcon width={33} height={32} />
         <span className={`${s.buttonText} ${categoryPath ? s.currentPage : ''}`}>카테고리</span>
       </Link>
       <Link
@@ -38,7 +38,7 @@ export default function NavBar() {
         className={`${s.navBarButton} ${menuPath ? s.currentPage : ''}`}
         href={loginState ? ROUTES.profile : ROUTES.needLogin}
       >
-        <MenuIcon />
+        <MenuIcon width={33} height={32} />
         <span className={`${s.buttonText} ${menuPath ? s.currentPage : ''}`}>메뉴</span>
       </Link>
       {mainPath && loginState && (

@@ -97,11 +97,16 @@ export default function MyProfile() {
           </div>
         </div>
         <nav className={s.navWrapper}>
-          <NavItem leftIcon={<PersonIcon />} text="내 정보 보기" rightIcon={<ForwardIcon />} onClick={() => router.push(`${ROUTES.profileEdit}`)} />
           <NavItem
-            leftIcon={<ArticleIcon />}
+            leftIcon={<PersonIcon width={16} height={16} />}
+            text="내 정보 보기"
+            rightIcon={<ForwardIcon width={20} height={20} />}
+            onClick={() => router.push(`${ROUTES.profileEdit}`)}
+          />
+          <NavItem
+            leftIcon={<ArticleIcon width={20} height={20} />}
             text="내 작성글 모두보기"
-            rightIcon={!openContents ? <ArrowDownIcon /> : <ArrowUpIcon />}
+            rightIcon={!openContents ? <ArrowDownIcon width={20} height={20} /> : <ArrowUpIcon width={20} height={20} />}
             onClick={() => setOpenContents((prev) => !prev)}
           />
           {contents}

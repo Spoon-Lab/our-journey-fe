@@ -19,7 +19,7 @@ export default function Header(props: InterfaceProp) {
     <header className={s.headerContainer}>
       <div className={s.backButtonBox}>
         <button aria-label="뒤로" type="button" className={s.backButton} onClick={handleMoveToBack}>
-          <ArrowBackIcon />
+          <ArrowBackIcon width={24} height={24} />
         </button>
         <h1 className={s.headerTitle}>{title}</h1>
       </div>
