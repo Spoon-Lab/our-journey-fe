@@ -93,7 +93,7 @@ export default function ContentEditPage() {
         {
           data: {
             title,
-            imgUrl: '',
+            imgUrl: uploadImageFile,
             tags: tags.map((tag) => tag.tagId),
           },
           contentId,

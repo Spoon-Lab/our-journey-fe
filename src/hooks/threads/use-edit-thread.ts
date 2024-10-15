@@ -11,7 +11,7 @@ export const useEditThread = () => {
   return useMutation<Thread, Error, { contentId: number; data: ThreadPatchRequest; threadId: number }>({
     mutationFn: ({ contentId, threadId, data }) => patchThread(contentId, threadId, data),
     onSuccess: () => {
-      void queryClient.invalidateQueries({ queryKey: ['threads'] });
+      void queryClient.invalidateQueries({ queryKey: ['threads-update'] });
     },
     onError: (error) => {
       setSentryLogging(error);
