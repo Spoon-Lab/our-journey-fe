@@ -11,7 +11,7 @@ const getMyContents = async (page: number) => {
   return data;
 };
 
-const useGetMyContents = ({ open }: { open: boolean }) =>
+const useGetMyContents = (open: boolean) =>
   useInfiniteQuery({
     queryKey: ['contents'], // TODO:변경해야할듯
     queryFn: ({ pageParam }) => getMyContents(pageParam),

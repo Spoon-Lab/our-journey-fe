@@ -88,3 +88,13 @@ export interface ContentPostRequest {
 export interface CreateContentResponse {
   id: number;
 }
+
+export interface MyLikeContent extends Omit<MyContent, 'contentImageUrl'> {
+  postImageUrl: string;
+}
+
+export interface MyLikeContents {
+  list: Omit<MyContents['list'], 'content'> & {
+    content: MyLikeContent[];
+  };
+}

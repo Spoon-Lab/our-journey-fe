@@ -1,0 +1,46 @@
+@import '@/styles';
+
+.skeleton {
+  width: 80px;
+  height: 24px;
+  border-radius: 5px;
+
+  background: linear-gradient(110deg, $gray-700 8%, #5c5c5c 18%, $gray-700 33%);
+  background-size: 200% 300%;
+
+  animation: 1.4s skeletonGradientWave linear infinite;
+
+  @keyframes skeletonGradientWave {
+    to {
+      background-position-x: -200%;
+    }
+  }
+}
+
+p.skeleton {
+  width: 100px;
+  height: 15.5px;
+}
+
+.skeletonImg {
+  border-radius: 50%;
+  width: 76px;
+  height: 76px;
+}
+
+.userInfoWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+
+  div {
+    @include semibold-title-3;
+    color: $gray-50;
+  }
+
+  p {
+    @include regular-footnote;
+    color: $gray-400;
+  }
+}
