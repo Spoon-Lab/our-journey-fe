@@ -75,7 +75,7 @@ export default function ThreadFrame({
     <div className={s.threadFrame}>
       <div className={s.threadHeader}>
         <button className={s.writerInfo} type="button" onClick={() => router.push(ROUTES.otherProfile(profileId))} aria-label="프로필 보기">
-          <div className={s.writerIcon}>{writerIcon && <Image src={writerIcon} alt="writer-icon" width={40} height={40} />}</div>
+          <div className={s.writerIcon}>{writerIcon && <Image src={writerIcon} alt="writer-icon" width={20} height={20} />}</div>
           <div className={s.writerName}>{writerName}</div>
         </button>
         {isWriter && (

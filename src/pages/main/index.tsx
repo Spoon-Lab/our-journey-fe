@@ -11,11 +11,12 @@ import SearchBar from '@/components/search-bar';
 import BannerCarousel from './component/banner-carousel';
 import CreateBox from './component/create-box';
 import SortContainer from './component/sort-container';
+
 import useGetContents from '../../hooks/contents/use-get-contents';
 
-import s from './style.module.scss';
-
 import { Banners } from '@/mocks/banners';
+
+import s from './style.module.scss';
 
 export default function Main() {
   const { data, sort, setSort, fetchNextPage, hasNextPage } = useGetContents({ categoryId: undefined, title: undefined });

@@ -35,7 +35,7 @@ export default function ContentCover({ content, user }: ContentCoverProps) {
             <button className={s.writerInfo} onClick={() => router.push(ROUTES.otherProfile(profileId))} type="button" aria-label="프로필 보기">
               <div className={s.profileImage}>
                 {profileImgUrl ? (
-                  <Image src={profileImgUrl} alt="profile-image" width={40} height={40} />
+                  <Image src={profileImgUrl} alt="profile-image" width={20} height={20} />
                 ) : (
                   <DefaultProfileSmallIcon alt="profile-image" width={15} height={15} />
                 )}

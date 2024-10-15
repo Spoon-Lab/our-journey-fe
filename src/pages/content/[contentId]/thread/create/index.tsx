@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import { ROUTES } from '@/constants/router';
+
 import { useGetRouteParamNumber } from '@/hooks/contents/core/use-get-route-param-number';
 import { useImagesUploadToLocal } from '@/hooks/contents/core/use-image-upload-local';
 import { useUploadImagesToServer } from '@/hooks/photo/use-upload-images';
@@ -50,10 +52,7 @@ export default function ContentCreatePage() {
               },
               {
                 onSuccess: () => {
-                  addToast('발행이 성공되었습니다!', 'success');
-                  setTimeout(() => {
-                    window.location.href = `/content/${contentId}`;
-                  }, 3000);
+                  window.location.href = `${ROUTES.content.detail(contentId)}`;
                 },
                 onError: () => {
                   addToast('새 글 발행이 실패하였습니다.', 'error');
@@ -78,10 +77,7 @@ export default function ContentCreatePage() {
         },
         {
           onSuccess: () => {
-            addToast('발행이 성공되었습니다!', 'success');
-            setTimeout(() => {
-              window.location.href = `/content/${contentId}`;
-            }, 3000);
+            window.location.href = `${ROUTES.content.detail(contentId)}`;
           },
           onError: () => {
             addToast('발행을 실패하였습니다.', 'error');
