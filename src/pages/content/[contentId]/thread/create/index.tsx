@@ -30,11 +30,15 @@ export default function ContentCreatePage() {
 
   const { addToast } = useToast();
 
+  const [loading, setLoading] = useState<boolean>(false);
+
   const handleSubmit = () => {
     if (!content) {
       addToast('세부 내용을 입력해주세요.', 'error');
       return;
     }
+
+    setLoading(true);
     if (uploadImageFile && typeof uploadImageFile !== 'string') {
       uploadImages(
         { imageType: 'thread', images: [uploadImageFile] },
@@ -55,12 +59,14 @@ export default function ContentCreatePage() {
                   window.location.href = `${ROUTES.content.detail(contentId)}`;
                 },
                 onError: () => {
+                  setLoading(false);
                   addToast('새 글 발행이 실패하였습니다.', 'error');
                 },
               },
             );
           },
           onError: (error) => {
+            setLoading(false);
             addToast(`이미지 업로드에 실패하였습니다. ${error.message}`, 'error');
           },
         },
@@ -80,6 +86,7 @@ export default function ContentCreatePage() {
             window.location.href = `${ROUTES.content.detail(contentId)}`;
           },
           onError: () => {
+            setLoading(false);
             addToast('발행을 실패하였습니다.', 'error');
           },
         },

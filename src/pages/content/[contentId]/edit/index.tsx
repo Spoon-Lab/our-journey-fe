@@ -29,8 +29,10 @@ export default function ContentEditPage() {
 
   const { uploadImageFile, getRootProps, getInputProps, isDragActive, resetImage, setUploadImageFile } = useImagesUploadToLocal();
   const { tags, setTags, addTag, removeTag } = useTagManagement();
+
   const [title, setTitle] = useState<string>('');
   const [isPostButtonEnabled, setIsPostButtonEnabled] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const { addToast } = useToast();
 
@@ -58,6 +60,8 @@ export default function ContentEditPage() {
       return;
     }
 
+    setLoading(true);
+
     if (uploadImageFile && typeof uploadImageFile !== 'string') {
       uploadImages(
         { imageType: 'content', images: [uploadImageFile] },
@@ -75,16 +79,19 @@ export default function ContentEditPage() {
               },
               {
                 onSuccess: () => {
-                  setTimeout(() => {
-                    window.location.href = `/content/${contentId}`;
-                  }, 3000);
                   addToast(TOAST_MESSAGE.CONTENT.EDIT.SUCCESS, 'success');
+                  window.location.href = `/content/${contentId}`;
                 },
                 onError: () => {
                   addToast(TOAST_MESSAGE.CONTENT.EDIT.FAIL, 'error');
+                  setLoading(false);
                 },
               },
             );
+          },
+          onError: () => {
+            addToast(TOAST_MESSAGE.CONTENT.EDIT.FAIL, 'error');
+            setLoading(false);
           },
         },
       );
@@ -100,13 +107,12 @@ export default function ContentEditPage() {
         },
         {
           onSuccess: () => {
-            setTimeout(() => {
-              window.location.href = `/content/${contentId}`;
-            }, 3000);
             addToast(TOAST_MESSAGE.CONTENT.EDIT.SUCCESS, 'success');
+            window.location.href = `/content/${contentId}`;
           },
           onError: () => {
             addToast(TOAST_MESSAGE.CONTENT.EDIT.FAIL, 'error');
+            setLoading(false);
           },
         },
       );
@@ -139,7 +145,7 @@ export default function ContentEditPage() {
       </div>
       <div className={s.divider} />
       <div className={s.buttonSection}>
-        <PostButton text="발행하기" onClick={handleSubmit} disabled={!isPostButtonEnabled} />
+        <PostButton text="발행하기" onClick={handleSubmit} disabled={!isPostButtonEnabled || loading} />
       </div>
     </div>
   );

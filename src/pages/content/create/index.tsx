@@ -37,11 +37,15 @@ const ContentCreatePage = memo(() => {
 
   const { addToast } = useToast();
 
+  const [loading, setLoading] = useState<boolean>(false);
+
   const handleSubmit = () => {
     if (!title) {
       addToast(TOAST_MESSAGE.CONTENT.ERR.NO_TITLE, 'error');
       return;
     }
+
+    setLoading(true);
 
     if (uploadImageFile && typeof uploadImageFile !== 'string') {
       uploadImages(
@@ -58,12 +62,14 @@ const ContentCreatePage = memo(() => {
                   window.location.href = ROUTES.thread.create(createContentData.id);
                 },
                 onError: () => {
+                  setLoading(false);
                   addToast(TOAST_MESSAGE.CONTENT.ADD.FAIL, 'error');
                 },
               },
             );
           },
           onError: (error) => {
+            setLoading(false);
             addToast(`${TOAST_MESSAGE.IMAGE_UPLOAD.ADD.FAIL} ${error.message}`, 'error');
           },
         },
@@ -78,6 +84,7 @@ const ContentCreatePage = memo(() => {
             window.location.href = ROUTES.thread.create(data.id);
           },
           onError: () => {
+            setLoading(false);
             addToast(TOAST_MESSAGE.CONTENT.ADD.FAIL, 'error');
           },
         },
@@ -122,7 +129,7 @@ const ContentCreatePage = memo(() => {
       </div>
       <div className={s.divider} />
       <div className={s.buttonSection}>
-        <PostButton text="발행하기" onClick={handleSubmit} disabled={!isPostButtonEnabled} />
+        <PostButton text="발행하기" onClick={handleSubmit} disabled={!isPostButtonEnabled || loading} />
       </div>
     </div>
   );
