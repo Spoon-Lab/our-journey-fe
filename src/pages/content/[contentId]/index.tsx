@@ -50,7 +50,6 @@ export default function DetailPage() {
         <ContentSection
           contentId={contentId}
           initialLiked={contentData?.isLiked || false}
-          comments={contentData?.commentCount || 0}
           likes={contentData?.likeCount || 0}
           tags={Array.isArray(contentData?.tags) ? contentData.tags : []}
         />

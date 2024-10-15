@@ -3,9 +3,9 @@ import { useMemo, useState } from 'react';
 
 import type { ToastData, ToastMessage } from '@/types/toast';
 
-import Toast from '@/components/progress-toast';
-
 import { ToastContext } from '@/context/toast';
+
+import Toast from '@/components/progress-toast';
 
 export function ToastProvider({ children }: { children: ReactNode }) {
   const [toast, setToast] = useState<ToastData | null>(null);

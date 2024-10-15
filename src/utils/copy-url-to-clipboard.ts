@@ -4,7 +4,6 @@ export const copyUrlToClipboard = async (): Promise<boolean> => {
     await navigator.clipboard.writeText(currentUrl);
     return true;
   } catch (err) {
-    console.error('Failed to copy URL: ', err);
     return false;
   }
 };

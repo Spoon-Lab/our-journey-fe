@@ -40,7 +40,7 @@ export default function ContentEditPage() {
       setTags(fetchedContent.tags);
       setUploadImageFile(fetchedContent.postImg);
     }
-  }, [fetchedContent]);
+  }, [fetchedContent, setTags, setUploadImageFile]);
 
   useEffect(() => {
     const isEnabled = title.trim() !== '';

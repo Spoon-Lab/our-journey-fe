@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
 
-import useGetOneContent from '@/hooks/contents/api/use-get-one-content';
 import { useGetRouteParamNumber } from '@/hooks/contents/core/use-get-route-param-number';
 import { useImagesUploadToLocal } from '@/hooks/contents/core/use-image-upload-local';
 import { useUploadImagesToServer } from '@/hooks/photo/use-upload-images';
 import { useTagManagement } from '@/hooks/tags/use-tag-management';
 import { useVerifyTags } from '@/hooks/tags/use-verify-tags';
 import { useEditThread } from '@/hooks/threads/use-edit-thread';
-import useGetThreads from '@/hooks/threads/use-get-threads';
+import useGetThread from '@/hooks/threads/use-get-thread';
 import { useToast } from '@/hooks/use-toast';
 
 import ButtonFrame from '@/components/content-edit-page-frame/(components)/button-frame';
@@ -24,8 +23,7 @@ export default function ThreadEditPage() {
   const contentId = useGetRouteParamNumber('contentId');
   const threadId = useGetRouteParamNumber('threadId');
 
-  const { data: fetchedThreadList } = useGetThreads(contentId);
-  const { data: fetchedContent } = useGetOneContent(contentId);
+  const { data: fetchedThreadList } = useGetThread(contentId, threadId);
   const { mutate: editThread } = useEditThread();
   const { mutate: uploadImages } = useUploadImagesToServer();
 
@@ -44,8 +42,6 @@ export default function ThreadEditPage() {
       setTitle(findThread?.texts || '');
       setTagNames(findThread?.tagNames || []);
       setUploadImageFile(findThread?.threadImg || '');
-
-      console.log('fetchedThreadList', findThread);
     }
   }, [fetchedThreadList, setUploadImageFile, threadId]);
 

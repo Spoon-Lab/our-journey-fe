@@ -19,17 +19,16 @@ import WrapTag from '../wrap-tag';
 
 import s from './style.module.scss';
 
-import { FavoriteIconFilled, FavoriteIconNoFill, MessageIcon, ShareIcon } from '@/assets/icons';
+import { FavoriteIconFilled, FavoriteIconNoFill, ShareIcon } from '@/assets/icons';
 
 interface ContentSectionProps {
-  comments?: number;
   contentId: number;
   initialLiked: boolean;
   likes: number;
   tags: Tag[];
 }
 
-export default function ContentSection({ contentId, comments, initialLiked, likes, tags }: ContentSectionProps) {
+export default function ContentSection({ contentId, initialLiked, likes, tags }: ContentSectionProps) {
   const router = useRouter();
   const [isLiked, setLiked] = useState<boolean>(false);
 
