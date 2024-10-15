@@ -11,7 +11,7 @@ import ParallaxImage from '../parallax-image';
 
 import s from './style.module.scss';
 
-import { DefaultProfile } from '@/assets/icons';
+import { DefaultProfileSmallIcon } from '@/assets/icons';
 
 interface ContentCoverProps {
   content: Content;
@@ -34,7 +34,11 @@ export default function ContentCover({ content, user }: ContentCoverProps) {
             <div className={s.contentTitle}>{title || 'No data'}</div>
             <button className={s.writerInfo} onClick={() => router.push(ROUTES.otherProfile(profileId))} type="button" aria-label="프로필 보기">
               <div className={s.profileImage}>
-                {profileImgUrl ? <Image src={profileImgUrl} alt="profile-image" width={40} height={40} /> : <DefaultProfile width={15} height={15} />}
+                {profileImgUrl ? (
+                  <Image src={profileImgUrl} alt="profile-image" width={40} height={40} />
+                ) : (
+                  <DefaultProfileSmallIcon alt="profile-image" width={15} height={15} />
+                )}
               </div>
               <span className={s.writerName}>{name}</span>
             </button>

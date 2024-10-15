@@ -43,7 +43,7 @@ export default function NavBar() {
       </Link>
       {mainPath && loginState && (
         <Link id={ROUTES.content.create()} aria-label="글 작성" type="button" className={s.fab} href={ROUTES.content.create()}>
-          <AddIcon />
+          <AddIcon width={36} height={36} />
         </Link>
       )}
     </div>

@@ -80,6 +80,10 @@ $cover-height: 440px;
   border-radius: 50%;
   overflow: hidden;
   background-color: $gray-400;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .writerName {
   color: white;
