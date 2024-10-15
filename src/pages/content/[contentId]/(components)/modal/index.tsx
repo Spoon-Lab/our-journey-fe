@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
-import { usePortal } from '@/hooks/use-portal';
+import { usePortal } from '@/hooks/contents/ui/use-portal';
 
 import s from './style.module.scss';
 

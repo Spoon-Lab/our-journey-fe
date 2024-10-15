@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { emojiRegex } from '@/constants/regex';
 import { ROUTES } from '@/constants/router';
 
-import { useActiveScroll } from '@/hooks/contents/use-active-scroll';
+import { useActiveScroll } from '@/hooks/contents/ui/use-active-scroll';
 import { useCurrentKeyword } from '@/hooks/contents/use-current-keyword';
 
 import s from './style.module.scss';

@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 
-import useGetOneContent from '@/hooks/contents/use-get-one-content';
+import useGetOneContent from '@/hooks/contents/api/use-get-one-content';
+import { useGetRouteParamNumber } from '@/hooks/contents/core/use-get-route-param-number';
+import { useImagesUploadToLocal } from '@/hooks/contents/core/use-image-upload-local';
 import { useUploadImagesToServer } from '@/hooks/photo/use-upload-images';
 import { useTagManagement } from '@/hooks/tags/use-tag-management';
 import { useVerifyTags } from '@/hooks/tags/use-verify-tags';
 import { useEditThread } from '@/hooks/threads/use-edit-thread';
 import useGetThreads from '@/hooks/threads/use-get-threads';
-import { useGetRouteParamNumber } from '@/hooks/use-get-route-param-number';
-import { useImagesUploadToLocal } from '@/hooks/use-image-upload-local';
 import { useToast } from '@/hooks/use-toast';
 
 import ButtonFrame from '@/components/content-edit-page-frame/(components)/button-frame';

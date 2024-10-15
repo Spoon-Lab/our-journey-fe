@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 
 import { TOAST_MESSAGE } from '@/constants/toast-message';
 
-import { useEditContent } from '@/hooks/contents/use-edit-content';
-import useGetOneContent from '@/hooks/contents/use-get-one-content';
+import { useEditContent } from '@/hooks/contents/api/use-edit-content';
+import useGetOneContent from '@/hooks/contents/api/use-get-one-content';
+import { useGetRouteParamNumber } from '@/hooks/contents/core/use-get-route-param-number';
+import { useImagesUploadToLocal } from '@/hooks/contents/core/use-image-upload-local';
 import { useUploadImagesToServer } from '@/hooks/photo/use-upload-images';
 import { useTagManagement } from '@/hooks/tags/use-tag-management';
-import { useGetRouteParamNumber } from '@/hooks/use-get-route-param-number';
-import { useImagesUploadToLocal } from '@/hooks/use-image-upload-local';
 import { useToast } from '@/hooks/use-toast';
 
 import ButtonFrame from '@/components/content-edit-page-frame/(components)/button-frame';

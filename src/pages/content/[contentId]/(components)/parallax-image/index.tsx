@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { useParallax } from '@/hooks/use-parallax';
+import { useParallax } from '@/hooks/contents/ui/use-parallax';
 
 interface ParallaxImageProps {
   alt?: string;

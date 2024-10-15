@@ -8,10 +8,10 @@ import { useRouter } from 'next/router';
 import { setSentryLogging } from '@/utils/error-logging';
 import { userInfoSchema } from '@/utils/validate';
 
+import useUploadImg from '@/hooks/contents/api/use-upload-img';
 import useGetMyProfile from '@/hooks/profile/use-get-my-profile';
 import { useUpdateMyProfile } from '@/hooks/profile/use-update-my-profile';
 import { useImage } from '@/hooks/use-image';
-import useUploadImg from '@/hooks/use-upload-img';
 
 import Input from '@/components/input';
 import ProfileLayout from '@/components/layouts/profile-layout';

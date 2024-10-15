@@ -1,7 +1,7 @@
 import type { ContentPostRequest, Contents, CreateContentResponse } from '@/types/contents';
 import { API_PATHS } from '@/constants/api';
 
-import type { EditContentReqBody } from '@/hooks/contents/use-edit-content';
+import type { EditContentReqBody } from '@/hooks/contents/api/use-edit-content';
 
 import axiosInstance from './axios';
 

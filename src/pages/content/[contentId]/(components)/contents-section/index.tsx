@@ -7,9 +7,9 @@ import { TOAST_MESSAGE } from '@/constants/toast-message';
 import { checkLoggedIn } from '@/utils/check-logged-in';
 import { copyUrlToClipboard } from '@/utils/copy-url-to-clipboard';
 
-import { useAddLike } from '@/hooks/contents/use-add-like';
-import { useRemoveLike } from '@/hooks/contents/use-remove-like';
-import { useModal } from '@/hooks/use-modal';
+import { useAddLike } from '@/hooks/contents/api/use-add-like';
+import { useRemoveLike } from '@/hooks/contents/api/use-remove-like';
+import { useModal } from '@/hooks/contents/ui/use-modal';
 import { useToast } from '@/hooks/use-toast';
 
 import Modal from '@/components/modal';

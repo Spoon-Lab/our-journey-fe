@@ -4,11 +4,11 @@ import { useRouter } from 'next/router';
 import { ROUTES } from '@/constants/router';
 import { TOAST_MESSAGE } from '@/constants/toast-message';
 
-import useCreateContent from '@/hooks/contents/use-create-content';
+import useCreateContent from '@/hooks/contents/api/use-create-content';
+import { useImagesUploadToLocal } from '@/hooks/contents/core/use-image-upload-local';
 import { useSelectCategories } from '@/hooks/contents/use-select-categories';
 import { useUploadImagesToServer } from '@/hooks/photo/use-upload-images';
 import { useTagManagement } from '@/hooks/tags/use-tag-management';
-import { useImagesUploadToLocal } from '@/hooks/use-image-upload-local';
 import { useToast } from '@/hooks/use-toast';
 
 import ButtonFrame from '@/components/content-edit-page-frame/(components)/button-frame';

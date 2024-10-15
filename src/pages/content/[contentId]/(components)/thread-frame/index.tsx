@@ -6,8 +6,8 @@ import { ROUTES } from '@/constants/router';
 import { checkValidImgUrl } from '@/utils/check-valid-image-url';
 import { defaultFormatTimeStamp } from '@/utils/format-date-timestamp';
 
+import { useModal } from '@/hooks/contents/ui/use-modal';
 import { useDeleteThread } from '@/hooks/threads/use-delete-thread';
-import { useModal } from '@/hooks/use-modal';
 import { useToast } from '@/hooks/use-toast';
 
 import ContentsDropdownActionMenu from '../dropdown-action-menu';

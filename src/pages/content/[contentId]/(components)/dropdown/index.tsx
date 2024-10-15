@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
-import { useDropdown } from '@/hooks/use-dropdown';
+import { useDropdown } from '@/hooks/contents/ui/use-dropdown';
 
 import s from './style.module.scss';
 
