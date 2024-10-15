@@ -44,6 +44,8 @@ export default function ThreadEditPage() {
       setTitle(findThread?.texts || '');
       setTagNames(findThread?.tagNames || []);
       setUploadImageFile(findThread?.threadImg || '');
+
+      console.log('fetchedThreadList', findThread);
     }
   }, [fetchedThreadList, setUploadImageFile, threadId]);
 
@@ -117,13 +119,6 @@ export default function ThreadEditPage() {
       );
     }
   };
-
-  useEffect(() => {
-    if (fetchedContent) {
-      setUploadImageFile(fetchedContent.postImg || '');
-      setTitle(fetchedContent.title || '');
-    }
-  }, [fetchedContent]);
 
   useEffect(() => {
     const isEnabled = title.trim() !== '';
