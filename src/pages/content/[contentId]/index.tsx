@@ -16,7 +16,7 @@ export default function DetailPage() {
   const { isScrolled, scrollPercent } = useScroll(30);
 
   const contentId = useGetRouteParamNumber('contentId');
-  const { data: fetchedContent, isLoading: isFetching, isSuccess: successFetchingContent, error: errContentFetching } = useGetOneContent(contentId);
+  const { data: fetchedContent, isLoading: isLoadingContent, isSuccess: successFetchingContent, error: errContentFetching } = useGetOneContent(contentId);
   const { data: fetchedThreadList, isLoading: isThreadFetching, isSuccess: successFetchingThread, error: errThreadFetching } = useGetThreads(contentId);
 
   return (

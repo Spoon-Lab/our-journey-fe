@@ -78,10 +78,10 @@ export default function ContentEditPage() {
                   setTimeout(() => {
                     window.location.href = `/content/${contentId}`;
                   }, 3000);
-                  addToast(TOAST_MESSAGE.CONTENT.EDIT, 'success');
+                  addToast(TOAST_MESSAGE.CONTENT.EDIT.SUCCESS, 'success');
                 },
                 onError: () => {
-                  addToast(TOAST_MESSAGE.CONTENT.ERR.EDIT, 'error');
+                  addToast(TOAST_MESSAGE.CONTENT.EDIT.FAIL, 'error');
                 },
               },
             );
@@ -103,10 +103,10 @@ export default function ContentEditPage() {
             setTimeout(() => {
               window.location.href = `/content/${contentId}`;
             }, 3000);
-            addToast(TOAST_MESSAGE.CONTENT.EDIT, 'success');
+            addToast(TOAST_MESSAGE.CONTENT.EDIT.SUCCESS, 'success');
           },
           onError: () => {
-            addToast(TOAST_MESSAGE.CONTENT.ERR.EDIT, 'error');
+            addToast(TOAST_MESSAGE.CONTENT.EDIT.FAIL, 'error');
           },
         },
       );
