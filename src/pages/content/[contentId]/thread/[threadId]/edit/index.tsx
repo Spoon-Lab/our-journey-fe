@@ -99,7 +99,7 @@ export default function ThreadEditPage() {
           data: {
             texts: title,
             tags: tags.map((tag) => tag.tagId),
-            threadImg: '',
+            threadImg: uploadImageFile,
           },
         },
         {
