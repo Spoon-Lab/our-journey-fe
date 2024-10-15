@@ -10,6 +10,7 @@ import { useGetRouteParamNumber } from '@/hooks/use-get-route-param-number';
 import { useImagesUploadToLocal } from '@/hooks/use-image-upload-local';
 import { useToast } from '@/hooks/use-toast';
 
+import ButtonFrame from '@/components/content-edit-page-frame/(components)/button-frame';
 import CustomTextarea from '@/components/content-edit-page-frame/(components)/custom-textarea';
 import EditHeader from '@/components/content-edit-page-frame/(components)/edit-header';
 import DropZone from '@/components/content-edit-page-frame/(components)/image-drop-zone';
@@ -148,6 +149,11 @@ export default function ThreadEditPage() {
         </DropZone>
       </div>
       <div className={s.contentSection}>
+        <div className={s.wrapActions}>
+          <ButtonFrame onclick={resetImage} disabled={!uploadImageFile}>
+            이미지 초기화
+          </ButtonFrame>
+        </div>
         <div className={s.titleInputBox}>
           <CustomTextarea placeholder="여행 내용을 입력해주세요!" value={title} onChange={(e: string) => setTitle(e)} />
         </div>
