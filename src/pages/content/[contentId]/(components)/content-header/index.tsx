@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import { ROUTES } from '@/constants/router';
@@ -6,7 +7,6 @@ import { ROUTES } from '@/constants/router';
 import { useDeleteContent } from '@/hooks/contents/api/use-delete-content';
 import { useToast } from '@/hooks/use-toast';
 
-import BtnFrame from '../btn-frame';
 import DropdownActionMenu from '../dropdown-action-menu';
 
 import { MoreVertIcon, PrevIcon } from '@/assets/icons';
@@ -38,13 +38,9 @@ export default function ContentHeader({ contentId, isWriter }: ContentHeaderProp
   };
   return (
     <>
-      <BtnFrame
-        onClick={() => {
-          void router.push('/main');
-        }}
-      >
+      <Link href="/main">
         <PrevIcon alt="prev-btn" width={24} height={24} />
-      </BtnFrame>
+      </Link>
       {isWriter && (
         <DropdownActionMenu
           triggerButton={<MoreVertIcon width={24} height={24} />}

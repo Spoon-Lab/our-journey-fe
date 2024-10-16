@@ -1,13 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 
-import type { ThreadResponse } from '@/types/threads';
+import type { ThreadItemProps } from '@/types/threads';
 
 import { getOneThread } from '@/libs/threads-services';
 import { setSentryLogging } from '@/utils/error-logging';
 
 export default function useGetThreads(contentId: number, threadId: number) {
-  const { data, isLoading, isSuccess, isError, error } = useQuery<ThreadResponse, AxiosError>({
+  const { data, isLoading, isSuccess, isError, error } = useQuery<ThreadItemProps, AxiosError>({
     queryKey: ['thread', contentId], // contentId를 queryKey에 포함
     queryFn: () => getOneThread(contentId, threadId),
     enabled: contentId !== -1,

@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import { ROUTES } from '@/constants/router';
+
 import { useGetRouteParamNumber } from '@/hooks/contents/core/use-get-route-param-number';
 import { useImagesUploadToLocal } from '@/hooks/contents/core/use-image-upload-local';
 import { useUploadImagesToServer } from '@/hooks/photo/use-upload-images';
@@ -23,7 +25,7 @@ export default function ThreadEditPage() {
   const contentId = useGetRouteParamNumber('contentId');
   const threadId = useGetRouteParamNumber('threadId');
 
-  const { data: fetchedThreadList } = useGetThread(contentId, threadId);
+  const { data: threadData } = useGetThread(contentId, threadId);
   const { mutate: editThread } = useEditThread();
   const { mutate: uploadImages } = useUploadImagesToServer();
 
@@ -36,14 +38,15 @@ export default function ThreadEditPage() {
 
   const { addToast } = useToast();
 
+  const [loading, setLoading] = useState<boolean>(false);
+
   useEffect(() => {
-    if (fetchedThreadList) {
-      const findThread = fetchedThreadList.list.content.find((thread) => thread.threadId === threadId);
-      setTitle(findThread?.texts || '');
-      setTagNames(findThread?.tagNames || []);
-      setUploadImageFile(findThread?.threadImg || '');
+    if (threadData) {
+      setTitle(threadData.texts || '');
+      threadData.tagsDto.map((tag) => setTagNames((prev) => [...prev, tag.tagName]));
+      setUploadImageFile(threadData.threadImg || '');
     }
-  }, [fetchedThreadList, setUploadImageFile, threadId]);
+  }, [threadData, setUploadImageFile, threadId]);
 
   useEffect(() => {
     if (isVerificationComplete) {
@@ -56,6 +59,9 @@ export default function ThreadEditPage() {
       addToast('세부 내용을 입력해주세요.', 'error');
       return;
     }
+
+    setLoading(true);
+
     if (uploadImageFile && typeof uploadImageFile !== 'string') {
       uploadImages(
         { imageType: 'content', images: [uploadImageFile] },
@@ -74,18 +80,17 @@ export default function ThreadEditPage() {
               },
               {
                 onSuccess: () => {
-                  addToast('발행이 성공되었습니다!', 'success');
-                  setTimeout(() => {
-                    window.location.href = `/content/${contentId}`;
-                  }, 3000);
+                  window.location.href = ROUTES.content.detail(contentId);
                 },
                 onError: () => {
+                  setLoading(false);
                   addToast('새 글 발행이 실패하였습니다.', 'error');
                 },
               },
             );
           },
           onError: (error) => {
+            setLoading(false);
             addToast(`이미지 업로드에 실패하였습니다. ${error.message}`, 'error');
           },
         },
@@ -103,12 +108,10 @@ export default function ThreadEditPage() {
         },
         {
           onSuccess: () => {
-            addToast('발행이 성공되었습니다!', 'success');
-            setTimeout(() => {
-              window.location.href = `/content/${contentId}`;
-            }, 3000);
+            window.location.href = ROUTES.content.detail(contentId);
           },
           onError: () => {
+            setLoading(false);
             addToast('발행을 실패하였습니다.', 'error');
           },
         },
@@ -152,7 +155,7 @@ export default function ThreadEditPage() {
       </div>
       <div className={s.divider} />
       <div className={s.buttonSection}>
-        <PostButton text="발행하기" onClick={handleSubmit} disabled={!isPostButtonEnabled} />
+        <PostButton text="발행하기" onClick={handleSubmit} disabled={!isPostButtonEnabled || loading} />
       </div>
     </div>
   );
