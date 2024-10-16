@@ -24,7 +24,7 @@ export default function UserInfo({ isPending, profile }: UserInfoProps) {
 
   return (
     <div className={s.profileWrapper}>
-      {profile?.imageUrl && checkValidImgUrl(profile?.imageUrl) ? <img src={profile?.imageUrl} alt="profile img" /> : <DefaultProfile />}
+      {profile?.imageUrl && checkValidImgUrl(profile?.imageUrl) ? <img src={profile?.imageUrl} alt="profile img" /> : <DefaultProfile width={76} height={76}  />}
       <div className={s.userInfoWrapper}>
         <div>{profile?.nickname}</div>
         <p>{profile?.selfIntroduction ?? '한 줄 소개가 없습니다'}</p>
