@@ -13,7 +13,7 @@ export default function AuthHeader({ text }: HeaderProps) {
   return (
     <header className={s.headerContainer}>
       <button aria-label="뒤로 가기" type="button" onClick={() => router.back()}>
-        <ArrowBack />
+        <ArrowBack width={18} height={18} />
       </button>
       <p>{text}</p>
     </header>

@@ -127,7 +127,7 @@ export default function Edit() {
             ) : profile?.imageUrl ? (
               <img src={profile?.imageUrl} alt="profile img" />
             ) : (
-              <DefaultProfile />
+              <DefaultProfile width={76} height={76} />
             )}
             <label htmlFor="file">
               <EditIcon width={20} height={20} />

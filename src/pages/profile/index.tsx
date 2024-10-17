@@ -82,7 +82,7 @@ export default function MyProfile() {
           <NavItem
             leftIcon={<ArticleIcon />}
             text="좋아요한 글 모두 보기"
-            rightIcon={!openLikes ? <ArrowDownIcon /> : <ArrowUpIcon />}
+            rightIcon={!openLikes ? <ArrowDownIcon width={20} height={20} /> : <ArrowUpIcon width={20} height={20} />}
             onClick={() => setOpenLikes((prev) => !prev)}
             disabled={profilePending}
           />
