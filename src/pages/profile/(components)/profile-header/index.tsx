@@ -14,8 +14,8 @@ export default function ProfileHeader({ text, button, iconClick }: ProfileHeader
   return (
     <header className={s.headerContainer}>
       {iconClick ? (
-        <button className={s.arrowBtn} type="button" onClick={iconClick}>
-          <ArrowBack />
+        <button type="button" onClick={iconClick}>
+          <ArrowBack width={18} height={18} />
         </button>
       ) : (
         <div className={s.emptyBox} />
